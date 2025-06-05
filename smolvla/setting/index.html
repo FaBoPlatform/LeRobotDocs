@@ -401,6 +401,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      推論実行
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -510,6 +519,15 @@
   <a href="#smolvlafinetuning" class="md-nav__link">
     <span class="md-ellipsis">
       smolVLAでFinetuning
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      推論実行
     </span>
   </a>
   
@@ -829,6 +847,73 @@ torch==2.8.0.dev20250603+cu128 torchvision==0.23.0.dev20250603+cu128 torchaudio=
 </tr>
 </tbody>
 </table>
+<h2 id="_5">推論実行</h2>
+<p><code>./lerobot/common/policies/utils.py</code>を修正</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span></pre></div></td><td class="code"><div><pre><span></span><code>def populate_queues(queues, batch, exclude_keys=None):
+    if exclude_keys is None:
+        exclude_keys = []
+
+    for key in batch:
+        if key in exclude_keys:
+            continue
+        # Ignore keys not in the queues already (leaving the responsibility to the caller to make sure the
+        # queues have the keys they want).
+        if key not in queues:
+            continue
+        if len(queues[key]) != queues[key].maxlen:
+            # initialize by copying the first observation several times until the queue is full
+            while len(queues[key]) != queues[key].maxlen:
+                queues[key].append(batch[key])
+        else:
+            # add latest observation to the queue
+            queues[key].append(batch[key])
+    return queues
+</code></pre></div></td></tr></table></div>
+<p>推論を実行</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><code>python lerobot/scripts/control_robot.py \
+  --robot.type=so100 \
+  --control.type=record \
+  --control.fps=30 \
+  --control.single_task=&quot;Grasp a red block and put it in the bin.&quot; \
+  --control.repo_id=akira-sasaki/eval_smolvla_so100_test \
+  --control.tags=&#39;[&quot;smolvla&quot;,&quot;so100&quot;]&#39; \
+  --control.warmup_time_s=5 \
+  --control.episode_time_s=30 \
+  --control.reset_time_s=5 \
+  --control.num_episodes=3 \
+  --control.push_to_hub=true \
+  --control.policy.path=outputs/train/2025-06-04/17-57-18_smolvla/checkpoints/last/pretrained_model
+</code></pre></div></td></tr></table></div>
 
 
 
