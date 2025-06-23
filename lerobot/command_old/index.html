@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../../jetson/setting/">
+        <link rel="prev" href="../command/">
       
       
-        <link rel="next" href="../command_old/">
+        <link rel="next" href="../../hilsel/setting_644/">
       
       
       <link rel="icon" href="../../favicon.png">
@@ -20,7 +20,7 @@
     
     
       
-        <title>各種コマンド(新) - FaBo LeRobot Docs</title>
+        <title>各種コマンド(旧) - FaBo LeRobot Docs</title>
       
     
     
@@ -111,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              各種コマンド(新)
+              各種コマンド(旧)
             
           </span>
         </div>
@@ -283,6 +283,27 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../command/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    各種コマンド(新)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -299,7 +320,7 @@
           
   
   <span class="md-ellipsis">
-    各種コマンド(新)
+    各種コマンド(旧)
   </span>
   
 
@@ -310,7 +331,7 @@
         
   
   <span class="md-ellipsis">
-    各種コマンド(新)
+    各種コマンド(旧)
   </span>
   
 
@@ -341,18 +362,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#leader" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      キャリブレーション(Leader)
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#follower" class="md-nav__link">
-    <span class="md-ellipsis">
-      キャリブレーション(Follower)
+      キャリブレーション
     </span>
   </a>
   
@@ -368,7 +380,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       データセット収集
     </span>
@@ -377,7 +389,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       学習
     </span>
@@ -386,7 +398,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       推論実行
     </span>
@@ -398,27 +410,6 @@
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../command_old/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    各種コマンド(旧)
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -593,18 +584,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#leader" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      キャリブレーション(Leader)
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#follower" class="md-nav__link">
-    <span class="md-ellipsis">
-      キャリブレーション(Follower)
+      キャリブレーション
     </span>
   </a>
   
@@ -620,7 +602,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       データセット収集
     </span>
@@ -629,7 +611,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       学習
     </span>
@@ -638,7 +620,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       推論実行
     </span>
@@ -670,40 +652,37 @@
 /dev/ttyACM1
 </code></pre></div></td></tr></table></div>
 <p>に修正。</p>
-<h2 id="leader">キャリブレーション(Leader)</h2>
+<h2 id="_2">キャリブレーション</h2>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
-<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>python -m lerobot.calibrate \
-  --teleop.type=so101_leader \
-  --teleop.port=/dev/ttyACM1 \
-  --teleop.id=my_leader_arm
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code>python lerobot/scripts/control_robot.py \
+  --robot.type=so100 \
+  --robot.cameras=&#39;{}&#39; \
+  --control.type=calibrate \
+  --control.arms=&#39;[&quot;main_follower&quot;]&#39;
 </code></pre></div></td></tr></table></div>
-<h2 id="follower">キャリブレーション(Follower)</h2>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
-<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>python -m lerobot.calibrate \
-  --robot.type=so101_follower \
-  --robot.port=/dev/ttyACM0 \
-  --robot.id=my_follower_arm
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code>python lerobot/scripts/control_robot.py \
+  --robot.type=so100 \
+  --robot.cameras=&#39;{}&#39; \
+  --control.type=calibrate \
+  --control.arms=&#39;[&quot;main_leader&quot;]&#39;
 </code></pre></div></td></tr></table></div>
 <h2 id="teleportation">Teleportation</h2>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
-<span class="normal">4</span>
-<span class="normal">5</span>
-<span class="normal">6</span>
-<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code>python -m lerobot.teleoperate \
-    --robot.type=so101_follower \
-    --robot.port=/dev/ttyACM0 \
-    --robot.id=my_follower_arm \
-    --teleop.type=so101_leader \
-    --teleop.port=/dev/ttyACM1 \
-    --teleop.id=my_leader_arm
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>python lerobot/scripts/control_robot.py \
+  --robot.type=so100 \
+  --robot.cameras=&#39;{}&#39; \
+  --control.type=teleoperate
 </code></pre></div></td></tr></table></div>
-<h2 id="_2">データセット収集</h2>
+<h2 id="_3">データセット収集</h2>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -730,7 +709,7 @@
     --control.display_data=true \
     --control.push_to_hub=true
 </code></pre></div></td></tr></table></div>
-<h2 id="_3">学習</h2>
+<h2 id="_4">学習</h2>
 <p>学習回数は、<code>lerobot/lerobot/configs/train.py</code>のsteps数で調整。初期値は10万stepsなので、Jetsonの場合、4000 stepsぐらいで試していく。</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
@@ -746,7 +725,7 @@
   --policy.device=cuda \
   --wandb.enable=false
 </code></pre></div></td></tr></table></div>
-<h2 id="_4">推論実行</h2>
+<h2 id="_5">推論実行</h2>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>

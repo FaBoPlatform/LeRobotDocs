@@ -286,7 +286,28 @@
         
   
   <span class="md-ellipsis">
-    各種コマンド
+    各種コマンド(新)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lerobot/command_old/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    各種コマンド(旧)
   </span>
   
 
@@ -960,16 +981,16 @@ torch==2.8.0.dev20250603+cu128 torchvision==0.23.0.dev20250603+cu128 torchaudio=
 <table>
 <thead>
 <tr>
-<th align="left">GPU</th>
-<th align="left">ステップ数</th>
-<th align="left">時間</th>
+<th style="text-align: left;">GPU</th>
+<th style="text-align: left;">ステップ数</th>
+<th style="text-align: left;">時間</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left">RTX5090</td>
-<td align="left">20_000_000</td>
-<td align="left">25時間</td>
+<td style="text-align: left;">RTX5090</td>
+<td style="text-align: left;">20_000_000</td>
+<td style="text-align: left;">25時間</td>
 </tr>
 </tbody>
 </table>
@@ -1014,6 +1035,7 @@ torch==2.8.0.dev20250603+cu128 torchvision==0.23.0.dev20250603+cu128 torchaudio=
     return queues
 </code></pre></div></td></tr></table></div>
 <p>推論を実行</p>
+<p>outputs/train/2025-06-04/17-57-18_smolvla/checkpoints/last/のconfig.jsonのn_action_stepsを1から50に修正</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -1030,15 +1052,15 @@ torch==2.8.0.dev20250603+cu128 torchvision==0.23.0.dev20250603+cu128 torchaudio=
   --robot.type=so100 \
   --control.type=record \
   --control.fps=30 \
-  --control.single_task=&quot;Grasp a red block and put it in the bin.&quot; \
-  --control.repo_id=akira-sasaki/eval_smolvla_so100_test \
+  --control.single_task=&quot;Remove the cube from the box.&quot; \
+  --control.repo_id=akira-sasaki/eval_smolvla_pick_and_remove \
   --control.tags=&#39;[&quot;smolvla&quot;,&quot;so100&quot;]&#39; \
   --control.warmup_time_s=5 \
   --control.episode_time_s=30 \
   --control.reset_time_s=5 \
   --control.num_episodes=3 \
   --control.push_to_hub=true \
-  --control.policy.path=outputs/train/2025-06-04/17-57-18_smolvla/checkpoints/last/pretrained_model
+  --control.policy.path=outputs/train/2025-06-07/18-37-02_smolvla/checkpoints/140000/pretrained_model/
 </code></pre></div></td></tr></table></div>
 
 
