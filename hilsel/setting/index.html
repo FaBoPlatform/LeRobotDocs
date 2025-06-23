@@ -524,9 +524,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#env_config_so100json" class="md-nav__link">
+  <a href="#so101" class="md-nav__link">
     <span class="md-ellipsis">
-      env_config_so100.json
+      SO101アーム使用
     </span>
   </a>
   
@@ -731,9 +731,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#env_config_so100json" class="md-nav__link">
+  <a href="#so101" class="md-nav__link">
     <span class="md-ellipsis">
-      env_config_so100.json
+      SO101アーム使用
     </span>
   </a>
   
@@ -888,13 +888,18 @@ torch==2.8.0.dev20250603+cu128 torchvision==0.23.0.dev20250603+cu128 torchaudio=
 <span class="w">    </span><span class="s2">&quot;zarr&gt;=2.17.0&quot;</span><span class="p">,</span>
 <span class="p">]</span>
 </code></pre></div></td></tr></table></div>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>pip install -e .[feetech]
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>pip install -e &quot;.[feetech]&quot;
+pip install -e &quot;.[hilserl]&quot;
 </code></pre></div></td></tr></table></div>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>pip install grpcio grpcio-tools wandb gymnasium mujoco mujoco-py
 </code></pre></div></td></tr></table></div>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>pip install scipy pygame
 </code></pre></div></td></tr></table></div>
-<h2 id="env_config_so100json">env_config_so100.json</h2>
+<h2 id="so101">SO101アーム使用</h2>
+<p>end_effector_boundsの値を取得</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>python -m lerobot.scripts.find_joint_limits     --robot.type=so100_follower     --robot.port=/dev/ttyACM1     --robot.id=black     --teleop.type=so100_leader     --teleop.port=/dev/ttyACM0    --teleop.id=blue
+</code></pre></div></td></tr></table></div>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">  1</span>
 <span class="normal">  2</span>
 <span class="normal">  3</span>
@@ -1102,6 +1107,9 @@ torch==2.8.0.dev20250603+cu128 torchvision==0.23.0.dev20250603+cu128 torchaudio=
 }
 </code></pre></div></td></tr></table></div>
 <h2 id="gamepad">Gamepad</h2>
+<p>end_effector_boundsの値を取得</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>python -m lerobot.scripts.find_joint_limits     --robot.type=so100_follower     --robot.port=/dev/ttyACM1     --robot.id=black     --teleop.type=so100_leader     --teleop.port=/dev/ttyACM0    --teleop.id=blue
+</code></pre></div></td></tr></table></div>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">  1</span>
 <span class="normal">  2</span>
 <span class="normal">  3</span>
@@ -1203,15 +1211,39 @@ torch==2.8.0.dev20250603+cu128 torchvision==0.23.0.dev20250603+cu128 torchaudio=
 <span class="normal"> 99</span>
 <span class="normal">100</span>
 <span class="normal">101</span>
-<span class="normal">102</span></pre></div></td><td class="code"><div><pre><span></span><code>{
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span></pre></div></td><td class="code"><div><pre><span></span><code>{
     &quot;type&quot;: &quot;gym_manipulator&quot;,
     &quot;robot&quot;: {
         &quot;type&quot;: &quot;so100_follower_end_effector&quot;,
         &quot;port&quot;: &quot;/dev/ttyACM1&quot;,
+        &quot;end_effector_bounds&quot;: {
+            &quot;min&quot;: [
+                -0.0501, 
+                -0.3433, 
+                0.3151
+            ],
+            &quot;max&quot;: [
+                0.4467, 
+                0.3473, 
+                0.7389
+            ]
+        },
         &quot;end_effector_step_sizes&quot;: {
-            &quot;x&quot;: 0.025,
-            &quot;y&quot;: 0.025,
-            &quot;z&quot;: 0.025
+            &quot;x&quot;: 0.01,
+            &quot;y&quot;: 0.01,
+            &quot;z&quot;: 0.01
         },
         &quot;cameras&quot;: {
           &quot;front&quot;: {
