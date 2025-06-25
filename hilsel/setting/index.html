@@ -524,6 +524,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      カメラ設定例
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#so101" class="md-nav__link">
     <span class="md-ellipsis">
       SO101アーム使用
@@ -542,7 +551,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       テストデータ収集
     </span>
@@ -731,6 +740,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      カメラ設定例
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#so101" class="md-nav__link">
     <span class="md-ellipsis">
       SO101アーム使用
@@ -749,7 +767,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       テストデータ収集
     </span>
@@ -925,6 +943,85 @@ pip install -e &quot;.[hilserl]&quot;
 </tr>
 </tbody>
 </table>
+<h2 id="_3">カメラ設定例</h2>
+<p>Realsense</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span></pre></div></td><td class="code"><div><pre><span></span><code>    &quot;type&quot;: &quot;gym_manipulator&quot;,
+    &quot;robot&quot;: {
+        &quot;cameras&quot;: {
+          &quot;front&quot;: {
+            &quot;type&quot;: &quot;intelrealsense&quot;,
+            &quot;serial_number_or_name&quot;: &quot;008222070291&quot;,
+            &quot;fps&quot;: 30,
+            &quot;width&quot;: 640,
+            &quot;height&quot;: 480
+            },
+          &quot;wrist&quot;: {
+            &quot;type&quot;: &quot;intelrealsense&quot;,
+            &quot;serial_number_or_name&quot;: &quot;138422077679&quot;,
+            &quot;fps&quot;: 30,
+            &quot;width&quot;: 640,
+            &quot;height&quot;: 480
+            }
+        }
+    },
+</code></pre></div></td></tr></table></div>
+<p>USB Camera
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span></pre></div></td><td class="code"><div><pre><span></span><code>    &quot;type&quot;: &quot;gym_manipulator&quot;,
+    &quot;robot&quot;: {
+        &quot;cameras&quot;: {
+          &quot;front&quot;: {
+            &quot;type&quot;: &quot;intelrealsense&quot;,
+            &quot;serial_number_or_name&quot;: &quot;008222070291&quot;,
+            &quot;fps&quot;: 30,
+            &quot;width&quot;: 640,
+            &quot;height&quot;: 480
+            },
+          &quot;wrist&quot;: {
+            &quot;type&quot;: &quot;intelrealsense&quot;,
+            &quot;serial_number_or_name&quot;: &quot;138422077679&quot;,
+            &quot;fps&quot;: 30,
+            &quot;width&quot;: 640,
+            &quot;height&quot;: 480
+            }
+        }
+    },
+</code></pre></div></td></tr></table></div></p>
 <h2 id="so101">SO101アーム使用</h2>
 <p>end_effector_boundsの値を取得</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>python -m lerobot.scripts.find_joint_limits     --robot.type=so100_follower     --robot.port=/dev/ttyACM1     --robot.id=black     --teleop.type=so100_leader     --teleop.port=/dev/ttyACM0    --teleop.id=blue
@@ -1396,7 +1493,7 @@ pip install -e &quot;.[hilserl]&quot;
     &quot;features_map&quot;: {}
 }
 </code></pre></div></td></tr></table></div>
-<h2 id="_3">テストデータ収集</h2>
+<h2 id="_4">テストデータ収集</h2>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>python lerobot/scripts/rl/gym_manipulator.py --config_path lerobot/configs/env_config_so100.json
 </code></pre></div></td></tr></table></div>
 <h2 id="reference">Reference</h2>
