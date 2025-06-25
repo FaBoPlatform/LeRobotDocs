@@ -235,6 +235,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setting/id/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ID割り振り
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -983,7 +1004,9 @@ pip install -e &quot;.[hilserl]&quot;
         }
     },
 </code></pre></div></td></tr></table></div>
-<p>USB Camera
+<p>USB Camera</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>v4l2-ctl -d /dev/video0 --list-formats-ext
+</code></pre></div></td></tr></table></div>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -1005,23 +1028,23 @@ pip install -e &quot;.[hilserl]&quot;
 <span class="normal">19</span></pre></div></td><td class="code"><div><pre><span></span><code>    &quot;type&quot;: &quot;gym_manipulator&quot;,
     &quot;robot&quot;: {
         &quot;cameras&quot;: {
-          &quot;front&quot;: {
-            &quot;type&quot;: &quot;intelrealsense&quot;,
-            &quot;serial_number_or_name&quot;: &quot;008222070291&quot;,
-            &quot;fps&quot;: 30,
-            &quot;width&quot;: 640,
-            &quot;height&quot;: 480
+            &quot;front&quot;: {
+                &quot;type&quot;: &quot;opencv&quot;,
+                &quot;index_or_path&quot;: 0,
+                &quot;height&quot;: 480,
+                &quot;width&quot;: 640,
+                &quot;fps&quot;: 30
             },
-          &quot;wrist&quot;: {
-            &quot;type&quot;: &quot;intelrealsense&quot;,
-            &quot;serial_number_or_name&quot;: &quot;138422077679&quot;,
-            &quot;fps&quot;: 30,
-            &quot;width&quot;: 640,
-            &quot;height&quot;: 480
+            &quot;wrist&quot;: {
+                &quot;type&quot;: &quot;opencv&quot;,
+                &quot;index_or_path&quot;: 2,
+                &quot;height&quot;: 480,
+                &quot;width&quot;: 640,
+                &quot;fps&quot;: 30
             }
         }
     },
-</code></pre></div></td></tr></table></div></p>
+</code></pre></div></td></tr></table></div>
 <h2 id="so101">SO101アーム使用</h2>
 <p>end_effector_boundsの値を取得</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>python -m lerobot.scripts.find_joint_limits     --robot.type=so100_follower     --robot.port=/dev/ttyACM1     --robot.id=black     --teleop.type=so100_leader     --teleop.port=/dev/ttyACM0    --teleop.id=blue
