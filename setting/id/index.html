@@ -687,15 +687,21 @@
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>python -m lerobot.setup_motors \
---robot.type=koch_follower \
---robot.port=/dev/ttyUSB0
+    --robot.type=koch_follower \
+    --robot.port=/dev/ttyUSB0
 </code></pre></div></td></tr></table></div>
 <h2 id="leader">Leader</h2>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>python -m lerobot.setup_motors \
---teleop.type=koch_leader \
---robot.port=/dev/ttyUSB1
+    --teleop.type=so101_follower \
+    --teleop.port=/dev/ttyACM0
+</code></pre></div></td></tr></table></div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>python -m lerobot.setup_motors \
+    --teleop.type=koch_leader \
+    --teleop.port=/dev/ttyUSB1
 </code></pre></div></td></tr></table></div>
 
 
