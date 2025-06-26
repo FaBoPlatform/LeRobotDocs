@@ -802,6 +802,14 @@
   --teleop.port=/dev/ttyACM1 \
   --teleop.id=my_leader_arm
 </code></pre></div></td></tr></table></div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>python -m lerobot.calibrate \
+  --teleop.type=koch_leader \
+  --teleop.port=/dev/ttyUSB1 \
+  --teleop.id=my_leader_arm
+</code></pre></div></td></tr></table></div>
 <h2 id="follower">キャリブレーション(Follower)</h2>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
@@ -809,6 +817,14 @@
 <span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>python -m lerobot.calibrate \
   --robot.type=so101_follower \
   --robot.port=/dev/ttyACM0 \
+  --robot.id=my_follower_arm
+</code></pre></div></td></tr></table></div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>python -m lerobot.calibrate \
+  --robot.type=koch_follower \
+  --robot.port=/dev/ttyUSB0 \
   --robot.id=my_follower_arm
 </code></pre></div></td></tr></table></div>
 <h2 id="teleportation">Teleportation</h2>
