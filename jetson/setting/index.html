@@ -370,6 +370,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      日本語対応
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -661,6 +670,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      日本語対応
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -804,7 +822,8 @@
 <span class="normal">123</span>
 <span class="normal">124</span>
 <span class="normal">125</span>
-<span class="normal">126</span></pre></div></td><td class="code"><div><pre><span></span><code>#!/bin/bash
+<span class="normal">126</span>
+<span class="normal">127</span></pre></div></td><td class="code"><div><pre><span></span><code>#!/bin/bash
 
 # Jetson Orin Nano, AGX Orin
 # JetPack6.2用
@@ -929,6 +948,7 @@ rm -rf &quot;$TMP&quot;
 # 0   alsa_output.platform-sound.analog-stereo    module-alsa-card.c  s16le 2ch 44100Hz   SUSPENDED
 # 1   alsa_output.usb-C-Media_INC._USB_Sound_Device-00.analog-stereo  module-alsa-card.c  s16le 2ch 44100Hz   RUNNING
 # pactl set-default-sink alsa_output.usb-C-Media_INC._USB_Sound_Device-00.analog-stereo
+# pactl set-sink-volume alsa_output.usb-C-Media_INC._USB_Sound_Device-00.analog-stereo 80%
 # spd-say &quot;warmup record&quot;
 </code></pre></div></td></tr></table></div>
 <p>install.shの名前で保存して</p>
@@ -941,6 +961,25 @@ rm -rf &quot;$TMP&quot;
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>conda activate lerobot
 </code></pre></div></td></tr></table></div>
 <p>する。この処理は毎回実施。</p>
+<h2 id="_2">日本語対応</h2>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo apt-get install language-pack-ja language-pack-ja-base
+
+# 2) /etc/locale.gen で ja_JP.UTF-8 の行をアンコメント
+sudo sed -i &#39;/^# *ja_JP.UTF-8 /s/^# *//&#39; /etc/locale.gen
+
+# 3) 実際にロケールファイルを生成
+sudo locale-gen
+
+export LANG=ja_JP.UTF-8
+</code></pre></div></td></tr></table></div>
 
 
 
