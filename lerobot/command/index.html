@@ -416,9 +416,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#usb" class="md-nav__link">
+    <span class="md-ellipsis">
+      USB認識
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      設定
+      フォルダ構成
     </span>
   </a>
   
@@ -698,9 +707,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#usb" class="md-nav__link">
+    <span class="md-ellipsis">
+      USB認識
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      設定
+      フォルダ構成
     </span>
   </a>
   
@@ -784,15 +802,22 @@
                   
 
 
-<h1 id="lerobot">LeRobot各種コマンド(旧版)</h1>
-<h2 id="_1">設定</h2>
-<p><code>lerobot/lerobot/common/robot_devices/robots/configs.py</code>のso-100のportをUSBポートに修正。</p>
+<h1 id="lerobot">LeRobot各種コマンド(新版)</h1>
+<h2 id="usb">USB認識</h2>
 <p>Jetsonの場合は</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>/dev/ttyACM0
 /dev/ttyACM1
 </code></pre></div></td></tr></table></div>
-<p>に修正。</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>/dev/ttyUSB0
+/dev/ttyUSB1
+</code></pre></div></td></tr></table></div>
+<p>で認識</p>
+<h2 id="_1">フォルダ構成</h2>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>src/lerobot
+</code></pre></div></td></tr></table></div>
+<p>に移動されています。</p>
 <h2 id="leader">キャリブレーション(Leader)</h2>
 <p>SO101</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
