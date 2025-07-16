@@ -1981,8 +1981,8 @@ joints_properties.xml  scene.xml  so101_new_calib.xml   so101_old_calib.xml
 <span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gym_manipulator&quot;</span><span class="p">,</span>
 <span class="w">        </span><span class="nt">&quot;robot&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="hll"><span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;so100_follower_end_effector&quot;</span><span class="p">,</span>
-</span><span class="hll"><span class="w">            </span><span class="nt">&quot;port&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/dev/ttyACM0&quot;</span><span class="p">,</span>
-</span><span class="hll"><span class="w">            </span><span class="nt">&quot;urdf_path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;path/to/your/robot.urdf&quot;</span><span class="p">,</span>
+</span><span class="hll"><span class="w">            </span><span class="nt">&quot;port&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/dev/ttyACM1&quot;</span><span class="p">,</span>
+</span><span class="hll"><span class="w">            </span><span class="nt">&quot;urdf_path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/home/ubuntu/SO-ARM100/Simulation/SO101/so101_new_calib.urdf&quot;</span><span class="p">,</span>
 </span><span class="w">            </span><span class="nt">&quot;target_frame_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gripper_frame_link&quot;</span><span class="p">,</span>
 <span class="w">            </span><span class="nt">&quot;cameras&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                </span><span class="nt">&quot;front&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
@@ -2110,12 +2110,12 @@ joints_properties.xml  scene.xml  so101_new_calib.xml   so101_old_calib.xml
 </code></pre></div></td></tr></table></div>
 <h2 id="learner">Learner</h2>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>python lerobot/scripts/rl/learner \
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>python lerobot/scripts/rl/learner_service.py \
     --config_path lerobot/configs/train_config_hilserl_so100.json
 </code></pre></div></td></tr></table></div>
 <h2 id="actor">Actor</h2>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>python lerobot/scripts/rl/actor \
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>python lerobot/scripts/rl/actor.py \
     --config_path src/lerobot/configs/train_config_hilserl_so100.json
 </code></pre></div></td></tr></table></div>
 <h2 id="reference">Reference</h2>
