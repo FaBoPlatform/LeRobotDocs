@@ -2110,6 +2110,10 @@ joints_properties.xml  scene.xml  so101_new_calib.xml   so101_old_calib.xml
 </code></pre></div></td></tr></table></div>
 <h2 id="learner">Learner</h2>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>pip install --upgrade --extra-index-url https://download.pytorch.org/whl/nightly \
+    &quot;triton&gt;=3.3.0&quot;
+</code></pre></div></td></tr></table></div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>python lerobot/scripts/rl/learner_service.py \
     --config_path lerobot/configs/train_config_hilserl_so100.json
 </code></pre></div></td></tr></table></div>
