@@ -968,19 +968,23 @@
 <span class="normal">10</span>
 <span class="normal">11</span>
 <span class="normal">12</span>
-<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><code>python lerobot/scripts/control_robot.py  \
-  --robot.type=so100 \
-    --control.type=record \
-    --control.fps=30 \
-    --control.single_task=&quot;Grasp a lego block and put it in the bin.&quot; \
-    --control.repo_id=$HF_USER/so100_test \
-    --control.tags=&#39;[&quot;so100&quot;,&quot;tutorial&quot;]&#39; \
-    --control.warmup_time_s=5 \
-    --control.episode_time_s=10 \
-    --control.reset_time_s=5 \
-    --control.num_episodes=30 \
-    --control.display_data=true \
-    --control.push_to_hub=true
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span></pre></div></td><td class="code"><div><pre><span></span><code>python -m lerobot.record \
+    --robot.type=otter_follower \
+    --robot.port=/dev/ttyUSB0 \
+    --robot.id=my_follower_arm \
+    --teleop.type=otter_leader \
+    --teleop.port=/dev/ttyUSB1 \
+    --teleop.id=my_leader_arm \
+    --robot.cameras=&quot;{ front: {type: opencv, index_or_path: 0, width: 640, height: 480, fps: 30}, hand: {type: opencv, index_or_path: 2, width: 640, height: 480, fps: 30}}&quot; \
+    --display_data=true \
+    --dataset.repo_id=local/2can_test \
+    --dataset.push_to_hub = false \
+    --dataset.single_task=&quot;Pick up the red cube&quot; \
+    --dataset.episode_time_s=30 \
+    --dataset.reset_time_s=10 \
+    --dataset.num_episodes=30
 </code></pre></div></td></tr></table></div>
 <h2 id="_3">学習</h2>
 <p>学習回数は、<code>lerobot/lerobot/configs/train.py</code>のsteps数で調整。初期値は10万stepsなので、Jetsonの場合、4000 stepsぐらいで試していく。</p>
