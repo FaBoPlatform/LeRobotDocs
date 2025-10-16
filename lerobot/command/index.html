@@ -764,6 +764,90 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Core
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Core
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../core/teleop/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Teleop
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../core/robot/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Robot
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -887,6 +971,7 @@
 
 
 <h1 id="lerobot">LeRobot各種コマンド(新版)</h1>
+<p>2025/9/28現在のコマンド。</p>
 <h2 id="usb">USB認識</h2>
 <p>Jetsonの場合は</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
@@ -907,7 +992,7 @@
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
-<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>python -m lerobot.calibrate \
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>lerobot-calibrate \
   --teleop.type=so101_leader \
   --teleop.port=/dev/ttyACM1 \
   --teleop.id=my_leader_arm
@@ -926,9 +1011,9 @@
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
-<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>python -m lerobot.calibrate \
-  --robot.type=so101_follower \
-  --robot.port=/dev/ttyACM0 \
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>lerobot-calibrate \
+  --robot.type=so101_leader \
+  --robot.port=/dev/ttyACM0\
   --robot.id=my_follower_arm
 </code></pre></div></td></tr></table></div>
 <p>Koch ARM</p>
@@ -947,15 +1032,17 @@
 <span class="normal">4</span>
 <span class="normal">5</span>
 <span class="normal">6</span>
-<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code>python -m lerobot.teleoperate \
-    --robot.type=so101_follower \
-    --robot.port=/dev/ttyACM0 \
-    --robot.id=my_follower_arm \
-    --teleop.type=so101_leader \
-    --teleop.port=/dev/ttyACM1 \
-    --teleop.id=my_leader_arm
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code>lerobot-teleoperate   \
+  --robot.type=so101_follower   \
+  --robot.port=/dev/ttyACM1   \
+  --robot.id=my_follower_arm   \
+  --teleop.type=so101_leader   \
+  --teleop.port=/dev/ttyACM0   \
+  --teleop.id=my_leader_arm
 </code></pre></div></td></tr></table></div>
 <h2 id="_2">データセット収集</h2>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>rm -rf /home/dev/lerobot_datasets
+</code></pre></div></td></tr></table></div>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -970,21 +1057,23 @@
 <span class="normal">12</span>
 <span class="normal">13</span>
 <span class="normal">14</span>
-<span class="normal">15</span></pre></div></td><td class="code"><div><pre><span></span><code>python -m lerobot.record \
-    --robot.type=otter_follower \
-    --robot.port=/dev/ttyUSB0 \
-    --robot.id=my_follower_arm \
-    --teleop.type=otter_leader \
-    --teleop.port=/dev/ttyUSB1 \
-    --teleop.id=my_leader_arm \
-    --robot.cameras=&quot;{ front: {type: opencv, index_or_path: 0, width: 640, height: 480, fps: 30}, hand: {type: opencv, index_or_path: 2, width: 640, height: 480, fps: 30}}&quot; \
-    --display_data=true \
-    --dataset.repo_id=local/2can_test \
-    --dataset.push_to_hub = false \
-    --dataset.single_task=&quot;Pick up the red cube&quot; \
-    --dataset.episode_time_s=30 \
-    --dataset.reset_time_s=10 \
-    --dataset.num_episodes=30
+<span class="normal">15</span>
+<span class="normal">16</span></pre></div></td><td class="code"><div><pre><span></span><code>lerobot-record \
+  --robot.type=so101_follower \
+  --robot.port=/dev/ttyACM0 \
+  --robot.id=my_follower_arm \
+  --teleop.type=so101_leader \
+  --teleop.port=/dev/ttyACM1 \
+  --teleop.id=my_leader_arm \
+  --dataset.repo_id=1can_test \
+  --dataset.root=/home/jetson/lerobot/datasets/1can_test \
+  --dataset.push_to_hub=false \
+  --dataset.single_task=&quot;Pick up the red cube&quot; \
+  --robot.cameras=&quot;{ front: {type: opencv, index_or_path: 0, width: 640, height: 480, fps: 30}}&quot; \
+  --display_data=true \
+  --dataset.episode_time_s=30 \
+  --dataset.reset_time_s=10 \
+  --dataset.num_episodes=30
 </code></pre></div></td></tr></table></div>
 <h2 id="_3">学習</h2>
 <p>学習回数は、<code>lerobot/lerobot/configs/train.py</code>のsteps数で調整。初期値は10万stepsなので、Jetsonの場合、4000 stepsぐらいで試していく。</p>
@@ -994,13 +1083,17 @@
 <span class="normal">4</span>
 <span class="normal">5</span>
 <span class="normal">6</span>
-<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code>python lerobot/scripts/train.py \
-  --dataset.repo_id=$HF_USER/so100_test \
-  --policy.type=act \
-  --output_dir=outputs/train/act_so100_test \
-  --job_name=act_so100_test \
-  --policy.device=cuda \
-  --wandb.enable=false
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code>lerobot-train \
+  dataset.path=/home/dev/lerobot_datasets/1can_test \
+  policy=act \
+  output_dir=outputs/train/act_1can_test \
+  job_name=act_1can_test \
+  policy.device=cuda \
+  wandb.enable=false \
+  policy.push_to_hub=false \
+  training.steps=4000
 </code></pre></div></td></tr></table></div>
 <h2 id="_4">推論実行</h2>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
