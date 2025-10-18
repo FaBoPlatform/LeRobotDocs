@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../../smolvla/setting/">
+        <link rel="prev" href="../robot/">
       
       
-        <link rel="next" href="../robot/">
+        <link rel="next" href="../toio_robot/">
       
       
       <link rel="icon" href="../../favicon.png">
@@ -20,7 +20,7 @@
     
     
       
-        <title>Teleop - FaBo LeRobot Docs</title>
+        <title>Toio Leader - FaBo LeRobot Docs</title>
       
     
     
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#lerobot-core" class="md-skip">
+        <a href="#toio-leader" class="md-skip">
           コンテンツにスキップ
         </a>
       
@@ -111,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Teleop
+              Toio Leader
             
           </span>
         </div>
@@ -661,6 +661,48 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../teleop/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Teleop
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../robot/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Robot
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -677,7 +719,7 @@
           
   
   <span class="md-ellipsis">
-    Teleop
+    Toio Leader
   </span>
   
 
@@ -688,7 +730,7 @@
         
   
   <span class="md-ellipsis">
-    Teleop
+    Toio Leader
   </span>
   
 
@@ -710,9 +752,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#teleop" class="md-nav__link">
+  <a href="#toio-leader_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Teleop最小サンプル
+      toio Leader
     </span>
   </a>
   
@@ -755,9 +797,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#teleoppy" class="md-nav__link">
+  <a href="#toiopy" class="md-nav__link">
     <span class="md-ellipsis">
-      teleop.py
+      toio.py
     </span>
   </a>
   
@@ -772,61 +814,10 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#teleop_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      Teleop
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../robot/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Robot
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../toio_teleop/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Toio Leader
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -971,9 +962,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#teleop" class="md-nav__link">
+  <a href="#toio-leader_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Teleop最小サンプル
+      toio Leader
     </span>
   </a>
   
@@ -1016,9 +1007,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#teleoppy" class="md-nav__link">
+  <a href="#toiopy" class="md-nav__link">
     <span class="md-ellipsis">
-      teleop.py
+      toio.py
     </span>
   </a>
   
@@ -1028,15 +1019,6 @@
   <a href="#install" class="md-nav__link">
     <span class="md-ellipsis">
       Install
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#teleop_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      Teleop
     </span>
   </a>
   
@@ -1057,22 +1039,22 @@
                   
 
 
-<h1 id="lerobot-core">LeRobot Core</h1>
-<h2 id="teleop">Teleop最小サンプル</h2>
-<p>Teleopの最終サンプルです。</p>
+<h1 id="toio-leader">toio Leader</h1>
+<h2 id="toio-leader_1">toio Leader</h2>
+<p>toio本体をLeRobot経由でJoystickで制御するための最小サンプルです。</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>lerobot-teleoperator-###/lerobot_teleoperator_### のように、パッケージ名には<code>lerobot_teleoperator_</code>から始める必要がありそうです。</p>
+<p>lerobot-robot-###/lerobot_robot_### のように、パッケージ名には<code>lerobot_robot_</code>から始める必要がありそうです。</p>
 </div>
 <h2 id="_1">ディレクトリ構成</h2>
 <ul>
-<li><code>lerobot-teleoperator-keyboard/setup.py</code></li>
-<li><code>lerobot-teleoperator-keyboard/lerobot_teleoperator_keyboard/__init__.py</code></li>
-<li><code>lerobot-teleoperator-keyboard/lerobot_teleoperator_keyboard/congig_teleop.py</code></li>
-<li><code>lerobot-teleoperator-keyboard/lerobot_teleoperator_keyboard/teleop.py</code></li>
+<li><code>lerobot-teleoperator-toio/setup.py</code></li>
+<li><code>lerobot-teleoperator-toio/lerobot_teleoperator_toio/__init__.py</code></li>
+<li><code>lerobot-teleoperator-toio/lerobot_teleoperator_toio/config_toio.py</code></li>
+<li><code>lerobot-teleoperator-toio/lerobot_teleoperator_toio/toio.py</code></li>
 </ul>
 <h2 id="setuppy">setup.py</h2>
-<p><code>lerobot-teleoperator-keyboard/setup.py</code></p>
+<p><code>lerobot-teleoperator-joystick/setup.py</code></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -1094,12 +1076,13 @@
 <span class="normal">19</span>
 <span class="normal">20</span>
 <span class="normal">21</span>
-<span class="normal">22</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">setuptools</span><span class="w"> </span><span class="kn">import</span> <span class="n">setup</span><span class="p">,</span> <span class="n">find_packages</span>
+<span class="normal">22</span>
+<span class="normal">23</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">setuptools</span><span class="w"> </span><span class="kn">import</span> <span class="n">setup</span><span class="p">,</span> <span class="n">find_packages</span>
 
 <span class="n">setup</span><span class="p">(</span>
-<span class="hll">    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;lerobot_teleoperator_keyboard&quot;</span><span class="p">,</span>
+<span class="hll">    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;lerobot_teleoperator_toio&quot;</span><span class="p">,</span>
 </span>    <span class="n">version</span><span class="o">=</span><span class="s2">&quot;0.0.1&quot;</span><span class="p">,</span>
-    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;LeRobot teleop integration&quot;</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;LeRobot toio integration&quot;</span><span class="p">,</span>
     <span class="n">author</span><span class="o">=</span><span class="s2">&quot;FaBo, Inc.&quot;</span><span class="p">,</span>
     <span class="n">author_email</span><span class="o">=</span><span class="s2">&quot;akira@fabo.io&quot;</span><span class="p">,</span>
     <span class="n">packages</span><span class="o">=</span><span class="n">find_packages</span><span class="p">(),</span>
@@ -1108,6 +1091,7 @@
         <span class="s2">&quot;transforms3d&quot;</span><span class="p">,</span>
         <span class="s2">&quot;teleop&quot;</span><span class="p">,</span>
         <span class="s2">&quot;lerobot&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;pygame&quot;</span>
     <span class="p">],</span>
     <span class="n">python_requires</span><span class="o">=</span><span class="s2">&quot;&gt;=3.7&quot;</span><span class="p">,</span>
     <span class="n">classifiers</span><span class="o">=</span><span class="p">[</span>
@@ -1118,13 +1102,13 @@
 <span class="p">)</span>
 </code></pre></div></td></tr></table></div>
 <h2 id="initpy"><strong>init</strong>.py</h2>
-<p><code>lerobot-teleoperator-keyboard/lerobot_teleoperator_keyboard/__init__.py</code></p>
+<p><code>lerobot-teleoperator-toio/lerobot_teleoperator_toio/__init__.py</code></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">.config_teleop</span><span class="w"> </span><span class="kn">import</span> <span class="n">TeleopConfig</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">.teleop</span><span class="w"> </span><span class="kn">import</span> <span class="n">Teleop</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">.config_toio</span><span class="w"> </span><span class="kn">import</span> <span class="n">ToioConfig</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.toio</span><span class="w"> </span><span class="kn">import</span> <span class="n">Toio</span>
 </code></pre></div></td></tr></table></div>
 <h2 id="config_teleoppy">config_teleop.py</h2>
-<p><code>lerobot-teleoperator-keyboard/lerobot_teleoperator_keyboard/congig_teleop.py</code></p>
+<p><code>lerobot-teleoperator-toio/lerobot_teleoperator_toio/config_toio.py</code></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
@@ -1136,15 +1120,15 @@
 <span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">lerobot.teleoperators.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">TeleoperatorConfig</span>
 
-<span class="nd">@TeleoperatorConfig</span><span class="o">.</span><span class="n">register_subclass</span><span class="p">(</span><span class="s2">&quot;lerobot_teleop&quot;</span><span class="p">)</span>
+<span class="nd">@TeleoperatorConfig</span><span class="o">.</span><span class="n">register_subclass</span><span class="p">(</span><span class="s2">&quot;toio_leader&quot;</span><span class="p">)</span>
 <span class="nd">@dataclass</span>
-<span class="k">class</span><span class="w"> </span><span class="nc">TeleopConfig</span><span class="p">(</span><span class="n">TeleoperatorConfig</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">ToioConfig</span><span class="p">(</span><span class="n">TeleoperatorConfig</span><span class="p">):</span>
     <span class="n">port</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;4443&quot;</span>
     <span class="n">host</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;0.0.0.0&quot;</span>
-    <span class="n">use_gripper</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># 契約を守るためデフォルトは True のまま</span>
+    <span class="n">use_gripper</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
 </code></pre></div></td></tr></table></div>
-<h2 id="teleoppy">teleop.py</h2>
-<p><code>lerobot-teleoperator-keyboard/lerobot_teleoperator_keyboard/teleop.py</code></p>
+<h2 id="toiopy">toio.py</h2>
+<p><code>lerobot-teleoperator-toio/lerobot_teleoperator_toio/toio.py</code></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">  1</span>
 <span class="normal">  2</span>
 <span class="normal">  3</span>
@@ -1249,48 +1233,144 @@
 <span class="normal">102</span>
 <span class="normal">103</span>
 <span class="normal">104</span>
-<span class="normal">105</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span><span class="o">,</span><span class="w"> </span><span class="nn">select</span><span class="o">,</span><span class="w"> </span><span class="nn">termios</span><span class="o">,</span><span class="w"> </span><span class="nn">tty</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span>
+<span class="normal">161</span>
+<span class="normal">162</span>
+<span class="normal">163</span>
+<span class="normal">164</span>
+<span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span>
+<span class="normal">178</span>
+<span class="normal">179</span>
+<span class="normal">180</span>
+<span class="normal">181</span>
+<span class="normal">182</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Optional</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">lerobot.teleoperators.teleoperator</span><span class="w"> </span><span class="kn">import</span> <span class="n">Teleoperator</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">.config_teleop</span><span class="w"> </span><span class="kn">import</span> <span class="n">TeleopConfig</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.config_joystick</span><span class="w"> </span><span class="kn">import</span> <span class="n">ToioConfig</span>
 
-<span class="n">SPEED</span> <span class="o">=</span> <span class="mf">0.5</span>  <span class="c1"># [units/sec] a/w/d/x で与える速度</span>
+<span class="c1"># 速度スケール（[-1..1] の軸値に掛ける）</span>
+<span class="n">SPEED</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="c1"># デッドゾーン（小さなガタつきを無視）</span>
+<span class="n">DEADZONE</span> <span class="o">=</span> <span class="mf">0.08</span>
 
-<span class="k">class</span><span class="w"> </span><span class="nc">Teleop</span><span class="p">(</span><span class="n">Teleoperator</span><span class="p">):</span>
+<span class="c1"># 参照スクリプトにならい、既定は X=axis(0), Y=axis(2)</span>
+<span class="n">DEFAULT_AXIS_X</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">DEFAULT_AXIS_Y</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="c1"># 多くのパッドでは上に倒すと Y がマイナスになるため反転して上を + に</span>
+<span class="n">INVERT_Y</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">INVERT_X</span> <span class="o">=</span> <span class="kc">True</span> 
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Toio</span><span class="p">(</span><span class="n">Teleoperator</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    キーボード teleop（最小）</span>
-<span class="sd">    - a,w,d,x: 左・上・右・下（速度設定）</span>
-<span class="sd">    - s: 停止</span>
-<span class="sd">    毎フレーム {vx, vy} を返す。フィードバックは一切受け取りません。</span>
+<span class="sd">    pygame を用いた最小ジョイスティック teleop</span>
+<span class="sd">      - 左/右スティックの軸値（既定: X=axis0, Y=axis2）を読み取り、毎フレーム {vx, vy} を返す</span>
+<span class="sd">      - フィードバックは受け取らない</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">config_class</span> <span class="o">=</span> <span class="n">TeleopConfig</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;keyboard_min&quot;</span>
+    <span class="n">config_class</span> <span class="o">=</span> <span class="n">ToioConfig</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;toio&quot;</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">TeleopConfig</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">ToioConfig</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">config</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_connected</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_calibrated</span> <span class="o">=</span> <span class="kc">True</span>
 
-        <span class="c1"># 現在の指令速度（stateful）</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_vx</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_vy</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
 
-        <span class="c1"># 端末 raw 設定用</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_fd</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_orig_attr</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="c1"># pygame / joystick</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pg</span> <span class="o">=</span> <span class="kc">None</span>                    <span class="c1"># lazy import: pygame モジュール</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_joy</span> <span class="o">=</span> <span class="kc">None</span>                   <span class="c1"># pygame.joystick.Joystick インスタンス</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_warned_no_joy</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_warned_axis</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="c1"># 軸インデックス（config 側で上書きできるようにフォールバック付き）</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_axis_x_idx</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="s2">&quot;axis_x_index&quot;</span><span class="p">,</span> <span class="n">DEFAULT_AXIS_X</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_axis_y_idx</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="s2">&quot;axis_y_index&quot;</span><span class="p">,</span> <span class="n">DEFAULT_AXIS_Y</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_invert_x</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="s2">&quot;invert_x&quot;</span><span class="p">,</span> <span class="n">INVERT_X</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_invert_y</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="s2">&quot;invert_y&quot;</span><span class="p">,</span> <span class="n">INVERT_Y</span><span class="p">))</span>
+
+        <span class="c1"># スケールとデッドゾーン（config から上書き可能）</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_speed</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="s2">&quot;speed&quot;</span><span class="p">,</span> <span class="n">SPEED</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_deadzone</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="s2">&quot;deadzone&quot;</span><span class="p">,</span> <span class="n">DEADZONE</span><span class="p">))</span>
 
     <span class="c1"># ----- Teleoperator interface -----</span>
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">action_features</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">type</span><span class="p">]:</span>
-        <span class="c1"># Robot 側と一致させる</span>
         <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;vx&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="s2">&quot;vy&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">}</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">feedback_features</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">type</span><span class="p">]:</span>
-        <span class="c1"># フィードバックは使わない</span>
         <span class="k">return</span> <span class="p">{}</span>
 
     <span class="nd">@property</span>
@@ -1298,13 +1378,28 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connected</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">calibrate</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="c1"># Enter なしで 1 文字入力を取るために cbreak</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_fd</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">fileno</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_orig_attr</span> <span class="o">=</span> <span class="n">termios</span><span class="o">.</span><span class="n">tcgetattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_fd</span><span class="p">)</span>
-        <span class="n">tty</span><span class="o">.</span><span class="n">setcbreak</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_fd</span><span class="p">)</span>
+        <span class="c1"># pygame はここで初期化（エラーはわかりやすく）</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="kn">import</span><span class="w"> </span><span class="nn">pygame</span>  <span class="c1"># type: ignore</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span>
+                <span class="s2">&quot;pygame が見つかりません。`pip install pygame` を実行してください。&quot;</span>
+            <span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pg</span> <span class="o">=</span> <span class="n">pygame</span>
+        <span class="n">pygame</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+        <span class="n">pygame</span><span class="o">.</span><span class="n">joystick</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+
+        <span class="n">cnt</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">joystick</span><span class="o">.</span><span class="n">get_count</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">cnt</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;[teleop/joystick] No joystick detected (vx, vy は 0 のままになります)&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_joy</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_joy</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">joystick</span><span class="o">.</span><span class="n">Joystick</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_joy</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[teleop/joystick] Connected to: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_joy</span><span class="o">.</span><span class="n">get_name</span><span class="p">()</span><span class="si">}</span><span class="s2"> (axes=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_joy</span><span class="o">.</span><span class="n">get_numaxes</span><span class="p">()</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">_connected</span> <span class="o">=</span> <span class="kc">True</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;[teleop] a:Left w:Up d:Right x:Down s:Stop  (Ctrl-C to exit)&quot;</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;[teleop] keyboard_min ready&quot;</span><span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">is_calibrated</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
@@ -1318,37 +1413,80 @@
 
     <span class="k">def</span><span class="w"> </span><span class="nf">disconnect</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_connected</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_orig_attr</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">try</span><span class="p">:</span>
-                <span class="n">termios</span><span class="o">.</span><span class="n">tcsetattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_fd</span><span class="p">,</span> <span class="n">termios</span><span class="o">.</span><span class="n">TCSADRAIN</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_orig_attr</span><span class="p">)</span>
-            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
-                <span class="k">pass</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_joy</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_joy</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="k">pass</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pg</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_pg</span><span class="o">.</span><span class="n">joystick</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_pg</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="k">pass</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_joy</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pg</span> <span class="o">=</span> <span class="kc">None</span>
 
-    <span class="c1"># ----- 入力読み取り（非ブロッキング） -----</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">_read_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-            <span class="n">r</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">select</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="p">],</span> <span class="p">[],</span> <span class="p">[],</span> <span class="mi">0</span><span class="p">)</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">r</span><span class="p">:</span>
-                <span class="k">break</span>
-            <span class="n">ch</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">ch</span><span class="p">:</span>
-                <span class="k">break</span>
+    <span class="c1"># ----- 内部ユーティリティ -----</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_apply_deadzone_and_scale</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="c1"># デッドゾーン: 原点付近は 0 に</span>
+        <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_deadzone</span><span class="p">:</span>
+            <span class="n">v</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="c1"># スケール</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_speed</span> <span class="o">*</span> <span class="n">v</span><span class="p">)</span>
 
-            <span class="k">if</span> <span class="n">ch</span> <span class="o">==</span> <span class="s2">&quot;a&quot;</span><span class="p">:</span>       <span class="c1"># 左</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_vx</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_vy</span> <span class="o">=</span> <span class="o">-</span><span class="n">SPEED</span><span class="p">,</span> <span class="mf">0.0</span>
-            <span class="k">elif</span> <span class="n">ch</span> <span class="o">==</span> <span class="s2">&quot;d&quot;</span><span class="p">:</span>     <span class="c1"># 右</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_vx</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_vy</span> <span class="o">=</span> <span class="o">+</span><span class="n">SPEED</span><span class="p">,</span> <span class="mf">0.0</span>
-            <span class="k">elif</span> <span class="n">ch</span> <span class="o">==</span> <span class="s2">&quot;w&quot;</span><span class="p">:</span>     <span class="c1"># 上</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_vx</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_vy</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="o">+</span><span class="n">SPEED</span>
-            <span class="k">elif</span> <span class="n">ch</span> <span class="o">==</span> <span class="s2">&quot;x&quot;</span><span class="p">:</span>     <span class="c1"># 下</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_vx</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_vy</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="n">SPEED</span>
-            <span class="k">elif</span> <span class="n">ch</span> <span class="o">==</span> <span class="s2">&quot;s&quot;</span><span class="p">:</span>     <span class="c1"># 停止</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_read_axes</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pg</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="c1"># イベントを処理（Queue を空に）</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pg</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">pump</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_joy</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># ジョイスティックが無い場合は 0 を維持</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_vx</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_vy</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_warned_no_joy</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;[teleop/joystick] Warning: joystick not available (vx,vy=0)&quot;</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_warned_no_joy</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">return</span>
+
+        <span class="n">num_axes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_joy</span><span class="o">.</span><span class="n">get_numaxes</span><span class="p">()</span>
+
+        <span class="c1"># 軸インデックス安全化（足りない場合は Y=1 にフォールバック）</span>
+        <span class="n">ax_x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_axis_x_idx</span>
+        <span class="n">ax_y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_axis_y_idx</span>
+        <span class="k">if</span> <span class="n">num_axes</span> <span class="o">&lt;=</span> <span class="nb">max</span><span class="p">(</span><span class="n">ax_x</span><span class="p">,</span> <span class="n">ax_y</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">num_axes</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="n">ax_y</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># よくある配置: 0=X, 1=Y</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># 軸が 1 本以下なら 0 固定</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_vx</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_vy</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span>
-            <span class="c1"># それ以外は無視</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_warned_axis</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[teleop/joystick] Warning: not enough axes (have </span><span class="si">{</span><span class="n">num_axes</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_warned_axis</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="k">return</span>
+
+        <span class="c1"># 軸値の取得（-1..1）</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_joy</span><span class="o">.</span><span class="n">get_axis</span><span class="p">(</span><span class="n">ax_x</span><span class="p">))</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_joy</span><span class="o">.</span><span class="n">get_axis</span><span class="p">(</span><span class="n">ax_y</span><span class="p">))</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span>
+
+        <span class="c1"># 反転指定（一般に Y は上がマイナスなので反転して + にする）</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_invert_x</span><span class="p">:</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="o">-</span><span class="n">x</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_invert_y</span><span class="p">:</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="o">-</span><span class="n">y</span>
+
+        <span class="c1"># デッドゾーン＆スケール</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_vx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_apply_deadzone_and_scale</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_vy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_apply_deadzone_and_scale</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
 
     <span class="c1"># ----- 出力（毎フレーム呼ばれる） -----</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_action</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_read_keys</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_read_axes</span><span class="p">()</span>
+        <span class="c1"># UDP 送信は不要：ここで {vx,vy} を返せばループがそのまま Robot に渡す</span>
         <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;vx&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_vx</span><span class="p">),</span> <span class="s2">&quot;vy&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_vy</span><span class="p">)}</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">send_feedback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">feedback</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -1357,17 +1495,6 @@
 </code></pre></div></td></tr></table></div>
 <h2 id="install">Install</h2>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>pip install -e .
-</code></pre></div></td></tr></table></div>
-<h2 id="teleop_1">Teleop</h2>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span>
-<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code>lerobot-teleoperate \
-    --robot.type=lerobot_robot_bot \
-    --robot.id=black \
-    --teleop.type=lerobot_teleoperator_keyboard  \
-    --fps=60
 </code></pre></div></td></tr></table></div>
 
 
