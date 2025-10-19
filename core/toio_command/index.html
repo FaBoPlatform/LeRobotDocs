@@ -1013,11 +1013,11 @@
 <span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code>lerobot-record<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--robot.type<span class="o">=</span>toio_follower<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--teleop.type<span class="o">=</span>toio_leader<span class="w"> </span><span class="se">\</span>
-<span class="hll"><span class="w">  </span>--dataset.repo_id<span class="o">=</span>local/toio_test<span class="w"> </span><span class="se">\</span>
-</span><span class="hll"><span class="w">  </span>--dataset.root<span class="o">=</span>/Users/username/Documents/workspace_lerobot/datasets/toio_test<span class="w"> </span><span class="se">\</span>
-</span><span class="w">  </span>--dataset.push_to_hub<span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="se">\</span>
-<span class="hll"><span class="w">  </span>--robot.cameras<span class="o">=</span><span class="s2">&quot;{ front: {type: opencv, index_or_path: 1, width: 640, height: 480, fps: 30}}&quot;</span><span class="w"> </span><span class="se">\</span>
-</span><span class="w">  </span>--display_data<span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--dataset.repo_id<span class="o">=</span>local/toio_test<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--dataset.root<span class="o">=</span>/Users/username/Documents/workspace_lerobot/datasets/toio_test<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--dataset.push_to_hub<span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--robot.cameras<span class="o">=</span><span class="s2">&quot;{ front: {type: opencv, index_or_path: 1, width: 640, height: 480, fps: 30}}&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--display_data<span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--dataset.episode_time_s<span class="o">=</span><span class="m">10</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--dataset.reset_time_s<span class="o">=</span><span class="m">2</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--dataset.num_episodes<span class="o">=</span><span class="m">30</span>
@@ -1037,16 +1037,16 @@
 <span class="normal"> 8</span>
 <span class="normal"> 9</span>
 <span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code>lerobot-train<span class="w"> </span><span class="se">\</span>
-<span class="hll"><span class="w">  </span>--dataset.root<span class="o">=</span><span class="s2">&quot;/Users/username/Documents/workspace_leracer/datasets/toio_test&quot;</span><span class="w"> </span><span class="se">\</span>
-</span><span class="hll"><span class="w">  </span>--dataset.repo_id<span class="o">=</span><span class="s2">&quot;local/toio_test&quot;</span><span class="w"> </span><span class="se">\</span>
-</span><span class="w">  </span>--policy.type<span class="o">=</span>act<span class="w"> </span><span class="se">\</span>
-<span class="hll"><span class="w">  </span>--output_dir<span class="o">=</span><span class="s2">&quot;outputs/train/act_1toio_test_mps&quot;</span><span class="w"> </span><span class="se">\</span>
-</span><span class="w">  </span>--job_name<span class="o">=</span><span class="s2">&quot;act_toio_test_mps&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="hll"><span class="w">  </span>--policy.device<span class="o">=</span>mps<span class="w"> </span><span class="se">\</span>
-</span><span class="w">  </span>--wandb.enable<span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--dataset.root<span class="o">=</span><span class="s2">&quot;/Users/username/Documents/workspace_leracer/datasets/toio_test&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--dataset.repo_id<span class="o">=</span><span class="s2">&quot;local/toio_test&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--policy.type<span class="o">=</span>act<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output_dir<span class="o">=</span><span class="s2">&quot;outputs/train/act_1toio_test_mps&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--job_name<span class="o">=</span><span class="s2">&quot;act_toio_test_mps&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--policy.device<span class="o">=</span>mps<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--wandb.enable<span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--policy.push_to_hub<span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="se">\</span>
-<span class="hll"><span class="w">  </span>--steps<span class="o">=</span><span class="m">10000</span>
-</span></code></pre></div></td></tr></table></div>
+<span class="w">  </span>--steps<span class="o">=</span><span class="m">10000</span>
+</code></pre></div></td></tr></table></div>
 <h2 id="_3">推論実行</h2>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
@@ -1058,11 +1058,11 @@
 <span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code>lerobot-record<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--robot.type<span class="o">=</span>toio_follower<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--dataset.repo_id<span class="o">=</span>local/eval_toio_test<span class="w"> </span><span class="se">\</span>
-<span class="hll"><span class="w">  </span>--dataset.root<span class="o">=</span>/Users/username/Documents/workspace_leracer/datasets/eval_toio_test<span class="w"> </span><span class="se">\</span>
-</span><span class="w">  </span>--dataset.push_to_hub<span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--dataset.root<span class="o">=</span>/Users/username/Documents/workspace_leracer/datasets/eval_toio_test<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--dataset.push_to_hub<span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--robot.cameras<span class="o">=</span><span class="s2">&quot;{ front: {type: opencv, index_or_path: 1, width: 640, height: 480, fps: 30}}&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="hll"><span class="w">  </span>--policy.path<span class="o">=</span><span class="s2">&quot;outputs/train/act_1toio_test_mps/checkpoints/last/pretrained_model/&quot;</span><span class="w"> </span><span class="se">\</span>
-</span><span class="w">  </span>--display_data<span class="o">=</span><span class="nb">true</span>
+<span class="w">  </span>--policy.path<span class="o">=</span><span class="s2">&quot;outputs/train/act_1toio_test_mps/checkpoints/last/pretrained_model/&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--display_data<span class="o">=</span><span class="nb">true</span>
 </code></pre></div></td></tr></table></div>
 
 
