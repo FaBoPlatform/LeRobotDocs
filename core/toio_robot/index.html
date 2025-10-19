@@ -835,6 +835,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      質問等
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1024,6 +1033,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      質問等
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1041,7 +1059,7 @@
 
 <h1 id="toio-follower">toio Follower</h1>
 <h2 id="toio-follower_1">toio Follower</h2>
-<p>toio本体をLeRobotで制御するための最小サンプルです。</p>
+<p>toio本体をLeRobotで制御するための最小サンプル(GPT-5 Proで生成)です。</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>lerobot-robot-###/lerobot_robot_### のように、パッケージ名には<code>lerobot_robot_</code>から始める必要がありそうです。</p>
@@ -1050,7 +1068,7 @@
 <ul>
 <li><code>lerobot-robot-toio/setup.py</code></li>
 <li><code>lerobot-robot-toio/lerobot_robot_toio/__init__.py</code></li>
-<li><code>lerobot-robot-toio/lerobot_robot_toio/congig_toio.py</code></li>
+<li><code>lerobot-robot-toio/lerobot_robot_toio/config_toio.py</code></li>
 <li><code>lerobot-robot-toio/lerobot_robot_toio/toio.py</code></li>
 </ul>
 <h2 id="setuppy">setup.py</h2>
@@ -1110,7 +1128,7 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">.toio</span><span class="w"> </span><span class="kn">import</span> <span class="n">Toio</span>
 </code></pre></div></td></tr></table></div>
 <h2 id="config_toiopy">config_toio.py</h2>
-<p><code>lerobot-robot-toio/lerobot_robot_toio/congig_toio.py</code></p>
+<p><code>lerobot-robot-toio/lerobot_robot_toio/config_toio.py</code></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -1140,36 +1158,44 @@
 <span class="normal">27</span>
 <span class="normal">28</span>
 <span class="normal">29</span>
-<span class="normal">30</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Optional</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">toio 用 RobotConfig 定義（BLE アドレス指定は廃止）。</span>
+<span class="sd">- カメラ設定</span>
+<span class="sd">- モータ/制御ゲイン</span>
+<span class="sd">- BLE スキャン設定（名前プレフィックス + タイムアウト）</span>
+
+<span class="sd">補足:</span>
+<span class="sd">- x 側（旋回）の相対比は kw/kv で決まります。</span>
+<span class="sd">  例) kv=80, kw=40 → vx は vy の約 1/2 の効き。</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">lerobot.cameras</span><span class="w"> </span><span class="kn">import</span> <span class="n">CameraConfig</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">lerobot.robots.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">RobotConfig</span>
+
 
 <span class="nd">@RobotConfig</span><span class="o">.</span><span class="n">register_subclass</span><span class="p">(</span><span class="s2">&quot;toio_follower&quot;</span><span class="p">)</span>
 <span class="nd">@dataclass</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">ToioConfig</span><span class="p">(</span><span class="n">RobotConfig</span><span class="p">):</span>
+    <span class="c1"># ---- カメラ設定 ----</span>
     <span class="n">cameras</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">CameraConfig</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">dict</span><span class="p">)</span>
 
-    <span class="c1"># 既存</span>
-    <span class="n">max_motor</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">80</span>
-    <span class="n">kv</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">80.0</span>
-    <span class="n">kw</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">60.0</span>
-    <span class="n">deadzone</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.05</span>
-    <span class="n">integrate_pose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="c1"># ---- モータ/制御ゲイン ----</span>
+    <span class="n">max_motor</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">80</span>               <span class="c1"># モータ出力のクリップ上限（±max_motor）</span>
+    <span class="n">kv</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">80.0</span>                  <span class="c1"># vy（前後）→ モータ値へのゲイン</span>
+    <span class="n">kw</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">20.0</span>                  <span class="c1"># vx（旋回）→ モータ値へのゲイン（既定で kv の約 1/2）</span>
+    <span class="n">deadzone</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.05</span>            <span class="c1"># 小さなモータ値は 0 に潰す比率（±max_motor に対する割合）</span>
+    <span class="n">integrate_pose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>       <span class="c1"># （拡張用フラグ、ここでは未使用）</span>
 
-    <span class="c1"># BLE ヒント</span>
-    <span class="n">ble_address</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="n">ble_name_prefix</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;toio&quot;</span>
-    <span class="n">ble_scan_timeout_s</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">8.0</span>
-
-    <span class="c1"># ---- 追加: vx 成形パラメータ ----</span>
-    <span class="n">vx_gain</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.5</span>                <span class="c1"># 推論 vx のゲイン</span>
-    <span class="n">vx_trigger_eps</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.03</span>        <span class="c1"># 絶対値トリガ閾値</span>
-    <span class="n">vx_delta_trigger_eps</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.05</span>  <span class="c1"># 変化量トリガ閾値（エッジ検出）</span>
-    <span class="n">vx_min_abs</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.15</span>            <span class="c1"># トリガ時に最低限ここまで持ち上げる</span>
-    <span class="n">vx_hold_s</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.15</span>             <span class="c1"># ホールド時間 [s]</span>
-    <span class="n">vx_decay_tau_s</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.30</span>        <span class="c1"># 減衰時定数 [s]</span>
-    <span class="n">vx_max_abs</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span>             <span class="c1"># ゲイン後の絶対上限</span>
+    <span class="c1"># ---- BLE スキャン設定（アドレス指定は廃止）----</span>
+    <span class="n">ble_name_prefix</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;toio&quot;</span>     <span class="c1"># スキャン時のデバイス名プレフィックス</span>
+    <span class="n">ble_scan_timeout_s</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">8.0</span>   <span class="c1"># bleak によるスキャンのタイムアウト</span>
 </code></pre></div></td></tr></table></div>
 <h2 id="toiopy">toio.py</h2>
 <p><code>lerobot-robot-toio/lerobot_robot_toio/toio.py</code></p>
@@ -1556,10 +1582,54 @@
 <span class="normal">381</span>
 <span class="normal">382</span>
 <span class="normal">383</span>
-<span class="normal">384</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1"># lerobot_robot_toio/toio_robot.py</span>
+<span class="normal">384</span>
+<span class="normal">385</span>
+<span class="normal">386</span>
+<span class="normal">387</span>
+<span class="normal">388</span>
+<span class="normal">389</span>
+<span class="normal">390</span>
+<span class="normal">391</span>
+<span class="normal">392</span>
+<span class="normal">393</span>
+<span class="normal">394</span>
+<span class="normal">395</span>
+<span class="normal">396</span>
+<span class="normal">397</span>
+<span class="normal">398</span>
+<span class="normal">399</span>
+<span class="normal">400</span>
+<span class="normal">401</span>
+<span class="normal">402</span>
+<span class="normal">403</span>
+<span class="normal">404</span>
+<span class="normal">405</span>
+<span class="normal">406</span>
+<span class="normal">407</span>
+<span class="normal">408</span>
+<span class="normal">409</span>
+<span class="normal">410</span>
+<span class="normal">411</span>
+<span class="normal">412</span>
+<span class="normal">413</span>
+<span class="normal">414</span>
+<span class="normal">415</span>
+<span class="normal">416</span>
+<span class="normal">417</span>
+<span class="normal">418</span>
+<span class="normal">419</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">toio を lerobot の Robot として扱うための実装。</span>
+<span class="sd">- カメラ周りの初期化とフレーム取得（失敗時ゼロ画像フォールバック）</span>
+<span class="sd">- BLE 経由でのモータ制御（非同期ランナー）</span>
+<span class="sd">- 観測は「直近のアクションのエコー（vx, vy）」＋カメラ画像を返す方針</span>
+<span class="sd">- 《更新》BLE アドレス指定は廃止。スキャンで最初の toio に自動接続。</span>
+<span class="sd">- 《方針》vx（旋回）の相対比は kw/kv で調整（既定: kv=80, kw=40 → 約 1/2）</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">threading</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">inspect</span>
@@ -1569,45 +1639,64 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">lerobot.utils.errors</span><span class="w"> </span><span class="kn">import</span> <span class="n">DeviceNotConnectedError</span><span class="p">,</span> <span class="n">DeviceAlreadyConnectedError</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">lerobot.robots.robot</span><span class="w"> </span><span class="kn">import</span> <span class="n">Robot</span>
 
+<span class="c1"># 同一ディレクトリ（パッケージ）内の設定クラス</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">.config_toio</span><span class="w"> </span><span class="kn">import</span> <span class="n">ToioConfig</span>
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">_clip</span><span class="p">(</span><span class="n">v</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">lo</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">hi</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;整数 v を [lo, hi] にクリップする小ヘルパ。&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">lo</span> <span class="k">if</span> <span class="n">v</span> <span class="o">&lt;</span> <span class="n">lo</span> <span class="k">else</span> <span class="n">hi</span> <span class="k">if</span> <span class="n">v</span> <span class="o">&gt;</span> <span class="n">hi</span> <span class="k">else</span> <span class="n">v</span>
 
 
 <span class="k">class</span><span class="w"> </span><span class="nc">_ToioAsyncRunner</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;toio をバックグラウンド asyncio スレッドで管理するランナー。&quot;&quot;&quot;</span>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">ble_address</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">ble_name_prefix</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">ble_scan_timeout_s</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    toio をバックグラウンドの asyncio スレッドで管理するランナー。</span>
+<span class="sd">    - メインスレッドからは set_motor(L, R) を呼ぶだけ</span>
+<span class="sd">    - ランナー内部で BLE 接続と非同期送信を処理</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">ble_name_prefix</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">ble_scan_timeout_s</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+        <span class="c1"># 独自のイベントループをバックグラウンドスレッドで持つ</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_loop</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">new_event_loop</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_thread</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_loop_main</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;toio-async&quot;</span><span class="p">,</span> <span class="n">daemon</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_ready_evt</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Event</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_stop_evt</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Event</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_exc</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="ne">BaseException</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ready_evt</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Event</span><span class="p">()</span>  <span class="c1"># 接続完了/失敗の通知</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_stop_evt</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Event</span><span class="p">()</span>   <span class="c1"># 停止指示</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_exc</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="ne">BaseException</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># 起動時の例外（あれば保持）</span>
 
+        <span class="c1"># モータ指令キュー（最新指令のみを保持する設計）</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_queue</span><span class="p">:</span> <span class="s2">&quot;asyncio.Queue[Tuple[int, int] | str]&quot;</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># type: ignore</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_last_cmd</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_ble_address</span> <span class="o">=</span> <span class="n">ble_address</span>
+        <span class="c1"># BLE スキャン設定（アドレス指定は廃止）</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_ble_name_prefix</span> <span class="o">=</span> <span class="n">ble_name_prefix</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_ble_scan_timeout_s</span> <span class="o">=</span> <span class="n">ble_scan_timeout_s</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">15.0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="c1"># --- ライフサイクル -----------------------------------------------------</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">30.0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        ランナー起動。接続完了（または失敗）まで待機する。</span>
+<span class="sd">        - timeout 超過時は TimeoutError</span>
+<span class="sd">        - 起動中に例外が出た場合は RuntimeError として cause 付きで再送出</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_thread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ready_evt</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">TimeoutError</span><span class="p">(</span><span class="s2">&quot;toio: BLE connection timeout&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_exc</span><span class="p">:</span>
-            <span class="c1"># 元例外も cause として伝搬</span>
             <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;toio: async runner failed: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_exc</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">self._exc</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">set_motor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">left</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">right</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        モータ値（整数、±100 程度）を非同期キューへ投入。</span>
+<span class="sd">        - キューには常に「最新 1 件」だけが残るようにする（古い指令は捨てる）</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stop_evt</span><span class="o">.</span><span class="n">is_set</span><span class="p">():</span>
             <span class="k">return</span>
 
         <span class="k">def</span><span class="w"> </span><span class="nf">_put</span><span class="p">():</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_queue</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="k">return</span>
-            <span class="c1"># 最新指令のみ保持</span>
+            <span class="c1"># 最新指令のみ保持：古いエントリを空にしてから put</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">_queue</span><span class="o">.</span><span class="n">get_nowait</span><span class="p">()</span>
@@ -1618,14 +1707,19 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_loop</span><span class="o">.</span><span class="n">call_soon_threadsafe</span><span class="p">(</span><span class="n">_put</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;停止用の特殊メッセージを送ってスレッドを合流させる。&quot;&quot;&quot;</span>
         <span class="k">def</span><span class="w"> </span><span class="nf">_stop</span><span class="p">():</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_queue</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_queue</span><span class="o">.</span><span class="n">put_nowait</span><span class="p">(</span><span class="s2">&quot;STOP&quot;</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_stop_evt</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">_loop</span><span class="o">.</span><span class="n">call_soon_threadsafe</span><span class="p">(</span><span class="n">_stop</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_thread</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mf">10.0</span><span class="p">)</span>
 
+    <span class="c1"># --- 内部処理 -----------------------------------------------------------</span>
+
     <span class="k">def</span><span class="w"> </span><span class="nf">_loop_main</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;バックグラウンドスレッドのエントリポイント。&quot;&quot;&quot;</span>
         <span class="n">asyncio</span><span class="o">.</span><span class="n">set_event_loop</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_loop</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_queue</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">Queue</span><span class="p">()</span>
         <span class="k">try</span><span class="p">:</span>
@@ -1638,177 +1732,151 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_loop</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
     <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">_runner</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="c1"># toio import 確認</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        実際の BLE 接続とモータ送信ループ。</span>
+<span class="sd">        - まず toio ライブラリの自動スキャンで接続を試みる</span>
+<span class="sd">        - 失敗したら bleak でスキャン → 最初の toio を選んで、そのアドレスで再トライ</span>
+<span class="sd">        - アドレス指定の CLI/設定サポートは廃止（ユーザ指定は受け付けない）</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># toio ライブラリの存在確認</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="kn">from</span><span class="w"> </span><span class="nn">toio</span><span class="w"> </span><span class="kn">import</span> <span class="n">ToioCoreCube</span>  <span class="c1"># type: ignore</span>
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_exc</span> <span class="o">=</span> <span class="ne">ImportError</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;Python package &#39;toio&#39; is required. Install with: pip install toio (original error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">)&quot;</span>
+                <span class="s2">&quot;Python package &#39;toio&#39; が必要です。インストール例: pip install toio &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;(original error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">)&quot;</span>
             <span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_ready_evt</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
             <span class="k">return</span>
 
-        <span class="c1"># ToioCoreCube の __init__ シグネチャに存在する引数のみを渡す</span>
-        <span class="k">def</span><span class="w"> </span><span class="nf">_filter_kwargs</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-            <span class="n">sig</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">signature</span><span class="p">(</span><span class="n">ToioCoreCube</span><span class="p">)</span>
-            <span class="k">return</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">sig</span><span class="o">.</span><span class="n">parameters</span> <span class="ow">and</span> <span class="n">v</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">}</span>
-
-        <span class="k">try</span><span class="p">:</span>
-            <span class="c1"># 1) まずはアドレスヒントがあればそれで context manager 接続</span>
-            <span class="n">first_kwargs</span> <span class="o">=</span> <span class="p">{}</span>
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ble_address</span><span class="p">:</span>
-                <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;address&quot;</span><span class="p">,</span> <span class="s2">&quot;mac_address&quot;</span><span class="p">,</span> <span class="s2">&quot;device&quot;</span><span class="p">,</span> <span class="s2">&quot;target&quot;</span><span class="p">,</span> <span class="s2">&quot;target_addr&quot;</span><span class="p">):</span>
-                    <span class="n">first_kwargs</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ble_address</span>
-
+        <span class="c1"># ToioCoreCube の __init__ に存在する引数のみ渡すためのフィルタ</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">_filter_kwargs_for_cube</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
             <span class="k">try</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">first_kwargs</span><span class="p">:</span>
-                    <span class="n">fk</span> <span class="o">=</span> <span class="n">_filter_kwargs</span><span class="p">(</span><span class="o">**</span><span class="n">first_kwargs</span><span class="p">)</span>
-                    <span class="k">async</span> <span class="k">with</span> <span class="n">ToioCoreCube</span><span class="p">(</span><span class="o">**</span><span class="n">fk</span><span class="p">)</span> <span class="k">as</span> <span class="n">cube</span><span class="p">:</span>
-                        <span class="bp">self</span><span class="o">.</span><span class="n">_ready_evt</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
-                        <span class="k">try</span><span class="p">:</span>
-                            <span class="k">await</span> <span class="n">cube</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">motor</span><span class="o">.</span><span class="n">motor_control</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-                        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
-                            <span class="k">pass</span>
-
-                        <span class="k">while</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stop_evt</span><span class="o">.</span><span class="n">is_set</span><span class="p">():</span>
-                            <span class="k">try</span><span class="p">:</span>
-                                <span class="n">msg</span> <span class="o">=</span> <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">wait_for</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_queue</span><span class="o">.</span><span class="n">get</span><span class="p">(),</span> <span class="n">timeout</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
-                            <span class="k">except</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">TimeoutError</span><span class="p">:</span>
-                                <span class="k">continue</span>
-                            <span class="k">if</span> <span class="n">msg</span> <span class="o">==</span> <span class="s2">&quot;STOP&quot;</span><span class="p">:</span>
-                                <span class="k">try</span><span class="p">:</span>
-                                    <span class="k">await</span> <span class="n">cube</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">motor</span><span class="o">.</span><span class="n">motor_control</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-                                <span class="k">finally</span><span class="p">:</span>
-                                    <span class="k">break</span>
-                            <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="n">msg</span>
-                            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_last_cmd</span> <span class="o">!=</span> <span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">):</span>
-                                <span class="k">await</span> <span class="n">cube</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">motor</span><span class="o">.</span><span class="n">motor_control</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">left</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">right</span><span class="p">))</span>
-                                <span class="bp">self</span><span class="o">.</span><span class="n">_last_cmd</span> <span class="o">=</span> <span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">)</span>
-                        <span class="k">return</span>  <span class="c1"># 正常終了</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="c1"># 引数なし（ライブラリ内部スキャンに委ねる）</span>
-                    <span class="k">async</span> <span class="k">with</span> <span class="n">ToioCoreCube</span><span class="p">()</span> <span class="k">as</span> <span class="n">cube</span><span class="p">:</span>
-                        <span class="bp">self</span><span class="o">.</span><span class="n">_ready_evt</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
-                        <span class="k">try</span><span class="p">:</span>
-                            <span class="k">await</span> <span class="n">cube</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">motor</span><span class="o">.</span><span class="n">motor_control</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-                        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
-                            <span class="k">pass</span>
-
-                        <span class="k">while</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stop_evt</span><span class="o">.</span><span class="n">is_set</span><span class="p">():</span>
-                            <span class="k">try</span><span class="p">:</span>
-                                <span class="n">msg</span> <span class="o">=</span> <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">wait_for</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_queue</span><span class="o">.</span><span class="n">get</span><span class="p">(),</span> <span class="n">timeout</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
-                            <span class="k">except</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">TimeoutError</span><span class="p">:</span>
-                                <span class="k">continue</span>
-                            <span class="k">if</span> <span class="n">msg</span> <span class="o">==</span> <span class="s2">&quot;STOP&quot;</span><span class="p">:</span>
-                                <span class="k">try</span><span class="p">:</span>
-                                    <span class="k">await</span> <span class="n">cube</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">motor</span><span class="o">.</span><span class="n">motor_control</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-                                <span class="k">finally</span><span class="p">:</span>
-                                    <span class="k">break</span>
-                            <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="n">msg</span>
-                            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_last_cmd</span> <span class="o">!=</span> <span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">):</span>
-                                <span class="k">await</span> <span class="n">cube</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">motor</span><span class="o">.</span><span class="n">motor_control</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">left</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">right</span><span class="p">))</span>
-                                <span class="bp">self</span><span class="o">.</span><span class="n">_last_cmd</span> <span class="o">=</span> <span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">)</span>
-                        <span class="k">return</span>  <span class="c1"># 正常終了</span>
+                <span class="n">sig</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">signature</span><span class="p">(</span><span class="n">ToioCoreCube</span><span class="p">)</span>
+                <span class="k">return</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">sig</span><span class="o">.</span><span class="n">parameters</span> <span class="ow">and</span> <span class="n">v</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">}</span>
             <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
-                <span class="c1"># → 後段の bleak スキャンへ</span>
+                <span class="c1"># 署名取得に失敗した場合は安全側で何も渡さない</span>
+                <span class="k">return</span> <span class="p">{}</span>
+
+        <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">_motor_loop</span><span class="p">(</span><span class="n">cube</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;接続確立後のモータ送信ループ（重複コード回避のため関数化）。&quot;&quot;&quot;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_ready_evt</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">await</span> <span class="n">cube</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">motor</span><span class="o">.</span><span class="n">motor_control</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
                 <span class="k">pass</span>
 
-            <span class="c1"># 2) bleak でスキャン → 最初の toio を選んでアドレス指定で再トライ</span>
-            <span class="k">try</span><span class="p">:</span>
-                <span class="kn">from</span><span class="w"> </span><span class="nn">bleak</span><span class="w"> </span><span class="kn">import</span> <span class="n">BleakScanner</span>  <span class="c1"># type: ignore</span>
-                <span class="n">devices</span> <span class="o">=</span> <span class="k">await</span> <span class="n">BleakScanner</span><span class="o">.</span><span class="n">discover</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_ble_scan_timeout_s</span><span class="p">)</span>
-                <span class="n">cand</span> <span class="o">=</span> <span class="p">[</span>
-                    <span class="n">d</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">devices</span>
-                    <span class="k">if</span> <span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">name</span> <span class="ow">or</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">startswith</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">_ble_name_prefix</span> <span class="ow">or</span> <span class="s2">&quot;toio&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
-                <span class="p">]</span>
-                <span class="k">if</span> <span class="ow">not</span> <span class="n">cand</span><span class="p">:</span>
-                    <span class="n">names</span> <span class="o">=</span> <span class="p">[(</span><span class="n">d</span><span class="o">.</span><span class="n">name</span> <span class="ow">or</span> <span class="s2">&quot;unknown&quot;</span><span class="p">,</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="s2">&quot;address&quot;</span><span class="p">,</span> <span class="s2">&quot;n/a&quot;</span><span class="p">))</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">devices</span><span class="p">]</span>
-                    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
-                        <span class="s2">&quot;No toio Core Cube found over BLE.</span><span class="se">\n</span><span class="s2">&quot;</span>
-                        <span class="s2">&quot;- Cube をペアリング/アドバタイズ状態にする</span><span class="se">\n</span><span class="s2">&quot;</span>
-                        <span class="s2">&quot;- macOS の Bluetooth 権限（Terminal/Python）を許可</span><span class="se">\n</span><span class="s2">&quot;</span>
-                        <span class="s2">&quot;- 他機器との既存接続を解除</span><span class="se">\n</span><span class="s2">&quot;</span>
-                        <span class="sa">f</span><span class="s2">&quot;Scanned devices: </span><span class="si">{</span><span class="n">names</span><span class="si">}</span><span class="s2">&quot;</span>
-                    <span class="p">)</span>
-                <span class="n">addr</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">cand</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;address&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-                <span class="n">retry_kwargs</span> <span class="o">=</span> <span class="p">{}</span>
-                <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;address&quot;</span><span class="p">,</span> <span class="s2">&quot;mac_address&quot;</span><span class="p">,</span> <span class="s2">&quot;device&quot;</span><span class="p">,</span> <span class="s2">&quot;target&quot;</span><span class="p">,</span> <span class="s2">&quot;target_addr&quot;</span><span class="p">):</span>
-                    <span class="n">retry_kwargs</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">addr</span>
-                <span class="n">rk</span> <span class="o">=</span> <span class="n">_filter_kwargs</span><span class="p">(</span><span class="o">**</span><span class="n">retry_kwargs</span><span class="p">)</span>
-
-                <span class="k">async</span> <span class="k">with</span> <span class="n">ToioCoreCube</span><span class="p">(</span><span class="o">**</span><span class="n">rk</span><span class="p">)</span> <span class="k">as</span> <span class="n">cube</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">_ready_evt</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
+            <span class="k">while</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stop_evt</span><span class="o">.</span><span class="n">is_set</span><span class="p">():</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">msg</span> <span class="o">=</span> <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">wait_for</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_queue</span><span class="o">.</span><span class="n">get</span><span class="p">(),</span> <span class="n">timeout</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+                <span class="k">except</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">TimeoutError</span><span class="p">:</span>
+                    <span class="k">continue</span>
+                <span class="k">if</span> <span class="n">msg</span> <span class="o">==</span> <span class="s2">&quot;STOP&quot;</span><span class="p">:</span>
                     <span class="k">try</span><span class="p">:</span>
                         <span class="k">await</span> <span class="n">cube</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">motor</span><span class="o">.</span><span class="n">motor_control</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-                    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
-                        <span class="k">pass</span>
+                    <span class="k">finally</span><span class="p">:</span>
+                        <span class="k">break</span>
+                <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="n">msg</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_last_cmd</span> <span class="o">!=</span> <span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">):</span>
+                    <span class="k">await</span> <span class="n">cube</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">motor</span><span class="o">.</span><span class="n">motor_control</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">left</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">right</span><span class="p">))</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_last_cmd</span> <span class="o">=</span> <span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">)</span>
 
-                    <span class="k">while</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stop_evt</span><span class="o">.</span><span class="n">is_set</span><span class="p">():</span>
-                        <span class="k">try</span><span class="p">:</span>
-                            <span class="n">msg</span> <span class="o">=</span> <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">wait_for</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_queue</span><span class="o">.</span><span class="n">get</span><span class="p">(),</span> <span class="n">timeout</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
-                        <span class="k">except</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">TimeoutError</span><span class="p">:</span>
-                            <span class="k">continue</span>
-                        <span class="k">if</span> <span class="n">msg</span> <span class="o">==</span> <span class="s2">&quot;STOP&quot;</span><span class="p">:</span>
-                            <span class="k">try</span><span class="p">:</span>
-                                <span class="k">await</span> <span class="n">cube</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">motor</span><span class="o">.</span><span class="n">motor_control</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-                            <span class="k">finally</span><span class="p">:</span>
-                                <span class="k">break</span>
-                        <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="n">msg</span>
-                        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_last_cmd</span> <span class="o">!=</span> <span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">):</span>
-                            <span class="k">await</span> <span class="n">cube</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">motor</span><span class="o">.</span><span class="n">motor_control</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">left</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">right</span><span class="p">))</span>
-                            <span class="bp">self</span><span class="o">.</span><span class="n">_last_cmd</span> <span class="o">=</span> <span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">)</span>
-                    <span class="k">return</span>  <span class="c1"># 正常終了</span>
-            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-                <span class="n">hint</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot; (address hint: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_ble_address</span><span class="si">}</span><span class="s2">)&quot;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ble_address</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_exc</span> <span class="o">=</span> <span class="ne">RuntimeError</span><span class="p">(</span>
-                    <span class="s2">&quot;Failed to discover/connect to toio Core Cube.&quot;</span>
-                    <span class="o">+</span> <span class="n">hint</span>
-                    <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Tips:</span><span class="se">\n</span><span class="s2">&quot;</span>
-                      <span class="s2">&quot;- Cube をペアリング状態に（長押しでアドバタイズ）</span><span class="se">\n</span><span class="s2">&quot;</span>
-                      <span class="s2">&quot;- 近距離/電池残量を確認</span><span class="se">\n</span><span class="s2">&quot;</span>
-                      <span class="s2">&quot;- macOS の Bluetooth 権限を確認（Terminal/Python を許可）</span><span class="se">\n</span><span class="s2">&quot;</span>
-                      <span class="s2">&quot;- 既存の BLE 接続（スマホ等）を切断</span><span class="se">\n</span><span class="s2">&quot;</span>
-                      <span class="s2">&quot;- 必要なら --robot.ble_address=AA:BB:CC:DD:EE:FF を指定</span><span class="se">\n</span><span class="s2">&quot;</span>
-                    <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Original error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="c1"># --- 1) toio ライブラリの自動スキャンに委ねてみる ---</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">async</span> <span class="k">with</span> <span class="n">ToioCoreCube</span><span class="p">()</span> <span class="k">as</span> <span class="n">cube</span><span class="p">:</span>
+                <span class="k">await</span> <span class="n">_motor_loop</span><span class="p">(</span><span class="n">cube</span><span class="p">)</span>
+                <span class="k">return</span>  <span class="c1"># 正常終了</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="c1"># → 後段の bleak スキャンへ</span>
+            <span class="k">pass</span>
+
+        <span class="c1"># --- 2) bleak でスキャン → 最初の toio を選んで接続 ---</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="kn">from</span><span class="w"> </span><span class="nn">bleak</span><span class="w"> </span><span class="kn">import</span> <span class="n">BleakScanner</span>  <span class="c1"># type: ignore</span>
+
+            <span class="n">devices</span> <span class="o">=</span> <span class="k">await</span> <span class="n">BleakScanner</span><span class="o">.</span><span class="n">discover</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_ble_scan_timeout_s</span><span class="p">)</span>
+            <span class="n">cand</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="n">d</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">devices</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">name</span> <span class="ow">or</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">startswith</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">_ble_name_prefix</span> <span class="ow">or</span> <span class="s2">&quot;toio&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+            <span class="p">]</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">cand</span><span class="p">:</span>
+                <span class="n">names</span> <span class="o">=</span> <span class="p">[(</span><span class="n">d</span><span class="o">.</span><span class="n">name</span> <span class="ow">or</span> <span class="s2">&quot;unknown&quot;</span><span class="p">,</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="s2">&quot;address&quot;</span><span class="p">,</span> <span class="s2">&quot;n/a&quot;</span><span class="p">))</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">devices</span><span class="p">]</span>
+                <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+                    <span class="s2">&quot;BLE スキャンで toio Core Cube が見つかりませんでした。</span><span class="se">\n</span><span class="s2">&quot;</span>
+                    <span class="s2">&quot;- Cube をペアリング/アドバタイズ状態にする</span><span class="se">\n</span><span class="s2">&quot;</span>
+                    <span class="s2">&quot;- macOS の Bluetooth 権限（Terminal/Python）を許可</span><span class="se">\n</span><span class="s2">&quot;</span>
+                    <span class="s2">&quot;- 他機器との既存接続を解除</span><span class="se">\n</span><span class="s2">&quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;Scanned devices: </span><span class="si">{</span><span class="n">names</span><span class="si">}</span><span class="s2">&quot;</span>
                 <span class="p">)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_ready_evt</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
-                <span class="k">return</span>
+
+            <span class="n">addr</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">cand</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;address&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+            <span class="c1"># toio ライブラリの引数差を吸収して「それっぽいキー群」を渡す</span>
+            <span class="n">retry_kwargs</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;address&quot;</span><span class="p">,</span> <span class="s2">&quot;mac_address&quot;</span><span class="p">,</span> <span class="s2">&quot;device&quot;</span><span class="p">,</span> <span class="s2">&quot;target&quot;</span><span class="p">,</span> <span class="s2">&quot;target_addr&quot;</span><span class="p">):</span>
+                <span class="n">retry_kwargs</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">addr</span>
+            <span class="n">rk</span> <span class="o">=</span> <span class="n">_filter_kwargs_for_cube</span><span class="p">(</span><span class="o">**</span><span class="n">retry_kwargs</span><span class="p">)</span>
+
+            <span class="c1"># 署名上、どの引数も受け付けない場合は（古い実装など）引数なしで再トライ</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">rk</span><span class="p">:</span>
+                <span class="k">async</span> <span class="k">with</span> <span class="n">ToioCoreCube</span><span class="p">()</span> <span class="k">as</span> <span class="n">cube</span><span class="p">:</span>
+                    <span class="k">await</span> <span class="n">_motor_loop</span><span class="p">(</span><span class="n">cube</span><span class="p">)</span>
+                    <span class="k">return</span>
+
+            <span class="k">async</span> <span class="k">with</span> <span class="n">ToioCoreCube</span><span class="p">(</span><span class="o">**</span><span class="n">rk</span><span class="p">)</span> <span class="k">as</span> <span class="n">cube</span><span class="p">:</span>
+                <span class="k">await</span> <span class="n">_motor_loop</span><span class="p">(</span><span class="n">cube</span><span class="p">)</span>
+                <span class="k">return</span>  <span class="c1"># 正常終了</span>
 
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_exc</span> <span class="o">=</span> <span class="n">e</span>
+            <span class="c1"># アドレス指定のヒントは廃止。一般的な対処のみ提示。</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_exc</span> <span class="o">=</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+                <span class="s2">&quot;toio Core Cube への接続に失敗しました。</span><span class="se">\n</span><span class="s2">&quot;</span>
+                <span class="s2">&quot;Tips:</span><span class="se">\n</span><span class="s2">&quot;</span>
+                <span class="s2">&quot;- Cube をペアリング状態に（長押しでアドバタイズ）</span><span class="se">\n</span><span class="s2">&quot;</span>
+                <span class="s2">&quot;- 近距離/電池残量を確認</span><span class="se">\n</span><span class="s2">&quot;</span>
+                <span class="s2">&quot;- macOS の Bluetooth 権限を確認（Terminal/Python を許可）</span><span class="se">\n</span><span class="s2">&quot;</span>
+                <span class="s2">&quot;- 既存の BLE 接続（スマホ等）を切断</span><span class="se">\n</span><span class="s2">&quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Original error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_ready_evt</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
+            <span class="k">return</span>
 
 
 <span class="k">class</span><span class="w"> </span><span class="nc">Toio</span><span class="p">(</span><span class="n">Robot</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    lerobot の Robot 実装。</span>
+<span class="sd">    - config_class: ToioConfig</span>
+<span class="sd">    - 観測は「直近のアクション（vx, vy）のエコー」＋カメラ画像</span>
+<span class="sd">    - send_action では差動二輪への変換を行い、BLE ランナーに出力</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="n">config_class</span> <span class="o">=</span> <span class="n">ToioConfig</span>
     <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;toio&quot;</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">ToioConfig</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">config</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
 
-        <span class="c1"># ★ カメラ（lerobot-record が len(robot.cameras) を参照）</span>
+        <span class="c1"># ---- カメラの生成（lerobot-record が len(robot.cameras) を参照する）----</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">cameras</span> <span class="o">=</span> <span class="n">make_cameras_from_configs</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">cameras</span><span class="p">)</span>
 
+        <span class="c1"># 接続状態フラグ</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_is_connected</span> <span class="o">=</span> <span class="kc">False</span>
 
-        <span class="c1"># 観測は「直近アクションのエコー」を返すので、最新コマンドを保持</span>
+        <span class="c1"># 観測は「直近アクションのエコー」を返す</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_last_vx</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_last_vy</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_last_t</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># モータ出力用に時間差が必要な場合のために保持（不要なら未使用でもOK）</span>
 
-        <span class="c1"># BLE ランナー（設定でヒントを受け取る）</span>
+        <span class="c1"># BLE ランナー（※ BLE アドレス指定は廃止）</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_runner</span> <span class="o">=</span> <span class="n">_ToioAsyncRunner</span><span class="p">(</span>
-            <span class="n">ble_address</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="s2">&quot;ble_address&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
-            <span class="n">ble_name_prefix</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="s2">&quot;ble_name_prefix&quot;</span><span class="p">,</span> <span class="s2">&quot;toio&quot;</span><span class="p">),</span>
+            <span class="n">ble_name_prefix</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="s2">&quot;ble_name_prefix&quot;</span><span class="p">,</span> <span class="s2">&quot;toio&quot;</span><span class="p">)),</span>
             <span class="n">ble_scan_timeout_s</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="s2">&quot;ble_scan_timeout_s&quot;</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">)),</span>
         <span class="p">)</span>
 
         <span class="c1"># モータ変換ゲイン</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_max_motor</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="s2">&quot;max_motor&quot;</span><span class="p">,</span> <span class="mi">80</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_kv</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="s2">&quot;kv&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_max_motor</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_kw</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="s2">&quot;kw&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_max_motor</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_kv</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="s2">&quot;kv&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_max_motor</span><span class="p">))</span>  <span class="c1"># 前後</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_kw</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="s2">&quot;kw&quot;</span><span class="p">,</span> <span class="mf">40.0</span><span class="p">))</span>             <span class="c1"># 旋回（相対比は kw/kv）</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_deadzone</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="s2">&quot;deadzone&quot;</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">))</span>
 
         <span class="c1"># 画像 shape（ゼロ画像フォールバック用）</span>
@@ -1816,10 +1884,14 @@
             <span class="n">cam_key</span><span class="p">:</span> <span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">cameras</span><span class="p">[</span><span class="n">cam_key</span><span class="p">]</span><span class="o">.</span><span class="n">height</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">cameras</span><span class="p">[</span><span class="n">cam_key</span><span class="p">]</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">cam_key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cameras</span>
         <span class="p">}</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">flag</span> <span class="o">=</span> <span class="kc">False</span>
 
     <span class="c1"># ===== 接続系 =====</span>
+
     <span class="k">def</span><span class="w"> </span><span class="nf">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">calibrate</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        カメラを接続 → BLE ランナー起動。</span>
+<span class="sd">        既に接続済みなら DeviceAlreadyConnectedError。</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_connected</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">DeviceAlreadyConnectedError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="si">}</span><span class="s2"> already connected&quot;</span><span class="p">)</span>
 
@@ -1831,10 +1903,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_runner</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mf">30.0</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_is_connected</span> <span class="o">=</span> <span class="kc">True</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_last_t</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="si">}</span><span class="s2"> connected (toio BLE &amp; cameras).&quot;</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">disconnect</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;停止指令を送ってから、BLE/カメラを順に切断。&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_connected</span><span class="p">:</span>
             <span class="k">return</span>
         <span class="k">try</span><span class="p">:</span>
@@ -1848,8 +1920,9 @@
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="si">}</span><span class="s2"> disconnected.&quot;</span><span class="p">)</span>
 
     <span class="c1"># ===== Robot 抽象メソッドの最小実装 =====</span>
+
     <span class="k">def</span><span class="w"> </span><span class="nf">calibrate</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;toio 側で特別なキャリブレーションは不要なので no-op。&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;toio 側に特別なキャリブレーションは不要なので no-op。&quot;&quot;&quot;</span>
         <span class="k">return</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">configure</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -1858,6 +1931,7 @@
             <span class="k">raise</span> <span class="n">DeviceNotConnectedError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="si">}</span><span class="s2"> is not connected.&quot;</span><span class="p">)</span>
 
     <span class="c1"># ===== 必須プロパティ =====</span>
+
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">is_connected</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_connected</span>
@@ -1868,25 +1942,38 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">is_calibrated</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="c1"># この実装では接続＝キャリブレーション済み扱い</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_connected</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">_cameras_ft</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;観測空間に含めるカメラの shape（lerobot の仕様に合わせる）。&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cam_shape</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">observation_features</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
-        <span class="c1"># ★ 観測はアクションのエコー（vx, vy）＋カメラ</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        観測の特徴量定義。</span>
+<span class="sd">        - vx, vy（直近アクションのエコー）</span>
+<span class="sd">        - 各カメラのフレーム（H, W, 3）</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">feats</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;vx&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="s2">&quot;vy&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">}</span>
         <span class="n">feats</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_cameras_ft</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">feats</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">action_features</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">type</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;アクションの特徴量定義（vx: 旋回, vy: 前後）。&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;vx&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="s2">&quot;vy&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">}</span>
 
     <span class="c1"># ===== I/O =====</span>
+
     <span class="k">def</span><span class="w"> </span><span class="nf">send_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        アクション（vx: 旋回, vy: 前後）を差動二輪のモータ値 (L, R) に変換し、非同期で送信。</span>
+<span class="sd">        - deadzone により小出力を 0 に潰す</span>
+<span class="sd">        - クリップにより安全な範囲（±max_motor）に制限</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_connected</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">DeviceNotConnectedError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="si">}</span><span class="s2"> is not connected.&quot;</span><span class="p">)</span>
 
@@ -1896,33 +1983,40 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_last_vx</span> <span class="o">=</span> <span class="n">vx</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_last_vy</span> <span class="o">=</span> <span class="n">vy</span>
 
-        <span class="c1"># 差動二輪へ変換</span>
+        <span class="c1"># --- 差動二輪への混合（整数化前の値） ---</span>
+        <span class="c1"># vy は前後成分、vx は旋回成分（左右差）</span>
         <span class="n">L</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_kv</span> <span class="o">*</span> <span class="n">vy</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_kw</span> <span class="o">*</span> <span class="n">vx</span><span class="p">))</span>
         <span class="n">R</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_kv</span> <span class="o">*</span> <span class="n">vy</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_kw</span> <span class="o">*</span> <span class="n">vx</span><span class="p">))</span>
 
+        <span class="c1"># --- デッドゾーン処理（小さい値は 0 に潰す） ---</span>
         <span class="n">dz</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_max_motor</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_deadzone</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">L</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">dz</span><span class="p">:</span>
             <span class="n">L</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">R</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">dz</span><span class="p">:</span>
             <span class="n">R</span> <span class="o">=</span> <span class="mi">0</span>
 
+        <span class="c1"># --- クリップ（±max_motor） ---</span>
         <span class="n">L</span> <span class="o">=</span> <span class="n">_clip</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">_max_motor</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_max_motor</span><span class="p">)</span>
         <span class="n">R</span> <span class="o">=</span> <span class="n">_clip</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">_max_motor</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_max_motor</span><span class="p">)</span>
 
-        <span class="c1"># 実機送信（非同期）</span>
+        <span class="c1"># --- 非同期で実機へ送信 ---</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_runner</span><span class="o">.</span><span class="n">set_motor</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">R</span><span class="p">)</span>
 
-        <span class="c1"># データセットには送った action をそのまま返す</span>
+        <span class="c1"># データセットには送った action をそのまま返す（エコー）</span>
         <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;vx&quot;</span><span class="p">:</span> <span class="n">vx</span><span class="p">,</span> <span class="s2">&quot;vy&quot;</span><span class="p">:</span> <span class="n">vy</span><span class="p">}</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">get_observation</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        観測を取得。</span>
+<span class="sd">        - 本実装では「直近の vx, vy のエコー」＋「各カメラの最新フレーム」</span>
+<span class="sd">        - カメラ取得に失敗/未到達のときはゼロ画像でフォールバック</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_connected</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">DeviceNotConnectedError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="si">}</span><span class="s2"> is not connected.&quot;</span><span class="p">)</span>
 
-        <span class="c1"># ★ 観測は「直近の action のエコー」</span>
         <span class="n">obs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;vx&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_last_vx</span><span class="p">),</span> <span class="s2">&quot;vy&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_last_vy</span><span class="p">)}</span>
 
-        <span class="c1"># カメラフレーム取得（失敗/未到達時はゼロ画像でフォールバック）</span>
+        <span class="c1"># カメラフレーム取得（フォールバックあり）</span>
         <span class="k">for</span> <span class="n">cam_key</span><span class="p">,</span> <span class="n">cam</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cameras</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="n">h</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cam_shape</span><span class="p">[</span><span class="n">cam_key</span><span class="p">]</span>
             <span class="n">frame</span> <span class="o">=</span> <span class="kc">None</span>
@@ -1935,8 +2029,10 @@
                         <span class="n">frame</span> <span class="o">=</span> <span class="kc">None</span>
             <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
                 <span class="n">frame</span> <span class="o">=</span> <span class="kc">None</span>
+
             <span class="k">if</span> <span class="n">frame</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
                 <span class="n">frame</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">h</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">c</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+
             <span class="n">obs</span><span class="p">[</span><span class="n">cam_key</span><span class="p">]</span> <span class="o">=</span> <span class="n">frame</span>
 
         <span class="k">return</span> <span class="n">obs</span>
@@ -1944,6 +2040,10 @@
 <h2 id="install">Install</h2>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>pip install -e .
 </code></pre></div></td></tr></table></div>
+<h2 id="_2">質問等</h2>
+<ul>
+<li><a href="https://discord.com/invite/StJ84Hb">FaBo Discord</a></li>
+</ul>
 
 
 
