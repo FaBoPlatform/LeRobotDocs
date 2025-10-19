@@ -1175,8 +1175,7 @@
 <span class="normal">24</span>
 <span class="normal">25</span>
 <span class="normal">26</span>
-<span class="normal">27</span>
-<span class="normal">28</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="normal">27</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1"># -*- coding: utf-8 -*-</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">toio のテレオペ (leader) 用 TeleoperatorConfig。</span>
 <span class="sd">- pygame で取得するジョイスティックの軸割り当て/反転/スケール/デッドゾーン等をここで調整します。</span>
@@ -1189,10 +1188,9 @@
 <span class="nd">@TeleoperatorConfig</span><span class="o">.</span><span class="n">register_subclass</span><span class="p">(</span><span class="s2">&quot;toio_leader&quot;</span><span class="p">)</span>
 <span class="nd">@dataclass</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">ToioConfig</span><span class="p">(</span><span class="n">TeleoperatorConfig</span><span class="p">):</span>
-    <span class="c1"># ---- 通信系（未使用だがインタフェース整合のため保持） ----</span>
     <span class="n">port</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;4443&quot;</span>
     <span class="n">host</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;0.0.0.0&quot;</span>
-    <span class="n">use_gripper</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>  <span class="c1"># 本テレオペではグリッパは扱いません（互換のため残置）</span>
+    <span class="n">use_gripper</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>  <span class="c1"># 本テレオペではグリッパは扱いません（互換のFalseため残置）</span>
 
     <span class="c1"># ---- 入力デバイス（ジョイスティック）設定 ----</span>
     <span class="n">joystick_index</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>          <span class="c1"># 使用するジョイスティック番号（複数繋いだ場合に変更）</span>
