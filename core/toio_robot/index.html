@@ -1164,7 +1164,7 @@
 <span class="normal">33</span>
 <span class="normal">34</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1"># -*- coding: utf-8 -*-</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">toio 用 RobotConfig 定義（BLE アドレス指定は廃止）。</span>
+<span class="sd">toio 用 RobotConfig 定義。</span>
 <span class="sd">- カメラ設定</span>
 <span class="sd">- モータ/制御ゲイン</span>
 <span class="sd">- BLE スキャン設定（名前プレフィックス + タイムアウト）</span>
@@ -1615,16 +1615,12 @@
 <span class="normal">414</span>
 <span class="normal">415</span>
 <span class="normal">416</span>
-<span class="normal">417</span>
-<span class="normal">418</span>
-<span class="normal">419</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="normal">417</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1"># -*- coding: utf-8 -*-</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">toio を lerobot の Robot として扱うための実装。</span>
 <span class="sd">- カメラ周りの初期化とフレーム取得（失敗時ゼロ画像フォールバック）</span>
 <span class="sd">- BLE 経由でのモータ制御（非同期ランナー）</span>
 <span class="sd">- 観測は「直近のアクションのエコー（vx, vy）」＋カメラ画像を返す方針</span>
-<span class="sd">- 《更新》BLE アドレス指定は廃止。スキャンで最初の toio に自動接続。</span>
-<span class="sd">- 《方針》vx（旋回）の相対比は kw/kv で調整（既定: kv=80, kw=40 → 約 1/2）</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
