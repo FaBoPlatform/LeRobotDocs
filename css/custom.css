@@ -39,9 +39,9 @@ body {
 }
 
 .md-typeset h1::before {
-    content: "\f1b9 " !important;
+    content: "\f1b6 " !important;
 }
 
 .md-typeset h2::before {
-    content: "\f108" !important;
+    content: "\f14a" !important;
 }
