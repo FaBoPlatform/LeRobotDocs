@@ -1,0 +1,64 @@
+site_name: FaBo LeRobot Docs
+theme:
+    name: material
+    custom_dir: 'theme'
+    language: 'ja'
+    palette:
+      primary: 'yellow'
+      accent: 'black'
+    logo: 'logo.png'
+    favicon: 'favicon.png'
+extra:
+    search:
+        language: 'jp'
+markdown_extensions:
+  - pymdownx.highlight:
+      use_pygments: true
+      noclasses: false
+      pygments_style: monokai
+      linenums: true
+  - pymdownx.superfences
+  - admonition
+  - pymdownx.keys
+  - attr_list
+nav:
+  - Home: "index.md"
+  - Servo:
+    - Firmware: "setting/firmware.md"
+    - ID割り振り: "setting/id.md"
+  - Jetson Orin Nano:
+    - 環境構築: "jetson_orin/setting.md"
+  - Jetson AGX Orin:
+    - 環境構築: "jetson_agx/setting.md"
+    - GMSL Camera: "jetson_agx/gmsl_camera.md"
+  - Command:
+    - 各種コマンド: "lerobot/command.md"
+  - HilSerl:
+    - 環境構築: "hilsel/setting.md"
+    - 環境構築(#644): "hilsel/setting_644.md"
+  - SmolVLA:
+    - 環境構築: "smolvla/setting.md"
+  - Core:
+    - Teleop: "core/teleop.md"
+    - Robot: "core/robot.md"
+    - Toio Leader: "core/toio_teleop.md"
+    - Toio Follower: "core/toio_robot.md"
+    - Toio Command: "core/toio_command.md"
+  - GR00T:
+    - 環境構築: "gr00t/env.md"
+    - toio: "gr00t/toio.md"
+  - Rerun.io:
+    - Trouble Shooting: "rerun/trouble.md"
+    
+extra_css:
+#  - "https://fonts.googleapis.com/earlyaccess/notosansjp.css"
+#  - "https://fonts.googleapis.com/css?family=Open+Sans:600,800"
+  - "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+#  - "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/default.min.css"
+  - "css/version-select.css"
+  - "css/custom.css"
+extra_javascript:
+  - javascripts/version-select.js
+  - javascripts/extra.js
+plugins:
+  - macros
