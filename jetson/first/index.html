@@ -318,6 +318,51 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#teleop" class="md-nav__link">
+    <span class="md-ellipsis">
+      Teleop
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      データセット収集
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      データセット追加収集(5回)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      学習
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      実行
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1174,6 +1219,51 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#teleop" class="md-nav__link">
+    <span class="md-ellipsis">
+      Teleop
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      データセット収集
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      データセット追加収集(5回)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      学習
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      実行
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1193,9 +1283,9 @@
 <h1 id="fabo-lerobot-kitso-101">FaBo LeRobot Kit(SO-101連携) 動作確認</h1>
 <h2 id="jetson">Jetsonとの接続</h2>
 <p>MacBookユーザはJetsonとUSB Type Cケーブルで接続し、Jetsonにログインできます</p>
-<p><img alt="" src="./imt/first001.jpg" /></p>
-<p><img alt="" src="./imt/first002.jpg" /></p>
-<p><img alt="" src="./imt/first003.jpg" /></p>
+<p><img alt="" src="../img/first001.jpg" /></p>
+<p><img alt="" src="../img/first002.jpg" /></p>
+<p><img alt="" src="../img/first003.jpg" /></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>ssh jetson@192.168.55.1
 </code></pre></div></td></tr></table></div>
 <table>
@@ -1217,7 +1307,171 @@
 </tbody>
 </table>
 <h2 id="display">Displayとの接続</h2>
-<p>Displayに接続し、Jetsonにキーボード、マウスを接続し、</p>
+<p><img alt="" src="../img/display001.jpg" /></p>
+<p>JetsonをDisplayに接続します。</p>
+<p><img alt="" src="../img/display002.jpg" /></p>
+<p>USB Speakerを外し、USBハブを接続します。</p>
+<p><img alt="" src="../img/display003.jpg" /></p>
+<p>JetsonにUBS Speakerを接続し直します。
+キーボード、マウスを接続し、Ubuntuを画面で操作します。</p>
+<p><img alt="" src="../img/display004.jpg" /></p>
+<h2 id="teleop">Teleop</h2>
+<p>動作確認としてTeleopを実行します。Jetsonのターミナル上で、下記コマンドを実行します。</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>cd ~/lerobot
+</code></pre></div></td></tr></table></div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>./teleop.sh
+</code></pre></div></td></tr></table></div>
+<p>Scriptの中身</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code>lerobot-teleoperate   \
+  --robot.type=so101_follower   \
+  --robot.port=/dev/ttyACM0   \
+  --robot.id=my_follower_arm   \
+  --teleop.type=so101_leader   \
+  --teleop.port=/dev/ttyACM1   \
+  --teleop.id=my_leader_arm
+</code></pre></div></td></tr></table></div>
+<h2 id="_1">データセット収集</h2>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>./record.sh
+</code></pre></div></td></tr></table></div>
+<p>Scriptの中身
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span></pre></div></td><td class="code"><div><pre><span></span><code>rm -rf /home/jetson/lerobot/d_test
+lerobot-record \
+  --robot.type=so101_follower \
+  --robot.port=/dev/ttyACM0 \
+  --robot.id=my_follower_arm \
+  --teleop.type=so101_leader \
+  --teleop.port=/dev/ttyACM1 \
+  --teleop.id=my_leader_arm \
+  --dataset.repo_id=local/d_test \
+  --dataset.root=/home/jetson/lerobot/d_test \
+  --dataset.push_to_hub=false \
+  --robot.cameras=&quot;{ front: {type: opencv, index_or_path: 0, width: 
+640, height: 480, fps: 30}}&quot; \
+  --display_data=true \
+  --dataset.single_task=true \
+  --dataset.episode_time_s=10 \
+  --dataset.reset_time_s=2 \
+  --dataset.num_episodes=30
+</code></pre></div></td></tr></table></div></p>
+<h2 id="5">データセット追加収集(5回)</h2>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>./record_resume_5.sh
+</code></pre></div></td></tr></table></div>
+<p>Scriptの中身
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span></pre></div></td><td class="code"><div><pre><span></span><code>lerobot-record \
+  --robot.type=so101_follower \
+  --robot.port=/dev/ttyACM0 \
+  --robot.id=my_follower_arm \
+  --teleop.type=so101_leader \
+  --teleop.port=/dev/ttyACM1 \
+  --teleop.id=my_leader_arm \
+  --dataset.repo_id=local/d_test \
+  --dataset.root=/home/jetson/lerobot/d_test \
+  --dataset.push_to_hub=false \
+  --robot.cameras=&quot;{ front: {type: opencv, index_or_path: 0, width: 
+640, height: 480, fps: 30}}&quot; \
+  --display_data=true \
+  --dataset.single_task=true \
+  --dataset.episode_time_s=10 \
+  --dataset.reset_time_s=2 \
+  --dataset.num_episodes=5 \
+  --resume=true
+</code></pre></div></td></tr></table></div></p>
+<h2 id="_2">学習</h2>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>./train.sh
+</code></pre></div></td></tr></table></div>
+<p>Scriptの中身
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code>PYTHONWARNINGS=&quot;ignore:.*torchvision.io._video_deprecation_warning&quot;  lerobot-train \
+  --dataset.root=/home/jetson/lerobot/d_test \
+  --dataset.repo_id=local/d_test \
+  --policy.type=act \
+  --policy.device=cuda \
+  --policy.push_to_hub=false \
+  --output_dir=outputs/train/act_d_test \
+  --job_name=act_d_test \
+  --wandb.enable=false \
+  --steps=8000
+</code></pre></div></td></tr></table></div></p>
+<h2 id="_3">実行</h2>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>./run.sh
+</code></pre></div></td></tr></table></div>
+<p>Scriptの中身
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span></pre></div></td><td class="code"><div><pre><span></span><code>rm -rf /home/jetson/eval_d_test
+lerobot-record \
+  --robot.type=so101_follower \
+  --robot.port=/dev/ttyACM0 \
+  --robot.id=my_follower_arm \
+  --dataset.single_task=true \
+  --dataset.repo_id=local/eval_d_test \
+  --dataset.root=/home/jetson/lerobot/eval_d_test \
+  --dataset.push_to_hub=false \
+  --robot.cameras=&#39;{&quot;front&quot;:{&quot;type&quot;:&quot;opencv&quot;,&quot;index_or_path&quot;:0,&quot;widt
+h&quot;:640,&quot;height&quot;:480,&quot;fps&quot;:30}}&#39; \
+  --policy.path=&quot;outputs/train/act_d_test/checkpoints/last/pretraine
+d_model/&quot; \
+  --display_data=true
+</code></pre></div></td></tr></table></div></p>
 
 
 
