@@ -319,6 +319,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#usbso101" class="md-nav__link">
+    <span class="md-ellipsis">
+      USBのso101の差し込みを固定
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#teleop" class="md-nav__link">
     <span class="md-ellipsis">
       Teleop
@@ -1220,6 +1229,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#usbso101" class="md-nav__link">
+    <span class="md-ellipsis">
+      USBのso101の差し込みを固定
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#teleop" class="md-nav__link">
     <span class="md-ellipsis">
       Teleop
@@ -1315,6 +1333,16 @@
 <p>JetsonにUBS Speakerを接続し直します。
 キーボード、マウスを接続し、Ubuntuを画面で操作します。</p>
 <p><img alt="" src="../img/display004.jpg" /></p>
+<h2 id="usbso101">USBのso101の差し込みを固定</h2>
+<p><code>/etc/udev/rules.d/99-usb-serial.rules</code></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>SUBSYSTEM==&quot;tty&quot;, ENV{ID_PATH}==&quot;platform-3610000.usb-usb-0:2.1:1.0&quot;, SYMLINK+=&quot;so101_leader&quot;
+SUBSYSTEM==&quot;tty&quot;, ENV{ID_PATH}==&quot;platform-3610000.usb-usb-0:2.2:1.0&quot;, SYMLINK+=&quot;so101_follower&quot;
+</code></pre></div></td></tr></table></div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo udevadm control --reload-rules
+sudo udevadm trigger
+</code></pre></div></td></tr></table></div>
 <h2 id="teleop">Teleop</h2>
 <p>動作確認としてTeleopを実行します。Jetsonのターミナル上で、下記コマンドを実行します。</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>cd ~/lerobot
@@ -1330,10 +1358,10 @@
 <span class="normal">6</span>
 <span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code>lerobot-teleoperate   \
   --robot.type=so101_follower   \
-  --robot.port=/dev/ttyACM0   \
+  --robot.port=/dev/so101_follower  \
   --robot.id=my_follower_arm   \
   --teleop.type=so101_leader   \
-  --teleop.port=/dev/ttyACM1   \
+  --teleop.port=/dev/o101_leader   \
   --teleop.id=my_leader_arm
 </code></pre></div></td></tr></table></div>
 <h2 id="_1">データセット収集</h2>
@@ -1356,20 +1384,18 @@
 <span class="normal">14</span>
 <span class="normal">15</span>
 <span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span></pre></div></td><td class="code"><div><pre><span></span><code>rm -rf /home/jetson/lerobot/d_test
+<span class="normal">17</span></pre></div></td><td class="code"><div><pre><span></span><code>rm -rf /home/jetson/lerobot/d_test
 lerobot-record \
   --robot.type=so101_follower \
-  --robot.port=/dev/ttyACM0 \
+  --robot.port=/dev/so101_follower \
   --robot.id=my_follower_arm \
   --teleop.type=so101_leader \
-  --teleop.port=/dev/ttyACM1 \
+  --teleop.port=/dev/so101_leader \
   --teleop.id=my_leader_arm \
   --dataset.repo_id=local/d_test \
   --dataset.root=/home/jetson/lerobot/d_test \
   --dataset.push_to_hub=false \
-  --robot.cameras=&quot;{ front: {type: opencv, index_or_path: 0, width: 
-640, height: 480, fps: 30}}&quot; \
+  --robot.cameras=&quot;{ front: {type: opencv, index_or_path: 0, width: 640, height: 480, fps: 30}}&quot; \
   --display_data=true \
   --dataset.single_task=true \
   --dataset.episode_time_s=10 \
@@ -1399,10 +1425,10 @@ lerobot-record \
 <span class="normal">17</span>
 <span class="normal">18</span></pre></div></td><td class="code"><div><pre><span></span><code>lerobot-record \
   --robot.type=so101_follower \
-  --robot.port=/dev/ttyACM0 \
+  --robot.port=/dev/so101_follower \
   --robot.id=my_follower_arm \
   --teleop.type=so101_leader \
-  --teleop.port=/dev/ttyACM1 \
+  --teleop.port=/dev/so101_leader \
   --teleop.id=my_leader_arm \
   --dataset.repo_id=local/d_test \
   --dataset.root=/home/jetson/lerobot/d_test \
@@ -1429,7 +1455,11 @@ lerobot-record \
 <span class="normal"> 7</span>
 <span class="normal"> 8</span>
 <span class="normal"> 9</span>
-<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code>PYTHONWARNINGS=&quot;ignore:.*torchvision.io._video_deprecation_warning&quot;  lerobot-train \
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span></pre></div></td><td class="code"><div><pre><span></span><code>rm -rf outputs/train/act_d_test
+PYTHONWARNINGS=&#39;ignore::UserWarning:torchvision.io._video_deprecation_warning&#39; \
+  lerobot-train \
   --dataset.root=/home/jetson/lerobot/d_test \
   --dataset.repo_id=local/d_test \
   --policy.type=act \
@@ -1455,21 +1485,17 @@ lerobot-record \
 <span class="normal"> 9</span>
 <span class="normal">10</span>
 <span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span></pre></div></td><td class="code"><div><pre><span></span><code>rm -rf /home/jetson/eval_d_test
+<span class="normal">12</span></pre></div></td><td class="code"><div><pre><span></span><code>rm -rf /home/jetson/lerobot/eval_d_test
 lerobot-record \
   --robot.type=so101_follower \
-  --robot.port=/dev/ttyACM0 \
+  --robot.port=/dev/so101_follower \
   --robot.id=my_follower_arm \
   --dataset.single_task=true \
   --dataset.repo_id=local/eval_d_test \
   --dataset.root=/home/jetson/lerobot/eval_d_test \
   --dataset.push_to_hub=false \
-  --robot.cameras=&#39;{&quot;front&quot;:{&quot;type&quot;:&quot;opencv&quot;,&quot;index_or_path&quot;:0,&quot;widt
-h&quot;:640,&quot;height&quot;:480,&quot;fps&quot;:30}}&#39; \
-  --policy.path=&quot;outputs/train/act_d_test/checkpoints/last/pretraine
-d_model/&quot; \
+  --robot.cameras=&#39;{&quot;front&quot;:{&quot;type&quot;:&quot;opencv&quot;,&quot;index_or_path&quot;:0,&quot;width&quot;:640,&quot;height&quot;:480,&quot;fps&quot;:30}}&#39; \
+  --policy.path=&quot;outputs/train/act_d_test/checkpoints/last/pretrained_model/&quot; \
   --display_data=true
 </code></pre></div></td></tr></table></div></p>
 
