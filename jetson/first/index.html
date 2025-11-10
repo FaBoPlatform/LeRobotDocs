@@ -321,7 +321,7 @@
         <li class="md-nav__item">
   <a href="#usbso101" class="md-nav__link">
     <span class="md-ellipsis">
-      USBのso101の差し込みを固定
+      USBのso101の差し込みを固定(実施済み)
     </span>
   </a>
   
@@ -1231,7 +1231,7 @@
         <li class="md-nav__item">
   <a href="#usbso101" class="md-nav__link">
     <span class="md-ellipsis">
-      USBのso101の差し込みを固定
+      USBのso101の差し込みを固定(実施済み)
     </span>
   </a>
   
@@ -1333,7 +1333,7 @@
 <p>JetsonにUBS Speakerを接続し直します。
 キーボード、マウスを接続し、Ubuntuを画面で操作します。</p>
 <p><img alt="" src="../img/display004.jpg" /></p>
-<h2 id="usbso101">USBのso101の差し込みを固定</h2>
+<h2 id="usbso101">USBのso101の差し込みを固定(実施済み)</h2>
 <p><code>/etc/udev/rules.d/99-usb-serial.rules</code></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>SUBSYSTEM==&quot;tty&quot;, ENV{ID_PATH}==&quot;platform-3610000.usb-usb-0:2.1:1.0&quot;, SYMLINK+=&quot;so101_leader&quot;
