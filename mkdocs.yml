@@ -23,6 +23,9 @@ markdown_extensions:
   - attr_list
 nav:
   - Home: "index.md"
+  - FaBo Kit:
+    - 配置と配線: "jetson/build.md"
+    - 動作確認: "jetson/first.md"
   - Servo:
     - Firmware: "setting/firmware.md"
     - ID割り振り: "setting/id.md"
