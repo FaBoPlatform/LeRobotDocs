@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../firmware/">
+        <link rel="prev" href="../setting/">
       
       
-        <link rel="next" href="../../jetson_orin/setting/">
+        <link rel="next" href="../../lerobot/command/">
       
       
         
@@ -23,7 +23,7 @@
     
     
       
-        <title>ID割り振り - FaBo LeRobot Docs</title>
+        <title>各種設定 - FaBo LeRobot Docs</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#id" class="md-skip">
+        <a href="#jetson" class="md-skip">
           コンテンツにスキップ
         </a>
       
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              ID割り振り
+              各種設定
             
           </span>
         </div>
@@ -304,20 +304,18 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
@@ -338,7 +336,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -356,7 +354,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../firmware/" class="md-nav__link">
+      <a href="../../setting/firmware/" class="md-nav__link">
         
   
   
@@ -364,6 +362,118 @@
     
   
     Firmware
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setting/id/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ID割り振り
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Jetson Orin Nano
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Jetson Orin Nano
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../setting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    環境構築
   
 
     
@@ -400,7 +510,7 @@
   <span class="md-ellipsis">
     
   
-    ID割り振り
+    各種設定
   
 
     
@@ -418,7 +528,7 @@
   <span class="md-ellipsis">
     
   
-    ID割り振り
+    各種設定
   
 
     
@@ -444,10 +554,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#lerobot" class="md-nav__link">
+  <a href="#wifi" class="md-nav__link">
     <span class="md-ellipsis">
       
-        LeRobot環境の構築
+        WiFiの接続
       
     </span>
   </a>
@@ -455,10 +565,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#follower" class="md-nav__link">
+  <a href="#power-mode" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Follower
+        Power modeの確認
       
     </span>
   </a>
@@ -466,21 +576,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#leader" class="md-nav__link">
+  <a href="#jetpack" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Leader
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#reference" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Reference
+        JetPackのバージョン確認
       
     </span>
   </a>
@@ -491,116 +590,6 @@
   
 </nav>
       
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
-        
-          
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Jetson Orin Nano
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Jetson Orin Nano
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../jetson_orin/setting/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    環境構築
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../jetson_orin/setup/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    各種設定
-  
-
-    
-  </span>
-  
-  
-
-      </a>
     </li>
   
 
@@ -1413,10 +1402,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#lerobot" class="md-nav__link">
+  <a href="#wifi" class="md-nav__link">
     <span class="md-ellipsis">
       
-        LeRobot環境の構築
+        WiFiの接続
       
     </span>
   </a>
@@ -1424,10 +1413,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#follower" class="md-nav__link">
+  <a href="#power-mode" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Follower
+        Power modeの確認
       
     </span>
   </a>
@@ -1435,21 +1424,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#leader" class="md-nav__link">
+  <a href="#jetpack" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Leader
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#reference" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Reference
+        JetPackのバージョン確認
       
     </span>
   </a>
@@ -1473,133 +1451,73 @@
 
 
 
-<h1 id="id">ID割り振り</h1>
-<h2 id="lerobot">LeRobot環境の構築</h2>
-<p>LeRobot環境は、Python3.10系でconda環境で構築します。</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>conda create -y -n lerobot python=3.10
-conda activate lerobot 
+<h1 id="jetson">Jetsonの各種設定</h1>
+<h2 id="wifi">WiFiの接続</h2>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>ifconfig
 </code></pre></div></td></tr></table></div>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>pip install lerobot
-pip install feetech-servo-sdk
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo nmcli device wifi connect SSID password パスワード
 </code></pre></div></td></tr></table></div>
-<h2 id="follower">Follower</h2>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>lerobot-setup-motors \
-    --robot.type=so101_follower \
-    --robot.port=/dev/tty.usbmodem5AA90176811
-</code></pre></div></td></tr></table></div>
-<p><code>/dev/tty.usbmodem5AA90176811</code>は、自分の環境に合わせてください。</p>
-<table>
-<thead>
-<tr>
-<th style="text-align: left;">ID</th>
-<th style="text-align: left;">場所</th>
-<th style="text-align: left;">Code</th>
-<th style="text-align: left;">ギア比　</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;">6</td>
-<td style="text-align: left;">gripper</td>
-<td style="text-align: left;">STS3215-C001</td>
-<td style="text-align: left;">1 / 345</td>
-</tr>
-<tr>
-<td style="text-align: left;">5</td>
-<td style="text-align: left;">wrist_roll</td>
-<td style="text-align: left;">STS3215-C001</td>
-<td style="text-align: left;">1 / 345</td>
-</tr>
-<tr>
-<td style="text-align: left;">4</td>
-<td style="text-align: left;">wrist_flex</td>
-<td style="text-align: left;">STS3215-C001</td>
-<td style="text-align: left;">1 / 345</td>
-</tr>
-<tr>
-<td style="text-align: left;">3</td>
-<td style="text-align: left;">elbow_flex</td>
-<td style="text-align: left;">STS3215-C001</td>
-<td style="text-align: left;">1 / 345</td>
-</tr>
-<tr>
-<td style="text-align: left;">2</td>
-<td style="text-align: left;">shoulder_lift</td>
-<td style="text-align: left;">STS3215-C001</td>
-<td style="text-align: left;">1 / 345</td>
-</tr>
-<tr>
-<td style="text-align: left;">1</td>
-<td style="text-align: left;">shoulder_pan</td>
-<td style="text-align: left;">STS3215-C001</td>
-<td style="text-align: left;">1 / 345</td>
-</tr>
-</tbody>
-</table>
-<h2 id="leader">Leader</h2>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>lerobot-setup-motors \
-    --teleop.type=so101_leader \
-    --teleop.port=/dev/tty.usbmodem5AA90176811
+<h2 id="power-mode">Power modeの確認</h2>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo nvpmodel -q
 </code></pre></div></td></tr></table></div>
 <table>
 <thead>
 <tr>
-<th style="text-align: left;">ID</th>
-<th style="text-align: left;">場所</th>
-<th style="text-align: left;">Code</th>
-<th style="text-align: left;">ギア比　</th>
+<th style="text-align: left;">id</th>
+<th style="text-align: left;">Mode</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;">6</td>
-<td style="text-align: left;">gripper</td>
-<td style="text-align: left;">STS3215-C046</td>
-<td style="text-align: left;">1 / 147</td>
-</tr>
-<tr>
-<td style="text-align: left;">5</td>
-<td style="text-align: left;">wrist_roll</td>
-<td style="text-align: left;">STS3215-C046</td>
-<td style="text-align: left;">1 / 147</td>
-</tr>
-<tr>
-<td style="text-align: left;">4</td>
-<td style="text-align: left;">wrist_flex</td>
-<td style="text-align: left;">STS3215-C046</td>
-<td style="text-align: left;">1 / 147</td>
-</tr>
-<tr>
-<td style="text-align: left;">3</td>
-<td style="text-align: left;">elbow_flex</td>
-<td style="text-align: left;">STS3215-C044</td>
-<td style="text-align: left;">1 / 191</td>
-</tr>
-<tr>
-<td style="text-align: left;">2</td>
-<td style="text-align: left;">shoulder_lift</td>
-<td style="text-align: left;">STS3215-C001</td>
-<td style="text-align: left;">1 / 345</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">15W</td>
 </tr>
 <tr>
 <td style="text-align: left;">1</td>
-<td style="text-align: left;">shoulder_pan</td>
-<td style="text-align: left;">STS3215-C044</td>
-<td style="text-align: left;">1 / 191</td>
+<td style="text-align: left;">25W</td>
+</tr>
+<tr>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">NAX</td>
 </tr>
 </tbody>
 </table>
-<h2 id="reference">Reference</h2>
-<ul>
-<li><a href="https://www.feetechrc.com/products.html?keyword=STS3215">Feetech社 ST3215</a></li>
-<li><a href="https://huggingface.co/docs/lerobot/so101">LeRobot SO-101</a></li>
-</ul>
+<h2 id="jetpack">JetPackのバージョン確認</h2>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>cat /etc/nv_tegra_release
+</code></pre></div></td></tr></table></div>
+<p>JetPack6.2.1の場合は、</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code># R36 (release), REVISION: 4.4, GCID: 41062509, BOARD: generic, EABI: aarch64, DATE: Mon Jun 16 16:07:13 UTC 2025
+</code></pre></div></td></tr></table></div>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">項目</th>
+<th style="text-align: left;">意味</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">R36</td>
+<td style="text-align: left;">JetPack 6 系（Jetson Linux R36 系）</td>
+</tr>
+<tr>
+<td style="text-align: left;">REVISION: 4.4</td>
+<td style="text-align: left;">Jetson Linux R36.4.4</td>
+</tr>
+<tr>
+<td style="text-align: left;">BOARD: generic</td>
+<td style="text-align: left;">Orin DevKit</td>
+</tr>
+<tr>
+<td style="text-align: left;">EABI: aarch64</td>
+<td style="text-align: left;">64bit ARM</td>
+</tr>
+<tr>
+<td style="text-align: left;">DATE: Mon Jun 16 2025</td>
+<td style="text-align: left;">JetPack 6.2.1 のリリース日</td>
+</tr>
+</tbody>
+</table>
 
 
 

@@ -1,0 +1,66 @@
+.lerobot-port-panel {
+  border: 1px solid var(--md-default-fg-color--lightest, #ddd);
+  border-radius: 8px;
+  padding: 12px 14px;
+  margin: 12px 0 20px;
+}
+
+.lerobot-port-form {
+  display: grid;
+  gap: 10px;
+}
+
+.lerobot-port-row {
+  display: grid;
+  grid-template-columns: 230px 1fr;
+  gap: 10px;
+  align-items: center;
+}
+
+.lerobot-port-row--derived {
+  align-items: start;
+}
+
+.lerobot-port-label {
+  font-weight: 600;
+}
+
+.lerobot-port-input {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid var(--md-default-fg-color--lightest, #ccc);
+  border-radius: 6px;
+}
+
+.lerobot-port-derived code {
+  display: inline-block;
+  padding: 2px 6px;
+  border-radius: 6px;
+  border: 1px dashed var(--md-default-fg-color--lightest, #ccc);
+}
+
+.lerobot-port-warning {
+  margin-top: 6px;
+  font-size: 0.9em;
+  opacity: 0.9;
+}
+
+.lerobot-port-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.lerobot-port-btn {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--md-default-fg-color--lightest, #ccc);
+  background: transparent;
+  cursor: pointer;
+}
+
+.lerobot-port-hint {
+  font-size: 0.9em;
+  opacity: 0.85;
+  line-height: 1.4;
+}
