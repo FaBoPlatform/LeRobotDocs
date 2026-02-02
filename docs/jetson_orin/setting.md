@@ -131,7 +131,6 @@ rm -rf "$TMP"
 # 0   alsa_output.platform-sound.analog-stereo    module-alsa-card.c  s16le 2ch 44100Hz   SUSPENDED
 # 1   alsa_output.usb-C-Media_INC._USB_Sound_Device-00.analog-stereo  module-alsa-card.c  s16le 2ch 44100Hz   RUNNING
 # pactl set-default-sink alsa_output.usb-C-Media_INC._USB_Sound_Device-00.analog-stereo
-# pactl set-sink-volume alsa_output.usb-C-Media_INC._USB_Sound_Device-00.analog-stereo 80%
 # spd-say "warmup record"
 ```
 
