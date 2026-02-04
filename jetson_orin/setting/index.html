@@ -1579,10 +1579,43 @@
 <span class="normal">123</span>
 <span class="normal">124</span>
 <span class="normal">125</span>
-<span class="normal">126</span></pre></div></td><td class="code"><div><pre><span></span><code>#!/bin/bash
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span></pre></div></td><td class="code"><div><pre><span></span><code>#!/bin/bash
 
 # Jetson Orin Nano, AGX Orin
-# JetPack6.2用
+# JetPack6.2.1用
 # LeRobotのInstall Script
 #!/usr/bin/env bash
 
@@ -1616,15 +1649,24 @@ if [ ! -d &quot;$MINI&quot; ]; then
 fi
 source &quot;$MINI/etc/profile.d/conda.sh&quot;
 
-# ~/.bashrc に一度だけ Miniconda 初期化を追記
-BASHRC_TAG=&quot;### Miniconda init (robot script)&quot;
-grep -qxF &quot;$BASHRC_TAG&quot; &quot;$HOME/.bashrc&quot; || cat &gt;&gt;&quot;$HOME/.bashrc&quot; &lt;&lt;&#39;BASHRC&#39;
-### Miniconda init (robot script)
+# set -e 対策で || true を付けて、既に同意済みでも落ちないようにする
+if command -v conda &gt;/dev/null 2&gt;&amp;1; then
+  if conda tos --help &gt;/dev/null 2&gt;&amp;1; then
+    conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/main || true
+    conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/r || true
+  fi
+fi
+
+# ~/.bashrc に一度だけ lerobot 環境の自動有効化を追記
+LERO_TAG=&quot;### lerobot auto-activate (robot script)&quot;
+grep -qxF &quot;$LERO_TAG&quot; &quot;$HOME/.bashrc&quot; || cat &gt;&gt;&quot;$HOME/.bashrc&quot; &lt;&lt;&#39;BASHRC&#39;
+### lerobot auto-activate (robot script)
+# Miniconda が使えるときだけ有効化する
 if [ -f &quot;$HOME/miniconda/etc/profile.d/conda.sh&quot; ]; then
   . &quot;$HOME/miniconda/etc/profile.d/conda.sh&quot;
-  export PATH=&quot;$HOME/miniconda/bin:$PATH&quot;
+  conda activate lerobot
 fi
-### End Miniconda init
+### End lerobot auto-activate
 BASHRC
 
 source &quot;$HOME/.bashrc&quot;
@@ -1635,9 +1677,7 @@ conda create -y -n lerobot python=3.10
 conda activate lerobot
 
 # ===== lerobot by Huggingface=====
-git clone https://github.com/huggingface/lerobot ~/lerobot || true
-cd ~/lerobot
-pip install -e &quot;.[feetech]&quot;
+pip3 install lerobot==0.4.0
 
 # ===== OpenCV は pip で入れる =====
 conda install -y -c conda-forge &quot;opencv&gt;=4.10.0.84&quot;
@@ -1653,21 +1693,47 @@ pip3 install --upgrade pip wheel
 # (PyTorch 系は NumPy&lt;2 が必須)
 pip3 install &quot;numpy&lt;2&quot; --no-cache-dir
 
-# --- JetPack 6.2 用 GPU wheel (2.5.0 固定) ---
-pip3 uninstall -y torch torchvision || true 
+# --- JetPack 6.2.1 用 GPU wheel（URL内hashを固定しない） ---
+pip3 uninstall -y torch torchvision || true
 
-# ---- PyTorch 2.5.0 (CUDA 12.6, aarch64) ----
-wget -O &quot;$TMP/torch-2.5.0-cp310-cp310-linux_aarch64.whl&quot; \
-  http://jetson.webredirect.org/jp6/cu126/+f/5cf/9ed17e35cb752/torch-2.5.0-cp310-cp310-linux_aarch64.whl
-pip3 install &quot;$TMP/torch-2.5.0-cp310-cp310-linux_aarch64.whl&quot;
+JETSON_INDEX_URL=&quot;https://pypi.jetson-ai-lab.io/jp6/cu126&quot;
+TORCH_VER=&quot;2.8.0&quot;
+TV_VER=&quot;0.23.0&quot;
 
-# ---- TorchVision 0.20.0 (ビルド済み aarch64) ----
-wget -O &quot;$TMP/torchvision-0.20.0-cp310-cp310-linux_aarch64.whl&quot; \
-  http://jetson.webredirect.org/jp6/cu126/+f/5f9/67f920de3953f/torchvision-0.20.0-cp310-cp310-linux_aarch64.whl
-pip3 install &quot;$TMP/torchvision-0.20.0-cp310-cp310-linux_aarch64.whl&quot;
+# 1) index から該当 wheel をダウンロード（hash/path は index 側から解決される）
+python3 -m pip download \
+  --no-deps \
+  --only-binary=:all: \
+  --no-cache-dir \
+  --index-url &quot;$JETSON_INDEX_URL&quot; \
+  -d &quot;$TMP&quot; \
+  &quot;torch==${TORCH_VER}&quot; &quot;torchvision==${TV_VER}&quot;
+
+# 2) 落ちてきた wheel を特定
+TORCH_WHL=&quot;$(find &quot;$TMP&quot; -maxdepth 1 -type f -name &quot;torch-${TORCH_VER}-*-linux_aarch64.whl&quot; | sort | head -n 1)&quot;
+TV_WHL=&quot;$(find &quot;$TMP&quot; -maxdepth 1 -type f -name &quot;torchvision-${TV_VER}-*-linux_aarch64.whl&quot; | sort | head -n 1)&quot;
+
+[ -n &quot;$TORCH_WHL&quot; ] || { echo &quot;❌ torch wheel not found in $TMP&quot; &gt;&amp;2; exit 1; }
+[ -n &quot;$TV_WHL&quot; ] || { echo &quot;❌ torchvision wheel not found in $TMP&quot; &gt;&amp;2; exit 1; }
+
+# 3) sha256 を“実行時に”計算（＝動的生成）
+TORCH_SHA=&quot;$(sha256sum &quot;$TORCH_WHL&quot; | awk &#39;{print $1}&#39;)&quot;
+TV_SHA=&quot;$(sha256sum &quot;$TV_WHL&quot; | awk &#39;{print $1}&#39;)&quot;
+
+echo &quot;torch wheel sha256      : $TORCH_SHA&quot;
+echo &quot;torchvision wheel sha256: $TV_SHA&quot;
+
+# （任意）Jetson AI Lab の +f URL 形式（例と同じ規則）を“実行時に生成”して表示
+# ※ このURL形式が将来変わる可能性はあるので「表示だけ」に留めるのが無難です
+echo &quot;torch direct-url (generated): ${JETSON_INDEX_URL}/+f/${TORCH_SHA:0:3}/${TORCH_SHA:3:13}/$(basename &quot;$TORCH_WHL&quot;)#sha256=${TORCH_SHA}&quot;
+echo &quot;tv    direct-url (generated): ${JETSON_INDEX_URL}/+f/${TV_SHA:0:3}/${TV_SHA:3:13}/$(basename &quot;$TV_WHL&quot;)#sha256=${TV_SHA}&quot;
+
+# 4) ローカル wheel からインストール（依存は通常通り PyPI から入る）
+python3 -m pip install &quot;$TORCH_WHL&quot; &quot;$TV_WHL&quot;
 
 # Dynamixel SDK
 pip3 install dynamixel-sdk
+pip3 install feetech-servo-sdk
 
 # モデルを事前ダウンロード
 python - &lt;&lt;&#39;PY&#39;
