@@ -1894,11 +1894,32 @@ Camera #1:
   --policy.type=act \
   --output_dir=outputs/train/act_1cam_test \
   --job_name=act_1cam_test \
-  --policy.device=mps \
+  --policy.device=gpu \
   --wandb.enable=false \
   --policy.push_to_hub=false \
   --steps=100000
 </code></pre></div></td></tr></table></div>
+<p>MacBook(conda)
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code>lerobot-train \
+  --dataset.root=/Users/akira/Documents/workspace_lerobot/datasets \
+  --dataset.repo_id=akira/1cam_test \
+  --policy.type=act \
+  --output_dir=outputs/train/act_1cam_test \
+  --job_name=act_1cam_test \
+  --policy.device=mps \
+  --wandb.enable=false \
+  --policy.push_to_hub=false \
+  --steps=100000
+</code></pre></div></td></tr></table></div></p>
 <p>目安の学習時間</p>
 <table>
 <thead>
