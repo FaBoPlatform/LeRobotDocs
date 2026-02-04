@@ -1764,6 +1764,40 @@ Camera #1:
 </div>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>rm -rf /Users/akira/Documents/workspace_lerobot/datasets/akira/1cam_test
 </code></pre></div></td></tr></table></div>
+<p>Jetson
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span></pre></div></td><td class="code"><div><pre><span></span><code>lerobot-record \
+    --robot.type=so101_follower \
+    --robot.port=/dev/tty.usbmodem58FA1026181 \
+    --robot.id=my_follower_arm \
+    --teleop.type=so101_leader \
+    --teleop.port=/dev/tty.usbmodem58FA1026371 \
+    --teleop.id=my_leader_arm \
+    --dataset.repo_id=akira/1cam_test \
+    --dataset.root=/Users/akira/Documents/workspace_lerobot/datasets \
+    --dataset.push_to_hub=false \
+    --dataset.single_task=&quot;Pick up the red cube&quot; \
+    --robot.cameras=&quot;{ front: {type: opencv, index_or_path: 0, width: 640, height: 480, fps: 30, fourcc: &#39;MJPG&#39;}}&quot; \
+    --display_data=true \
+    --dataset.episode_time_s=10 \
+    --dataset.reset_time_s=5 \
+    --dataset.num_episodes=30
+</code></pre></div></td></tr></table></div></p>
+<p>MacBook(Conda)
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -1797,7 +1831,7 @@ Camera #1:
     --dataset.episode_time_s=10 \
     --dataset.reset_time_s=5 \
     --dataset.num_episodes=30
-</code></pre></div></td></tr></table></div>
+</code></pre></div></td></tr></table></div></p>
 <h2 id="_5">データセット収集(追加)</h2>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
