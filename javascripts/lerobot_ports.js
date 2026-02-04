@@ -271,8 +271,8 @@
     if (!teleop) teleop = "/dev/ttyACM1";
     if (!robot) robot = "/dev/ttyACM0";
     if (!datasetRoot)
-      datasetRoot = "/Users/akira/Documents/workspace_lerobot/datasets";
-    if (!datasetRepoId) datasetRepoId = "akira/1cam_test";
+      datasetRoot = "/home/jetson/lerobot/datasets";
+    if (!datasetRepoId) datasetRepoId = "local/1cam_test";
 
     if (!policyType) policyType = "act";
 
