@@ -1929,17 +1929,31 @@ Jetson の場合は <strong>4000 steps 前後</strong>から試し、<br />
 <span class="normal"> 8</span>
 <span class="normal"> 9</span>
 <span class="normal">10</span>
-<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nv">PYTHONWARNINGS</span><span class="o">=</span><span class="s1">&#39;ignore::UserWarning:torchvision.io._video_deprecation_warning&#39;</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">PYTORCH_CUDA_ALLOC_CONF</span><span class="o">=</span>expandable_segments:True,max_split_size_mb:128
+
 lerobot-train<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--dataset.root<span class="o">=</span>/Users/akira/Documents/workspace_lerobot/datasets<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--dataset.repo_id<span class="o">=</span>akira/1cam_test<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--dataset.root<span class="o">=</span>/home/jetson/workspace_lerobot/datasets<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--dataset.repo_id<span class="o">=</span>jetson/1cam_test<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--policy.type<span class="o">=</span>act<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--output_dir<span class="o">=</span>outputs/train/act_1cam_test<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--job_name<span class="o">=</span>act_1cam_test<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--policy.device<span class="o">=</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--policy.device<span class="o">=</span>cuda<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--wandb.enable<span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--policy.push_to_hub<span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--steps<span class="o">=</span><span class="m">100000</span>
+<span class="w">  </span>--steps<span class="o">=</span><span class="m">100000</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--batch_size<span class="o">=</span><span class="m">2</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--num_workers<span class="o">=</span><span class="m">0</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--policy.use_amp<span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--policy.use_vae<span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--policy.chunk_size<span class="o">=</span><span class="m">50</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--policy.n_action_steps<span class="o">=</span><span class="m">50</span>
 </code></pre></div></td></tr></table></div>
 </div>
 <div class="tabbed-block">
