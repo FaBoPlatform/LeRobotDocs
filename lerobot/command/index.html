@@ -738,7 +738,7 @@
   <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       
-        学習(継続)
+        学習（新規）
       
     </span>
   </a>
@@ -749,7 +749,7 @@
   <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
       
-        推論実行
+        学習(継続)
       
     </span>
   </a>
@@ -758,6 +758,17 @@
       
         <li class="md-nav__item">
   <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        推論実行
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
       
         リファレンス
@@ -1603,7 +1614,7 @@
   <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       
-        学習(継続)
+        学習（新規）
       
     </span>
   </a>
@@ -1614,7 +1625,7 @@
   <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
       
-        推論実行
+        学習(継続)
       
     </span>
   </a>
@@ -1623,6 +1634,17 @@
       
         <li class="md-nav__item">
   <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        推論実行
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
       
         リファレンス
@@ -1879,6 +1901,18 @@ Camera #1:
 <p>環境にffmpegが入っていない場合は、<code>conda install -c conda-forge ffmpeg=7.1.1</code>でインストールしてください。</p>
 </div>
 <p>学習回数は、<code>lerobot/lerobot/configs/train.py</code>のsteps数で調整。Jetsonの場合、4000 stepsぐらいで試していくといいでしょう。1万〜2万Stepsぐらいを目安に調整していきます。</p>
+<h2 id="_7">学習（新規）</h2>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>環境にffmpegが入っていない場合は、<br />
+<code>conda install -c conda-forge ffmpeg=7.1.1</code> でインストールしてください。</p>
+</div>
+<p>学習回数は、<code>lerobot/lerobot/configs/train.py</code> の steps 数で調整します。<br />
+Jetson の場合は <strong>4000 steps 前後</strong>から試し、<br />
+最終的に <strong>1万〜2万 steps</strong> を目安に調整していきます。</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Jetson</label><label for="__tabbed_1_2">MacBook（conda）</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -1888,18 +1922,19 @@ Camera #1:
 <span class="normal"> 7</span>
 <span class="normal"> 8</span>
 <span class="normal"> 9</span>
-<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code>lerobot-train \
-  --dataset.root=/Users/akira/Documents/workspace_lerobot/datasets \
-  --dataset.repo_id=akira/1cam_test \
-  --policy.type=act \
-  --output_dir=outputs/train/act_1cam_test \
-  --job_name=act_1cam_test \
-  --policy.device=gpu \
-  --wandb.enable=false \
-  --policy.push_to_hub=false \
-  --steps=100000
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code>lerobot-train<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--dataset.root<span class="o">=</span>/Users/akira/Documents/workspace_lerobot/datasets<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--dataset.repo_id<span class="o">=</span>akira/1cam_test<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--policy.type<span class="o">=</span>act<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output_dir<span class="o">=</span>outputs/train/act_1cam_test<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--job_name<span class="o">=</span>act_1cam_test<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--policy.device<span class="o">=</span>gpu<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--wandb.enable<span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--policy.push_to_hub<span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--steps<span class="o">=</span><span class="m">100000</span>
 </code></pre></div></td></tr></table></div>
-<p>MacBook(conda)
+</div>
+<div class="tabbed-block">
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -1909,17 +1944,20 @@ Camera #1:
 <span class="normal"> 7</span>
 <span class="normal"> 8</span>
 <span class="normal"> 9</span>
-<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code>lerobot-train \
-  --dataset.root=/Users/akira/Documents/workspace_lerobot/datasets \
-  --dataset.repo_id=akira/1cam_test \
-  --policy.type=act \
-  --output_dir=outputs/train/act_1cam_test \
-  --job_name=act_1cam_test \
-  --policy.device=mps \
-  --wandb.enable=false \
-  --policy.push_to_hub=false \
-  --steps=100000
-</code></pre></div></td></tr></table></div></p>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code>lerobot-train<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--dataset.root<span class="o">=</span>/Users/akira/Documents/workspace_lerobot/datasets<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--dataset.repo_id<span class="o">=</span>akira/1cam_test<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--policy.type<span class="o">=</span>act<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output_dir<span class="o">=</span>outputs/train/act_1cam_test<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--job_name<span class="o">=</span>act_1cam_test<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--policy.device<span class="o">=</span>mps<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--wandb.enable<span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--policy.push_to_hub<span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--steps<span class="o">=</span><span class="m">100000</span>
+</code></pre></div></td></tr></table></div>
+</div>
+</div>
+</div>
 <p>目安の学習時間</p>
 <table>
 <thead>
@@ -1937,7 +1975,7 @@ Camera #1:
 </tr>
 </tbody>
 </table>
-<h2 id="_7">学習(継続)</h2>
+<h2 id="_8">学習(継続)</h2>
 <p><code>outputs/train/act_1cam_test/checkpoints/last/pretrained_model/train_config.json</code></p>
 <p>のstepsの項目に、学習(新規)で指定したstepsが記載されているので、その部分を修正し再学習します。</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
@@ -1950,7 +1988,7 @@ Camera #1:
   --config_path outputs/train/act_1cam_test/checkpoints/last/pretrained_model/train_config.json \
   --resume=true
 </code></pre></div></td></tr></table></div>
-<h2 id="_8">推論実行</h2>
+<h2 id="_9">推論実行</h2>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>rm -rf /Users/akira/Documents/workspace_lerobot/datasets/akira/eval_1cam_test
 </code></pre></div></td></tr></table></div>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
@@ -1985,7 +2023,7 @@ Camera #1:
   --dataset.push_to_hub=false \
   --policy.path=outputs/train/act_1cam_test/checkpoints/last/pretrained_model
 </code></pre></div></td></tr></table></div>
-<h2 id="_9">リファレンス</h2>
+<h2 id="_10">リファレンス</h2>
 <ul>
 <li><a href="https://huggingface.co/docs/lerobot/so101">https://huggingface.co/docs/lerobot/so101</a></li>
 </ul>
