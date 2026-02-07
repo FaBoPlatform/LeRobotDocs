@@ -1652,12 +1652,18 @@
 <h1 id="lerobot">LeRobot各種コマンド</h1>
 <h2 id="_1">各種認識</h2>
 <p>Jetsonの場合はSO-101は、/dev/ttyUSB0や/dev/ttyACM0で認識、MacBookは、/dev/tty.usbmodem58FA1026181などで認識</p>
-<p>Jetson</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Jetson</label><label for="__tabbed_1_2">MacBook（conda）</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>ls /dev/tty*
 </code></pre></div></td></tr></table></div>
-<p>MacBook</p>
+</div>
+<div class="tabbed-block">
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>ls /dev/tty.*
 </code></pre></div></td></tr></table></div>
+</div>
+</div>
+</div>
 <p>SO-101の接続先を確認できたら、次に、OpenCVに対応したカメラデバイスを探します。</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>lerobot-find-cameras opencv
 </code></pre></div></td></tr></table></div>
@@ -1764,7 +1770,7 @@ Camera #1:
 </div>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>rm -rf /Users/akira/Documents/workspace_lerobot/datasets/akira/1cam_test
 </code></pre></div></td></tr></table></div>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Jetson</label><label for="__tabbed_1_2">MacBook（conda）</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Jetson</label><label for="__tabbed_2_2">MacBook（conda）</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
@@ -1886,7 +1892,7 @@ Camera #1:
 <code>conda install -c conda-forge ffmpeg=7.1.1</code> でインストールしてください。</p>
 </div>
 <p>学習回数は、<code>lerobot/lerobot/configs/train.py</code>のsteps数で調整。Jetsonの場合、4000 stepsぐらいで試していくといいでしょう。1万〜2万Stepsぐらいを目安に調整していきます。</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Jetson</label><label for="__tabbed_2_2">MacBook（conda）</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Jetson</label><label for="__tabbed_3_2">MacBook（conda）</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
