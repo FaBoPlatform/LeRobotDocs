@@ -1723,7 +1723,7 @@ Camera #1:
 <div data-lerobot-port-panel></div>
 
 <h2 id="_3">作業フォルダに移動</h2>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>cd /Users/akira/Documents/workspace_lerobot/datasets
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>cd /home/jetson/lerobot/
 </code></pre></div></td></tr></table></div>
 <p>に移動されています。</p>
 <h2 id="leader">キャリブレーション(Leader)</h2>
@@ -1768,7 +1768,7 @@ Camera #1:
 <p class="admonition-title">Info</p>
 <p>データセットを新規で収集する場合に、すでに同じ名前のデータセットが存在しているとエラーが出ますので、先にフォルダ毎削除します。</p>
 </div>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>rm -rf /Users/akira/Documents/workspace_lerobot/datasets/akira/1cam_test
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>rm -rf /home/jetson/lerobot/datasets/local/1cam_test
 </code></pre></div></td></tr></table></div>
 <div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Jetson</label><label for="__tabbed_2_2">MacBook（conda）</label></div>
 <div class="tabbed-content">
@@ -1795,8 +1795,8 @@ Camera #1:
 <span class="w">    </span>--teleop.type<span class="o">=</span>so101_leader<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--teleop.port<span class="o">=</span>/dev/tty.usbmodem58FA1026371<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--teleop.id<span class="o">=</span>my_leader_arm<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--dataset.repo_id<span class="o">=</span>akira/1cam_test<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--dataset.root<span class="o">=</span>/Users/akira/Documents/workspace_lerobot/datasets<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--dataset.repo_id<span class="o">=</span>local/1cam_test<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--dataset.root<span class="o">=</span>/home/jetson/lerobot/datasets/local/1cam_test<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--dataset.push_to_hub<span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--dataset.single_task<span class="o">=</span><span class="s2">&quot;Pick up the red cube&quot;</span><span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--robot.cameras<span class="o">=</span><span class="s2">&quot;{ front: {type: opencv, index_or_path: 0, width: 640, height: 480, fps: 30, fourcc: &#39;MJPG&#39;}}&quot;</span><span class="w"> </span><span class="se">\</span>
@@ -1830,8 +1830,8 @@ Camera #1:
 <span class="w">    </span>--teleop.type<span class="o">=</span>so101_leader<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--teleop.port<span class="o">=</span>/dev/tty.usbmodem58FA1026371<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--teleop.id<span class="o">=</span>my_leader_arm<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--dataset.repo_id<span class="o">=</span>akira/1cam_test<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--dataset.root<span class="o">=</span>/Users/akira/Documents/workspace_lerobot/datasets<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--dataset.repo_id<span class="o">=</span>local/1cam_test<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--dataset.root<span class="o">=</span>/home/jetson/leroot/datasets/local/1cam_test<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--dataset.push_to_hub<span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--dataset.single_task<span class="o">=</span><span class="s2">&quot;Pick up the red cube&quot;</span><span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--robot.cameras<span class="o">=</span><span class="s2">&quot;{ front: {type: opencv, index_or_path: 0, width: 640, height: 480, fps: 30, fourcc: &#39;MJPG&#39;}}&quot;</span><span class="w"> </span><span class="se">\</span>
@@ -1873,8 +1873,8 @@ Camera #1:
     --teleop.type=so101_leader \
     --teleop.port=/dev/tty.usbmodem58FA1026371 \
     --teleop.id=my_leader_arm \
-    --dataset.repo_id=akira/1cam_test \
-    --dataset.root=/Users/akira/Documents/workspace_lerobot/datasets \
+    --dataset.repo_id=local/1cam_test \
+    --dataset.root=/home/jetson/lerobot/datasets/local/1cam_test \
     --dataset.push_to_hub=false \
     --dataset.single_task=&quot;Pick up the red cube&quot; \
     --robot.cameras=&quot;{ front: {type: opencv, index_or_path: 0, width: 640, height: 480, fps: 30, fourcc: &#39;MJPG&#39;}}&quot; \
@@ -1915,15 +1915,15 @@ Camera #1:
 <span class="normal">18</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">PYTORCH_CUDA_ALLOC_CONF</span><span class="o">=</span>expandable_segments:True,max_split_size_mb:128
 
 lerobot-train<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--dataset.root<span class="o">=</span>/home/jetson/workspace_lerobot/datasets<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--dataset.repo_id<span class="o">=</span>jetson/1cam_test<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--dataset.root<span class="o">=</span>/home/jetson/lerobot/datasets/local/1cam_test<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--dataset.repo_id<span class="o">=</span>local/1cam_test<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--policy.type<span class="o">=</span>act<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--output_dir<span class="o">=</span>outputs/train/act_1cam_test<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output_dir<span class="o">=</span>models/act_1cam_test<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--job_name<span class="o">=</span>act_1cam_test<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--policy.device<span class="o">=</span>cuda<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--wandb.enable<span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--policy.push_to_hub<span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--steps<span class="o">=</span><span class="m">100000</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--steps<span class="o">=</span><span class="m">5000</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--batch_size<span class="o">=</span><span class="m">2</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--num_workers<span class="o">=</span><span class="m">0</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--policy.use_amp<span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="se">\</span>
@@ -1943,10 +1943,10 @@ lerobot-train<span class="w"> </span><span class="se">\</span>
 <span class="normal"> 8</span>
 <span class="normal"> 9</span>
 <span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code>lerobot-train<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--dataset.root<span class="o">=</span>/Users/akira/Documents/workspace_lerobot/datasets<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--dataset.repo_id<span class="o">=</span>akira/1cam_test<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--dataset.root<span class="o">=</span>/home/jetson/lerobot/datasets/local/1cam_test<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--dataset.repo_id<span class="o">=</span>local/1cam_test<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--policy.type<span class="o">=</span>act<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--output_dir<span class="o">=</span>outputs/train/act_1cam_test<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output_dir<span class="o">=</span>models/act_1cam_test<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--job_name<span class="o">=</span>act_1cam_test<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--policy.device<span class="o">=</span>mps<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--wandb.enable<span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="se">\</span>
@@ -1974,7 +1974,7 @@ lerobot-train<span class="w"> </span><span class="se">\</span>
 </tbody>
 </table>
 <h2 id="_7">学習(継続)</h2>
-<p><code>outputs/train/act_1cam_test/checkpoints/last/pretrained_model/train_config.json</code></p>
+<p><code>models/act_1cam_test/checkpoints/last/pretrained_model/train_config.json</code></p>
 <p>のstepsの項目に、学習(新規)で指定したstepsが記載されているので、その部分を修正し再学習します。</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="err">#</span><span class="nt">&quot;steps&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span>
@@ -1983,11 +1983,11 @@ lerobot-train<span class="w"> </span><span class="se">\</span>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>lerobot-train \
-  --config_path outputs/train/act_1cam_test/checkpoints/last/pretrained_model/train_config.json \
-  --resume=true
+    --config_path=models/act_1cam_test/checkpoints/last/pretrained_model/train_config.json \
+    --resume=true
 </code></pre></div></td></tr></table></div>
 <h2 id="_8">推論実行</h2>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>rm -rf /Users/akira/Documents/workspace_lerobot/datasets/akira/eval_1cam_test
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>rm -rf /home/jetson/lerobot/datasets/local/eval_1cam_test
 </code></pre></div></td></tr></table></div>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
@@ -2010,16 +2010,16 @@ lerobot-train<span class="w"> </span><span class="se">\</span>
   --robot.id=my_follower_arm \
   --robot.cameras=&quot;{ front: {type: opencv, index_or_path: 0, width: 640, height: 480, fps: 30, fourcc: &#39;MJPG&#39;}}&quot; \
   --display_data=true \
-  --dataset.root=/Users/akira/Documents/workspace_lerobot/datasets \
-  --dataset.repo_id=akira/eval_1cam_test \
+  --dataset.root=/home/jetson/lerobot/datasets/local/eval_1cam_test \
+  --dataset.repo_id=local/eval_1cam_test \
   --dataset.single_task=&quot;Grasp a lego block and put it in the bin.&quot; \
   --dataset.fps=30 \
-  --dataset.episode_time_s=30 \
+  --dataset.episode_time_s=120 \
   --dataset.reset_time_s=30 \
   --dataset.num_episodes=10 \
   --dataset.tags=&#39;[&quot;tutorial&quot;]&#39; \
   --dataset.push_to_hub=false \
-  --policy.path=outputs/train/act_1cam_test/checkpoints/last/pretrained_model
+  --policy.path=models/act_1cam_test/checkpoints/last/pretrained_model
 </code></pre></div></td></tr></table></div>
 <h2 id="_9">リファレンス</h2>
 <ul>
