@@ -21,7 +21,15 @@
   const LS_KEY_TELEOP = "lerobot.teleop_port";
   const LS_KEY_ROBOT = "lerobot.robot_port";
   const LS_KEY_WORKSPACE = "lerobot.workspace_dir";
+
+  // dataset.repo_id = <user>/<repo>
+  // Store as split fields for clarity (UI is user id + repo id).
+  const LS_KEY_DATASET_OWNER = "lerobot.dataset_user_id";
+  const LS_KEY_DATASET_NAME = "lerobot.dataset_repo_name";
+
+  // Backward-compatibility (older versions stored the combined value)
   const LS_KEY_DATASET_REPO = "lerobot.dataset_repo_id";
+
   const LS_KEY_PUSH_TO_HUB = "lerobot.dataset_push_to_hub";
 
   // Backward-compatibility (older versions stored this)
@@ -160,6 +168,45 @@
     if (!owner || !name) return null;
     return { owner, name };
   }
+
+function normalizeIdPart(s) {
+  return stripQuotes(s).replace(/\s+/g, "");
+}
+
+// Build dataset.repo_id from split fields.
+// Allows pasting "user/repo" into either field (auto-splits).
+function coerceOwnerRepo(ownerInput, repoInput) {
+  let owner = normalizeIdPart(ownerInput);
+  let name = normalizeIdPart(repoInput);
+
+  // If user pasted "owner/name" into either field, split it.
+  if ((owner && owner.includes("/")) || (name && name.includes("/"))) {
+    const candidate = owner.includes("/") ? owner : name;
+    const parsed = parseRepoId(candidate);
+    if (parsed) {
+      owner = parsed.owner;
+      name = parsed.name;
+    }
+  }
+
+  const repoId = owner && name ? `${owner}/${name}` : "";
+  return { owner, name, repoId };
+}
+
+// When pushing to the Hub, we intentionally omit --dataset.root from commands.
+function removeDatasetRootArgs(text) {
+  let out = String(text || "");
+
+  // Remove whole lines like: "  --dataset.root=xxx " or "  --dataset.root xxx"
+  out = out.replace(/^\s*--dataset\.root(?:=|\s+)\S+\s*\\?\s*\r?\n/gm, "");
+  out = out.replace(/^\s*--dataset\.root(?:=|\s+)\S+\s*\\?\s*$/gm, "");
+
+  // Also remove inline tokens (in case someone wrote one-line commands)
+  out = out.replace(/\s+--dataset\.root=\S+/g, "");
+  out = out.replace(/\s+--dataset\.root\s+\S+/g, "");
+
+  return out;
+}
 
   function evalSlugFromSlug(slug) {
     const s = String(slug || "").trim();
@@ -439,6 +486,8 @@
       robot,
       workspaceDir,
       projectDir,
+      datasetOwner: parsed?.owner || "local",
+      datasetName: parsed?.name || "1cam_test",
       datasetRepoId,
       datasetSlug,
       datasetDir,
@@ -504,21 +553,29 @@
             placeholder="${escapeHtmlAttr(defaults.workspaceDir)}"
             value="${escapeHtmlAttr(state.workspaceDir)}"
           />
-        </div>
-
-        <div class="lerobot-port-row">
-          <label class="lerobot-port-label" for="lerobot-dataset-repo">dataset.repo_id（user/id）</label>
-          <input
-            id="lerobot-dataset-repo"
-            class="lerobot-port-input"
-            type="text"
-            inputmode="text"
-            placeholder="${escapeHtmlAttr(defaults.datasetRepoId)}"
-            value="${escapeHtmlAttr(state.datasetRepoId)}"
-          />
-        </div>
-
-        <div class="lerobot-port-row">
+        </div><div class="lerobot-port-row">
+  <label class="lerobot-port-label">dataset.repo_id（user/id）</label>
+  <div class="lerobot-port-repo-split">
+    <input
+      id="lerobot-dataset-owner"
+      class="lerobot-port-input"
+      type="text"
+      inputmode="text"
+      placeholder="${escapeHtmlAttr(defaults.datasetOwner)}"
+      value="${escapeHtmlAttr(state.datasetOwner)}"
+    />
+    <span class="lerobot-port-repo-sep">/</span>
+    <input
+      id="lerobot-dataset-name"
+      class="lerobot-port-input"
+      type="text"
+      inputmode="text"
+      placeholder="${escapeHtmlAttr(defaults.datasetName)}"
+      value="${escapeHtmlAttr(state.datasetName)}"
+    />
+  </div>
+</div>
+<div class="lerobot-port-row">
           <label class="lerobot-port-label" for="lerobot-push-to-hub">Hugging Faceにアップ</label>
           <div style="display:flex;align-items:center;gap:10px;">
             <input id="lerobot-push-to-hub" type="checkbox" ${state.pushToHub ? "checked" : ""} />
@@ -554,7 +611,8 @@
     const teleopInput = panelEl.querySelector("#lerobot-teleop-port");
     const robotInput = panelEl.querySelector("#lerobot-robot-port");
     const wsInput = panelEl.querySelector("#lerobot-workspace-dir");
-    const repoInput = panelEl.querySelector("#lerobot-dataset-repo");
+    const ownerInput = panelEl.querySelector("#lerobot-dataset-owner");
+    const nameInput = panelEl.querySelector("#lerobot-dataset-name");
     const pushInput = panelEl.querySelector("#lerobot-push-to-hub");
 
     const projectEl = panelEl.querySelector("#lerobot-project-dir");
@@ -563,12 +621,20 @@
     const warnEl = panelEl.querySelector("#lerobot-repoid-warning");
 
     function refreshDerived() {
-      const repo = normalizeRepoId(repoInput.value || defaults.datasetRepoId);
+      const { owner, name, repoId } = coerceOwnerRepo(
+        ownerInput.value || defaults.datasetOwner,
+        nameInput.value || defaults.datasetName
+      );
+
+      // Keep UI in sync if user pasted "owner/repo"
+      if (ownerInput.value && ownerInput.value.includes("/") && owner) ownerInput.value = owner;
+      if (nameInput.value && nameInput.value.includes("/") && name) nameInput.value = name;
+
       const wsRaw = normalizePath(wsInput.value || defaults.workspaceDir);
       const { workspaceDir, projectDir } = deriveProjectDirFromWorkspaceInput(wsRaw);
 
-      const parsed = parseRepoId(repo);
-      const datasetDir = joinDatasetDir(projectDir, repo);
+      const parsed = parseRepoId(repoId);
+      const datasetDir = joinDatasetDir(projectDir, repoId);
 
       projectEl.textContent = projectDir || "";
       datasetEl.textContent = parsed ? datasetDir : "(repo_id が不正です)";
@@ -579,7 +645,7 @@
 
       if (!parsed) {
         warnEl.style.display = "block";
-        warnEl.textContent = "repo_id は user/id 形式にしてください（例: local/1cam_test）";
+        warnEl.textContent = "「user id」と「repo id」を入力してください（例: local / 1cam_test）";
       } else {
         warnEl.style.display = "none";
         warnEl.textContent = "";
@@ -595,26 +661,40 @@
       const teleop = (teleopInput.value || "").trim() || defaults.teleop;
       const robot = (robotInput.value || "").trim() || defaults.robot;
       const wsRaw = normalizePath((wsInput.value || "").trim() || defaults.workspaceDir);
-      const repo = normalizeRepoId((repoInput.value || "").trim() || defaults.datasetRepoId);
-      const pushToHub = !!pushInput.checked;
 
+      const { owner, name, repoId } = coerceOwnerRepo(
+        (ownerInput.value || "").trim() || defaults.datasetOwner,
+        (nameInput.value || "").trim() || defaults.datasetName
+      );
+
+      const pushToHub = !!pushInput.checked;
       const { workspaceDir } = deriveProjectDirFromWorkspaceInput(wsRaw);
 
       refreshDerived();
-      onChange({ teleop, robot, workspaceDir, datasetRepoId: repo, pushToHub });
+      onChange({
+        teleop,
+        robot,
+        workspaceDir,
+        datasetOwner: owner,
+        datasetName: name,
+        datasetRepoId: repoId || defaults.datasetRepoId,
+        pushToHub
+      });
     };
 
     teleopInput.addEventListener("input", fire);
     robotInput.addEventListener("input", fire);
     wsInput.addEventListener("input", fire);
-    repoInput.addEventListener("input", fire);
+    ownerInput.addEventListener("input", fire);
+    nameInput.addEventListener("input", fire);
     pushInput.addEventListener("change", fire);
 
     panelEl.querySelector('[data-action="reset"]').addEventListener("click", () => {
       teleopInput.value = defaults.teleop;
       robotInput.value = defaults.robot;
       wsInput.value = defaults.workspaceDir;
-      repoInput.value = defaults.datasetRepoId;
+      ownerInput.value = defaults.datasetOwner;
+      nameInput.value = defaults.datasetName;
       pushInput.checked = !!defaults.pushToHub;
       fire();
     });
@@ -623,7 +703,9 @@
       safeDel(LS_KEY_TELEOP);
       safeDel(LS_KEY_ROBOT);
       safeDel(LS_KEY_WORKSPACE);
-      safeDel(LS_KEY_DATASET_REPO);
+      safeDel(LS_KEY_DATASET_OWNER);
+      safeDel(LS_KEY_DATASET_NAME);
+      safeDel(LS_KEY_DATASET_REPO); // legacy combined key
       safeDel(LS_KEY_PUSH_TO_HUB);
     });
 
@@ -662,6 +744,8 @@
       LEROBOT_DIR: projectDir,
 
       DATASET_REPO_ID: cfg.datasetRepoId,
+      DATASET_USER_ID: owner,
+      DATASET_ID: slug,
       DATASET_SLUG: slug,
       DATASET_DIR: datasetDir,
       DATASET_ROOT: datasetDir,
@@ -814,6 +898,10 @@
         return m;
       });
 
+      // If pushing to the Hub, omit --dataset.root from commands (use LeRobot default location).
+      if (cfg.pushToHub) {
+        out = removeDatasetRootArgs(out);
+      }
       code.textContent = out;
     }
   }
@@ -833,7 +921,14 @@
     // Load state
     const savedTeleop = safeGet(LS_KEY_TELEOP);
     const savedRobot = safeGet(LS_KEY_ROBOT);
+
+    // New (split) keys
+    const savedOwner = safeGet(LS_KEY_DATASET_OWNER);
+    const savedName = safeGet(LS_KEY_DATASET_NAME);
+
+    // Legacy (combined) key
     const savedRepo = safeGet(LS_KEY_DATASET_REPO);
+
     const savedWs = safeGet(LS_KEY_WORKSPACE);
     const savedPush = safeGet(LS_KEY_PUSH_TO_HUB);
 
@@ -849,22 +944,46 @@
     }
     if (!workspaceDir) workspaceDir = defaults.workspaceDir;
 
+    // Resolve dataset owner/name with backward-compatibility.
+    let datasetOwner = normalizeIdPart(savedOwner || "");
+    let datasetName = normalizeIdPart(savedName || "");
+
+    if ((!datasetOwner || !datasetName) && savedRepo) {
+      const parsed = parseRepoId(savedRepo);
+      if (parsed) {
+        datasetOwner = datasetOwner || parsed.owner;
+        datasetName = datasetName || parsed.name;
+      }
+    }
+
+    if (!datasetOwner) datasetOwner = normalizeIdPart(defaults.datasetOwner);
+    if (!datasetName) datasetName = normalizeIdPart(defaults.datasetName);
+
+    const repoCoerced = coerceOwnerRepo(datasetOwner, datasetName);
+    const datasetRepoId = repoCoerced.repoId || normalizeRepoId(savedRepo || defaults.datasetRepoId);
+
     const state = {
       teleop: (savedTeleop || defaults.teleop).trim(),
       robot: (savedRobot || defaults.robot).trim(),
       workspaceDir,
-      datasetRepoId: normalizeRepoId(savedRepo || defaults.datasetRepoId),
+      datasetOwner: repoCoerced.owner || datasetOwner,
+      datasetName: repoCoerced.name || datasetName,
+      datasetRepoId,
       pushToHub: savedPush ? truthy(savedPush) : !!defaults.pushToHub
     };
 
-    renderPanel(panel, state, defaults, ({ teleop, robot, workspaceDir, datasetRepoId, pushToHub }) => {
+    renderPanel(panel, state, defaults, ({ teleop, robot, workspaceDir, datasetOwner, datasetName, datasetRepoId, pushToHub }) => {
       safeSet(LS_KEY_TELEOP, teleop);
       safeSet(LS_KEY_ROBOT, robot);
       safeSet(LS_KEY_WORKSPACE, workspaceDir);
-      safeSet(LS_KEY_DATASET_REPO, datasetRepoId);
+
+      safeSet(LS_KEY_DATASET_OWNER, datasetOwner);
+      safeSet(LS_KEY_DATASET_NAME, datasetName);
+      safeSet(LS_KEY_DATASET_REPO, datasetRepoId); // legacy combined key
+
       safeSet(LS_KEY_PUSH_TO_HUB, pushToHub ? "true" : "false");
 
-      applyToCodeNodes(codeNodes, { teleop, robot, workspaceDir, datasetRepoId, pushToHub }, defaults);
+      applyToCodeNodes(codeNodes, { teleop, robot, workspaceDir, datasetOwner, datasetName, datasetRepoId, pushToHub }, defaults);
     });
 
     // Initial apply

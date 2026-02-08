@@ -64,3 +64,20 @@
   opacity: 0.85;
   line-height: 1.4;
 }
+
+
+.lerobot-port-repo-split {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.lerobot-port-repo-split .lerobot-port-input {
+  flex: 1;
+  min-width: 0;
+}
+
+.lerobot-port-repo-sep {
+  opacity: 0.7;
+  font-weight: 600;
+}
