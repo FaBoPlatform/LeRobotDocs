@@ -59,22 +59,22 @@
   cursor: pointer;
 }
 
-.lerobot-port-hint {
-  font-size: 0.9em;
-  opacity: 0.85;
-  line-height: 1.4;
-}
-
-
+/* Split UI for dataset.repo_id (user / repo id) */
 .lerobot-port-repo-split {
   display: flex;
   align-items: center;
   gap: 8px;
+  flex-wrap: wrap;
 }
 
 .lerobot-port-repo-split .lerobot-port-input {
   flex: 1;
-  min-width: 0;
+  min-width: 120px;
+}
+
+.lerobot-port-repo-prefix {
+  opacity: 0.85;
+  white-space: nowrap;
 }
 
 .lerobot-port-repo-sep {

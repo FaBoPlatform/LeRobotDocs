@@ -4,26 +4,33 @@
   // ==========================================================
   // LeRobot Port / Path Panel (MkDocs Material)
   // ----------------------------------------------------------
-  // This version implements the user's latest path rules:
-  // - dataset.repo_id: <user>/<id> (e.g. local/1cam_test)
-  // - project dir: <workspace>/lerobot (e.g. /home/jetson/lerobot)
-  // - dataset.root (actual dataset dir): <project>/<repo_id>
-  //   (e.g. /home/jetson/lerobot/local/1cam_test)
-  // - models: <project>/models/<policy>_<dataset_slug>
+  // UI:
+  // - teleop.port (Leader)
+  // - robot.port (Follower)
+  // - workspace dir (DEFAULT: /home/jetson/lerobot)
+  //   -> this value itself is treated as the project folder (作業フォルダ)
+  // - dataset.repo_id split inputs:
+  //     user: <owner>   repo id: <name>
+  // - "Hugging Faceにアップ" toggle:
+  //   - dataset.push_to_hub=true/false
+  //   - When ON, omit --dataset.root from all command outputs
   // ----------------------------------------------------------
-  // UI requirements:
-  // - Provide a "push to hub" toggle (dataset.push_to_hub)
-  // - Do NOT show eval dataset row
-  // - Do NOT show long hint/comment
+  // Replacements:
+  // - Replaces both placeholders like {{TELEOP_PORT}} and option values like --teleop.port=...
+  // - Robust against broken tokens seen after copy/paste:
+  //   {{ TELEOP_PORT }}, TELEOP_PORT }}, etc.
   // ==========================================================
 
   // ---------- LocalStorage keys ----------
   const LS_KEY_TELEOP = "lerobot.teleop_port";
   const LS_KEY_ROBOT = "lerobot.robot_port";
+
+  // NOTE: kept key name for backward compatibility.
+  // In this version, it stores *project dir* (e.g. /home/jetson/lerobot)
   const LS_KEY_WORKSPACE = "lerobot.workspace_dir";
 
   // dataset.repo_id = <user>/<repo>
-  // Store as split fields for clarity (UI is user id + repo id).
+  // Store as split fields for clarity (UI is user + repo id).
   const LS_KEY_DATASET_OWNER = "lerobot.dataset_user_id";
   const LS_KEY_DATASET_NAME = "lerobot.dataset_repo_name";
 
@@ -146,15 +153,6 @@
     return s;
   }
 
-  function parentDir(p) {
-    const s = normalizePath(p);
-    if (!s) return "";
-    if (s === "/") return "/";
-    const idx = s.lastIndexOf("/");
-    if (idx <= 0) return "";
-    return s.slice(0, idx);
-  }
-
   function normalizeRepoId(repoId) {
     return stripQuotes(repoId).replace(/\s+/g, "");
   }
@@ -169,44 +167,28 @@
     return { owner, name };
   }
 
-function normalizeIdPart(s) {
-  return stripQuotes(s).replace(/\s+/g, "");
-}
-
-// Build dataset.repo_id from split fields.
-// Allows pasting "user/repo" into either field (auto-splits).
-function coerceOwnerRepo(ownerInput, repoInput) {
-  let owner = normalizeIdPart(ownerInput);
-  let name = normalizeIdPart(repoInput);
-
-  // If user pasted "owner/name" into either field, split it.
-  if ((owner && owner.includes("/")) || (name && name.includes("/"))) {
-    const candidate = owner.includes("/") ? owner : name;
-    const parsed = parseRepoId(candidate);
-    if (parsed) {
-      owner = parsed.owner;
-      name = parsed.name;
-    }
+  function normalizeIdPart(s) {
+    return stripQuotes(s).replace(/\s+/g, "");
   }
 
-  const repoId = owner && name ? `${owner}/${name}` : "";
-  return { owner, name, repoId };
-}
+  // Build dataset.repo_id from split fields.
+  // Allows pasting "user/repo" into either field (auto-splits).
+  function coerceOwnerRepo(ownerInput, repoInput) {
+    let owner = normalizeIdPart(ownerInput);
+    let name = normalizeIdPart(repoInput);
 
-// When pushing to the Hub, we intentionally omit --dataset.root from commands.
-function removeDatasetRootArgs(text) {
-  let out = String(text || "");
+    if ((owner && owner.includes("/")) || (name && name.includes("/"))) {
+      const candidate = owner.includes("/") ? owner : name;
+      const parsed = parseRepoId(candidate);
+      if (parsed) {
+        owner = parsed.owner;
+        name = parsed.name;
+      }
+    }
 
-  // Remove whole lines like: "  --dataset.root=xxx " or "  --dataset.root xxx"
-  out = out.replace(/^\s*--dataset\.root(?:=|\s+)\S+\s*\\?\s*\r?\n/gm, "");
-  out = out.replace(/^\s*--dataset\.root(?:=|\s+)\S+\s*\\?\s*$/gm, "");
-
-  // Also remove inline tokens (in case someone wrote one-line commands)
-  out = out.replace(/\s+--dataset\.root=\S+/g, "");
-  out = out.replace(/\s+--dataset\.root\s+\S+/g, "");
-
-  return out;
-}
+    const repoId = owner && name ? `${owner}/${name}` : "";
+    return { owner, name, repoId };
+  }
 
   function evalSlugFromSlug(slug) {
     const s = String(slug || "").trim();
@@ -221,9 +203,7 @@ function removeDatasetRootArgs(text) {
     const parts = s.split("/");
     const name = parts.length === 2 ? parts[1] : parts[0];
     if (!name) return false;
-    if (name.startsWith("eval_")) return true;
-    if (name.endsWith("_eval")) return true;
-    return false;
+    return name.startsWith("eval_") || name.endsWith("_eval");
   }
 
   function isEvalDatasetPath(p) {
@@ -234,12 +214,27 @@ function removeDatasetRootArgs(text) {
     return base.startsWith("eval_") || base.endsWith("_eval");
   }
 
-  // projectDir + repoId(owner/name) -> dataset dir (the value for --dataset.root)
+  // projectDir + repoId(owner/name) -> dataset dir (value for --dataset.root)
   function joinDatasetDir(projectDir, datasetRepoId) {
     const root = normalizePath(projectDir);
     const parsed = parseRepoId(datasetRepoId);
     if (!root || !parsed) return "";
     return `${root}/${parsed.owner}/${parsed.name}`;
+  }
+
+  // When pushing to the Hub, we intentionally omit --dataset.root from commands.
+  function removeDatasetRootArgs(text) {
+    let out = String(text || "");
+
+    // Remove whole lines like: "  --dataset.root=xxx " or "  --dataset.root xxx"
+    out = out.replace(/^\s*--dataset\.root(?:=|\s+)\S+\s*\\?\s*\r?\n/gm, "");
+    out = out.replace(/^\s*--dataset\.root(?:=|\s+)\S+\s*\\?\s*$/gm, "");
+
+    // Also remove inline tokens (in case someone wrote one-line commands)
+    out = out.replace(/\s+--dataset\.root=\S+/g, "");
+    out = out.replace(/\s+--dataset\.root\s+\S+/g, "");
+
+    return out;
   }
 
   function escapeHtmlAttr(s) {
@@ -252,6 +247,11 @@ function removeDatasetRootArgs(text) {
 
   function escapeRegExp(s) {
     return String(s).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  }
+
+  function replaceAllString(haystack, needle, replacement) {
+    if (!needle) return haystack;
+    return haystack.split(needle).join(replacement);
   }
 
   // Replace template placeholders like {{TELEOP_PORT}} inside code blocks.
@@ -272,16 +272,10 @@ function removeDatasetRootArgs(text) {
     // 2) Replace canonical placeholders.
     for (const key of keys) {
       const val = map[key];
-      // If a value is empty (e.g. invalid repo_id), keep the placeholder visible.
       if (val === undefined || val === null || String(val) === "") continue;
       out = replaceAllString(out, `{{${key}}}`, String(val));
     }
     return out;
-  }
-
-  function replaceAllString(haystack, needle, replacement) {
-    if (!needle) return haystack;
-    return haystack.split(needle).join(replacement);
   }
 
   function buildTrainConfigPath(trainOutputDir) {
@@ -298,31 +292,23 @@ function removeDatasetRootArgs(text) {
 
   function truthy(s) {
     const v = String(s || "").trim().toLowerCase();
-    if (!v) return false;
-    if (v === "true" || v === "1" || v === "yes" || v === "y") return true;
-    return false;
+    return v === "true" || v === "1" || v === "yes" || v === "y";
   }
 
-  // Workspace -> Project Dir
-  // - If input already ends with "/lerobot", treat it as projectDir.
-  // - Else projectDir = <workspace>/lerobot
+  // Workspace dir -> Project Dir
+  // In this version, workspace dir is treated as the project folder itself.
   function deriveProjectDirFromWorkspaceInput(workspaceInput) {
     const raw = normalizePath(workspaceInput);
-    if (!raw) return { workspaceDir: "", projectDir: "" };
-    if (raw.endsWith("/lerobot")) {
-      return { workspaceDir: parentDir(raw), projectDir: raw };
-    }
-    return { workspaceDir: raw, projectDir: `${raw}/lerobot` };
+    return { projectDir: raw, workspaceDir: raw };
   }
 
-  function extractWorkspaceDirFromAnyPath(p) {
+  function extractProjectDirFromAnyPath(p) {
     const s = normalizePath(p);
     if (!s) return "";
     const marker = "/lerobot";
     const idx = s.indexOf(marker);
     if (idx === -1) return "";
-    const before = s.slice(0, idx);
-    return before || "/";
+    return s.slice(0, idx + marker.length) || "";
   }
 
   function deriveTrainRunName(defaults, datasetSlug) {
@@ -340,7 +326,7 @@ function removeDatasetRootArgs(text) {
     return base || newSlug;
   }
 
-  function deriveTrainOutputDir(defaults, trainRunName, projectDir) {
+  function deriveTrainOutputDir(defaults, trainRunName) {
     const baseDir = String(defaults.trainOutputDir || "").trim();
     const run = String(trainRunName || "").trim();
     if (!run) return baseDir;
@@ -361,8 +347,7 @@ function removeDatasetRootArgs(text) {
       }
     }
 
-    // Default (this page's convention)
-    // Use relative path because docs typically do: cd <project> then run commands.
+    // Default: models/<run>
     return `models/${run}`;
   }
 
@@ -370,18 +355,18 @@ function removeDatasetRootArgs(text) {
   function guessDefaultsFromDoc(codeNodes) {
     let teleop = "";
     let robot = "";
+
     let datasetRepoId = "";
-    let docDatasetRootValue = ""; // the actual value found in --dataset.root in the doc
+    let docDatasetRootValue = "";
     let pushToHubRaw = "";
 
-    let docProjectDir = ""; // from cd / mkdir -p in doc if present
-    let workspaceDir = "";
+    let docProjectDir = "";
+    let projectDir = "";
 
     let policyType = "";
     let trainOutputDir = "";
     let trainRunName = "";
 
-    // Scan all code nodes
     for (const code of codeNodes) {
       const t = code.textContent || "";
 
@@ -393,6 +378,7 @@ function removeDatasetRootArgs(text) {
         const m = t.match(RE_FIND_ROBOT);
         if (m && m[1]) robot = m[1];
       }
+
       if (!datasetRepoId) {
         const m = t.match(RE_FIND_DSET_REPO);
         if (m && m[1]) datasetRepoId = m[1];
@@ -440,8 +426,17 @@ function removeDatasetRootArgs(text) {
         if (m && m[1]) trainOutputDir = stripQuotes(m[1]);
       }
 
-      // Early exit if we have the key pieces
-      if (teleop && robot && datasetRepoId && docDatasetRootValue && docProjectDir && policyType && trainOutputDir && trainRunName && pushToHubRaw) {
+      if (
+        teleop &&
+        robot &&
+        datasetRepoId &&
+        docDatasetRootValue &&
+        docProjectDir &&
+        policyType &&
+        trainOutputDir &&
+        trainRunName &&
+        pushToHubRaw
+      ) {
         break;
       }
     }
@@ -450,28 +445,28 @@ function removeDatasetRootArgs(text) {
     if (!teleop) teleop = "/dev/ttyACM1";
     if (!robot) robot = "/dev/ttyACM0";
 
+    datasetRepoId = normalizeRepoId(datasetRepoId || "");
+    // If it is a template placeholder, ignore.
+    if (datasetRepoId.includes("{{") || datasetRepoId.includes("}}")) datasetRepoId = "";
+
     if (!datasetRepoId) datasetRepoId = "local/1cam_test";
-    datasetRepoId = normalizeRepoId(datasetRepoId);
 
-    // Workspace inference
+    // Project dir (workspace dir) inference
     if (docProjectDir) {
-      workspaceDir = parentDir(docProjectDir);
+      projectDir = docProjectDir;
+    } else if (docDatasetRootValue) {
+      const inferred = extractProjectDirFromAnyPath(docDatasetRootValue);
+      if (inferred) projectDir = inferred;
     }
-    if (!workspaceDir && docDatasetRootValue) {
-      workspaceDir = extractWorkspaceDirFromAnyPath(docDatasetRootValue);
-    }
-    if (!workspaceDir) workspaceDir = "/home/jetson";
-    workspaceDir = normalizePath(workspaceDir);
-
-    const { projectDir } = deriveProjectDirFromWorkspaceInput(workspaceDir);
+    if (!projectDir) projectDir = "/home/jetson/lerobot";
+    projectDir = normalizePath(projectDir);
 
     const parsed = parseRepoId(datasetRepoId);
-    const datasetSlug = parsed?.name || "";
+    const datasetSlug = parsed?.name || "1cam_test";
     const datasetDir = joinDatasetDir(projectDir, datasetRepoId);
 
     if (!policyType) policyType = "act";
 
-    // Train output defaults
     if (!trainRunName && policyType && datasetSlug) {
       trainRunName = `${policyType}_${datasetSlug}`;
     }
@@ -484,7 +479,8 @@ function removeDatasetRootArgs(text) {
     return {
       teleop,
       robot,
-      workspaceDir,
+      // NOTE: workspaceDir is actually projectDir in this version
+      workspaceDir: projectDir,
       projectDir,
       datasetOwner: parsed?.owner || "local",
       datasetName: parsed?.name || "1cam_test",
@@ -553,29 +549,34 @@ function removeDatasetRootArgs(text) {
             placeholder="${escapeHtmlAttr(defaults.workspaceDir)}"
             value="${escapeHtmlAttr(state.workspaceDir)}"
           />
-        </div><div class="lerobot-port-row">
-  <label class="lerobot-port-label">dataset.repo_id（user/id）</label>
-  <div class="lerobot-port-repo-split">
-    <input
-      id="lerobot-dataset-owner"
-      class="lerobot-port-input"
-      type="text"
-      inputmode="text"
-      placeholder="${escapeHtmlAttr(defaults.datasetOwner)}"
-      value="${escapeHtmlAttr(state.datasetOwner)}"
-    />
-    <span class="lerobot-port-repo-sep">/</span>
-    <input
-      id="lerobot-dataset-name"
-      class="lerobot-port-input"
-      type="text"
-      inputmode="text"
-      placeholder="${escapeHtmlAttr(defaults.datasetName)}"
-      value="${escapeHtmlAttr(state.datasetName)}"
-    />
-  </div>
-</div>
-<div class="lerobot-port-row">
+        </div>
+
+        <div class="lerobot-port-row">
+          <label class="lerobot-port-label">dataset.repo_id（user/id）</label>
+          <div class="lerobot-port-repo-split">
+            <span class="lerobot-port-repo-prefix">user:</span>
+            <input
+              id="lerobot-dataset-owner"
+              class="lerobot-port-input"
+              type="text"
+              inputmode="text"
+              placeholder="${escapeHtmlAttr(defaults.datasetOwner)}"
+              value="${escapeHtmlAttr(state.datasetOwner)}"
+            />
+            <span class="lerobot-port-repo-sep">/</span>
+            <span class="lerobot-port-repo-prefix">repo id:</span>
+            <input
+              id="lerobot-dataset-name"
+              class="lerobot-port-input"
+              type="text"
+              inputmode="text"
+              placeholder="${escapeHtmlAttr(defaults.datasetName)}"
+              value="${escapeHtmlAttr(state.datasetName)}"
+            />
+          </div>
+        </div>
+
+        <div class="lerobot-port-row">
           <label class="lerobot-port-label" for="lerobot-push-to-hub">Hugging Faceにアップ</label>
           <div style="display:flex;align-items:center;gap:10px;">
             <input id="lerobot-push-to-hub" type="checkbox" ${state.pushToHub ? "checked" : ""} />
@@ -621,6 +622,9 @@ function removeDatasetRootArgs(text) {
     const warnEl = panelEl.querySelector("#lerobot-repoid-warning");
 
     function refreshDerived() {
+      const wsRaw = normalizePath(wsInput.value || defaults.workspaceDir);
+      const { projectDir } = deriveProjectDirFromWorkspaceInput(wsRaw);
+
       const { owner, name, repoId } = coerceOwnerRepo(
         ownerInput.value || defaults.datasetOwner,
         nameInput.value || defaults.datasetName
@@ -629,9 +633,6 @@ function removeDatasetRootArgs(text) {
       // Keep UI in sync if user pasted "owner/repo"
       if (ownerInput.value && ownerInput.value.includes("/") && owner) ownerInput.value = owner;
       if (nameInput.value && nameInput.value.includes("/") && name) nameInput.value = name;
-
-      const wsRaw = normalizePath(wsInput.value || defaults.workspaceDir);
-      const { workspaceDir, projectDir } = deriveProjectDirFromWorkspaceInput(wsRaw);
 
       const parsed = parseRepoId(repoId);
       const datasetDir = joinDatasetDir(projectDir, repoId);
@@ -645,22 +646,19 @@ function removeDatasetRootArgs(text) {
 
       if (!parsed) {
         warnEl.style.display = "block";
-        warnEl.textContent = "「user id」と「repo id」を入力してください（例: local / 1cam_test）";
+        warnEl.textContent = "「user」と「repo id」を入力してください（例: local / 1cam_test）";
       } else {
         warnEl.style.display = "none";
         warnEl.textContent = "";
-      }
-
-      // Keep workspace normalized in the UI if user typed /.../lerobot
-      if (wsRaw.endsWith("/lerobot") && workspaceDir) {
-        wsInput.value = workspaceDir;
       }
     }
 
     const fire = () => {
       const teleop = (teleopInput.value || "").trim() || defaults.teleop;
       const robot = (robotInput.value || "").trim() || defaults.robot;
+
       const wsRaw = normalizePath((wsInput.value || "").trim() || defaults.workspaceDir);
+      const { projectDir } = deriveProjectDirFromWorkspaceInput(wsRaw);
 
       const { owner, name, repoId } = coerceOwnerRepo(
         (ownerInput.value || "").trim() || defaults.datasetOwner,
@@ -668,13 +666,12 @@ function removeDatasetRootArgs(text) {
       );
 
       const pushToHub = !!pushInput.checked;
-      const { workspaceDir } = deriveProjectDirFromWorkspaceInput(wsRaw);
 
       refreshDerived();
       onChange({
         teleop,
         robot,
-        workspaceDir,
+        workspaceDir: projectDir,
         datasetOwner: owner,
         datasetName: name,
         datasetRepoId: repoId || defaults.datasetRepoId,
@@ -705,8 +702,10 @@ function removeDatasetRootArgs(text) {
       safeDel(LS_KEY_WORKSPACE);
       safeDel(LS_KEY_DATASET_OWNER);
       safeDel(LS_KEY_DATASET_NAME);
-      safeDel(LS_KEY_DATASET_REPO); // legacy combined key
+      safeDel(LS_KEY_DATASET_REPO); // legacy
       safeDel(LS_KEY_PUSH_TO_HUB);
+      safeDel(LS_KEY_LEGACY_DATASET_ROOT);
+      fire();
     });
 
     refreshDerived();
@@ -726,20 +725,16 @@ function removeDatasetRootArgs(text) {
     const evalDatasetDir = evalDatasetRepoId ? joinDatasetDir(projectDir, evalDatasetRepoId) : "";
 
     const trainRunName = deriveTrainRunName(defaults, slug);
-    const trainOutputDir = deriveTrainOutputDir(defaults, trainRunName, projectDir);
+    const trainOutputDir = deriveTrainOutputDir(defaults, trainRunName);
     const trainConfigPath = buildTrainConfigPath(trainOutputDir);
     const policyPath = buildPolicyPath(trainOutputDir);
 
-    // Placeholder values used in markdown (code blocks / inline code)
-    // Notes:
-    // - DATASET_DIR: dataset.root (actual dataset directory)
-    // - DATASET_ROOT: backward compatible alias for DATASET_DIR
-    // - PROJECT_DIR / LEROBOT_DIR: <workspace>/lerobot
     const placeholders = {
       TELEOP_PORT: cfg.teleop,
       ROBOT_PORT: cfg.robot,
-      WORKSPACE_DIR: cfg.workspaceDir,
 
+      // workspace dir == project dir in this version
+      WORKSPACE_DIR: projectDir,
       PROJECT_DIR: projectDir,
       LEROBOT_DIR: projectDir,
 
@@ -769,10 +764,10 @@ function removeDatasetRootArgs(text) {
       }
       let out = code.dataset.lerobotTemplate;
 
-      // --- Placeholder replacement (robust: handles "TELEOP_PORT }}" etc.) ---
+      // Placeholders (robust against broken forms)
       out = applyPlaceholderMap(out, placeholders);
 
-      // --- Option replacement ---
+      // Option replacement
       out = out.replace(RE_TELEOP_EQ, `$1${cfg.teleop}`);
       out = out.replace(RE_TELEOP_SP, `$1${cfg.teleop}`);
       out = out.replace(RE_ROBOT_EQ, `$1${cfg.robot}`);
@@ -785,9 +780,7 @@ function removeDatasetRootArgs(text) {
 
       // dataset.repo_id (normal/eval)
       const chooseRepoId = (currentValue) => {
-        if (isEvalRepoId(currentValue)) {
-          return evalDatasetRepoId || cfg.datasetRepoId;
-        }
+        if (isEvalRepoId(currentValue)) return evalDatasetRepoId || cfg.datasetRepoId;
         return cfg.datasetRepoId;
       };
       out = out.replace(RE_DSET_REPO_EQ, (m, prefix, value) => `${prefix}${chooseRepoId(value)}`);
@@ -827,25 +820,9 @@ function removeDatasetRootArgs(text) {
         out = out.replace(RE_POLICY_PATH_SP, `$1${policyPath}`);
       }
 
-      // --- Path replacements in text (rm -rf / inline paths) ---
-      // Replace any exact matches from the original doc.
+      // Replace any exact matches from the original doc (if present)
       if (defaults.docDatasetRootValue && datasetDir) {
         out = replaceAllString(out, defaults.docDatasetRootValue, datasetDir);
-      }
-
-      // Replace old train output mentions
-      if (defaults.trainOutputDir && trainOutputDir) {
-        out = replaceAllString(out, defaults.trainOutputDir, trainOutputDir);
-      }
-      if (defaults.trainRunName && trainRunName) {
-        out = replaceAllString(out, defaults.trainRunName, trainRunName);
-      }
-
-      // Replace outputs/train/<run> and models/<run> occurrences if present.
-      if (defaults.trainRunName && trainRunName) {
-        out = out
-          .replaceAll(`outputs/train/${defaults.trainRunName}`, `outputs/train/${trainRunName}`)
-          .replaceAll(`models/${defaults.trainRunName}`, `models/${trainRunName}`);
       }
 
       // rm -rf rewrite (only if it seems to target this dataset)
@@ -856,52 +833,41 @@ function removeDatasetRootArgs(text) {
         // Eval dataset
         if (evalDatasetDir && owner && evalDatasetSlug) {
           const key = `/${owner}/${evalDatasetSlug}`;
-          if (p.endsWith(key) || p.includes(key)) {
-            return `${prefix}${evalDatasetDir}`;
-          }
+          if (p.endsWith(key) || p.includes(key)) return `${prefix}${evalDatasetDir}`;
         }
 
         // Normal dataset
         if (datasetDir && owner && slug) {
           const key = `/${owner}/${slug}`;
-          if (p.endsWith(key) || p.includes(key)) {
-            return `${prefix}${datasetDir}`;
-          }
+          if (p.endsWith(key) || p.includes(key)) return `${prefix}${datasetDir}`;
         }
 
-        // If it was exactly the doc's dataset.root value, rewrite it.
         if (defaults.docDatasetRootValue && p === normalizePath(defaults.docDatasetRootValue) && datasetDir) {
           return `${prefix}${datasetDir}`;
         }
-
         return m;
       });
 
-      // cd / mkdir -p rewrite (work folder)
+      // cd / mkdir -p rewrite (if they point to /lerobot, keep in sync)
       out = out.replace(RE_CD_LINE, (m, prefix, path, suffix) => {
         const p = normalizePath(path);
         if (!p) return m;
-
-        // If the doc had cd <some>/lerobot, keep it synced.
-        if (p.endsWith("/lerobot")) {
-          return `${prefix}${projectDir}${suffix}`;
-        }
+        if (p.endsWith("/lerobot")) return `${prefix}${projectDir}${suffix}`;
         return m;
       });
 
       out = out.replace(RE_MKDIR_P, (m, prefix, path, suffix) => {
         const p = normalizePath(path);
         if (!p) return m;
-        if (p.endsWith("/lerobot")) {
-          return `${prefix}${projectDir}${suffix}`;
-        }
+        if (p.endsWith("/lerobot")) return `${prefix}${projectDir}${suffix}`;
         return m;
       });
 
-      // If pushing to the Hub, omit --dataset.root from commands (use LeRobot default location).
+      // If pushing to the Hub, omit --dataset.root from commands.
       if (cfg.pushToHub) {
         out = removeDatasetRootArgs(out);
       }
+
       code.textContent = out;
     }
   }
@@ -918,29 +884,28 @@ function removeDatasetRootArgs(text) {
 
     const defaults = guessDefaultsFromDoc(codeNodes);
 
-    // Load state
     const savedTeleop = safeGet(LS_KEY_TELEOP);
     const savedRobot = safeGet(LS_KEY_ROBOT);
+    const savedWs = safeGet(LS_KEY_WORKSPACE);
 
-    // New (split) keys
     const savedOwner = safeGet(LS_KEY_DATASET_OWNER);
     const savedName = safeGet(LS_KEY_DATASET_NAME);
-
-    // Legacy (combined) key
     const savedRepo = safeGet(LS_KEY_DATASET_REPO);
 
-    const savedWs = safeGet(LS_KEY_WORKSPACE);
     const savedPush = safeGet(LS_KEY_PUSH_TO_HUB);
 
-    // Migration: if workspace not stored, try legacy dataset_root to infer.
+    // Workspace (project dir) migration:
+    // - Older versions stored "/home/jetson" and appended "/lerobot" in code.
+    // - This version expects "/home/jetson/lerobot".
     let workspaceDir = normalizePath(savedWs || "");
+    if (workspaceDir && !workspaceDir.includes("/lerobot")) {
+      workspaceDir = `${workspaceDir}/lerobot`;
+    }
+    // Legacy dataset_root can also help infer project dir (best effort)
     if (!workspaceDir) {
-      const legacy = normalizePath(safeGet(LS_KEY_LEGACY_DATASET_ROOT) || "");
-      if (legacy) {
-        // If legacy looks like /.../lerobot/datasets, infer workspace from it.
-        const ws = extractWorkspaceDirFromAnyPath(legacy) || parentDir(legacy);
-        workspaceDir = ws;
-      }
+      const legacyRoot = normalizePath(safeGet(LS_KEY_LEGACY_DATASET_ROOT) || "");
+      const inferred = extractProjectDirFromAnyPath(legacyRoot);
+      if (inferred) workspaceDir = inferred;
     }
     if (!workspaceDir) workspaceDir = defaults.workspaceDir;
 
@@ -979,11 +944,11 @@ function removeDatasetRootArgs(text) {
 
       safeSet(LS_KEY_DATASET_OWNER, datasetOwner);
       safeSet(LS_KEY_DATASET_NAME, datasetName);
-      safeSet(LS_KEY_DATASET_REPO, datasetRepoId); // legacy combined key
+      safeSet(LS_KEY_DATASET_REPO, datasetRepoId); // legacy combined
 
       safeSet(LS_KEY_PUSH_TO_HUB, pushToHub ? "true" : "false");
 
-      applyToCodeNodes(codeNodes, { teleop, robot, workspaceDir, datasetOwner, datasetName, datasetRepoId, pushToHub }, defaults);
+      applyToCodeNodes(codeNodes, { teleop, robot, workspaceDir, datasetRepoId, pushToHub }, defaults);
     });
 
     // Initial apply
