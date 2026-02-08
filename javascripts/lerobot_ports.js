@@ -1,11 +1,31 @@
 (() => {
   "use strict";
 
+  // ==========================================================
+  // LeRobot Port / Path Panel (MkDocs Material)
+  // ----------------------------------------------------------
+  // This version implements the user's latest path rules:
+  // - dataset.repo_id: <user>/<id> (e.g. local/1cam_test)
+  // - project dir: <workspace>/lerobot (e.g. /home/jetson/lerobot)
+  // - dataset.root (actual dataset dir): <project>/<repo_id>
+  //   (e.g. /home/jetson/lerobot/local/1cam_test)
+  // - models: <project>/models/<policy>_<dataset_slug>
+  // ----------------------------------------------------------
+  // UI requirements:
+  // - Provide a "push to hub" toggle (dataset.push_to_hub)
+  // - Do NOT show eval dataset row
+  // - Do NOT show long hint/comment
+  // ==========================================================
+
   // ---------- LocalStorage keys ----------
   const LS_KEY_TELEOP = "lerobot.teleop_port";
   const LS_KEY_ROBOT = "lerobot.robot_port";
-  const LS_KEY_DATASET_ROOT = "lerobot.dataset_root";
+  const LS_KEY_WORKSPACE = "lerobot.workspace_dir";
   const LS_KEY_DATASET_REPO = "lerobot.dataset_repo_id";
+  const LS_KEY_PUSH_TO_HUB = "lerobot.dataset_push_to_hub";
+
+  // Backward-compatibility (older versions stored this)
+  const LS_KEY_LEGACY_DATASET_ROOT = "lerobot.dataset_root";
 
   // ---------- Replace targets (support "=value" and " value") ----------
   const RE_TELEOP_EQ = /(--teleop\.port=)(\S+)/g;
@@ -18,9 +38,23 @@
   const RE_DSET_REPO_EQ = /(--dataset\.repo_id=)(\S+)/g;
   const RE_DSET_REPO_SP = /(--dataset\.repo_id\s+)(\S+)/g;
 
-  // Hydra style (train)
+  // LeRobot record upload toggle
+  const RE_PUSH_EQ = /(--dataset\.push_to_hub=)(\S+)/g;
+  const RE_PUSH_SP = /(--dataset\.push_to_hub\s+)(\S+)/g;
+
+  // Hydra style (train) in configs
   const RE_DATASET_PATH_EQ = /(dataset\.path=)(\S+)/g;
   const RE_DATASET_PATH_SP = /(dataset\.path\s+)(\S+)/g;
+
+  // Train / resume / inference paths
+  const RE_OUTPUT_DIR_EQ = /(--output_dir=)(\S+)/g;
+  const RE_OUTPUT_DIR_SP = /(--output_dir\s+)(\S+)/g;
+  const RE_JOB_NAME_EQ = /(--job_name=)(\S+)/g;
+  const RE_JOB_NAME_SP = /(--job_name\s+)(\S+)/g;
+  const RE_CONFIG_PATH_EQ = /(--config_path=)(\S+)/g;
+  const RE_CONFIG_PATH_SP = /(--config_path\s+)(\S+)/g;
+  const RE_POLICY_PATH_EQ = /(--policy\.path=)(\S+)/g;
+  const RE_POLICY_PATH_SP = /(--policy\.path\s+)(\S+)/g;
 
   // Optional: rm -rf <path>
   const RE_RM_RF = /(rm\s+-rf\s+)(\S+)/g;
@@ -28,17 +62,24 @@
   // Optional: cd <path> (single line)
   const RE_CD_LINE = /^(\s*cd\s+)(\S+)(\s*)$/gm;
 
+  // Optional: mkdir -p <path> (single line)
+  const RE_MKDIR_P = /^(\s*mkdir\s+-p\s+)(\S+)(\s*)$/gm;
+
   // For guessing defaults from the document
   const RE_FIND_TELEOP = /--teleop\.port(?:=|\s+)(\S+)/;
   const RE_FIND_ROBOT = /--robot\.port(?:=|\s+)(\S+)/;
   const RE_FIND_DSET_ROOT = /--dataset\.root(?:=|\s+)(\S+)/;
   const RE_FIND_DSET_REPO = /--dataset\.repo_id(?:=|\s+)(\S+)/;
+  const RE_FIND_PUSH = /--dataset\.push_to_hub(?:=|\s+)(\S+)/;
 
-  // For guessing train-related defaults (output_dir / resume)
+  // Workdir (project dir)
+  const RE_FIND_CD = /(^|\n)\s*cd\s+(\S+)/m;
+  const RE_FIND_MKDIR = /(^|\n)\s*mkdir\s+-p\s+(\S+)/m;
+
+  // Train defaults
   const RE_FIND_POLICY_TYPE = /--policy\.type(?:=|\s+)(\S+)/;
   const RE_FIND_OUTPUT_DIR = /--output_dir(?:=|\s+)(\S+)/;
   const RE_FIND_JOB_NAME = /--job_name(?:=|\s+)(\S+)/;
-  // Fallback: infer base dir from paths like "outputs/train/<run>/checkpoints/..."
   const RE_FIND_TRAIN_BASE = /(outputs\/train\/[^\/\s]+)(?=\/checkpoints\/|\/|\s|$)/;
 
   // ---------- Helpers ----------
@@ -49,6 +90,7 @@
       return "";
     }
   }
+
   function safeSet(key, value) {
     try {
       localStorage.setItem(key, value);
@@ -56,6 +98,7 @@
       /* ignore */
     }
   }
+
   function safeDel(key) {
     try {
       localStorage.removeItem(key);
@@ -69,13 +112,10 @@
   }
 
   function collectCodeBlocks(root = document) {
-    // Works for standard MkDocs/Material output
     return qsa("pre > code", root);
   }
 
   function collectInlineCode(root = document) {
-    // Inline code like `outputs/train/.../train_config.json`
-    // (exclude code blocks + our own panel)
     return qsa("code", root).filter(
       (el) => !el.closest("pre") && !el.closest(".lerobot-port-panel")
     );
@@ -92,10 +132,8 @@
     return t;
   }
 
-  // Normalize "/path///" -> "/path"
   function normalizePath(p) {
     let s = stripQuotes(p);
-    // Remove trailing slashes (but keep "/" itself)
     if (s.length > 1) s = s.replace(/\/+$/g, "");
     return s;
   }
@@ -105,7 +143,7 @@
     if (!s) return "";
     if (s === "/") return "/";
     const idx = s.lastIndexOf("/");
-    if (idx <= 0) return ""; // no parent
+    if (idx <= 0) return "";
     return s.slice(0, idx);
   }
 
@@ -132,26 +170,26 @@
   function isEvalRepoId(repoId) {
     const s = normalizeRepoId(repoId);
     if (!s) return false;
-
-    // Explicit placeholder in templates
     if (s.includes("{{EVAL_")) return true;
-
-    // Accept both "owner/eval_xxx" and "eval_xxx" styles.
     const parts = s.split("/");
     const name = parts.length === 2 ? parts[1] : parts[0];
     if (!name) return false;
-
-    // Preferred style: eval_ prefix
     if (name.startsWith("eval_")) return true;
-
-    // Backward compatibility: *_eval suffix
     if (name.endsWith("_eval")) return true;
-
     return false;
   }
 
-  function joinDatasetDir(datasetRoot, datasetRepoId) {
-    const root = normalizePath(datasetRoot);
+  function isEvalDatasetPath(p) {
+    const s = normalizePath(p);
+    if (!s) return false;
+    if (s.includes("{{EVAL_")) return true;
+    const base = s.split("/").pop() || "";
+    return base.startsWith("eval_") || base.endsWith("_eval");
+  }
+
+  // projectDir + repoId(owner/name) -> dataset dir (the value for --dataset.root)
+  function joinDatasetDir(projectDir, datasetRepoId) {
+    const root = normalizePath(projectDir);
     const parsed = parseRepoId(datasetRepoId);
     if (!root || !parsed) return "";
     return `${root}/${parsed.owner}/${parsed.name}`;
@@ -182,6 +220,35 @@
     return `${d}/checkpoints/last/pretrained_model`;
   }
 
+  function truthy(s) {
+    const v = String(s || "").trim().toLowerCase();
+    if (!v) return false;
+    if (v === "true" || v === "1" || v === "yes" || v === "y") return true;
+    return false;
+  }
+
+  // Workspace -> Project Dir
+  // - If input already ends with "/lerobot", treat it as projectDir.
+  // - Else projectDir = <workspace>/lerobot
+  function deriveProjectDirFromWorkspaceInput(workspaceInput) {
+    const raw = normalizePath(workspaceInput);
+    if (!raw) return { workspaceDir: "", projectDir: "" };
+    if (raw.endsWith("/lerobot")) {
+      return { workspaceDir: parentDir(raw), projectDir: raw };
+    }
+    return { workspaceDir: raw, projectDir: `${raw}/lerobot` };
+  }
+
+  function extractWorkspaceDirFromAnyPath(p) {
+    const s = normalizePath(p);
+    if (!s) return "";
+    const marker = "/lerobot";
+    const idx = s.indexOf(marker);
+    if (idx === -1) return "";
+    const before = s.slice(0, idx);
+    return before || "/";
+  }
+
   function deriveTrainRunName(defaults, datasetSlug) {
     const base = String(defaults.trainRunName || "").trim();
     const oldSlug = String(defaults.datasetSlug || "").trim();
@@ -190,45 +257,58 @@
     const newSlug = String(datasetSlug || "").trim();
     if (!newSlug) return base;
 
-    // Prefer: replace the original datasetSlug segment in the original runName.
     if (base && oldSlug && base.includes(oldSlug)) {
       return base.split(oldSlug).join(newSlug);
     }
-
-    // Fallback: build from policy.type + datasetSlug.
     if (policyType) return `${policyType}_${newSlug}`;
-
-    // Last resort
     return base || newSlug;
   }
 
-  function deriveTrainOutputDir(defaults, trainRunName) {
+  function deriveTrainOutputDir(defaults, trainRunName, projectDir) {
     const baseDir = String(defaults.trainOutputDir || "").trim();
     const run = String(trainRunName || "").trim();
     if (!run) return baseDir;
 
-    // If we have a base dir, rewrite the run segment under outputs/train.
+    // Keep whatever style the document used.
     if (baseDir) {
-      // Replace "outputs/train/<something>" -> "outputs/train/<run>"
-      return baseDir.replace(/(outputs\/train\/)([^\/\s]+)/, `$1${run}`);
+      // outputs/train/<run>
+      if (baseDir.includes("outputs/train/")) {
+        return baseDir.replace(/(outputs\/train\/)([^\/\s]+)/, `$1${run}`);
+      }
+      // relative models/<run>
+      if (baseDir.startsWith("models/")) {
+        return baseDir.replace(/^(models\/)([^\/\s]+)/, `$1${run}`);
+      }
+      // absolute .../lerobot/models/<run>
+      if (baseDir.includes("/models/")) {
+        return baseDir.replace(/(\/models\/)([^\/\s]+)/, `$1${run}`);
+      }
     }
 
-    return `outputs/train/${run}`;
+    // Default (this page's convention)
+    // Use relative path because docs typically do: cd <project> then run commands.
+    return `models/${run}`;
   }
 
   // ---------- Defaults from doc ----------
   function guessDefaultsFromDoc(codeNodes) {
     let teleop = "";
     let robot = "";
-    let datasetRoot = "";
     let datasetRepoId = "";
+    let docDatasetRootValue = ""; // the actual value found in --dataset.root in the doc
+    let pushToHubRaw = "";
+
+    let docProjectDir = ""; // from cd / mkdir -p in doc if present
+    let workspaceDir = "";
 
     let policyType = "";
     let trainOutputDir = "";
     let trainRunName = "";
 
+    // Scan all code nodes
     for (const code of codeNodes) {
       const t = code.textContent || "";
+
       if (!teleop) {
         const m = t.match(RE_FIND_TELEOP);
         if (m && m[1]) teleop = m[1];
@@ -237,13 +317,33 @@
         const m = t.match(RE_FIND_ROBOT);
         if (m && m[1]) robot = m[1];
       }
-      if (!datasetRoot) {
-        const m = t.match(RE_FIND_DSET_ROOT);
-        if (m && m[1]) datasetRoot = m[1];
-      }
       if (!datasetRepoId) {
         const m = t.match(RE_FIND_DSET_REPO);
         if (m && m[1]) datasetRepoId = m[1];
+      }
+      if (!docDatasetRootValue) {
+        const m = t.match(RE_FIND_DSET_ROOT);
+        if (m && m[1]) docDatasetRootValue = m[1];
+      }
+      if (!pushToHubRaw) {
+        const m = t.match(RE_FIND_PUSH);
+        if (m && m[1]) pushToHubRaw = m[1];
+      }
+
+      // Try to find project dir from cd/mkdir
+      if (!docProjectDir) {
+        const mCd = t.match(RE_FIND_CD);
+        if (mCd && mCd[2]) {
+          const p = normalizePath(mCd[2]);
+          if (p.endsWith("/lerobot")) docProjectDir = p;
+        }
+      }
+      if (!docProjectDir) {
+        const mMk = t.match(RE_FIND_MKDIR);
+        if (mMk && mMk[2]) {
+          const p = normalizePath(mMk[2]);
+          if (p.endsWith("/lerobot")) docProjectDir = p;
+        }
       }
 
       // Train defaults
@@ -264,44 +364,60 @@
         if (m && m[1]) trainOutputDir = stripQuotes(m[1]);
       }
 
-      if (teleop && robot && datasetRoot && datasetRepoId && policyType && trainOutputDir && trainRunName) break;
+      // Early exit if we have the key pieces
+      if (teleop && robot && datasetRepoId && docDatasetRootValue && docProjectDir && policyType && trainOutputDir && trainRunName && pushToHubRaw) {
+        break;
+      }
     }
 
-    // Fallbacks (only used if doc doesn't contain them)
+    // Fallbacks
     if (!teleop) teleop = "/dev/ttyACM1";
     if (!robot) robot = "/dev/ttyACM0";
-    if (!datasetRoot)
-      datasetRoot = "/home/jetson/lerobot/datasets";
+
     if (!datasetRepoId) datasetRepoId = "local/1cam_test";
+    datasetRepoId = normalizeRepoId(datasetRepoId);
+
+    // Workspace inference
+    if (docProjectDir) {
+      workspaceDir = parentDir(docProjectDir);
+    }
+    if (!workspaceDir && docDatasetRootValue) {
+      workspaceDir = extractWorkspaceDirFromAnyPath(docDatasetRootValue);
+    }
+    if (!workspaceDir) workspaceDir = "/home/jetson";
+    workspaceDir = normalizePath(workspaceDir);
+
+    const { projectDir } = deriveProjectDirFromWorkspaceInput(workspaceDir);
+
+    const parsed = parseRepoId(datasetRepoId);
+    const datasetSlug = parsed?.name || "";
+    const datasetDir = joinDatasetDir(projectDir, datasetRepoId);
 
     if (!policyType) policyType = "act";
 
-    datasetRoot = normalizePath(datasetRoot);
-    datasetRepoId = normalizeRepoId(datasetRepoId);
-
-    const datasetDir = joinDatasetDir(datasetRoot, datasetRepoId);
-    const slug = parseRepoId(datasetRepoId)?.name || "";
-    const workspaceDir = parentDir(datasetRoot);
-
-    // Train output defaults (if doc didn't contain them)
-    if (!trainRunName && policyType && slug) {
-      trainRunName = `${policyType}_${slug}`;
+    // Train output defaults
+    if (!trainRunName && policyType && datasetSlug) {
+      trainRunName = `${policyType}_${datasetSlug}`;
     }
     if (!trainOutputDir && trainRunName) {
-      trainOutputDir = `outputs/train/${trainRunName}`;
+      trainOutputDir = `models/${trainRunName}`;
     }
+
+    const pushToHub = truthy(pushToHubRaw);
 
     return {
       teleop,
       robot,
-      datasetRoot,
-      datasetRepoId,
-      datasetDir,
-      datasetSlug: slug,
       workspaceDir,
+      projectDir,
+      datasetRepoId,
+      datasetSlug,
+      datasetDir,
+      docDatasetRootValue: normalizePath(docDatasetRootValue),
       policyType,
       trainRunName,
-      trainOutputDir
+      trainOutputDir,
+      pushToHub
     };
   }
 
@@ -309,7 +425,6 @@
   function renderPanel(panelEl, state, defaults, onChange) {
     if (panelEl.dataset.lerobotInitialized === "true") return;
     panelEl.dataset.lerobotInitialized = "true";
-
     panelEl.classList.add("lerobot-port-panel");
 
     const datalistId = "lerobot-port-suggestions";
@@ -351,19 +466,19 @@
         </datalist>
 
         <div class="lerobot-port-row">
-          <label class="lerobot-port-label" for="lerobot-dataset-root">dataset.root（datasets保存先）</label>
+          <label class="lerobot-port-label" for="lerobot-workspace-dir">workspace dir</label>
           <input
-            id="lerobot-dataset-root"
+            id="lerobot-workspace-dir"
             class="lerobot-port-input"
             type="text"
             inputmode="text"
-            placeholder="${escapeHtmlAttr(defaults.datasetRoot)}"
-            value="${escapeHtmlAttr(state.datasetRoot)}"
+            placeholder="${escapeHtmlAttr(defaults.workspaceDir)}"
+            value="${escapeHtmlAttr(state.workspaceDir)}"
           />
         </div>
 
         <div class="lerobot-port-row">
-          <label class="lerobot-port-label" for="lerobot-dataset-repo">dataset.repo_id（owner/name）</label>
+          <label class="lerobot-port-label" for="lerobot-dataset-repo">dataset.repo_id（user/id）</label>
           <input
             id="lerobot-dataset-repo"
             class="lerobot-port-input"
@@ -374,15 +489,21 @@
           />
         </div>
 
-        <div class="lerobot-port-row lerobot-port-row--derived">
-          <div class="lerobot-port-label">workspace dir（dataset.rootの親）</div>
-          <div class="lerobot-port-derived">
-            <code id="lerobot-workspace-dir"></code>
+        <div class="lerobot-port-row">
+          <label class="lerobot-port-label" for="lerobot-push-to-hub">Hugging Faceにアップ</label>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <input id="lerobot-push-to-hub" type="checkbox" ${state.pushToHub ? "checked" : ""} />
+            <span style="opacity:.85;">dataset.push_to_hub=${state.pushToHub ? "true" : "false"}</span>
           </div>
         </div>
 
         <div class="lerobot-port-row lerobot-port-row--derived">
-          <div class="lerobot-port-label">dataset dir（root + repo）</div>
+          <div class="lerobot-port-label">作業フォルダ（project）</div>
+          <div class="lerobot-port-derived"><code id="lerobot-project-dir"></code></div>
+        </div>
+
+        <div class="lerobot-port-row lerobot-port-row--derived">
+          <div class="lerobot-port-label">dataset.root（実体）</div>
           <div class="lerobot-port-derived">
             <code id="lerobot-dataset-dir"></code>
             <div id="lerobot-repoid-warning" class="lerobot-port-warning" style="display:none;"></div>
@@ -390,123 +511,91 @@
         </div>
 
         <div class="lerobot-port-row lerobot-port-row--derived">
-          <div class="lerobot-port-label">eval dataset（推論用）</div>
-          <div class="lerobot-port-derived">
-            <code id="lerobot-eval-repo-id"></code>
-            <br />
-            <code id="lerobot-eval-dataset-dir"></code>
-          </div>
+          <div class="lerobot-port-label">model dir</div>
+          <div class="lerobot-port-derived"><code id="lerobot-model-dir"></code></div>
         </div>
 
         <div class="lerobot-port-actions">
           <button type="button" class="lerobot-port-btn" data-action="reset">初期値に戻す</button>
           <button type="button" class="lerobot-port-btn" data-action="clear">保存を消す</button>
         </div>
-
-        <div class="lerobot-port-hint">
-          入力すると、このページ内のコードブロックに含まれる
-          <code>--teleop.port</code> / <code>--robot.port</code> /
-          <code>--dataset.root</code> / <code>--dataset.repo_id</code> /
-          <code>dataset.path=</code> /
-          <code>rm -rf ...</code>（dataset.root配下） /
-          <code>cd ...</code>（作業フォルダ用）
-          / <code>--output_dir</code> / <code>--job_name</code> /
-          <code>outputs/train/.../</code>（学習/推論のパス）
-          を一括で差し替えます（localStorageに保存）。
-          <br />
-          さらに、<code>{{TELEOP_PORT}}</code>, <code>{{ROBOT_PORT}}</code>,
-          <code>{{DATASET_ROOT}}</code>, <code>{{DATASET_REPO_ID}}</code>,
-          <code>{{DATASET_DIR}}</code>, <code>{{DATASET_SLUG}}</code>,
-          <code>{{WORKSPACE_DIR}}</code>,
-          <code>{{TRAIN_RUN_NAME}}</code>, <code>{{TRAIN_OUTPUT_DIR}}</code>,
-          <code>{{TRAIN_CONFIG_PATH}}</code>, <code>{{POLICY_PATH}}</code>,
-          <code>{{EVAL_DATASET_REPO_ID}}</code>, <code>{{EVAL_DATASET_DIR}}</code>,
-          <code>{{EVAL_DATASET_SLUG}}</code> のプレースホルダも置換します。
-        </div>
       </form>
     `;
 
     const teleopInput = panelEl.querySelector("#lerobot-teleop-port");
     const robotInput = panelEl.querySelector("#lerobot-robot-port");
-    const dsRootInput = panelEl.querySelector("#lerobot-dataset-root");
-    const dsRepoInput = panelEl.querySelector("#lerobot-dataset-repo");
+    const wsInput = panelEl.querySelector("#lerobot-workspace-dir");
+    const repoInput = panelEl.querySelector("#lerobot-dataset-repo");
+    const pushInput = panelEl.querySelector("#lerobot-push-to-hub");
 
-    const wsDirEl = panelEl.querySelector("#lerobot-workspace-dir");
-    const dsDirEl = panelEl.querySelector("#lerobot-dataset-dir");
+    const projectEl = panelEl.querySelector("#lerobot-project-dir");
+    const datasetEl = panelEl.querySelector("#lerobot-dataset-dir");
+    const modelEl = panelEl.querySelector("#lerobot-model-dir");
     const warnEl = panelEl.querySelector("#lerobot-repoid-warning");
-    const evalRepoEl = panelEl.querySelector("#lerobot-eval-repo-id");
-    const evalDirEl = panelEl.querySelector("#lerobot-eval-dataset-dir");
 
     function refreshDerived() {
-      const root = normalizePath(dsRootInput.value || defaults.datasetRoot);
-      const repo = normalizeRepoId(dsRepoInput.value || defaults.datasetRepoId);
+      const repo = normalizeRepoId(repoInput.value || defaults.datasetRepoId);
+      const wsRaw = normalizePath(wsInput.value || defaults.workspaceDir);
+      const { workspaceDir, projectDir } = deriveProjectDirFromWorkspaceInput(wsRaw);
+
       const parsed = parseRepoId(repo);
+      const datasetDir = joinDatasetDir(projectDir, repo);
 
-      const workspaceDir = parentDir(root);
-      wsDirEl.textContent = workspaceDir || "(parent dir が取れません)";
+      projectEl.textContent = projectDir || "";
+      datasetEl.textContent = parsed ? datasetDir : "(repo_id が不正です)";
 
-      if (!root) {
-        dsDirEl.textContent = "";
-      } else if (parsed) {
-        dsDirEl.textContent = `${root}/${parsed.owner}/${parsed.name}`;
-      } else {
-        dsDirEl.textContent = "(repo_id が不正です)";
-      }
-
-      // Eval dataset (for inference): <owner>/eval_<slug>
-      if (evalRepoEl && evalDirEl) {
-        if (parsed) {
-          const evalSlug = evalSlugFromSlug(parsed.name);
-          const evalRepoId = `${parsed.owner}/${evalSlug}`;
-          evalRepoEl.textContent = evalRepoId;
-          evalDirEl.textContent = root ? `${root}/${parsed.owner}/${evalSlug}` : "";
-        } else {
-          evalRepoEl.textContent = "";
-          evalDirEl.textContent = "";
-        }
-      }
+      const slug = parsed?.name || "";
+      const runName = deriveTrainRunName(defaults, slug);
+      modelEl.textContent = projectDir && runName ? `${projectDir}/models/${runName}` : "";
 
       if (!parsed) {
         warnEl.style.display = "block";
-        warnEl.textContent = "repo_id は owner/name 形式にしてください（例: akira/1cam_test）";
+        warnEl.textContent = "repo_id は user/id 形式にしてください（例: local/1cam_test）";
       } else {
         warnEl.style.display = "none";
         warnEl.textContent = "";
+      }
+
+      // Keep workspace normalized in the UI if user typed /.../lerobot
+      if (wsRaw.endsWith("/lerobot") && workspaceDir) {
+        wsInput.value = workspaceDir;
       }
     }
 
     const fire = () => {
       const teleop = (teleopInput.value || "").trim() || defaults.teleop;
       const robot = (robotInput.value || "").trim() || defaults.robot;
-      const datasetRoot = normalizePath(
-        (dsRootInput.value || "").trim() || defaults.datasetRoot
-      );
-      const datasetRepoId = normalizeRepoId(
-        (dsRepoInput.value || "").trim() || defaults.datasetRepoId
-      );
+      const wsRaw = normalizePath((wsInput.value || "").trim() || defaults.workspaceDir);
+      const repo = normalizeRepoId((repoInput.value || "").trim() || defaults.datasetRepoId);
+      const pushToHub = !!pushInput.checked;
+
+      const { workspaceDir } = deriveProjectDirFromWorkspaceInput(wsRaw);
 
       refreshDerived();
-      onChange({ teleop, robot, datasetRoot, datasetRepoId });
+      onChange({ teleop, robot, workspaceDir, datasetRepoId: repo, pushToHub });
     };
 
     teleopInput.addEventListener("input", fire);
     robotInput.addEventListener("input", fire);
-    dsRootInput.addEventListener("input", fire);
-    dsRepoInput.addEventListener("input", fire);
+    wsInput.addEventListener("input", fire);
+    repoInput.addEventListener("input", fire);
+    pushInput.addEventListener("change", fire);
 
     panelEl.querySelector('[data-action="reset"]').addEventListener("click", () => {
       teleopInput.value = defaults.teleop;
       robotInput.value = defaults.robot;
-      dsRootInput.value = defaults.datasetRoot;
-      dsRepoInput.value = defaults.datasetRepoId;
+      wsInput.value = defaults.workspaceDir;
+      repoInput.value = defaults.datasetRepoId;
+      pushInput.checked = !!defaults.pushToHub;
       fire();
     });
 
     panelEl.querySelector('[data-action="clear"]').addEventListener("click", () => {
       safeDel(LS_KEY_TELEOP);
       safeDel(LS_KEY_ROBOT);
-      safeDel(LS_KEY_DATASET_ROOT);
+      safeDel(LS_KEY_WORKSPACE);
       safeDel(LS_KEY_DATASET_REPO);
+      safeDel(LS_KEY_PUSH_TO_HUB);
     });
 
     refreshDerived();
@@ -514,18 +603,20 @@
 
   // ---------- Apply replacements ----------
   function applyToCodeNodes(codeNodes, cfg, defaults) {
-    const parsedRepo = parseRepoId(cfg.datasetRepoId);
-    const datasetDir = joinDatasetDir(cfg.datasetRoot, cfg.datasetRepoId);
-    const datasetSlug = parsedRepo?.name || "";
-    const evalDatasetSlug = datasetSlug ? evalSlugFromSlug(datasetSlug) : "";
-    const evalDatasetRepoId =
-      parsedRepo && evalDatasetSlug ? `${parsedRepo.owner}/${evalDatasetSlug}` : "";
-    const evalDatasetDir =
-      evalDatasetRepoId ? joinDatasetDir(cfg.datasetRoot, evalDatasetRepoId) : "";
-    const workspaceDir = parentDir(cfg.datasetRoot);
+    const repo = parseRepoId(cfg.datasetRepoId);
+    const owner = repo?.owner || "";
+    const slug = repo?.name || "";
 
-    const trainRunName = deriveTrainRunName(defaults, datasetSlug);
-    const trainOutputDir = deriveTrainOutputDir(defaults, trainRunName);
+    const { projectDir } = deriveProjectDirFromWorkspaceInput(cfg.workspaceDir);
+    const datasetRoot = projectDir; // placeholder meaning (root + repo -> dataset dir)
+    const datasetDir = joinDatasetDir(projectDir, cfg.datasetRepoId);
+
+    const evalDatasetSlug = slug ? evalSlugFromSlug(slug) : "";
+    const evalDatasetRepoId = owner && evalDatasetSlug ? `${owner}/${evalDatasetSlug}` : "";
+    const evalDatasetDir = evalDatasetRepoId ? joinDatasetDir(projectDir, evalDatasetRepoId) : "";
+
+    const trainRunName = deriveTrainRunName(defaults, slug);
+    const trainOutputDir = deriveTrainOutputDir(defaults, trainRunName, projectDir);
     const trainConfigPath = buildTrainConfigPath(trainOutputDir);
     const policyPath = buildPolicyPath(trainOutputDir);
 
@@ -535,64 +626,89 @@
       }
       let out = code.dataset.lerobotTemplate;
 
-      // 1) Placeholder replacement (recommended)
+      // --- Placeholder replacement ---
       out = replaceAllString(out, "{{TELEOP_PORT}}", cfg.teleop);
       out = replaceAllString(out, "{{ROBOT_PORT}}", cfg.robot);
-      out = replaceAllString(out, "{{DATASET_ROOT}}", cfg.datasetRoot);
-      out = replaceAllString(out, "{{DATASET_REPO_ID}}", cfg.datasetRepoId);
-      out = replaceAllString(out, "{{DATASET_DIR}}", datasetDir);
-      out = replaceAllString(out, "{{DATASET_SLUG}}", datasetSlug);
-      out = replaceAllString(out, "{{WORKSPACE_DIR}}", workspaceDir);
+      out = replaceAllString(out, "{{WORKSPACE_DIR}}", cfg.workspaceDir);
 
-      // Train / resume paths
+      out = replaceAllString(out, "{{DATASET_REPO_ID}}", cfg.datasetRepoId);
+      out = replaceAllString(out, "{{DATASET_SLUG}}", slug);
+
+      // NOTE: DATASET_ROOT here means the root used in "root + repo" (project dir).
+      out = replaceAllString(out, "{{DATASET_ROOT}}", datasetRoot);
+      out = replaceAllString(out, "{{DATASET_DIR}}", datasetDir);
+
       out = replaceAllString(out, "{{TRAIN_RUN_NAME}}", trainRunName);
       out = replaceAllString(out, "{{TRAIN_OUTPUT_DIR}}", trainOutputDir);
       out = replaceAllString(out, "{{TRAIN_CONFIG_PATH}}", trainConfigPath);
       out = replaceAllString(out, "{{POLICY_PATH}}", policyPath);
 
-      // Eval dataset (for inference)
       out = replaceAllString(out, "{{EVAL_DATASET_REPO_ID}}", evalDatasetRepoId);
       out = replaceAllString(out, "{{EVAL_DATASET_DIR}}", evalDatasetDir);
       out = replaceAllString(out, "{{EVAL_DATASET_SLUG}}", evalDatasetSlug);
 
-      // 2) Option replacement (works even without placeholders)
+      // --- Option replacement ---
       out = out.replace(RE_TELEOP_EQ, `$1${cfg.teleop}`);
       out = out.replace(RE_TELEOP_SP, `$1${cfg.teleop}`);
       out = out.replace(RE_ROBOT_EQ, `$1${cfg.robot}`);
       out = out.replace(RE_ROBOT_SP, `$1${cfg.robot}`);
 
-      out = out.replace(RE_DSET_ROOT_EQ, `$1${cfg.datasetRoot}`);
-      out = out.replace(RE_DSET_ROOT_SP, `$1${cfg.datasetRoot}`);
+      // push_to_hub toggle
+      const pushStr = cfg.pushToHub ? "true" : "false";
+      out = out.replace(RE_PUSH_EQ, `$1${pushStr}`);
+      out = out.replace(RE_PUSH_SP, `$1${pushStr}`);
 
-      // dataset.repo_id:
-      // - normal blocks -> cfg.datasetRepoId
-      // - eval blocks (repo name starts with "eval_" or ends with "_eval") -> <owner>/eval_<slug>
+      // dataset.repo_id (normal/eval)
       const chooseRepoId = (currentValue) => {
         if (isEvalRepoId(currentValue)) {
           return evalDatasetRepoId || cfg.datasetRepoId;
         }
         return cfg.datasetRepoId;
       };
+      out = out.replace(RE_DSET_REPO_EQ, (m, prefix, value) => `${prefix}${chooseRepoId(value)}`);
+      out = out.replace(RE_DSET_REPO_SP, (m, prefix, value) => `${prefix}${chooseRepoId(value)}`);
 
-      out = out.replace(RE_DSET_REPO_EQ, (m, prefix, value) => {
-        return `${prefix}${chooseRepoId(value)}`;
-      });
-      out = out.replace(RE_DSET_REPO_SP, (m, prefix, value) => {
-        return `${prefix}${chooseRepoId(value)}`;
-      });
+      // dataset.root (always datasetDir; eval block -> evalDatasetDir)
+      const chooseDatasetRootValue = (currentValue) => {
+        if (isEvalDatasetPath(currentValue) || isEvalRepoId(currentValue)) {
+          return evalDatasetDir || datasetDir || datasetRoot;
+        }
+        return datasetDir || datasetRoot;
+      };
+      out = out.replace(RE_DSET_ROOT_EQ, (m, prefix, value) => `${prefix}${chooseDatasetRootValue(value)}`);
+      out = out.replace(RE_DSET_ROOT_SP, (m, prefix, value) => `${prefix}${chooseDatasetRootValue(value)}`);
 
+      // Hydra dataset.path
       if (datasetDir) {
         out = out.replace(RE_DATASET_PATH_EQ, `$1${datasetDir}`);
         out = out.replace(RE_DATASET_PATH_SP, `$1${datasetDir}`);
       }
 
-      // 3) Replace full dataset dir occurrences from the original doc (e.g. rm -rf ...)
-      if (defaults.datasetDir && datasetDir) {
-        out = replaceAllString(out, defaults.datasetDir, datasetDir);
+      // Train options
+      if (trainRunName) {
+        out = out.replace(RE_JOB_NAME_EQ, `$1${trainRunName}`);
+        out = out.replace(RE_JOB_NAME_SP, `$1${trainRunName}`);
+      }
+      if (trainOutputDir) {
+        out = out.replace(RE_OUTPUT_DIR_EQ, `$1${trainOutputDir}`);
+        out = out.replace(RE_OUTPUT_DIR_SP, `$1${trainOutputDir}`);
+      }
+      if (trainConfigPath) {
+        out = out.replace(RE_CONFIG_PATH_EQ, `$1${trainConfigPath}`);
+        out = out.replace(RE_CONFIG_PATH_SP, `$1${trainConfigPath}`);
+      }
+      if (policyPath) {
+        out = out.replace(RE_POLICY_PATH_EQ, `$1${policyPath}`);
+        out = out.replace(RE_POLICY_PATH_SP, `$1${policyPath}`);
       }
 
-      // 3.5) Train output dir / run name replacements (学習(新規/継続)・推論のパス)
-      // - Update config_path / policy.path / inline path mentions too.
+      // --- Path replacements in text (rm -rf / inline paths) ---
+      // Replace any exact matches from the original doc.
+      if (defaults.docDatasetRootValue && datasetDir) {
+        out = replaceAllString(out, defaults.docDatasetRootValue, datasetDir);
+      }
+
+      // Replace old train output mentions
       if (defaults.trainOutputDir && trainOutputDir) {
         out = replaceAllString(out, defaults.trainOutputDir, trainOutputDir);
       }
@@ -600,51 +716,60 @@
         out = replaceAllString(out, defaults.trainRunName, trainRunName);
       }
 
-      // 4) More targeted rm -rf rewrite (only if it points under the original dataset.root)
-      if (defaults.datasetRoot && datasetDir) {
-        const originalRoot = normalizePath(defaults.datasetRoot);
-        out = out.replace(RE_RM_RF, (m, prefix, path) => {
-          const p = normalizePath(path);
-          if (p.startsWith(originalRoot + "/")) {
-            const base = p.split("/").pop() || "";
-            const isEval = base.startsWith("eval_") || base.endsWith("_eval");
-
-            // If the template path is an eval dataset, keep it as "eval_..."
-            if (isEval && evalDatasetDir) return prefix + evalDatasetDir;
-
-            return prefix + datasetDir;
-          }
-          return m;
-        });
+      // Replace outputs/train/<run> and models/<run> occurrences if present.
+      if (defaults.trainRunName && trainRunName) {
+        out = out
+          .replaceAll(`outputs/train/${defaults.trainRunName}`, `outputs/train/${trainRunName}`)
+          .replaceAll(`models/${defaults.trainRunName}`, `models/${trainRunName}`);
       }
 
-      // 5) cd <path> rewrite
-      // - If doc has "cd <dataset.root>", we rewrite it to workspaceDir (parent of dataset.root),
-      //   because "作業フォルダ" is usually the project root.
-      // - If doc has "cd <workspaceDir>", we keep it in sync.
-      // - If doc has "cd <datasetDir>", we keep it in sync too.
-      const originalRoot = defaults.datasetRoot ? normalizePath(defaults.datasetRoot) : "";
-      const originalWs = defaults.workspaceDir ? normalizePath(defaults.workspaceDir) : parentDir(originalRoot);
-      const originalDir = defaults.datasetDir ? normalizePath(defaults.datasetDir) : "";
+      // rm -rf rewrite (only if it seems to target this dataset)
+      out = out.replace(RE_RM_RF, (m, prefix, path) => {
+        const p = normalizePath(path);
+        if (!p) return m;
 
+        // Eval dataset
+        if (evalDatasetDir && owner && evalDatasetSlug) {
+          const key = `/${owner}/${evalDatasetSlug}`;
+          if (p.endsWith(key) || p.includes(key)) {
+            return `${prefix}${evalDatasetDir}`;
+          }
+        }
+
+        // Normal dataset
+        if (datasetDir && owner && slug) {
+          const key = `/${owner}/${slug}`;
+          if (p.endsWith(key) || p.includes(key)) {
+            return `${prefix}${datasetDir}`;
+          }
+        }
+
+        // If it was exactly the doc's dataset.root value, rewrite it.
+        if (defaults.docDatasetRootValue && p === normalizePath(defaults.docDatasetRootValue) && datasetDir) {
+          return `${prefix}${datasetDir}`;
+        }
+
+        return m;
+      });
+
+      // cd / mkdir -p rewrite (work folder)
       out = out.replace(RE_CD_LINE, (m, prefix, path, suffix) => {
         const p = normalizePath(path);
+        if (!p) return m;
 
-        // dataset dir
-        if (originalDir && datasetDir && p === originalDir) {
-          return `${prefix}${datasetDir}${suffix}`;
+        // If the doc had cd <some>/lerobot, keep it synced.
+        if (p.endsWith("/lerobot")) {
+          return `${prefix}${projectDir}${suffix}`;
         }
+        return m;
+      });
 
-        // workspace dir (preferred)
-        if (originalWs && workspaceDir && p === originalWs) {
-          return `${prefix}${workspaceDir}${suffix}`;
+      out = out.replace(RE_MKDIR_P, (m, prefix, path, suffix) => {
+        const p = normalizePath(path);
+        if (!p) return m;
+        if (p.endsWith("/lerobot")) {
+          return `${prefix}${projectDir}${suffix}`;
         }
-
-        // dataset root written in doc -> rewrite to workspace dir
-        if (originalRoot && workspaceDir && p === originalRoot) {
-          return `${prefix}${workspaceDir}${suffix}`;
-        }
-
         return m;
       });
 
@@ -657,32 +782,48 @@
     const panel = root.querySelector("[data-lerobot-port-panel]");
     if (!panel) return;
 
-    // Limit the scope to the current article/page to avoid touching navigation etc.
     const scope = panel.closest("article") || panel.closest("main") || root;
-
     const codeBlocks = collectCodeBlocks(scope);
     const inlineCodes = collectInlineCode(scope);
     const codeNodes = [...codeBlocks, ...inlineCodes];
 
     const defaults = guessDefaultsFromDoc(codeNodes);
 
+    // Load state
+    const savedTeleop = safeGet(LS_KEY_TELEOP);
+    const savedRobot = safeGet(LS_KEY_ROBOT);
+    const savedRepo = safeGet(LS_KEY_DATASET_REPO);
+    const savedWs = safeGet(LS_KEY_WORKSPACE);
+    const savedPush = safeGet(LS_KEY_PUSH_TO_HUB);
+
+    // Migration: if workspace not stored, try legacy dataset_root to infer.
+    let workspaceDir = normalizePath(savedWs || "");
+    if (!workspaceDir) {
+      const legacy = normalizePath(safeGet(LS_KEY_LEGACY_DATASET_ROOT) || "");
+      if (legacy) {
+        // If legacy looks like /.../lerobot/datasets, infer workspace from it.
+        const ws = extractWorkspaceDirFromAnyPath(legacy) || parentDir(legacy);
+        workspaceDir = ws;
+      }
+    }
+    if (!workspaceDir) workspaceDir = defaults.workspaceDir;
+
     const state = {
-      teleop: safeGet(LS_KEY_TELEOP) || defaults.teleop,
-      robot: safeGet(LS_KEY_ROBOT) || defaults.robot,
-      datasetRoot: normalizePath(
-        safeGet(LS_KEY_DATASET_ROOT) || defaults.datasetRoot
-      ),
-      datasetRepoId: normalizeRepoId(
-        safeGet(LS_KEY_DATASET_REPO) || defaults.datasetRepoId
-      )
+      teleop: (savedTeleop || defaults.teleop).trim(),
+      robot: (savedRobot || defaults.robot).trim(),
+      workspaceDir,
+      datasetRepoId: normalizeRepoId(savedRepo || defaults.datasetRepoId),
+      pushToHub: savedPush ? truthy(savedPush) : !!defaults.pushToHub
     };
 
-    renderPanel(panel, state, defaults, ({ teleop, robot, datasetRoot, datasetRepoId }) => {
+    renderPanel(panel, state, defaults, ({ teleop, robot, workspaceDir, datasetRepoId, pushToHub }) => {
       safeSet(LS_KEY_TELEOP, teleop);
       safeSet(LS_KEY_ROBOT, robot);
-      safeSet(LS_KEY_DATASET_ROOT, datasetRoot);
+      safeSet(LS_KEY_WORKSPACE, workspaceDir);
       safeSet(LS_KEY_DATASET_REPO, datasetRepoId);
-      applyToCodeNodes(codeNodes, { teleop, robot, datasetRoot, datasetRepoId }, defaults);
+      safeSet(LS_KEY_PUSH_TO_HUB, pushToHub ? "true" : "false");
+
+      applyToCodeNodes(codeNodes, { teleop, robot, workspaceDir, datasetRepoId, pushToHub }, defaults);
     });
 
     // Initial apply

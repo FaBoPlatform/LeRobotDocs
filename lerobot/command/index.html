@@ -1724,19 +1724,18 @@ Camera #1:
 
 <h2 id="_3">作業フォルダの作成・移動</h2>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>/home/jetson/lerobot/
-<span class="nb">cd</span><span class="w"> </span>/home/jetson/lerobot/
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="o">{{</span><span class="w"> </span>DATASET_ROOT<span class="w"> </span><span class="o">}}</span>/
+<span class="nb">cd</span><span class="w"> </span><span class="o">{{</span><span class="w"> </span>DATASET_ROOT<span class="w"> </span><span class="o">}}</span>/
 </code></pre></div></td></tr></table></div>
-<p>に移動されています。</p>
 <h2 id="leader">キャリブレーション(Leader)</h2>
 <p>SO101</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
-<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>lerobot-calibrate \
-  --teleop.type=so101_leader \
-  --teleop.port=/dev/ttyACM1 \
-  --teleop.id=my_leader_arm
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>lerobot-calibrate<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--teleop.type<span class="o">=</span>so101_leader<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--teleop.port<span class="o">={{</span><span class="w"> </span>TELEOP_PORT<span class="w"> </span><span class="o">}}</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--teleop.id<span class="o">=</span>my_leader_arm
 </code></pre></div></td></tr></table></div>
 <p>キャリブレーション結果は、<code>~/.cache/huggingface/lerobot/calibration/teleoperators/so_leader/my_leader_arm.json</code>に保存されます。</p>
 <h2 id="follower">キャリブレーション(Follower)</h2>
@@ -1744,10 +1743,10 @@ Camera #1:
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
-<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>lerobot-calibrate \
-  --robot.type=so101_follower \
-  --robot.port=/dev/ttyACM0 \
-  --robot.id=my_follower_arm
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>lerobot-calibrate<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--robot.type<span class="o">=</span>so101_follower<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--robot.port<span class="o">={{</span><span class="w"> </span>ROBOT_PORT<span class="w"> </span><span class="o">}}</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--robot.id<span class="o">=</span>my_follower_arm
 </code></pre></div></td></tr></table></div>
 <p>キャリブレーション結果は、<code>~/.cache/huggingface/lerobot/calibration/robots/so_follower/my_follower_arm.json</code>に保存されます。</p>
 <h2 id="teleportation">Teleportation</h2>
@@ -1757,20 +1756,20 @@ Camera #1:
 <span class="normal">4</span>
 <span class="normal">5</span>
 <span class="normal">6</span>
-<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code>lerobot-teleoperate   \
-  --robot.type=so101_follower   \
-  --robot.port=/dev/ttyACM1   \
-  --robot.id=my_follower_arm   \
-  --teleop.type=so101_leader   \
-  --teleop.port=/dev/ttyACM0   \
-  --teleop.id=my_leader_arm
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code>lerobot-teleoperate<span class="w">   </span><span class="se">\</span>
+<span class="w">  </span>--robot.type<span class="o">=</span>so101_follower<span class="w">   </span><span class="se">\</span>
+<span class="w">  </span>--robot.port<span class="o">={{</span><span class="w"> </span>ROBOT_PORT<span class="w"> </span><span class="o">}}</span><span class="w">   </span><span class="se">\</span>
+<span class="w">  </span>--robot.id<span class="o">=</span>my_follower_arm<span class="w">   </span><span class="se">\</span>
+<span class="w">  </span>--teleop.type<span class="o">=</span>so101_leader<span class="w">   </span><span class="se">\</span>
+<span class="w">  </span>--teleop.port<span class="o">={{</span><span class="w"> </span>TELEOP_PORT<span class="w"> </span><span class="o">}}</span><span class="w">   </span><span class="se">\</span>
+<span class="w">  </span>--teleop.id<span class="o">=</span>my_leader_arm
 </code></pre></div></td></tr></table></div>
 <h2 id="_4">データセット収集(新規)</h2>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
 <p>データセットを新規で収集する場合に、すでに同じ名前のデータセットが存在しているとエラーが出ますので、先にフォルダ毎削除します。</p>
 </div>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>rm -rf /home/jetson/lerobot/datasets/local/1cam_test
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>rm<span class="w"> </span>-rf<span class="w"> </span><span class="o">{{</span><span class="w"> </span>DATASET_DIR<span class="w"> </span><span class="o">}}</span>
 </code></pre></div></td></tr></table></div>
 <div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Jetson</label><label for="__tabbed_2_2">MacBook（conda）</label></div>
 <div class="tabbed-content">
@@ -1792,13 +1791,13 @@ Camera #1:
 <span class="normal">15</span>
 <span class="normal">16</span></pre></div></td><td class="code"><div><pre><span></span><code>lerobot-record<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--robot.type<span class="o">=</span>so101_follower<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--robot.port<span class="o">=</span>/dev/tty.usbmodem58FA1026181<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--robot.port<span class="o">={{</span><span class="w"> </span>ROBOT_PORT<span class="w"> </span><span class="o">}}</span><span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--robot.id<span class="o">=</span>my_follower_arm<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--teleop.type<span class="o">=</span>so101_leader<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--teleop.port<span class="o">=</span>/dev/tty.usbmodem58FA1026371<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--teleop.port<span class="o">={{</span><span class="w"> </span>TELEOP_PORT<span class="w"> </span><span class="o">}}</span><span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--teleop.id<span class="o">=</span>my_leader_arm<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--dataset.repo_id<span class="o">=</span>local/1cam_test<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--dataset.root<span class="o">=</span>/home/jetson/lerobot/datasets/local/1cam_test<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--dataset.repo_id<span class="o">={{</span><span class="w"> </span>DATASET_REPO_ID<span class="w"> </span><span class="o">}}</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--dataset.root<span class="o">={{</span><span class="w"> </span>DATASET_DIR<span class="w"> </span><span class="o">}}</span><span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--dataset.push_to_hub<span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--dataset.single_task<span class="o">=</span><span class="s2">&quot;Pick up the red cube&quot;</span><span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--robot.cameras<span class="o">=</span><span class="s2">&quot;{ front: {type: opencv, index_or_path: 0, width: 640, height: 480, fps: 30, fourcc: &#39;MJPG&#39;}}&quot;</span><span class="w"> </span><span class="se">\</span>
@@ -1827,13 +1826,13 @@ Camera #1:
 <span class="normal">16</span>
 <span class="normal">17</span></pre></div></td><td class="code"><div><pre><span></span><code>lerobot-record<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--robot.type<span class="o">=</span>so101_follower<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--robot.port<span class="o">=</span>/dev/tty.usbmodem58FA1026181<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--robot.port<span class="o">={{</span><span class="w"> </span>ROBOT_PORT<span class="w"> </span><span class="o">}}</span><span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--robot.id<span class="o">=</span>my_follower_arm<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--teleop.type<span class="o">=</span>so101_leader<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--teleop.port<span class="o">=</span>/dev/tty.usbmodem58FA1026371<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--teleop.port<span class="o">={{</span><span class="w"> </span>TELEOP_PORT<span class="w"> </span><span class="o">}}</span><span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--teleop.id<span class="o">=</span>my_leader_arm<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--dataset.repo_id<span class="o">=</span>local/1cam_test<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--dataset.root<span class="o">=</span>/home/jetson/lerobot/datasets/local/1cam_test<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--dataset.repo_id<span class="o">={{</span><span class="w"> </span>DATASET_REPO_ID<span class="w"> </span><span class="o">}}</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--dataset.root<span class="o">={{</span><span class="w"> </span>DATASET_DIR<span class="w"> </span><span class="o">}}</span><span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--dataset.push_to_hub<span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--dataset.single_task<span class="o">=</span><span class="s2">&quot;Pick up the red cube&quot;</span><span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--robot.cameras<span class="o">=</span><span class="s2">&quot;{ front: {type: opencv, index_or_path: 0, width: 640, height: 480, fps: 30, fourcc: &#39;MJPG&#39;}}&quot;</span><span class="w"> </span><span class="se">\</span>
@@ -1868,24 +1867,24 @@ Camera #1:
 <span class="normal">15</span>
 <span class="normal">16</span>
 <span class="normal">17</span>
-<span class="normal">18</span></pre></div></td><td class="code"><div><pre><span></span><code>lerobot-record \
-    --robot.type=so101_follower \
-    --robot.port=/dev/tty.usbmodem58FA1026181 \
-    --robot.id=my_follower_arm \
-    --teleop.type=so101_leader \
-    --teleop.port=/dev/tty.usbmodem58FA1026371 \
-    --teleop.id=my_leader_arm \
-    --dataset.repo_id=local/1cam_test \
-    --dataset.root=/home/jetson/lerobot/datasets/local/1cam_test \
-    --dataset.push_to_hub=false \
-    --dataset.single_task=&quot;Pick up the red cube&quot; \
-    --robot.cameras=&quot;{ front: {type: opencv, index_or_path: 0, width: 640, height: 480, fps: 30, fourcc: &#39;MJPG&#39;}}&quot; \
-    --dataset.vcodec=h264 \
-    --display_data=true \
-    --dataset.episode_time_s=10 \
-    --dataset.reset_time_s=5 \
-    --dataset.num_episodes=5 \
-    --resume=true
+<span class="normal">18</span></pre></div></td><td class="code"><div><pre><span></span><code>lerobot-record<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--robot.type<span class="o">=</span>so101_follower<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--robot.port<span class="o">={{</span><span class="w"> </span>ROBOT_PORT<span class="w"> </span><span class="o">}}</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--robot.id<span class="o">=</span>my_follower_arm<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--teleop.type<span class="o">=</span>so101_leader<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--teleop.port<span class="o">={{</span><span class="w"> </span>TELEOP_PORT<span class="w"> </span><span class="o">}}</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--teleop.id<span class="o">=</span>my_leader_arm<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--dataset.repo_id<span class="o">={{</span><span class="w"> </span>DATASET_REPO_ID<span class="w"> </span><span class="o">}}</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--dataset.root<span class="o">={{</span><span class="w"> </span>DATASET_DIR<span class="w"> </span><span class="o">}}</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--dataset.push_to_hub<span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--dataset.single_task<span class="o">=</span><span class="s2">&quot;Pick up the red cube&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--robot.cameras<span class="o">=</span><span class="s2">&quot;{ front: {type: opencv, index_or_path: 0, width: 640, height: 480, fps: 30, fourcc: &#39;MJPG&#39;}}&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--dataset.vcodec<span class="o">=</span>h264<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--display_data<span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--dataset.episode_time_s<span class="o">=</span><span class="m">10</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--dataset.reset_time_s<span class="o">=</span><span class="m">5</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--dataset.num_episodes<span class="o">=</span><span class="m">5</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--resume<span class="o">=</span><span class="nb">true</span>
 </code></pre></div></td></tr></table></div>
 <h2 id="_6">学習（新規）</h2>
 <div class="admonition info">
@@ -1917,11 +1916,11 @@ Camera #1:
 <span class="normal">18</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">PYTORCH_CUDA_ALLOC_CONF</span><span class="o">=</span>expandable_segments:True,max_split_size_mb:128
 
 lerobot-train<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--dataset.root<span class="o">=</span>/home/jetson/lerobot/datasets/local/1cam_test<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--dataset.repo_id<span class="o">=</span>local/1cam_test<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--dataset.root<span class="o">={{</span><span class="w"> </span>DATASET_DIR<span class="w"> </span><span class="o">}}</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--dataset.repo_id<span class="o">={{</span><span class="w"> </span>DATASET_REPO_ID<span class="w"> </span><span class="o">}}</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--policy.type<span class="o">=</span>act<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--output_dir<span class="o">=</span>models/act_1cam_test<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--job_name<span class="o">=</span>act_1cam_test<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output_dir<span class="o">={{</span><span class="w"> </span>TRAIN_OUTPUT_DIR<span class="w"> </span><span class="o">}}</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--job_name<span class="o">={{</span><span class="w"> </span>TRAIN_RUN_NAME<span class="w"> </span><span class="o">}}</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--policy.device<span class="o">=</span>cuda<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--wandb.enable<span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--policy.push_to_hub<span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="se">\</span>
@@ -1945,11 +1944,11 @@ lerobot-train<span class="w"> </span><span class="se">\</span>
 <span class="normal"> 8</span>
 <span class="normal"> 9</span>
 <span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code>lerobot-train<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--dataset.root<span class="o">=</span>/home/jetson/lerobot/datasets/local/1cam_test<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--dataset.repo_id<span class="o">=</span>local/1cam_test<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--dataset.root<span class="o">={{</span><span class="w"> </span>DATASET_DIR<span class="w"> </span><span class="o">}}</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--dataset.repo_id<span class="o">={{</span><span class="w"> </span>DATASET_REPO_ID<span class="w"> </span><span class="o">}}</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--policy.type<span class="o">=</span>act<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--output_dir<span class="o">=</span>models/act_1cam_test<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--job_name<span class="o">=</span>act_1cam_test<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output_dir<span class="o">={{</span><span class="w"> </span>TRAIN_OUTPUT_DIR<span class="w"> </span><span class="o">}}</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--job_name<span class="o">={{</span><span class="w"> </span>TRAIN_RUN_NAME<span class="w"> </span><span class="o">}}</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--policy.device<span class="o">=</span>mps<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--wandb.enable<span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--policy.push_to_hub<span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="se">\</span>
@@ -1976,7 +1975,7 @@ lerobot-train<span class="w"> </span><span class="se">\</span>
 </tbody>
 </table>
 <h2 id="_7">学習(継続)</h2>
-<p><code>models/act_1cam_test/checkpoints/last/pretrained_model/train_config.json</code></p>
+<p><code>{{ TRAIN_CONFIG_PATH }}</code></p>
 <p>のstepsの項目に、学習(新規)で指定したstepsが記載されているので、その部分を修正し再学習します。</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="err">#</span><span class="nt">&quot;steps&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span>
@@ -1984,12 +1983,12 @@ lerobot-train<span class="w"> </span><span class="se">\</span>
 </code></pre></div></td></tr></table></div>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
-<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>lerobot-train \
-    --config_path=models/act_1cam_test/checkpoints/last/pretrained_model/train_config.json \
-    --resume=true
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>lerobot-train<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--config_path<span class="o">={{</span><span class="w"> </span>TRAIN_CONFIG_PATH<span class="w"> </span><span class="o">}}</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--resume<span class="o">=</span><span class="nb">true</span>
 </code></pre></div></td></tr></table></div>
 <h2 id="_8">推論実行</h2>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>rm -rf /home/jetson/lerobot/datasets/local/eval_1cam_test
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>rm<span class="w"> </span>-rf<span class="w"> </span><span class="o">{{</span><span class="w"> </span>EVAL_DATASET_DIR<span class="w"> </span><span class="o">}}</span>
 </code></pre></div></td></tr></table></div>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
@@ -2006,26 +2005,26 @@ lerobot-train<span class="w"> </span><span class="se">\</span>
 <span class="normal">13</span>
 <span class="normal">14</span>
 <span class="normal">15</span>
-<span class="normal">16</span></pre></div></td><td class="code"><div><pre><span></span><code>lerobot-record \
-  --robot.type=so101_follower \
-  --robot.port=/dev/tty.usbmodem58FA1026181 \
-  --robot.id=my_follower_arm \
-  --robot.cameras=&quot;{ front: {type: opencv, index_or_path: 0, width: 640, height: 480, fps: 30, fourcc: &#39;MJPG&#39;}}&quot; \
-  --display_data=true \
-  --dataset.root=/home/jetson/lerobot/datasets/local/eval_1cam_test \
-  --dataset.repo_id=local/eval_1cam_test \
-  --dataset.single_task=&quot;Grasp a lego block and put it in the bin.&quot; \
-  --dataset.fps=30 \
-  --dataset.episode_time_s=120 \
-  --dataset.reset_time_s=30 \
-  --dataset.num_episodes=10 \
-  --dataset.tags=&#39;[&quot;tutorial&quot;]&#39; \
-  --dataset.push_to_hub=false \
-  --policy.path=models/act_1cam_test/checkpoints/last/pretrained_model
+<span class="normal">16</span></pre></div></td><td class="code"><div><pre><span></span><code>lerobot-record<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--robot.type<span class="o">=</span>so101_follower<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--robot.port<span class="o">={{</span><span class="w"> </span>ROBOT_PORT<span class="w"> </span><span class="o">}}</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--robot.id<span class="o">=</span>my_follower_arm<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--robot.cameras<span class="o">=</span><span class="s2">&quot;{ front: {type: opencv, index_or_path: 0, width: 640, height: 480, fps: 30, fourcc: &#39;MJPG&#39;}}&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--display_data<span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--dataset.root<span class="o">={{</span><span class="w"> </span>EVAL_DATASET_DIR<span class="w"> </span><span class="o">}}</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--dataset.repo_id<span class="o">={{</span><span class="w"> </span>EVAL_DATASET_REPO_ID<span class="w"> </span><span class="o">}}</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--dataset.single_task<span class="o">=</span><span class="s2">&quot;Grasp a lego block and put it in the bin.&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--dataset.fps<span class="o">=</span><span class="m">30</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--dataset.episode_time_s<span class="o">=</span><span class="m">120</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--dataset.reset_time_s<span class="o">=</span><span class="m">30</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--dataset.num_episodes<span class="o">=</span><span class="m">10</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--dataset.tags<span class="o">=</span><span class="s1">&#39;[&quot;tutorial&quot;]&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--dataset.push_to_hub<span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--policy.path<span class="o">={{</span><span class="w"> </span>POLICY_PATH<span class="w"> </span><span class="o">}}</span>
 </code></pre></div></td></tr></table></div>
 <h2 id="_9">リファレンス</h2>
 <ul>
-<li><a href="https://huggingface.co/docs/lerobot/so101">https://huggingface.co/docs/lerobot/so101</a></li>
+<li>https://huggingface.co/docs/lerobot/so101</li>
 </ul>
 
 
