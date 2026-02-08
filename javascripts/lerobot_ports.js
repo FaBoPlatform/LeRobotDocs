@@ -203,6 +203,35 @@
       .replaceAll(">", "&gt;");
   }
 
+  function escapeRegExp(s) {
+    return String(s).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  }
+
+  // Replace template placeholders like {{TELEOP_PORT}} inside code blocks.
+  // Also supports common "broken" forms seen after copy/paste or plugins:
+  // - {{ TELEOP_PORT }}
+  // - TELEOP_PORT }}
+  function applyPlaceholderMap(text, map) {
+    let out = String(text || "");
+    const keys = Object.keys(map || {});
+
+    // 1) Normalize broken tokens into canonical {{KEY}} form.
+    for (const key of keys) {
+      const reKey = escapeRegExp(key);
+      out = out.replace(new RegExp(String.raw`{{\s*${reKey}\s*}}`, "g"), `{{${key}}}`);
+      out = out.replace(new RegExp(String.raw`\\b${reKey}\\s*}}`, "g"), `{{${key}}}`);
+    }
+
+    // 2) Replace canonical placeholders.
+    for (const key of keys) {
+      const val = map[key];
+      // If a value is empty (e.g. invalid repo_id), keep the placeholder visible.
+      if (val === undefined || val === null || String(val) === "") continue;
+      out = replaceAllString(out, `{{${key}}}`, String(val));
+    }
+    return out;
+  }
+
   function replaceAllString(haystack, needle, replacement) {
     if (!needle) return haystack;
     return haystack.split(needle).join(replacement);
@@ -608,7 +637,6 @@
     const slug = repo?.name || "";
 
     const { projectDir } = deriveProjectDirFromWorkspaceInput(cfg.workspaceDir);
-    const datasetRoot = projectDir; // placeholder meaning (root + repo -> dataset dir)
     const datasetDir = joinDatasetDir(projectDir, cfg.datasetRepoId);
 
     const evalDatasetSlug = slug ? evalSlugFromSlug(slug) : "";
@@ -620,32 +648,45 @@
     const trainConfigPath = buildTrainConfigPath(trainOutputDir);
     const policyPath = buildPolicyPath(trainOutputDir);
 
+    // Placeholder values used in markdown (code blocks / inline code)
+    // Notes:
+    // - DATASET_DIR: dataset.root (actual dataset directory)
+    // - DATASET_ROOT: backward compatible alias for DATASET_DIR
+    // - PROJECT_DIR / LEROBOT_DIR: <workspace>/lerobot
+    const placeholders = {
+      TELEOP_PORT: cfg.teleop,
+      ROBOT_PORT: cfg.robot,
+      WORKSPACE_DIR: cfg.workspaceDir,
+
+      PROJECT_DIR: projectDir,
+      LEROBOT_DIR: projectDir,
+
+      DATASET_REPO_ID: cfg.datasetRepoId,
+      DATASET_SLUG: slug,
+      DATASET_DIR: datasetDir,
+      DATASET_ROOT: datasetDir,
+
+      TRAIN_RUN_NAME: trainRunName,
+      TRAIN_OUTPUT_DIR: trainOutputDir,
+      TRAIN_CONFIG_PATH: trainConfigPath,
+      POLICY_PATH: policyPath,
+
+      MODELS_DIR: projectDir ? `${projectDir}/models` : "",
+      MODEL_DIR: projectDir && trainRunName ? `${projectDir}/models/${trainRunName}` : "",
+
+      EVAL_DATASET_REPO_ID: evalDatasetRepoId,
+      EVAL_DATASET_DIR: evalDatasetDir,
+      EVAL_DATASET_SLUG: evalDatasetSlug
+    };
+
     for (const code of codeNodes) {
       if (!code.dataset.lerobotTemplate) {
         code.dataset.lerobotTemplate = code.textContent || "";
       }
       let out = code.dataset.lerobotTemplate;
 
-      // --- Placeholder replacement ---
-      out = replaceAllString(out, "{{TELEOP_PORT}}", cfg.teleop);
-      out = replaceAllString(out, "{{ROBOT_PORT}}", cfg.robot);
-      out = replaceAllString(out, "{{WORKSPACE_DIR}}", cfg.workspaceDir);
-
-      out = replaceAllString(out, "{{DATASET_REPO_ID}}", cfg.datasetRepoId);
-      out = replaceAllString(out, "{{DATASET_SLUG}}", slug);
-
-      // NOTE: DATASET_ROOT here means the root used in "root + repo" (project dir).
-      out = replaceAllString(out, "{{DATASET_ROOT}}", datasetRoot);
-      out = replaceAllString(out, "{{DATASET_DIR}}", datasetDir);
-
-      out = replaceAllString(out, "{{TRAIN_RUN_NAME}}", trainRunName);
-      out = replaceAllString(out, "{{TRAIN_OUTPUT_DIR}}", trainOutputDir);
-      out = replaceAllString(out, "{{TRAIN_CONFIG_PATH}}", trainConfigPath);
-      out = replaceAllString(out, "{{POLICY_PATH}}", policyPath);
-
-      out = replaceAllString(out, "{{EVAL_DATASET_REPO_ID}}", evalDatasetRepoId);
-      out = replaceAllString(out, "{{EVAL_DATASET_DIR}}", evalDatasetDir);
-      out = replaceAllString(out, "{{EVAL_DATASET_SLUG}}", evalDatasetSlug);
+      // --- Placeholder replacement (robust: handles "TELEOP_PORT }}" etc.) ---
+      out = applyPlaceholderMap(out, placeholders);
 
       // --- Option replacement ---
       out = out.replace(RE_TELEOP_EQ, `$1${cfg.teleop}`);
@@ -671,9 +712,9 @@
       // dataset.root (always datasetDir; eval block -> evalDatasetDir)
       const chooseDatasetRootValue = (currentValue) => {
         if (isEvalDatasetPath(currentValue) || isEvalRepoId(currentValue)) {
-          return evalDatasetDir || datasetDir || datasetRoot;
+          return evalDatasetDir || datasetDir || projectDir;
         }
-        return datasetDir || datasetRoot;
+        return datasetDir || projectDir;
       };
       out = out.replace(RE_DSET_ROOT_EQ, (m, prefix, value) => `${prefix}${chooseDatasetRootValue(value)}`);
       out = out.replace(RE_DSET_ROOT_SP, (m, prefix, value) => `${prefix}${chooseDatasetRootValue(value)}`);
