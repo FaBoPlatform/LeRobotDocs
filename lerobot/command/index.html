@@ -1734,6 +1734,10 @@ Camera #1:
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="o">{{</span><span class="w"> </span>WORKSPACE_DIR<span class="w"> </span><span class="o">}}</span>/
 </code></pre></div></td></tr></table></div>
 <h2 id="leader">キャリブレーション(Leader)</h2>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>すでにキャリブレーション実施済みの場合は、質問時にcを入力することで再度キャリビュレーション実施できます。</p>
+</div>
 <p>SO101</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
@@ -1745,6 +1749,10 @@ Camera #1:
 </code></pre></div></td></tr></table></div>
 <p>キャリブレーション結果は、<code>~/.cache/huggingface/lerobot/calibration/teleoperators/so_leader/my_leader_arm.json</code>に保存されます。</p>
 <h2 id="follower">キャリブレーション(Follower)</h2>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>すでにキャリブレーション実施済みの場合は、質問時にcを入力することで再度キャリビュレーション実施できます。</p>
+</div>
 <p>SO101</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
@@ -1777,6 +1785,10 @@ Camera #1:
 </div>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>rm<span class="w"> </span>-rf<span class="w"> </span><span class="o">{{</span><span class="w"> </span>DATASET_DIR<span class="w"> </span><span class="o">}}</span>
 </code></pre></div></td></tr></table></div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>dataset.episode_time_sが収集秒数、dataset.reset_time_sが次のepisodeまでのじかん、dataset.num_episodesが収集する回数となります。</p>
+</div>
 <div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Jetson</label><label for="__tabbed_2_2">MacBook（conda）</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
