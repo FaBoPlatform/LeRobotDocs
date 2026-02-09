@@ -13,8 +13,7 @@
   //     user: <owner>   repo id: <name>
   // - "Hugging Faceにアップ" toggle:
   //   - dataset.push_to_hub=true/false
-  //   - When ON, omit --dataset.root from all command outputs
-  // ----------------------------------------------------------
+    // ----------------------------------------------------------
   // Replacements:
   // - Replaces both placeholders like {{TELEOP_PORT}} and option values like --teleop.port=...
   // - Robust against broken tokens seen after copy/paste:
@@ -39,6 +38,8 @@
 
   const LS_KEY_PUSH_TO_HUB = "lerobot.dataset_push_to_hub";
 
+  const LS_KEY_WANDB_ENABLE = "lerobot.wandb_enable";
+
   // Backward-compatibility (older versions stored this)
   const LS_KEY_LEGACY_DATASET_ROOT = "lerobot.dataset_root";
 
@@ -56,6 +57,10 @@
   // LeRobot record upload toggle
   const RE_PUSH_EQ = /(--dataset\.push_to_hub=)(\S+)/g;
   const RE_PUSH_SP = /(--dataset\.push_to_hub\s+)(\S+)/g;
+
+  // W&B toggle
+  const RE_WANDB_EQ = /(--wandb\.enable=)(\S+)/g;
+  const RE_WANDB_SP = /(--wandb\.enable\s+)(\S+)/g;
 
   // Hydra style (train) in configs
   const RE_DATASET_PATH_EQ = /(dataset\.path=)(\S+)/g;
@@ -86,6 +91,7 @@
   const RE_FIND_DSET_ROOT = /--dataset\.root(?:=|\s+)(\S+)/;
   const RE_FIND_DSET_REPO = /--dataset\.repo_id(?:=|\s+)(\S+)/;
   const RE_FIND_PUSH = /--dataset\.push_to_hub(?:=|\s+)(\S+)/;
+  const RE_FIND_WANDB = /--wandb\.enable(?:=|\s+)(\S+)/;
 
   // Workdir (project dir)
   const RE_FIND_CD = /(^|\n)\s*cd\s+(\S+)/m;
@@ -367,6 +373,7 @@
     let datasetRepoId = "";
     let docDatasetRootValue = "";
     let pushToHubRaw = "";
+    let wandbEnableRaw = "";
 
     let docProjectDir = "";
     let projectDir = "";
@@ -398,6 +405,10 @@
       if (!pushToHubRaw) {
         const m = t.match(RE_FIND_PUSH);
         if (m && m[1]) pushToHubRaw = m[1];
+      }
+      if (!wandbEnableRaw) {
+        const m = t.match(RE_FIND_WANDB);
+        if (m && m[1]) wandbEnableRaw = m[1];
       }
 
       // Try to find project dir from cd/mkdir
@@ -443,7 +454,8 @@
         policyType &&
         trainOutputDir &&
         trainRunName &&
-        pushToHubRaw
+        pushToHubRaw &&
+        wandbEnableRaw
       ) {
         break;
       }
@@ -483,6 +495,7 @@
     }
 
     const pushToHub = truthy(pushToHubRaw);
+    const wandbEnable = truthy(wandbEnableRaw);
 
     return {
       teleop,
@@ -499,7 +512,8 @@
       policyType,
       trainRunName,
       trainOutputDir,
-      pushToHub
+      pushToHub,
+      wandbEnable
     };
   }
 
@@ -592,6 +606,15 @@
           </div>
         </div>
 
+
+        <div class="lerobot-port-row">
+          <label class="lerobot-port-label" for="lerobot-wandb-enable">wandbにアップ</label>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <input id="lerobot-wandb-enable" type="checkbox" ${state.wandbEnable ? "checked" : ""} />
+            <span style="opacity:.85;">wandb.enable=${state.wandbEnable ? "true" : "false"}</span>
+          </div>
+        </div>
+
         <div class="lerobot-port-row lerobot-port-row--derived">
           <div class="lerobot-port-label">作業フォルダ（project）</div>
           <div class="lerobot-port-derived"><code id="lerobot-project-dir"></code></div>
@@ -623,6 +646,7 @@
     const ownerInput = panelEl.querySelector("#lerobot-dataset-owner");
     const nameInput = panelEl.querySelector("#lerobot-dataset-name");
     const pushInput = panelEl.querySelector("#lerobot-push-to-hub");
+    const wandbInput = panelEl.querySelector("#lerobot-wandb-enable");
 
     const projectEl = panelEl.querySelector("#lerobot-project-dir");
     const datasetEl = panelEl.querySelector("#lerobot-dataset-dir");
@@ -674,6 +698,7 @@
       );
 
       const pushToHub = !!pushInput.checked;
+      const wandbEnable = !!wandbInput.checked;
 
       refreshDerived();
       onChange({
@@ -683,7 +708,8 @@
         datasetOwner: owner,
         datasetName: name,
         datasetRepoId: repoId || defaults.datasetRepoId,
-        pushToHub
+        pushToHub,
+        wandbEnable
       });
     };
 
@@ -693,6 +719,7 @@
     ownerInput.addEventListener("input", fire);
     nameInput.addEventListener("input", fire);
     pushInput.addEventListener("change", fire);
+    wandbInput.addEventListener("change", fire);
 
     panelEl.querySelector('[data-action="reset"]').addEventListener("click", () => {
       teleopInput.value = defaults.teleop;
@@ -701,6 +728,7 @@
       ownerInput.value = defaults.datasetOwner;
       nameInput.value = defaults.datasetName;
       pushInput.checked = !!defaults.pushToHub;
+      wandbInput.checked = !!defaults.wandbEnable;
       fire();
     });
 
@@ -712,6 +740,7 @@
       safeDel(LS_KEY_DATASET_NAME);
       safeDel(LS_KEY_DATASET_REPO); // legacy
       safeDel(LS_KEY_PUSH_TO_HUB);
+      safeDel(LS_KEY_WANDB_ENABLE);
       safeDel(LS_KEY_LEGACY_DATASET_ROOT);
       fire();
     });
@@ -757,6 +786,7 @@
       TRAIN_OUTPUT_DIR: trainOutputDir,
       TRAIN_CONFIG_PATH: trainConfigPath,
       POLICY_PATH: policyPath,
+      WANDB_ENABLE: cfg.wandbEnable ? "true" : "false",
 
       MODELS_DIR: projectDir ? `${projectDir}/models` : "",
       MODEL_DIR: projectDir && trainRunName ? `${projectDir}/models/${trainRunName}` : "",
@@ -785,6 +815,11 @@
       const pushStr = cfg.pushToHub ? "true" : "false";
       out = out.replace(RE_PUSH_EQ, `$1${pushStr}`);
       out = out.replace(RE_PUSH_SP, `$1${pushStr}`);
+
+      // wandb.enable toggle
+      const wandbStr = cfg.wandbEnable ? "true" : "false";
+      out = out.replace(RE_WANDB_EQ, `$1${wandbStr}`);
+      out = out.replace(RE_WANDB_SP, `$1${wandbStr}`);
 
       // dataset.repo_id (normal/eval)
       const chooseRepoId = (currentValue) => {
@@ -871,11 +906,6 @@
         return m;
       });
 
-      // If pushing to the Hub, omit --dataset.root from commands.
-      if (cfg.pushToHub) {
-        out = removeDatasetRootArgs(out);
-      }
-
       code.textContent = out;
     }
   }
@@ -901,6 +931,7 @@
     const savedRepo = safeGet(LS_KEY_DATASET_REPO);
 
     const savedPush = safeGet(LS_KEY_PUSH_TO_HUB);
+    const savedWandb = safeGet(LS_KEY_WANDB_ENABLE);
 
     // Workspace (project dir) migration:
     // - Older versions stored "/home/jetson" and appended "/lerobot" in code.
@@ -942,10 +973,11 @@
       datasetOwner: repoCoerced.owner || datasetOwner,
       datasetName: repoCoerced.name || datasetName,
       datasetRepoId,
-      pushToHub: savedPush ? truthy(savedPush) : !!defaults.pushToHub
+      pushToHub: savedPush ? truthy(savedPush) : !!defaults.pushToHub,
+      wandbEnable: savedWandb ? truthy(savedWandb) : !!defaults.wandbEnable
     };
 
-    renderPanel(panel, state, defaults, ({ teleop, robot, workspaceDir, datasetOwner, datasetName, datasetRepoId, pushToHub }) => {
+    renderPanel(panel, state, defaults, ({ teleop, robot, workspaceDir, datasetOwner, datasetName, datasetRepoId, pushToHub, wandbEnable }) => {
       safeSet(LS_KEY_TELEOP, teleop);
       safeSet(LS_KEY_ROBOT, robot);
       safeSet(LS_KEY_WORKSPACE, workspaceDir);
@@ -955,8 +987,9 @@
       safeSet(LS_KEY_DATASET_REPO, datasetRepoId); // legacy combined
 
       safeSet(LS_KEY_PUSH_TO_HUB, pushToHub ? "true" : "false");
+      safeSet(LS_KEY_WANDB_ENABLE, wandbEnable ? "true" : "false");
 
-      applyToCodeNodes(codeNodes, { teleop, robot, workspaceDir, datasetRepoId, pushToHub }, defaults);
+      applyToCodeNodes(codeNodes, { teleop, robot, workspaceDir, datasetRepoId, pushToHub, wandbEnable }, defaults);
     });
 
     // Initial apply
