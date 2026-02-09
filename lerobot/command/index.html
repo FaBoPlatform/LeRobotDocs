@@ -1973,16 +1973,18 @@ lerobot-train<span class="w"> </span><span class="se">\</span>
 <span class="normal"> 7</span>
 <span class="normal"> 8</span>
 <span class="normal"> 9</span>
-<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code>lerobot-train<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--dataset.root<span class="o">={{</span><span class="w"> </span>DATASET_DIR<span class="w"> </span><span class="o">}}</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--dataset.repo_id<span class="o">={{</span><span class="w"> </span>DATASET_REPO_ID<span class="w"> </span><span class="o">}}</span><span class="w"> </span><span class="se">\</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code>lerobot-train<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--dataset.root<span class="o">=</span>/Users/akira/Documents/workspace_lerobot/local/1cam_test<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--dataset.repo_id<span class="o">=</span>local/1cam_test<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--policy.type<span class="o">=</span>act<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--output_dir<span class="o">={{</span><span class="w"> </span>TRAIN_OUTPUT_DIR<span class="w"> </span><span class="o">}}</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--job_name<span class="o">={{</span><span class="w"> </span>TRAIN_RUN_NAME<span class="w"> </span><span class="o">}}</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output_dir<span class="o">=</span>models/act_1cam_test<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--job_name<span class="o">=</span>act_1cam_test<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--policy.device<span class="o">=</span>mps<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--wandb.enable<span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--policy.push_to_hub<span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--steps<span class="o">=</span><span class="m">100000</span>
+<span class="w">  </span>--steps<span class="o">=</span><span class="m">5000</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--dataset.video_backend<span class="o">=</span>pyav
 </code></pre></div></td></tr></table></div>
 </div>
 </div>
