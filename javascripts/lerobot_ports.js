@@ -153,6 +153,14 @@
     return s;
   }
 
+  function normalizePort(port, fallback = "") {
+    const s = stripQuotes(String(port || "")).trim();
+    if (!s) return fallback;
+    // Guard against template placeholders like "{{TELEOP_PORT}}"
+    if (s.includes("{{") || s.includes("}}")) return fallback;
+    return s;
+  }
+
   function normalizeRepoId(repoId) {
     return stripQuotes(repoId).replace(/\s+/g, "");
   }
@@ -353,9 +361,8 @@
 
   // ---------- Defaults from doc ----------
   function guessDefaultsFromDoc(codeNodes) {
-    // If teleop/robot are template placeholders, ignore and use fallback/defaults
-    if (teleop.includes("{{") || teleop.includes("}}")) teleop = "/dev/ttyACM1";
-    if (robot.includes("{{") || robot.includes("}}")) robot = "/dev/ttyACM0";
+    let teleop = "";
+    let robot = "";
 
     let datasetRepoId = "";
     let docDatasetRootValue = "";
@@ -443,8 +450,8 @@
     }
 
     // Fallbacks
-    if (!teleop) teleop = "/dev/ttyACM1";
-    if (!robot) robot = "/dev/ttyACM0";
+    teleop = normalizePort(teleop, "/dev/ttyACM1");
+    robot  = normalizePort(robot, "/dev/ttyACM0");
 
     datasetRepoId = normalizeRepoId(datasetRepoId || "");
     // If it is a template placeholder, ignore.
@@ -927,12 +934,6 @@
 
     const repoCoerced = coerceOwnerRepo(datasetOwner, datasetName);
     const datasetRepoId = repoCoerced.repoId || normalizeRepoId(savedRepo || defaults.datasetRepoId);
-    const normalizePort = (v, fallback) => {
-      const s = String(v || "").trim();
-        if (!s) return fallback;
-        if (s.includes("{{") || s.includes("}}")) return fallback;
-        return s;
-      };
 
     const state = {
       teleop: normalizePort(savedTeleop || defaults.teleop, defaults.teleop),
