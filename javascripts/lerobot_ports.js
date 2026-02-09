@@ -602,7 +602,7 @@
           <label class="lerobot-port-label" for="lerobot-push-to-hub">Hugging Faceにアップ</label>
           <div style="display:flex;align-items:center;gap:10px;">
             <input id="lerobot-push-to-hub" type="checkbox" ${state.pushToHub ? "checked" : ""} />
-            <span style="opacity:.85;">dataset.push_to_hub=${state.pushToHub ? "true" : "false"}</span>
+            <span style="opacity:.85;">dataset.push_to_hub</span>
           </div>
         </div>
 
@@ -611,7 +611,7 @@
           <label class="lerobot-port-label" for="lerobot-wandb-enable">wandbにアップ</label>
           <div style="display:flex;align-items:center;gap:10px;">
             <input id="lerobot-wandb-enable" type="checkbox" ${state.wandbEnable ? "checked" : ""} />
-            <span style="opacity:.85;">wandb.enable=${state.wandbEnable ? "true" : "false"}</span>
+            <span style="opacity:.85;">wandb.enable</span>
           </div>
         </div>
 
