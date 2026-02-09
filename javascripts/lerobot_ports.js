@@ -353,8 +353,9 @@
 
   // ---------- Defaults from doc ----------
   function guessDefaultsFromDoc(codeNodes) {
-    let teleop = "";
-    let robot = "";
+    // If teleop/robot are template placeholders, ignore and use fallback/defaults
+    if (teleop.includes("{{") || teleop.includes("}}")) teleop = "/dev/ttyACM1";
+    if (robot.includes("{{") || robot.includes("}}")) robot = "/dev/ttyACM0";
 
     let datasetRepoId = "";
     let docDatasetRootValue = "";
@@ -926,10 +927,16 @@
 
     const repoCoerced = coerceOwnerRepo(datasetOwner, datasetName);
     const datasetRepoId = repoCoerced.repoId || normalizeRepoId(savedRepo || defaults.datasetRepoId);
+    const normalizePort = (v, fallback) => {
+      const s = String(v || "").trim();
+        if (!s) return fallback;
+        if (s.includes("{{") || s.includes("}}")) return fallback;
+        return s;
+      };
 
     const state = {
-      teleop: (savedTeleop || defaults.teleop).trim(),
-      robot: (savedRobot || defaults.robot).trim(),
+      teleop: normalizePort(savedTeleop || defaults.teleop, defaults.teleop),
+      robot:  normalizePort(savedRobot  || defaults.robot,  defaults.robot),
       workspaceDir,
       datasetOwner: repoCoerced.owner || datasetOwner,
       datasetName: repoCoerced.name || datasetName,
