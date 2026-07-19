@@ -19,7 +19,7 @@
       
       
       <link rel="icon" href="../../favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
@@ -692,6 +692,34 @@
     
   
     コマンド
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lerobot/knowhow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ノウハウ
   
 
     
@@ -1451,327 +1479,9 @@
 
 
 
-<h1 id="jetson">Jetson環境構築</h1>
+<div><h1 id="jetson">Jetson環境構築</h1>
 <h2 id="script">環境構築Script</h2>
 <p><a href="https://github.com/FaBoPlatform/Jetson_script/blob/main/lerobot/orin_nano/6.2/install.sh">https://github.com/FaBoPlatform/Jetson_script/blob/main/lerobot/orin_nano/6.2/install.sh</a></p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">  1</span>
-<span class="normal">  2</span>
-<span class="normal">  3</span>
-<span class="normal">  4</span>
-<span class="normal">  5</span>
-<span class="normal">  6</span>
-<span class="normal">  7</span>
-<span class="normal">  8</span>
-<span class="normal">  9</span>
-<span class="normal"> 10</span>
-<span class="normal"> 11</span>
-<span class="normal"> 12</span>
-<span class="normal"> 13</span>
-<span class="normal"> 14</span>
-<span class="normal"> 15</span>
-<span class="normal"> 16</span>
-<span class="normal"> 17</span>
-<span class="normal"> 18</span>
-<span class="normal"> 19</span>
-<span class="normal"> 20</span>
-<span class="normal"> 21</span>
-<span class="normal"> 22</span>
-<span class="normal"> 23</span>
-<span class="normal"> 24</span>
-<span class="normal"> 25</span>
-<span class="normal"> 26</span>
-<span class="normal"> 27</span>
-<span class="normal"> 28</span>
-<span class="normal"> 29</span>
-<span class="normal"> 30</span>
-<span class="normal"> 31</span>
-<span class="normal"> 32</span>
-<span class="normal"> 33</span>
-<span class="normal"> 34</span>
-<span class="normal"> 35</span>
-<span class="normal"> 36</span>
-<span class="normal"> 37</span>
-<span class="normal"> 38</span>
-<span class="normal"> 39</span>
-<span class="normal"> 40</span>
-<span class="normal"> 41</span>
-<span class="normal"> 42</span>
-<span class="normal"> 43</span>
-<span class="normal"> 44</span>
-<span class="normal"> 45</span>
-<span class="normal"> 46</span>
-<span class="normal"> 47</span>
-<span class="normal"> 48</span>
-<span class="normal"> 49</span>
-<span class="normal"> 50</span>
-<span class="normal"> 51</span>
-<span class="normal"> 52</span>
-<span class="normal"> 53</span>
-<span class="normal"> 54</span>
-<span class="normal"> 55</span>
-<span class="normal"> 56</span>
-<span class="normal"> 57</span>
-<span class="normal"> 58</span>
-<span class="normal"> 59</span>
-<span class="normal"> 60</span>
-<span class="normal"> 61</span>
-<span class="normal"> 62</span>
-<span class="normal"> 63</span>
-<span class="normal"> 64</span>
-<span class="normal"> 65</span>
-<span class="normal"> 66</span>
-<span class="normal"> 67</span>
-<span class="normal"> 68</span>
-<span class="normal"> 69</span>
-<span class="normal"> 70</span>
-<span class="normal"> 71</span>
-<span class="normal"> 72</span>
-<span class="normal"> 73</span>
-<span class="normal"> 74</span>
-<span class="normal"> 75</span>
-<span class="normal"> 76</span>
-<span class="normal"> 77</span>
-<span class="normal"> 78</span>
-<span class="normal"> 79</span>
-<span class="normal"> 80</span>
-<span class="normal"> 81</span>
-<span class="normal"> 82</span>
-<span class="normal"> 83</span>
-<span class="normal"> 84</span>
-<span class="normal"> 85</span>
-<span class="normal"> 86</span>
-<span class="normal"> 87</span>
-<span class="normal"> 88</span>
-<span class="normal"> 89</span>
-<span class="normal"> 90</span>
-<span class="normal"> 91</span>
-<span class="normal"> 92</span>
-<span class="normal"> 93</span>
-<span class="normal"> 94</span>
-<span class="normal"> 95</span>
-<span class="normal"> 96</span>
-<span class="normal"> 97</span>
-<span class="normal"> 98</span>
-<span class="normal"> 99</span>
-<span class="normal">100</span>
-<span class="normal">101</span>
-<span class="normal">102</span>
-<span class="normal">103</span>
-<span class="normal">104</span>
-<span class="normal">105</span>
-<span class="normal">106</span>
-<span class="normal">107</span>
-<span class="normal">108</span>
-<span class="normal">109</span>
-<span class="normal">110</span>
-<span class="normal">111</span>
-<span class="normal">112</span>
-<span class="normal">113</span>
-<span class="normal">114</span>
-<span class="normal">115</span>
-<span class="normal">116</span>
-<span class="normal">117</span>
-<span class="normal">118</span>
-<span class="normal">119</span>
-<span class="normal">120</span>
-<span class="normal">121</span>
-<span class="normal">122</span>
-<span class="normal">123</span>
-<span class="normal">124</span>
-<span class="normal">125</span>
-<span class="normal">126</span>
-<span class="normal">127</span>
-<span class="normal">128</span>
-<span class="normal">129</span>
-<span class="normal">130</span>
-<span class="normal">131</span>
-<span class="normal">132</span>
-<span class="normal">133</span>
-<span class="normal">134</span>
-<span class="normal">135</span>
-<span class="normal">136</span>
-<span class="normal">137</span>
-<span class="normal">138</span>
-<span class="normal">139</span>
-<span class="normal">140</span>
-<span class="normal">141</span>
-<span class="normal">142</span>
-<span class="normal">143</span>
-<span class="normal">144</span>
-<span class="normal">145</span>
-<span class="normal">146</span>
-<span class="normal">147</span>
-<span class="normal">148</span>
-<span class="normal">149</span>
-<span class="normal">150</span>
-<span class="normal">151</span>
-<span class="normal">152</span>
-<span class="normal">153</span>
-<span class="normal">154</span>
-<span class="normal">155</span>
-<span class="normal">156</span>
-<span class="normal">157</span>
-<span class="normal">158</span>
-<span class="normal">159</span></pre></div></td><td class="code"><div><pre><span></span><code>#!/bin/bash
-
-# Jetson Orin Nano, AGX Orin
-# JetPack6.2.1用
-# LeRobotのInstall Script
-#!/usr/bin/env bash
-
-set -euo pipefail
-
-# ===== 基本設定 =====
-trap &#39;kill ${SUDO_PID:-0} &gt;/dev/null 2&gt;&amp;1 || true&#39; EXIT
-
-# sudo keep-alive
-sudo -v
-( while true; do sudo -n true; sleep 60; done ) &amp;
-SUDO_PID=$!
-
-TMP=$(mktemp -d)
-
-# ===== APT =====
-sudo apt-get update
-sudo apt-get install -y \
-    python3-pip curl build-essential \
-    libopenblas-base libopenblas-dev \
-    libjpeg-dev zlib1g-dev libpng-dev \
-    python3-libnvinfer python3-packaging \
-    cuda-runtime-12-6 libcublas-12-6 \
-    libcublas-dev-12-6 cuda-cupti-12-6 
-
-# ===== Miniconda (非対話) =====
-MINI=&quot;$HOME/miniconda&quot;
-if [ ! -d &quot;$MINI&quot; ]; then
-  wget -q https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-aarch64.sh -O &quot;$TMP/miniconda.sh&quot;
-  bash &quot;$TMP/miniconda.sh&quot; -b -p &quot;$MINI&quot;
-fi
-source &quot;$MINI/etc/profile.d/conda.sh&quot;
-
-# set -e 対策で || true を付けて、既に同意済みでも落ちないようにする
-if command -v conda &gt;/dev/null 2&gt;&amp;1; then
-  if conda tos --help &gt;/dev/null 2&gt;&amp;1; then
-    conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/main || true
-    conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/r || true
-  fi
-fi
-
-# ~/.bashrc に一度だけ lerobot 環境の自動有効化を追記
-LERO_TAG=&quot;### lerobot auto-activate (robot script)&quot;
-grep -qxF &quot;$LERO_TAG&quot; &quot;$HOME/.bashrc&quot; || cat &gt;&gt;&quot;$HOME/.bashrc&quot; &lt;&lt;&#39;BASHRC&#39;
-### lerobot auto-activate (robot script)
-# Miniconda が使えるときだけ有効化する
-if [ -f &quot;$HOME/miniconda/etc/profile.d/conda.sh&quot; ]; then
-  . &quot;$HOME/miniconda/etc/profile.d/conda.sh&quot;
-  conda activate lerobot
-fi
-### End lerobot auto-activate
-BASHRC
-
-source &quot;$HOME/.bashrc&quot;
-
-eval &quot;$(conda shell.bash hook)&quot;
-
-conda create -y -n lerobot python=3.10
-conda activate lerobot
-
-# ===== lerobot by Huggingface=====
-pip3 install lerobot==0.4.0
-
-# ===== OpenCV は pip で入れる =====
-conda install -y -c conda-forge &quot;opencv&gt;=4.10.0.84&quot;
-conda remove -y opencv        # ← 自動で Yes
-pip3 install --no-cache-dir opencv-python==4.10.0.84
-
-# ===== conda パッケージ =====
-conda install -y -c conda-forge ffmpeg libpng 
-
-# ===== pip パッケージ =====
-pip3 install --upgrade pip wheel
-
-# (PyTorch 系は NumPy&lt;2 が必須)
-pip3 install &quot;numpy&lt;2&quot; --no-cache-dir
-
-# --- JetPack 6.2.1 用 GPU wheel（URL内hashを固定しない） ---
-pip3 uninstall -y torch torchvision || true
-
-JETSON_INDEX_URL=&quot;https://pypi.jetson-ai-lab.io/jp6/cu126&quot;
-TORCH_VER=&quot;2.8.0&quot;
-TV_VER=&quot;0.23.0&quot;
-
-# 1) index から該当 wheel をダウンロード（hash/path は index 側から解決される）
-python3 -m pip download \
-  --no-deps \
-  --only-binary=:all: \
-  --no-cache-dir \
-  --index-url &quot;$JETSON_INDEX_URL&quot; \
-  -d &quot;$TMP&quot; \
-  &quot;torch==${TORCH_VER}&quot; &quot;torchvision==${TV_VER}&quot;
-
-# 2) 落ちてきた wheel を特定
-TORCH_WHL=&quot;$(find &quot;$TMP&quot; -maxdepth 1 -type f -name &quot;torch-${TORCH_VER}-*-linux_aarch64.whl&quot; | sort | head -n 1)&quot;
-TV_WHL=&quot;$(find &quot;$TMP&quot; -maxdepth 1 -type f -name &quot;torchvision-${TV_VER}-*-linux_aarch64.whl&quot; | sort | head -n 1)&quot;
-
-[ -n &quot;$TORCH_WHL&quot; ] || { echo &quot;❌ torch wheel not found in $TMP&quot; &gt;&amp;2; exit 1; }
-[ -n &quot;$TV_WHL&quot; ] || { echo &quot;❌ torchvision wheel not found in $TMP&quot; &gt;&amp;2; exit 1; }
-
-# 3) sha256 を“実行時に”計算（＝動的生成）
-TORCH_SHA=&quot;$(sha256sum &quot;$TORCH_WHL&quot; | awk &#39;{print $1}&#39;)&quot;
-TV_SHA=&quot;$(sha256sum &quot;$TV_WHL&quot; | awk &#39;{print $1}&#39;)&quot;
-
-echo &quot;torch wheel sha256      : $TORCH_SHA&quot;
-echo &quot;torchvision wheel sha256: $TV_SHA&quot;
-
-# （任意）Jetson AI Lab の +f URL 形式（例と同じ規則）を“実行時に生成”して表示
-# ※ このURL形式が将来変わる可能性はあるので「表示だけ」に留めるのが無難です
-echo &quot;torch direct-url (generated): ${JETSON_INDEX_URL}/+f/${TORCH_SHA:0:3}/${TORCH_SHA:3:13}/$(basename &quot;$TORCH_WHL&quot;)#sha256=${TORCH_SHA}&quot;
-echo &quot;tv    direct-url (generated): ${JETSON_INDEX_URL}/+f/${TV_SHA:0:3}/${TV_SHA:3:13}/$(basename &quot;$TV_WHL&quot;)#sha256=${TV_SHA}&quot;
-
-# 4) ローカル wheel からインストール（依存は通常通り PyPI から入る）
-python3 -m pip install &quot;$TORCH_WHL&quot; &quot;$TV_WHL&quot;
-
-# Dynamixel SDK
-pip3 install dynamixel-sdk
-pip3 install feetech-servo-sdk
-
-# モデルを事前ダウンロード
-python - &lt;&lt;&#39;PY&#39;
-import torchvision
-for name in (&quot;resnet18&quot;, &quot;resnet50&quot;):
-    torchvision.models.get_model(name, weights=&quot;DEFAULT&quot;)
-PY
-
-# ===== ttyACM0/1 を 0666 に固定する udev ルール =====
-sudo tee /etc/udev/rules.d/99-otterarm-ttyacm.rules &gt;/dev/null &lt;&lt;&#39;EOF&#39;
-KERNEL==&quot;ttyACM0&quot;, MODE=&quot;0666&quot;
-KERNEL==&quot;ttyACM1&quot;, MODE=&quot;0666&quot;
-EOF
-sudo udevadm control --reload-rules
-sudo udevadm trigger   # 既存デバイスにも即適用
-
-# ===== CUDA 動作確認 =====
-python - &lt;&lt;&#39;PY&#39;
-import sys, torch
-print(&quot;PyTorch :&quot;, torch.__version__)
-print(&quot;CUDA OK :&quot;, torch.cuda.is_available())
-if not torch.cuda.is_available():
-    sys.exit(&quot;❌  GPU (CUDA) が利用できません&quot;)
-print(&quot;Device  :&quot;, torch.cuda.get_device_name(0))
-print(&quot;✅  CUDA が正常に認識されました&quot;)
-PY
-
-echo &quot;✅ Installation completed.&quot;
-
-rm -rf &quot;$TMP&quot;
-
-# USB Speakerの認識
-# pactl list short sinks
-# 0   alsa_output.platform-sound.analog-stereo    module-alsa-card.c  s16le 2ch 44100Hz   SUSPENDED
-# 1   alsa_output.usb-C-Media_INC._USB_Sound_Device-00.analog-stereo  module-alsa-card.c  s16le 2ch 44100Hz   RUNNING
-# pactl set-default-sink alsa_output.usb-C-Media_INC._USB_Sound_Device-00.analog-stereo
-# spd-say &quot;warmup record&quot;
-</code></pre></div></td></tr></table></div>
 <p>install.shの名前で保存して</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>chmod 755 ./install.sh
 </code></pre></div></td></tr></table></div>
@@ -1794,13 +1504,13 @@ rm -rf &quot;$TMP&quot;
 <span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo apt-get install language-pack-ja language-pack-ja-base
 
 # 2) /etc/locale.gen で ja_JP.UTF-8 の行をアンコメント
-sudo sed -i &#39;/^# *ja_JP.UTF-8 /s/^# *//&#39; /etc/locale.gen
+sudo sed -i '/^# *ja_JP.UTF-8 /s/^# *//' /etc/locale.gen
 
 # 3) 実際にロケールファイルを生成
 sudo locale-gen
 
 export LANG=ja_JP.UTF-8
-</code></pre></div></td></tr></table></div>
+</code></pre></div></td></tr></table></div></div>
 
 
 

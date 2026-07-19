@@ -19,7 +19,7 @@
       
       
       <link rel="icon" href="../../favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
@@ -747,6 +747,34 @@
     
   
     コマンド
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lerobot/knowhow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ノウハウ
   
 
     
@@ -1561,12 +1589,12 @@
 
 
 
-<h1 id="fabo-lerobot-kitso-101">FaBo LeRobot Kit(SO-101連携) 動作確認</h1>
+<div><h1 id="fabo-lerobot-kitso-101">FaBo LeRobot Kit(SO-101連携) 動作確認</h1>
 <h2 id="jetson">Jetsonとの接続</h2>
 <p>MacBookユーザはJetsonとUSB Type Cケーブルで接続し、Jetsonにログインできます</p>
-<p><img alt="" src="../img/first001.jpg" /></p>
-<p><img alt="" src="../img/first002.jpg" /></p>
-<p><img alt="" src="../img/first003.jpg" /></p>
+<p><img alt="" src="../img/first001.jpg"></p>
+<p><img alt="" src="../img/first002.jpg"></p>
+<p><img alt="" src="../img/first003.jpg"></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>ssh jetson@192.168.55.1
 </code></pre></div></td></tr></table></div>
 <table>
@@ -1588,19 +1616,19 @@
 </tbody>
 </table>
 <h2 id="display">Displayとの接続</h2>
-<p><img alt="" src="../img/display001.jpg" /></p>
+<p><img alt="" src="../img/display001.jpg"></p>
 <p>JetsonをDisplayに接続します。</p>
-<p><img alt="" src="../img/display002_dp.jpg" /></p>
+<p><img alt="" src="../img/display002_dp.jpg"></p>
 <p>USB Speakerを外し、USBハブを接続します。</p>
-<p><img alt="" src="../img/display003.jpg" /></p>
+<p><img alt="" src="../img/display003.jpg"></p>
 <p>JetsonにUSB Speakerを接続し直します。
 キーボード、マウスを接続し、Ubuntuを画面で操作します。</p>
-<p><img alt="" src="../img/display004.jpg" /></p>
+<p><img alt="" src="../img/display004.jpg"></p>
 <h2 id="usbso101">USBのso101の差し込みを固定(実施済み)</h2>
 <p><code>/etc/udev/rules.d/99-usb-serial.rules</code></p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>SUBSYSTEM==&quot;tty&quot;, ENV{ID_PATH}==&quot;platform-3610000.usb-usb-0:2.1:1.0&quot;, SYMLINK+=&quot;so101_leader&quot;
-SUBSYSTEM==&quot;tty&quot;, ENV{ID_PATH}==&quot;platform-3610000.usb-usb-0:2.2:1.0&quot;, SYMLINK+=&quot;so101_follower&quot;
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>SUBSYSTEM=="tty", ENV{ID_PATH}=="platform-3610000.usb-usb-0:2.1:1.0", SYMLINK+="so101_leader"
+SUBSYSTEM=="tty", ENV{ID_PATH}=="platform-3610000.usb-usb-0:2.2:1.0", SYMLINK+="so101_follower"
 </code></pre></div></td></tr></table></div>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo udevadm control --reload-rules
@@ -1631,7 +1659,7 @@ sudo udevadm trigger
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>./record.sh
 </code></pre></div></td></tr></table></div>
 <p>Scriptの中身
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+</p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
 <span class="normal"> 4</span>
@@ -1658,18 +1686,18 @@ lerobot-record \
   --dataset.repo_id=local/d_test \
   --dataset.root=/home/jetson/lerobot/d_test \
   --dataset.push_to_hub=false \
-  --robot.cameras=&quot;{ front: {type: opencv, index_or_path: 0, width: 640, height: 480, fps: 30}}&quot; \
+  --robot.cameras="{ front: {type: opencv, index_or_path: 0, width: 640, height: 480, fps: 30}}" \
   --display_data=true \
   --dataset.single_task=true \
   --dataset.episode_time_s=10 \
   --dataset.reset_time_s=2 \
   --dataset.num_episodes=30
-</code></pre></div></td></tr></table></div></p>
+</code></pre></div></td></tr></table></div>
 <h2 id="5">データセット追加収集(5回)</h2>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>./record_resume_5.sh
 </code></pre></div></td></tr></table></div>
 <p>Scriptの中身
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+</p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
 <span class="normal"> 4</span>
@@ -1696,20 +1724,20 @@ lerobot-record \
   --dataset.repo_id=local/d_test \
   --dataset.root=/home/jetson/lerobot/d_test \
   --dataset.push_to_hub=false \
-  --robot.cameras=&quot;{ front: {type: opencv, index_or_path: 0, width: 
-640, height: 480, fps: 30}}&quot; \
+  --robot.cameras="{ front: {type: opencv, index_or_path: 0, width: 
+640, height: 480, fps: 30}}" \
   --display_data=true \
   --dataset.single_task=true \
   --dataset.episode_time_s=10 \
   --dataset.reset_time_s=2 \
   --dataset.num_episodes=5 \
   --resume=true
-</code></pre></div></td></tr></table></div></p>
+</code></pre></div></td></tr></table></div>
 <h2 id="_2">学習</h2>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>./train.sh
 </code></pre></div></td></tr></table></div>
 <p>Scriptの中身
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+</p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
 <span class="normal"> 4</span>
@@ -1721,7 +1749,7 @@ lerobot-record \
 <span class="normal">10</span>
 <span class="normal">11</span>
 <span class="normal">12</span></pre></div></td><td class="code"><div><pre><span></span><code>rm -rf outputs/train/act_d_test
-PYTHONWARNINGS=&#39;ignore::UserWarning:torchvision.io._video_deprecation_warning&#39; \
+PYTHONWARNINGS='ignore::UserWarning:torchvision.io._video_deprecation_warning' \
   lerobot-train \
   --dataset.root=/home/jetson/lerobot/d_test \
   --dataset.repo_id=local/d_test \
@@ -1732,12 +1760,12 @@ PYTHONWARNINGS=&#39;ignore::UserWarning:torchvision.io._video_deprecation_warnin
   --job_name=act_d_test \
   --wandb.enable=false \
   --steps=8000
-</code></pre></div></td></tr></table></div></p>
+</code></pre></div></td></tr></table></div>
 <h2 id="_3">実行</h2>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>./run.sh
 </code></pre></div></td></tr></table></div>
 <p>Scriptの中身
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+</p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
 <span class="normal"> 4</span>
@@ -1757,10 +1785,10 @@ lerobot-record \
   --dataset.repo_id=local/eval_d_test \
   --dataset.root=/home/jetson/lerobot/eval_d_test \
   --dataset.push_to_hub=false \
-  --robot.cameras=&#39;{&quot;front&quot;:{&quot;type&quot;:&quot;opencv&quot;,&quot;index_or_path&quot;:0,&quot;width&quot;:640,&quot;height&quot;:480,&quot;fps&quot;:30}}&#39; \
-  --policy.path=&quot;outputs/train/act_d_test/checkpoints/last/pretrained_model/&quot; \
+  --robot.cameras='{"front":{"type":"opencv","index_or_path":0,"width":640,"height":480,"fps":30}}' \
+  --policy.path="outputs/train/act_d_test/checkpoints/last/pretrained_model/" \
   --display_data=true
-</code></pre></div></td></tr></table></div></p>
+</code></pre></div></td></tr></table></div></div>
 
 
 

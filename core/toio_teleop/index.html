@@ -19,7 +19,7 @@
       
       
       <link rel="icon" href="../../favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
@@ -610,6 +610,34 @@
     
   
     コマンド
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lerobot/knowhow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ノウハウ
   
 
     
@@ -1583,7 +1611,7 @@
 
 
 
-<h1 id="toio-leader">toio Leader</h1>
+<div><h1 id="toio-leader">toio Leader</h1>
 <h2 id="toio-leader_1">toio Leader</h2>
 <p>toio本体をLeRobot経由でJoystickで制御するための最小サンプル(GPT-5 Proで生成)です。</p>
 <div class="admonition warning">
@@ -1628,24 +1656,24 @@
 <span class="normal">23</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">setuptools</span><span class="w"> </span><span class="kn">import</span> <span class="n">setup</span><span class="p">,</span> <span class="n">find_packages</span>
 
 <span class="n">setup</span><span class="p">(</span>
-<span class="hll">    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;lerobot_teleoperator_toio&quot;</span><span class="p">,</span>
-</span>    <span class="n">version</span><span class="o">=</span><span class="s2">&quot;0.0.1&quot;</span><span class="p">,</span>
-    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;LeRobot toio integration&quot;</span><span class="p">,</span>
-    <span class="n">author</span><span class="o">=</span><span class="s2">&quot;FaBo, Inc.&quot;</span><span class="p">,</span>
-    <span class="n">author_email</span><span class="o">=</span><span class="s2">&quot;akira@fabo.io&quot;</span><span class="p">,</span>
+<span class="hll">    <span class="n">name</span><span class="o">=</span><span class="s2">"lerobot_teleoperator_toio"</span><span class="p">,</span>
+</span>    <span class="n">version</span><span class="o">=</span><span class="s2">"0.0.1"</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s2">"LeRobot toio integration"</span><span class="p">,</span>
+    <span class="n">author</span><span class="o">=</span><span class="s2">"FaBo, Inc."</span><span class="p">,</span>
+    <span class="n">author_email</span><span class="o">=</span><span class="s2">"akira@fabo.io"</span><span class="p">,</span>
     <span class="n">packages</span><span class="o">=</span><span class="n">find_packages</span><span class="p">(),</span>
     <span class="n">install_requires</span><span class="o">=</span><span class="p">[</span>
-        <span class="s2">&quot;numpy&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;transforms3d&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;teleop&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;lerobot&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;pygame&quot;</span>
+        <span class="s2">"numpy"</span><span class="p">,</span>
+        <span class="s2">"transforms3d"</span><span class="p">,</span>
+        <span class="s2">"teleop"</span><span class="p">,</span>
+        <span class="s2">"lerobot"</span><span class="p">,</span>
+        <span class="s2">"pygame"</span>
     <span class="p">],</span>
-    <span class="n">python_requires</span><span class="o">=</span><span class="s2">&quot;&gt;=3.7&quot;</span><span class="p">,</span>
+    <span class="n">python_requires</span><span class="o">=</span><span class="s2">"&gt;=3.7"</span><span class="p">,</span>
     <span class="n">classifiers</span><span class="o">=</span><span class="p">[</span>
-        <span class="s2">&quot;Programming Language :: Python :: 3&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;License :: OSI Approved :: Apache License&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;Operating System :: OS Independent&quot;</span><span class="p">,</span>
+        <span class="s2">"Programming Language :: Python :: 3"</span><span class="p">,</span>
+        <span class="s2">"License :: OSI Approved :: Apache License"</span><span class="p">,</span>
+        <span class="s2">"Operating System :: OS Independent"</span><span class="p">,</span>
     <span class="p">],</span>
 <span class="p">)</span>
 </code></pre></div></td></tr></table></div>
@@ -1683,19 +1711,19 @@
 <span class="normal">24</span>
 <span class="normal">25</span>
 <span class="normal">26</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1"># -*- coding: utf-8 -*-</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">"""</span>
 <span class="sd">toio のテレオペ (leader) 用 TeleoperatorConfig。</span>
 <span class="sd">- pygame で取得するジョイスティックの軸割り当て/反転/スケール/デッドゾーン等をここで調整します。</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">"""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">lerobot.teleoperators.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">TeleoperatorConfig</span>
 
-<span class="nd">@TeleoperatorConfig</span><span class="o">.</span><span class="n">register_subclass</span><span class="p">(</span><span class="s2">&quot;toio_leader&quot;</span><span class="p">)</span>
+<span class="nd">@TeleoperatorConfig</span><span class="o">.</span><span class="n">register_subclass</span><span class="p">(</span><span class="s2">"toio_leader"</span><span class="p">)</span>
 <span class="nd">@dataclass</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">ToioConfig</span><span class="p">(</span><span class="n">TeleoperatorConfig</span><span class="p">):</span>
-    <span class="n">port</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;4443&quot;</span>
-    <span class="n">host</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;0.0.0.0&quot;</span>
+    <span class="n">port</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"4443"</span>
+    <span class="n">host</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"0.0.0.0"</span>
     <span class="n">use_gripper</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>  <span class="c1"># 本テレオペではグリッパは扱いません（互換のFalseため残置）</span>
 
     <span class="c1"># ---- 入力デバイス（ジョイスティック）設定 ----</span>
@@ -1942,15 +1970,15 @@
 <span class="normal">229</span>
 <span class="normal">230</span>
 <span class="normal">231</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1"># -*- coding: utf-8 -*-</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">"""</span>
 <span class="sd">toio 用テレオペレーター（leader 側）。</span>
 <span class="sd">pygame でゲームパッドの軸値を読み取り、毎フレーム {vx, vy} を返します。</span>
 
 <span class="sd">設計方針</span>
 <span class="sd">- 軸値は [-1..1] を想定。反転・デッドゾーン・スケーリングを適用してから Robot へ渡します。</span>
-<span class="sd">- 軸が不足/未検出などの例外系でも &quot;動作は止まる（vx=vy=0）＋一度だけ警告&quot; とし、</span>
+<span class="sd">- 軸が不足/未検出などの例外系でも "動作は止まる（vx=vy=0）＋一度だけ警告" とし、</span>
 <span class="sd">  メインループを落とさず復帰可能にしています。</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">"""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
@@ -1964,18 +1992,18 @@
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">_clip</span><span class="p">(</span><span class="n">v</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">lo</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">hi</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;浮動小数点 v を [lo, hi] にクリップする小ヘルパ。&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""浮動小数点 v を [lo, hi] にクリップする小ヘルパ。"""</span>
     <span class="k">return</span> <span class="n">lo</span> <span class="k">if</span> <span class="n">v</span> <span class="o">&lt;</span> <span class="n">lo</span> <span class="k">else</span> <span class="n">hi</span> <span class="k">if</span> <span class="n">v</span> <span class="o">&gt;</span> <span class="n">hi</span> <span class="k">else</span> <span class="n">v</span>
 
 
 <span class="k">class</span><span class="w"> </span><span class="nc">Toio</span><span class="p">(</span><span class="n">Teleoperator</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    pygame を用いた最小ジョイスティック teleop。</span>
 <span class="sd">      - 指定軸（既定: X=axis0, Y=axis2）を読み取り、毎フレーム {vx, vy} を返す</span>
 <span class="sd">      - フィードバックは扱わない（send_feedback は no-op）</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">config_class</span> <span class="o">=</span> <span class="n">ToioConfig</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;toio&quot;</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">"toio"</span>
 
     <span class="c1"># ========= ライフサイクル =========</span>
 
@@ -2000,24 +2028,24 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_warned_axis</span> <span class="o">=</span> <span class="kc">False</span>
 
         <span class="c1"># ---- config 値の取り込み（フォールバックは dataclass 側の既定値）----</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_joy_index</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="s2">&quot;joystick_index&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_axis_x_idx</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="s2">&quot;axis_x_index&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_axis_y_idx</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="s2">&quot;axis_y_index&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_invert_x</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="s2">&quot;invert_x&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_invert_y</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="s2">&quot;invert_y&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_speed</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="s2">&quot;speed&quot;</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_deadzone</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="s2">&quot;deadzone&quot;</span><span class="p">,</span> <span class="mf">0.08</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_joy_index</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="s2">"joystick_index"</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_axis_x_idx</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="s2">"axis_x_index"</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_axis_y_idx</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="s2">"axis_y_index"</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_invert_x</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="s2">"invert_x"</span><span class="p">,</span> <span class="kc">True</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_invert_y</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="s2">"invert_y"</span><span class="p">,</span> <span class="kc">True</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_speed</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="s2">"speed"</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_deadzone</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="s2">"deadzone"</span><span class="p">,</span> <span class="mf">0.08</span><span class="p">))</span>
 
     <span class="c1"># ----- Teleoperator interface -----</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">action_features</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">type</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Robot 側に渡すアクションの特徴量定義。&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;vx&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="s2">&quot;vy&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">}</span>
+<span class="w">        </span><span class="sd">"""Robot 側に渡すアクションの特徴量定義。"""</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s2">"vx"</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="s2">"vy"</span><span class="p">:</span> <span class="nb">float</span><span class="p">}</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">feedback_features</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">type</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;本テレオペではフィードバックを扱わない。&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""本テレオペではフィードバックを扱わない。"""</span>
         <span class="k">return</span> <span class="p">{}</span>
 
     <span class="nd">@property</span>
@@ -2030,16 +2058,16 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_calibrated</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">calibrate</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        pygame を初期化し、指定のジョイスティック（config.joystick_index）をオープン。</span>
 <span class="sd">        - pygame 未導入時は明示的に ImportError を投げ、対処方法を表示</span>
 <span class="sd">        - ジョイスティックが見つからない場合は vx,vy=0 のまま動作（警告は一度だけ）</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="kn">import</span><span class="w"> </span><span class="nn">pygame</span>  <span class="c1"># type: ignore</span>
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span>
-                <span class="s2">&quot;pygame が見つかりません。`pip install pygame` を実行してください。&quot;</span>
+                <span class="s2">"pygame が見つかりません。`pip install pygame` を実行してください。"</span>
             <span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_pg</span> <span class="o">=</span> <span class="n">pygame</span>
@@ -2048,7 +2076,7 @@
 
         <span class="n">cnt</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">joystick</span><span class="o">.</span><span class="n">get_count</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">cnt</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;[teleop/joystick] No joystick detected (vx, vy は 0 のままになります)&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">"[teleop/joystick] No joystick detected (vx, vy は 0 のままになります)"</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_joy</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="c1"># 指定 index が範囲外なら 0 にフォールバック</span>
@@ -2056,22 +2084,22 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_joy</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">joystick</span><span class="o">.</span><span class="n">Joystick</span><span class="p">(</span><span class="n">ji</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_joy</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
             <span class="nb">print</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;[teleop/joystick] Connected to: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_joy</span><span class="o">.</span><span class="n">get_name</span><span class="p">()</span><span class="si">}</span><span class="s2"> &quot;</span>
-                <span class="sa">f</span><span class="s2">&quot;(index=</span><span class="si">{</span><span class="n">ji</span><span class="si">}</span><span class="s2">, axes=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_joy</span><span class="o">.</span><span class="n">get_numaxes</span><span class="p">()</span><span class="si">}</span><span class="s2">)&quot;</span>
+                <span class="sa">f</span><span class="s2">"[teleop/joystick] Connected to: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_joy</span><span class="o">.</span><span class="n">get_name</span><span class="p">()</span><span class="si">}</span><span class="s2"> "</span>
+                <span class="sa">f</span><span class="s2">"(index=</span><span class="si">{</span><span class="n">ji</span><span class="si">}</span><span class="s2">, axes=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_joy</span><span class="o">.</span><span class="n">get_numaxes</span><span class="p">()</span><span class="si">}</span><span class="s2">)"</span>
             <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_connected</span> <span class="o">=</span> <span class="kc">True</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">calibrate</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;特別なキャリブレーションは不要。&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""特別なキャリブレーションは不要。"""</span>
         <span class="k">return</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">configure</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;本テレオペでは追加の設定は不要。&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""本テレオペでは追加の設定は不要。"""</span>
         <span class="k">return</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">disconnect</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;pygame / joystick をクリーンに終了。&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""pygame / joystick をクリーンに終了。"""</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_connected</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_joy</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -2090,12 +2118,12 @@
     <span class="c1"># ========= 内部ユーティリティ =========</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_apply_deadzone_and_scale</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        軸値 v に対してデッドゾーンとスケールを適用し、最終的に [-1, 1] に収める。</span>
 <span class="sd">        - デッドゾーン: |v| &lt; deadzone は 0</span>
 <span class="sd">        - スケール: v *= speed</span>
 <span class="sd">        - クリップ: [-1, 1]</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_deadzone</span><span class="p">:</span>
             <span class="n">v</span> <span class="o">=</span> <span class="mf">0.0</span>
         <span class="c1"># 念のため軸値自体を [-1,1] に収めてからスケール</span>
@@ -2105,11 +2133,11 @@
         <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">_clip</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">))</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_read_axes</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        pygame から最新の軸値を取り出して内部状態（_vx, _vy）を更新。</span>
 <span class="sd">        - ジョイスティック未接続時は 0 を維持し、一度だけ警告。</span>
 <span class="sd">        - 軸数が不足している場合は安全なフォールバック（例: Y → axis1）へ切替。</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pg</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="c1"># 未接続（connect 前）なら何もしない</span>
             <span class="k">return</span>
@@ -2121,7 +2149,7 @@
             <span class="c1"># ジョイスティック未検出：常に 0 を出力</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_vx</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_vy</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_warned_no_joy</span><span class="p">:</span>
-                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;[teleop/joystick] Warning: joystick not available (vx,vy=0)&quot;</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">"[teleop/joystick] Warning: joystick not available (vx,vy=0)"</span><span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_warned_no_joy</span> <span class="o">=</span> <span class="kc">True</span>
             <span class="k">return</span>
 
@@ -2138,7 +2166,7 @@
                 <span class="c1"># 1 本以下しかない場合は 0 固定</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_vx</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_vy</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span>
                 <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_warned_axis</span><span class="p">:</span>
-                    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[teleop/joystick] Warning: not enough axes (have </span><span class="si">{</span><span class="n">num_axes</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"[teleop/joystick] Warning: not enough axes (have </span><span class="si">{</span><span class="n">num_axes</span><span class="si">}</span><span class="s2">)"</span><span class="p">)</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">_warned_axis</span> <span class="o">=</span> <span class="kc">True</span>
                 <span class="k">return</span>
 
@@ -2162,15 +2190,15 @@
     <span class="c1"># ========= メイン I/O =========</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">get_action</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        毎フレーム呼ばれるエントリ。最新の {vx, vy} を返す。</span>
 <span class="sd">        - Robot ループがこの戻り値をそのまま受け取り、差動二輪へ変換します。</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_read_axes</span><span class="p">()</span>
-        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;vx&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_vx</span><span class="p">),</span> <span class="s2">&quot;vy&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_vy</span><span class="p">)}</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s2">"vx"</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_vx</span><span class="p">),</span> <span class="s2">"vy"</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_vy</span><span class="p">)}</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">send_feedback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">feedback</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;本テレオペではフィードバックは扱わない（no-op）。&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""本テレオペではフィードバックは扱わない（no-op）。"""</span>
         <span class="k">return</span>
 </code></pre></div></td></tr></table></div>
 <h2 id="install">Install</h2>
@@ -2183,7 +2211,7 @@
 <h2 id="_2">質問等</h2>
 <ul>
 <li><a href="https://discord.com/invite/StJ84Hb">FaBo Discord</a></li>
-</ul>
+</ul></div>
 
 
 

@@ -15,7 +15,7 @@
       
       
       <link rel="icon" href="../../favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
@@ -606,6 +606,34 @@
     
   
     コマンド
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lerobot/knowhow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ノウハウ
   
 
     
@@ -1475,7 +1503,7 @@
 
 
 
-<h1 id="hilserl-644">HilSerl 環境構築(#644)</h1>
+<div><h1 id="hilserl-644">HilSerl 環境構築(#644)</h1>
 <h2 id="hilserl">HilSerl公式</h2>
 <p><a href="https://hil-serl.github.io/">https://hil-serl.github.io/</a></p>
 <h2 id="lerobot">LeRobotでの対応</h2>
@@ -1504,15 +1532,15 @@ torch==2.8.0.dev20250603+cu128 torchvision==0.23.0.dev20250603+cu128 torchaudio=
 </code></pre></div></td></tr></table></div>
 <p>チェック</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>python -c &quot;import torch; print(torch.__version__)&quot;
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>python -c "import torch; print(torch.__version__)"
 2.8.0.dev20250603+cu128
 </code></pre></div></td></tr></table></div>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>python -c &quot;import torchvision; print(torchvision.__version__)&quot;
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>python -c "import torchvision; print(torchvision.__version__)"
 0.23.0.dev20250603+cu128
 </code></pre></div></td></tr></table></div>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>python -c &quot;import torchaudio; print(torchaudio.__version__)&quot;
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>python -c "import torchaudio; print(torchaudio.__version__)"
 2.8.0.dev20250603+cu128
 </code></pre></div></td></tr></table></div>
 <p>Transformersもインストール</p>
@@ -1558,34 +1586,34 @@ git checkout pr644
 <span class="normal">28</span>
 <span class="normal">29</span>
 <span class="normal">30</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="err">depe</span><span class="kc">n</span><span class="err">de</span><span class="kc">n</span><span class="err">cies</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="s2">&quot;cmake&gt;=3.29.0.1&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;datasets&gt;=2.19.0&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;deepdiff&gt;=7.0.1&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;diffusers&gt;=0.27.2&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;draccus==0.10.0&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;einops&gt;=0.8.0&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;flask&gt;=3.0.3&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;gdown&gt;=5.1.0&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;gymnasium==0.29.1&quot;</span><span class="p">,</span><span class="w">                                                 </span><span class="err">#</span><span class="w"> </span><span class="err">TODO(rcade</span><span class="kc">ne</span><span class="p">,</span><span class="w"> </span><span class="err">aliber</span><span class="kc">ts</span><span class="err">)</span><span class="p">:</span><span class="w"> </span><span class="err">Make</span><span class="w"> </span><span class="err">gym</span><span class="w"> </span><span class="mf">1.0.0</span><span class="w"> </span><span class="err">work</span>
-<span class="w">    </span><span class="s2">&quot;h5py&gt;=3.10.0&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;huggingface-hub[hf-transfer,cli]&gt;=0.27.1 ; python_version &lt; &#39;4.0&#39;&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;imageio[ffmpeg]&gt;=2.34.0&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;jsonlines&gt;=4.0.0&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;numba&gt;=0.59.0&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;omegaconf&gt;=2.3.0&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;opencv-python-headless&gt;=4.9.0&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;packaging&gt;=24.2&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;av&gt;=14.2.0&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;pymunk&gt;=6.6.0&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;pynput&gt;=1.7.7&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;pyzmq&gt;=26.2.1&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;rerun-sdk&gt;=0.21.0&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;termcolor&gt;=2.4.0&quot;</span><span class="p">,</span>
-<span class="hll"><span class="w">    </span><span class="err">#</span><span class="s2">&quot;torch&gt;=2.2.1,&lt;2.7&quot;</span><span class="p">,</span>
-</span><span class="hll"><span class="w">    </span><span class="err">#</span><span class="s2">&quot;torchcodec==0.2.1; sys_platform != &#39;win32&#39; and (sys_platform != &#39;linux&#39; or (platform_machine != &#39;aarch64&#39; and platform_machine != &#39;arm64&#39; and platform_machine != &#39;armv7l&#39;)) and (sys_platform != &#39;darwin&#39; or platform_machine != &#39;x86_64&#39;)&quot;</span><span class="p">,</span>
-</span><span class="hll"><span class="w">    </span><span class="err">#</span><span class="s2">&quot;torchvision&gt;=0.21.0&quot;</span><span class="p">,</span>
-</span><span class="w">    </span><span class="s2">&quot;wandb&gt;=0.16.3&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;zarr&gt;=2.17.0&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"cmake&gt;=3.29.0.1"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"datasets&gt;=2.19.0"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"deepdiff&gt;=7.0.1"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"diffusers&gt;=0.27.2"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"draccus==0.10.0"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"einops&gt;=0.8.0"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"flask&gt;=3.0.3"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"gdown&gt;=5.1.0"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"gymnasium==0.29.1"</span><span class="p">,</span><span class="w">                                                 </span><span class="err">#</span><span class="w"> </span><span class="err">TODO(rcade</span><span class="kc">ne</span><span class="p">,</span><span class="w"> </span><span class="err">aliber</span><span class="kc">ts</span><span class="err">)</span><span class="p">:</span><span class="w"> </span><span class="err">Make</span><span class="w"> </span><span class="err">gym</span><span class="w"> </span><span class="mf">1.0.0</span><span class="w"> </span><span class="err">work</span>
+<span class="w">    </span><span class="s2">"h5py&gt;=3.10.0"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"huggingface-hub[hf-transfer,cli]&gt;=0.27.1 ; python_version &lt; '4.0'"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"imageio[ffmpeg]&gt;=2.34.0"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"jsonlines&gt;=4.0.0"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"numba&gt;=0.59.0"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"omegaconf&gt;=2.3.0"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"opencv-python-headless&gt;=4.9.0"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"packaging&gt;=24.2"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"av&gt;=14.2.0"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"pymunk&gt;=6.6.0"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"pynput&gt;=1.7.7"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"pyzmq&gt;=26.2.1"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"rerun-sdk&gt;=0.21.0"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"termcolor&gt;=2.4.0"</span><span class="p">,</span>
+<span class="hll"><span class="w">    </span><span class="err">#</span><span class="s2">"torch&gt;=2.2.1,&lt;2.7"</span><span class="p">,</span>
+</span><span class="hll"><span class="w">    </span><span class="err">#</span><span class="s2">"torchcodec==0.2.1; sys_platform != 'win32' and (sys_platform != 'linux' or (platform_machine != 'aarch64' and platform_machine != 'arm64' and platform_machine != 'armv7l')) and (sys_platform != 'darwin' or platform_machine != 'x86_64')"</span><span class="p">,</span>
+</span><span class="hll"><span class="w">    </span><span class="err">#</span><span class="s2">"torchvision&gt;=0.21.0"</span><span class="p">,</span>
+</span><span class="w">    </span><span class="s2">"wandb&gt;=0.16.3"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"zarr&gt;=2.17.0"</span><span class="p">,</span>
 <span class="p">]</span>
 </code></pre></div></td></tr></table></div>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>pip install -e .[feetech]
@@ -1656,7 +1684,7 @@ git checkout pr644
 <span class="normal">55</span>
 <span class="normal">56</span>
 <span class="normal">57</span></pre></div></td><td class="code"><div><pre><span></span><code>class So100RobotConfig(ManipulatorRobotConfig):
-    calibration_dir: str = &quot;.cache/calibration/so100&quot;
+    calibration_dir: str = ".cache/calibration/so100"
     # `max_relative_target` limits the magnitude of the relative positional target vector for safety purposes.
     # Set this to a positive scalar to have the same value for all motors, or a list that is the same length as
     # the number of motors in your follower arms.
@@ -1664,16 +1692,16 @@ git checkout pr644
 
     leader_arms: dict[str, MotorsBusConfig] = field(
         default_factory=lambda: {
-            &quot;main&quot;: FeetechMotorsBusConfig(
-                port=&quot;/dev/ttyACM1&quot;,
+            "main": FeetechMotorsBusConfig(
+                port="/dev/ttyACM1",
                 motors={
                     # name: (index, model)
-                    &quot;shoulder_pan&quot;: [1, &quot;sts3215&quot;],
-                    &quot;shoulder_lift&quot;: [2, &quot;sts3215&quot;],
-                    &quot;elbow_flex&quot;: [3, &quot;sts3215&quot;],
-                    &quot;wrist_flex&quot;: [4, &quot;sts3215&quot;],
-                    &quot;wrist_roll&quot;: [5, &quot;sts3215&quot;],
-                    &quot;gripper&quot;: [6, &quot;sts3215&quot;],
+                    "shoulder_pan": [1, "sts3215"],
+                    "shoulder_lift": [2, "sts3215"],
+                    "elbow_flex": [3, "sts3215"],
+                    "wrist_flex": [4, "sts3215"],
+                    "wrist_roll": [5, "sts3215"],
+                    "gripper": [6, "sts3215"],
                 },
             ),
         }
@@ -1681,16 +1709,16 @@ git checkout pr644
 
     follower_arms: dict[str, MotorsBusConfig] = field(
         default_factory=lambda: {
-            &quot;main&quot;: FeetechMotorsBusConfig(
-                port=&quot;/dev/ttyACM0&quot;,
+            "main": FeetechMotorsBusConfig(
+                port="/dev/ttyACM0",
                 motors={
                     # name: (index, model)
-                    &quot;shoulder_pan&quot;: [1, &quot;sts3215&quot;],
-                    &quot;shoulder_lift&quot;: [2, &quot;sts3215&quot;],
-                    &quot;elbow_flex&quot;: [3, &quot;sts3215&quot;],
-                    &quot;wrist_flex&quot;: [4, &quot;sts3215&quot;],
-                    &quot;wrist_roll&quot;: [5, &quot;sts3215&quot;],
-                    &quot;gripper&quot;: [6, &quot;sts3215&quot;],
+                    "shoulder_pan": [1, "sts3215"],
+                    "shoulder_lift": [2, "sts3215"],
+                    "elbow_flex": [3, "sts3215"],
+                    "wrist_flex": [4, "sts3215"],
+                    "wrist_roll": [5, "sts3215"],
+                    "gripper": [6, "sts3215"],
                 },
             ),
         }
@@ -1698,13 +1726,13 @@ git checkout pr644
 
     cameras: dict[str, CameraConfig] = field(
         default_factory=lambda: {
-            &quot;laptop&quot;: OpenCVCameraConfig(
+            "laptop": OpenCVCameraConfig(
                 camera_index=0,
                 fps=30,
                 width=640,
                 height=480,
             ),
-            &quot;phone&quot;: OpenCVCameraConfig(
+            "phone": OpenCVCameraConfig(
                 camera_index=2,
                 fps=30,
                 width=640,
@@ -1882,88 +1910,88 @@ Min ee position [-0.09507553 -0.29766109 -0.01841555]
 <span class="normal">151</span>
 <span class="normal">152</span>
 <span class="normal">153</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="go">{</span>
-<span class="go">    &quot;type&quot;: &quot;gym_manipulator&quot;,</span>
-<span class="go">    &quot;robot&quot;: {</span>
-<span class="go">        &quot;type&quot;: &quot;so100&quot;,</span>
-<span class="go">        &quot;leader_arms&quot;: {},</span>
-<span class="go">        &quot;follower_arms&quot;: {</span>
-<span class="go">            &quot;main&quot;: {</span>
-<span class="go">                &quot;type&quot;: &quot;feetech&quot;,</span>
-<span class="hll"><span class="go">                &quot;port&quot;: &quot;/dev/ttyACM0&quot;,</span>
-</span><span class="go">                &quot;motors&quot;: {</span>
-<span class="go">                    &quot;shoulder_pan&quot;: [</span>
+<span class="go">    "type": "gym_manipulator",</span>
+<span class="go">    "robot": {</span>
+<span class="go">        "type": "so100",</span>
+<span class="go">        "leader_arms": {},</span>
+<span class="go">        "follower_arms": {</span>
+<span class="go">            "main": {</span>
+<span class="go">                "type": "feetech",</span>
+<span class="hll"><span class="go">                "port": "/dev/ttyACM0",</span>
+</span><span class="go">                "motors": {</span>
+<span class="go">                    "shoulder_pan": [</span>
 <span class="go">                        1,</span>
-<span class="go">                        &quot;sts3215&quot;</span>
+<span class="go">                        "sts3215"</span>
 <span class="go">                    ],</span>
-<span class="go">                    &quot;shoulder_lift&quot;: [</span>
+<span class="go">                    "shoulder_lift": [</span>
 <span class="go">                        2,</span>
-<span class="go">                        &quot;sts3215&quot;</span>
+<span class="go">                        "sts3215"</span>
 <span class="go">                    ],</span>
-<span class="go">                    &quot;elbow_flex&quot;: [</span>
+<span class="go">                    "elbow_flex": [</span>
 <span class="go">                        3,</span>
-<span class="go">                        &quot;sts3215&quot;</span>
+<span class="go">                        "sts3215"</span>
 <span class="go">                    ],</span>
-<span class="go">                    &quot;wrist_flex&quot;: [</span>
+<span class="go">                    "wrist_flex": [</span>
 <span class="go">                        4,</span>
-<span class="go">                        &quot;sts3215&quot;</span>
+<span class="go">                        "sts3215"</span>
 <span class="go">                    ],</span>
-<span class="go">                    &quot;wrist_roll&quot;: [</span>
+<span class="go">                    "wrist_roll": [</span>
 <span class="go">                        5,</span>
-<span class="go">                        &quot;sts3215&quot;</span>
+<span class="go">                        "sts3215"</span>
 <span class="go">                    ],</span>
-<span class="go">                    &quot;gripper&quot;: [</span>
+<span class="go">                    "gripper": [</span>
 <span class="go">                        6,</span>
-<span class="go">                        &quot;sts3215&quot;</span>
+<span class="go">                        "sts3215"</span>
 <span class="go">                    ]</span>
 <span class="go">                }</span>
 <span class="go">            }</span>
 <span class="go">        },</span>
-<span class="go">        &quot;cameras&quot;: {</span>
-<span class="go">            &quot;front&quot;: {</span>
-<span class="go">                &quot;type&quot;: &quot;opencv&quot;,</span>
-<span class="hll"><span class="go">                &quot;camera_index&quot;: 0,</span>
-</span><span class="go">                &quot;height&quot;: 480,</span>
-<span class="go">                &quot;width&quot;: 640,</span>
-<span class="go">                &quot;fps&quot;: 15</span>
+<span class="go">        "cameras": {</span>
+<span class="go">            "front": {</span>
+<span class="go">                "type": "opencv",</span>
+<span class="hll"><span class="go">                "camera_index": 0,</span>
+</span><span class="go">                "height": 480,</span>
+<span class="go">                "width": 640,</span>
+<span class="go">                "fps": 15</span>
 <span class="go">            },</span>
-<span class="go">            &quot;wrist&quot;: {</span>
-<span class="go">                &quot;type&quot;: &quot;opencv&quot;,</span>
-<span class="hll"><span class="go">                &quot;camera_index&quot;: 2,</span>
-</span><span class="go">                &quot;height&quot;: 480,</span>
-<span class="go">                &quot;width&quot;: 640,</span>
-<span class="go">                &quot;fps&quot;: 15</span>
+<span class="go">            "wrist": {</span>
+<span class="go">                "type": "opencv",</span>
+<span class="hll"><span class="go">                "camera_index": 2,</span>
+</span><span class="go">                "height": 480,</span>
+<span class="go">                "width": 640,</span>
+<span class="go">                "fps": 15</span>
 <span class="go">            }</span>
 <span class="go">        }</span>
 <span class="go">    },</span>
-<span class="go">    &quot;wrapper&quot;: {</span>
-<span class="go">        &quot;display_cameras&quot;: false,</span>
-<span class="go">        &quot;add_joint_velocity_to_observation&quot;: true,</span>
-<span class="go">        &quot;add_current_to_observation&quot;: true,</span>
-<span class="go">        &quot;add_ee_pose_to_observation&quot;: true,</span>
-<span class="go">        &quot;crop_params_dict&quot;: {</span>
-<span class="go">            &quot;observation.images.front&quot;: [</span>
+<span class="go">    "wrapper": {</span>
+<span class="go">        "display_cameras": false,</span>
+<span class="go">        "add_joint_velocity_to_observation": true,</span>
+<span class="go">        "add_current_to_observation": true,</span>
+<span class="go">        "add_ee_pose_to_observation": true,</span>
+<span class="go">        "crop_params_dict": {</span>
+<span class="go">            "observation.images.front": [</span>
 <span class="go">                270,</span>
 <span class="go">                170,</span>
 <span class="go">                90,</span>
 <span class="go">                190</span>
 <span class="go">            ],</span>
-<span class="go">            &quot;observation.images.wrist&quot;: [</span>
+<span class="go">            "observation.images.wrist": [</span>
 <span class="go">                0,</span>
 <span class="go">                0,</span>
 <span class="go">                480,</span>
 <span class="go">                640</span>
 <span class="go">            ]</span>
 <span class="go">        },</span>
-<span class="go">        &quot;resize_size&quot;: [</span>
+<span class="go">        "resize_size": [</span>
 <span class="go">            128,</span>
 <span class="go">            128</span>
 <span class="go">        ],</span>
-<span class="go">        &quot;control_time_s&quot;: 20.0,</span>
-<span class="go">        &quot;use_gripper&quot;: true,</span>
-<span class="go">        &quot;gripper_quantization_threshold&quot;: null,</span>
-<span class="go">        &quot;gripper_penalty&quot;: -0.02,</span>
-<span class="go">        &quot;gripper_penalty_in_reward&quot;: false,</span>
-<span class="go">        &quot;fixed_reset_joint_positions&quot;: [</span>
+<span class="go">        "control_time_s": 20.0,</span>
+<span class="go">        "use_gripper": true,</span>
+<span class="go">        "gripper_quantization_threshold": null,</span>
+<span class="go">        "gripper_penalty": -0.02,</span>
+<span class="go">        "gripper_penalty_in_reward": false,</span>
+<span class="go">        "fixed_reset_joint_positions": [</span>
 <span class="go">            -0.0,</span>
 <span class="go">            110.0,</span>
 <span class="go">            120.0,</span>
@@ -1971,68 +1999,68 @@ Min ee position [-0.09507553 -0.29766109 -0.01841555]
 <span class="go">            -90.0,</span>
 <span class="go">            30.0</span>
 <span class="go">        ],</span>
-<span class="go">        &quot;reset_time_s&quot;: 2.5,</span>
-<span class="go">        &quot;ee_action_space_params&quot;: {</span>
-<span class="go">            &quot;x_step_size&quot;: 0.03,</span>
-<span class="go">            &quot;y_step_size&quot;: 0.03,</span>
-<span class="go">            &quot;z_step_size&quot;: 0.03,</span>
-<span class="go">            &quot;bounds&quot;: {</span>
-<span class="go">                &quot;max&quot;: [</span>
+<span class="go">        "reset_time_s": 2.5,</span>
+<span class="go">        "ee_action_space_params": {</span>
+<span class="go">            "x_step_size": 0.03,</span>
+<span class="go">            "y_step_size": 0.03,</span>
+<span class="go">            "z_step_size": 0.03,</span>
+<span class="go">            "bounds": {</span>
+<span class="go">                "max": [</span>
 <span class="hll"><span class="go">                    0.43667077, </span>
 </span><span class="hll"><span class="go">                    0.24992244,</span>
 </span><span class="hll"><span class="go">                    0.48715585</span>
 </span><span class="go">                ],</span>
-<span class="go">                &quot;min&quot;: [</span>
+<span class="go">                "min": [</span>
 <span class="hll"><span class="go">                    -0.09507553, </span>
 </span><span class="hll"><span class="go">                    -0.29766109,</span>
 </span><span class="hll"><span class="go">                    -0.01841555</span>
 </span><span class="go">                ]</span>
 <span class="go">            },</span>
-<span class="go">            &quot;control_mode&quot;: &quot;gamepad&quot;</span>
+<span class="go">            "control_mode": "gamepad"</span>
 <span class="go">        }</span>
 <span class="go">    },</span>
-<span class="go">    &quot;name&quot;: &quot;real_robot&quot;,</span>
-<span class="go">    &quot;mode&quot;: &quot;record&quot;,</span>
-<span class="hll"><span class="go">    &quot;repo_id&quot;: &quot;akira-sasaki/pick_place_cube_wrist_cam_3&quot;,</span>
-</span><span class="go">    &quot;dataset_root&quot;: null,</span>
-<span class="go">    &quot;task&quot;: &quot;&quot;,</span>
-<span class="hll"><span class="go">    &quot;num_episodes&quot;: 3,</span>
-</span><span class="go">    &quot;episode&quot;: 0,</span>
-<span class="go">    &quot;pretrained_policy_name_or_path&quot;: null,</span>
-<span class="go">    &quot;device&quot;: &quot;cuda&quot;,</span>
-<span class="go">    &quot;push_to_hub&quot;: true,</span>
-<span class="go">    &quot;fps&quot;: 10,</span>
-<span class="go">    &quot;features&quot;: {</span>
-<span class="go">        &quot;observation.images.front&quot;: {</span>
-<span class="go">            &quot;type&quot;: &quot;VISUAL&quot;,</span>
-<span class="go">            &quot;shape&quot;: [</span>
+<span class="go">    "name": "real_robot",</span>
+<span class="go">    "mode": "record",</span>
+<span class="hll"><span class="go">    "repo_id": "akira-sasaki/pick_place_cube_wrist_cam_3",</span>
+</span><span class="go">    "dataset_root": null,</span>
+<span class="go">    "task": "",</span>
+<span class="hll"><span class="go">    "num_episodes": 3,</span>
+</span><span class="go">    "episode": 0,</span>
+<span class="go">    "pretrained_policy_name_or_path": null,</span>
+<span class="go">    "device": "cuda",</span>
+<span class="go">    "push_to_hub": true,</span>
+<span class="go">    "fps": 10,</span>
+<span class="go">    "features": {</span>
+<span class="go">        "observation.images.front": {</span>
+<span class="go">            "type": "VISUAL",</span>
+<span class="go">            "shape": [</span>
 <span class="go">                3,</span>
 <span class="go">                128,</span>
 <span class="go">                128</span>
 <span class="go">            ]</span>
 <span class="go">        },</span>
-<span class="go">        &quot;observation.images.wrist&quot;: {</span>
-<span class="go">            &quot;type&quot;: &quot;VISUAL&quot;,</span>
-<span class="go">            &quot;shape&quot;: [</span>
+<span class="go">        "observation.images.wrist": {</span>
+<span class="go">            "type": "VISUAL",</span>
+<span class="go">            "shape": [</span>
 <span class="go">                3,</span>
 <span class="go">                128,</span>
 <span class="go">                128</span>
 <span class="go">            ]</span>
 <span class="go">        },</span>
-<span class="go">        &quot;observation.state&quot;: {</span>
-<span class="go">            &quot;type&quot;: &quot;STATE&quot;,</span>
-<span class="go">            &quot;shape&quot;: [</span>
+<span class="go">        "observation.state": {</span>
+<span class="go">            "type": "STATE",</span>
+<span class="go">            "shape": [</span>
 <span class="go">                15</span>
 <span class="go">            ]</span>
 <span class="go">        },</span>
-<span class="go">        &quot;action&quot;: {</span>
-<span class="go">            &quot;type&quot;: &quot;ACTION&quot;,</span>
-<span class="go">            &quot;shape&quot;: [</span>
+<span class="go">        "action": {</span>
+<span class="go">            "type": "ACTION",</span>
+<span class="go">            "shape": [</span>
 <span class="go">                3</span>
 <span class="go">            ]</span>
 <span class="go">        }</span>
 <span class="go">    },</span>
-<span class="go">    &quot;features_map&quot;: {}</span>
+<span class="go">    "features_map": {}</span>
 <span class="go">}</span>
 </code></pre></div></td></tr></table></div>
 <p>gym_manipulatorを起動し、データセットを収集。</p>
@@ -2408,95 +2436,95 @@ Min ee position [-0.09507553 -0.29766109 -0.01841555]
 <span class="normal">365</span>
 <span class="normal">366</span>
 <span class="normal">367</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;output_dir&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;job_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;default&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;resume&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;seed&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;num_workers&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;batch_size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">256</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;steps&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100000</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;log_freq&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;save_checkpoint&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;save_freq&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;wandb&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;enable&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;project&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;so100_real&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;disable_artifact&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">    </span><span class="nt">"output_dir"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"job_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"default"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"resume"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"seed"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"num_workers"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"batch_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">256</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"steps"</span><span class="p">:</span><span class="w"> </span><span class="mi">100000</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"log_freq"</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"save_checkpoint"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"save_freq"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"wandb"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"enable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"project"</span><span class="p">:</span><span class="w"> </span><span class="s2">"so100_real"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"disable_artifact"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
 <span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nt">&quot;dataset&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="hll"><span class="w">        </span><span class="nt">&quot;repo_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;akira-sasaki/pick_place_cube_wrist_cam_3&quot;</span><span class="p">,</span>
-</span><span class="w">        </span><span class="nt">&quot;use_imagenet_stats&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">    </span><span class="nt">"dataset"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="hll"><span class="w">        </span><span class="nt">"repo_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"akira-sasaki/pick_place_cube_wrist_cam_3"</span><span class="p">,</span>
+</span><span class="w">        </span><span class="nt">"use_imagenet_stats"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
 <span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nt">&quot;policy&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sac&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;n_obs_steps&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;normalization_mapping&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nt">&quot;VISUAL&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;MEAN_STD&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;STATE&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;MIN_MAX&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;ENV&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;MIN_MAX&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;ACTION&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;MIN_MAX&quot;</span>
+<span class="w">    </span><span class="nt">"policy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sac"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"n_obs_steps"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"normalization_mapping"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"VISUAL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MEAN_STD"</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"STATE"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MIN_MAX"</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"ENV"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MIN_MAX"</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"ACTION"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MIN_MAX"</span>
 <span class="w">        </span><span class="p">},</span>
-<span class="w">        </span><span class="nt">&quot;input_features&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nt">&quot;observation.images.front&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;VISUAL&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="nt">&quot;shape&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="nt">"input_features"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"observation.images.front"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VISUAL"</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">"shape"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">                    </span><span class="mi">3</span><span class="p">,</span>
 <span class="w">                    </span><span class="mi">128</span><span class="p">,</span>
 <span class="w">                    </span><span class="mi">128</span>
 <span class="w">                </span><span class="p">]</span>
 <span class="w">            </span><span class="p">},</span>
-<span class="w">            </span><span class="nt">&quot;observation.images.wrist&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;VISUAL&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="nt">&quot;shape&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="nt">"observation.images.wrist"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VISUAL"</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">"shape"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">                    </span><span class="mi">3</span><span class="p">,</span>
 <span class="w">                    </span><span class="mi">128</span><span class="p">,</span>
 <span class="w">                    </span><span class="mi">128</span>
 <span class="w">                </span><span class="p">]</span>
 <span class="w">            </span><span class="p">},</span>
-<span class="w">            </span><span class="nt">&quot;observation.state&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;STATE&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="nt">&quot;shape&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="nt">"observation.state"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STATE"</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">"shape"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">                    </span><span class="mi">21</span>
 <span class="w">                </span><span class="p">]</span>
 <span class="w">            </span><span class="p">}</span>
 <span class="w">        </span><span class="p">},</span>
-<span class="w">        </span><span class="nt">&quot;output_features&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nt">&quot;action&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ACTION&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="nt">&quot;shape&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="nt">"output_features"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"action"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ACTION"</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">"shape"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">                    </span><span class="mi">3</span>
 <span class="w">                </span><span class="p">]</span>
 <span class="w">            </span><span class="p">}</span>
 <span class="w">        </span><span class="p">},</span>
-<span class="w">        </span><span class="nt">&quot;device&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;cuda&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;use_amp&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;dataset_stats&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nt">&quot;observation.images.front&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="nt">&quot;mean&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="nt">"device"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cuda"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"use_amp"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"dataset_stats"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"observation.images.front"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">"mean"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">                    </span><span class="mf">0.485</span><span class="p">,</span>
 <span class="w">                    </span><span class="mf">0.456</span><span class="p">,</span>
 <span class="w">                    </span><span class="mf">0.406</span>
 <span class="w">                </span><span class="p">],</span>
-<span class="w">                </span><span class="nt">&quot;std&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="nt">"std"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">                    </span><span class="mf">0.229</span><span class="p">,</span>
 <span class="w">                    </span><span class="mf">0.224</span><span class="p">,</span>
 <span class="w">                    </span><span class="mf">0.225</span>
 <span class="w">                </span><span class="p">]</span>
 <span class="w">            </span><span class="p">},</span>
-<span class="w">            </span><span class="nt">&quot;observation.images.wrist&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="nt">&quot;mean&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="nt">"observation.images.wrist"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">"mean"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">                    </span><span class="mf">0.485</span><span class="p">,</span>
 <span class="w">                    </span><span class="mf">0.456</span><span class="p">,</span>
 <span class="w">                    </span><span class="mf">0.406</span>
 <span class="w">                </span><span class="p">],</span>
-<span class="w">                </span><span class="nt">&quot;std&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="nt">"std"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">                    </span><span class="mf">0.229</span><span class="p">,</span>
 <span class="w">                    </span><span class="mf">0.224</span><span class="p">,</span>
 <span class="w">                    </span><span class="mf">0.225</span>
 <span class="w">                </span><span class="p">]</span>
 <span class="w">            </span><span class="p">},</span>
-<span class="w">            </span><span class="nt">&quot;observation.state&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="nt">&quot;min&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="nt">"observation.state"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">"min"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">                    </span><span class="mf">-10.0</span><span class="p">,</span>
 <span class="w">                    </span><span class="mf">93.0</span><span class="p">,</span>
 <span class="w">                    </span><span class="mf">125.0</span><span class="p">,</span>
@@ -2519,7 +2547,7 @@ Min ee position [-0.09507553 -0.29766109 -0.01841555]
 <span class="w">                    </span><span class="mf">-0.08</span><span class="p">,</span>
 <span class="w">                    </span><span class="mf">-0.01</span>
 <span class="w">                </span><span class="p">],</span>
-<span class="w">                </span><span class="nt">&quot;max&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="nt">"max"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">                    </span><span class="mf">25.0</span><span class="p">,</span>
 <span class="w">                    </span><span class="mf">121.0</span><span class="p">,</span>
 <span class="w">                    </span><span class="mf">147.0</span><span class="p">,</span>
@@ -2543,161 +2571,161 @@ Min ee position [-0.09507553 -0.29766109 -0.01841555]
 <span class="w">                    </span><span class="mf">0.1</span>
 <span class="w">                </span><span class="p">]</span>
 <span class="w">            </span><span class="p">},</span>
-<span class="w">            </span><span class="nt">&quot;action&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="nt">&quot;min&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="nt">"action"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">"min"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">                    </span><span class="mf">-0.03</span><span class="p">,</span>
 <span class="w">                    </span><span class="mf">-0.03</span><span class="p">,</span>
 <span class="w">                    </span><span class="mf">-0.03</span>
 
 <span class="w">                </span><span class="p">],</span>
-<span class="w">                </span><span class="nt">&quot;max&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="nt">"max"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">                    </span><span class="mf">0.03</span><span class="p">,</span>
 <span class="w">                    </span><span class="mf">0.03</span><span class="p">,</span>
 <span class="w">                    </span><span class="mf">0.03</span>
 <span class="w">                </span><span class="p">]</span>
 <span class="w">            </span><span class="p">}</span>
 <span class="w">        </span><span class="p">},</span>
-<span class="w">        </span><span class="nt">&quot;num_discrete_actions&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;storage_device&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;cpu&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;vision_encoder_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;helper2424/resnet10&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;freeze_vision_encoder&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;image_encoder_hidden_dim&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">32</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;shared_encoder&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;online_steps&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1000000</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;online_env_seed&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;online_buffer_capacity&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100000</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;offline_buffer_capacity&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100000</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;online_step_before_learning&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;policy_update_freq&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;discount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.97</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;async_prefetch&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;temperature_init&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;num_critics&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;num_subsample_critics&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;critic_lr&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0003</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;actor_lr&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0003</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;temperature_lr&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0003</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;critic_target_update_weight&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.005</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;utd_ratio&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;state_encoder_hidden_dim&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">256</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;latent_dim&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">256</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;target_entropy&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;use_backup_entropy&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;grad_clip_norm&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">40.0</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;critic_network_kwargs&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nt">&quot;hidden_dims&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="nt">"num_discrete_actions"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"storage_device"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cpu"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"vision_encoder_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"helper2424/resnet10"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"freeze_vision_encoder"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"image_encoder_hidden_dim"</span><span class="p">:</span><span class="w"> </span><span class="mi">32</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"shared_encoder"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"online_steps"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000000</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"online_env_seed"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"online_buffer_capacity"</span><span class="p">:</span><span class="w"> </span><span class="mi">100000</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"offline_buffer_capacity"</span><span class="p">:</span><span class="w"> </span><span class="mi">100000</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"online_step_before_learning"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"policy_update_freq"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.97</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"async_prefetch"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"temperature_init"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"num_critics"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"num_subsample_critics"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"critic_lr"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0003</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"actor_lr"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0003</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"temperature_lr"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0003</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"critic_target_update_weight"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.005</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"utd_ratio"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"state_encoder_hidden_dim"</span><span class="p">:</span><span class="w"> </span><span class="mi">256</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"latent_dim"</span><span class="p">:</span><span class="w"> </span><span class="mi">256</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"target_entropy"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"use_backup_entropy"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"grad_clip_norm"</span><span class="p">:</span><span class="w"> </span><span class="mf">40.0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"critic_network_kwargs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"hidden_dims"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">                </span><span class="mi">256</span><span class="p">,</span>
 <span class="w">                </span><span class="mi">256</span>
 <span class="w">            </span><span class="p">],</span>
-<span class="w">            </span><span class="nt">&quot;activate_final&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;final_activation&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">            </span><span class="nt">"activate_final"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"final_activation"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
 <span class="w">        </span><span class="p">},</span>
-<span class="w">        </span><span class="nt">&quot;actor_network_kwargs&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nt">&quot;hidden_dims&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="nt">"actor_network_kwargs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"hidden_dims"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">                </span><span class="mi">256</span><span class="p">,</span>
 <span class="w">                </span><span class="mi">256</span>
 <span class="w">            </span><span class="p">],</span>
-<span class="w">            </span><span class="nt">&quot;activate_final&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">            </span><span class="nt">"activate_final"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
 <span class="w">        </span><span class="p">},</span>
-<span class="w">        </span><span class="nt">&quot;policy_kwargs&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nt">&quot;use_tanh_squash&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;log_std_min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1e-5</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;log_std_max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">5.0</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;init_final&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.05</span>
+<span class="w">        </span><span class="nt">"policy_kwargs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"use_tanh_squash"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"log_std_min"</span><span class="p">:</span><span class="w"> </span><span class="mf">1e-5</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"log_std_max"</span><span class="p">:</span><span class="w"> </span><span class="mf">5.0</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"init_final"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.05</span>
 <span class="w">        </span><span class="p">},</span>
-<span class="w">        </span><span class="nt">&quot;actor_learner_config&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nt">&quot;learner_host&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;127.0.0.1&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;learner_port&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">50051</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;policy_parameters_push_frequency&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span>
+<span class="w">        </span><span class="nt">"actor_learner_config"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"learner_host"</span><span class="p">:</span><span class="w"> </span><span class="s2">"127.0.0.1"</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"learner_port"</span><span class="p">:</span><span class="w"> </span><span class="mi">50051</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"policy_parameters_push_frequency"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span>
 <span class="w">        </span><span class="p">},</span>
-<span class="w">        </span><span class="nt">&quot;concurrency&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nt">&quot;actor&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;threads&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;learner&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;threads&quot;</span>
+<span class="w">        </span><span class="nt">"concurrency"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"actor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"threads"</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"learner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"threads"</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nt">&quot;env&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gym_manipulator&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;robot&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;so100&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;leader_arms&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span>
-<span class="w">            </span><span class="nt">&quot;follower_arms&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="nt">&quot;main&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;feetech&quot;</span><span class="p">,</span>
-<span class="w">                    </span><span class="nt">&quot;port&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/dev/ttyACM0&quot;</span><span class="p">,</span>
-<span class="w">                    </span><span class="nt">&quot;motors&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                        </span><span class="nt">&quot;shoulder_pan&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="nt">"env"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gym_manipulator"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"robot"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"so100"</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"leader_arms"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span>
+<span class="w">            </span><span class="nt">"follower_arms"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">"main"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"feetech"</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">"port"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/dev/ttyACM0"</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">"motors"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="nt">"shoulder_pan"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">                            </span><span class="mi">1</span><span class="p">,</span>
-<span class="w">                            </span><span class="s2">&quot;sts3215&quot;</span>
+<span class="w">                            </span><span class="s2">"sts3215"</span>
 <span class="w">                        </span><span class="p">],</span>
-<span class="w">                        </span><span class="nt">&quot;shoulder_lift&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                        </span><span class="nt">"shoulder_lift"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">                            </span><span class="mi">2</span><span class="p">,</span>
-<span class="w">                            </span><span class="s2">&quot;sts3215&quot;</span>
+<span class="w">                            </span><span class="s2">"sts3215"</span>
 <span class="w">                        </span><span class="p">],</span>
-<span class="w">                        </span><span class="nt">&quot;elbow_flex&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                        </span><span class="nt">"elbow_flex"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">                            </span><span class="mi">3</span><span class="p">,</span>
-<span class="w">                            </span><span class="s2">&quot;sts3215&quot;</span>
+<span class="w">                            </span><span class="s2">"sts3215"</span>
 <span class="w">                        </span><span class="p">],</span>
-<span class="w">                        </span><span class="nt">&quot;wrist_flex&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                        </span><span class="nt">"wrist_flex"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">                            </span><span class="mi">4</span><span class="p">,</span>
-<span class="w">                            </span><span class="s2">&quot;sts3215&quot;</span>
+<span class="w">                            </span><span class="s2">"sts3215"</span>
 <span class="w">                        </span><span class="p">],</span>
-<span class="w">                        </span><span class="nt">&quot;wrist_roll&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                        </span><span class="nt">"wrist_roll"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">                            </span><span class="mi">5</span><span class="p">,</span>
-<span class="w">                            </span><span class="s2">&quot;sts3215&quot;</span>
+<span class="w">                            </span><span class="s2">"sts3215"</span>
 <span class="w">                        </span><span class="p">],</span>
-<span class="w">                        </span><span class="nt">&quot;gripper&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                        </span><span class="nt">"gripper"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">                            </span><span class="mi">6</span><span class="p">,</span>
-<span class="w">                            </span><span class="s2">&quot;sts3215&quot;</span>
+<span class="w">                            </span><span class="s2">"sts3215"</span>
 <span class="w">                        </span><span class="p">]</span>
 <span class="w">                    </span><span class="p">}</span>
 <span class="w">                </span><span class="p">}</span>
 <span class="w">            </span><span class="p">},</span>
-<span class="w">            </span><span class="nt">&quot;cameras&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="nt">&quot;front&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;opencv&quot;</span><span class="p">,</span>
-<span class="w">                    </span><span class="nt">&quot;camera_index&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="hll"><span class="w">                    </span><span class="nt">&quot;height&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">480</span><span class="p">,</span>
-</span><span class="w">                    </span><span class="nt">&quot;width&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">640</span><span class="p">,</span>
-<span class="w">                    </span><span class="nt">&quot;fps&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span>
+<span class="w">            </span><span class="nt">"cameras"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">"front"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"opencv"</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">"camera_index"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="hll"><span class="w">                    </span><span class="nt">"height"</span><span class="p">:</span><span class="w"> </span><span class="mi">480</span><span class="p">,</span>
+</span><span class="w">                    </span><span class="nt">"width"</span><span class="p">:</span><span class="w"> </span><span class="mi">640</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">"fps"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span>
 <span class="w">                </span><span class="p">},</span>
-<span class="w">                </span><span class="nt">&quot;wrist&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;opencv&quot;</span><span class="p">,</span>
-<span class="w">                    </span><span class="nt">&quot;camera_index&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
-<span class="hll"><span class="w">                    </span><span class="nt">&quot;height&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">480</span><span class="p">,</span>
-</span><span class="w">                    </span><span class="nt">&quot;width&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">640</span><span class="p">,</span>
-<span class="w">                    </span><span class="nt">&quot;fps&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span>
+<span class="w">                </span><span class="nt">"wrist"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"opencv"</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">"camera_index"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="hll"><span class="w">                    </span><span class="nt">"height"</span><span class="p">:</span><span class="w"> </span><span class="mi">480</span><span class="p">,</span>
+</span><span class="w">                    </span><span class="nt">"width"</span><span class="p">:</span><span class="w"> </span><span class="mi">640</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">"fps"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span>
 <span class="w">                </span><span class="p">}</span>
 <span class="w">            </span><span class="p">}</span>
 <span class="w">        </span><span class="p">},</span>
-<span class="w">        </span><span class="nt">&quot;wrapper&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nt">&quot;display_cameras&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;add_joint_velocity_to_observation&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;add_current_to_observation&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;add_ee_pose_to_observation&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;crop_params_dict&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="nt">&quot;observation.images.front&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="nt">"wrapper"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"display_cameras"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"add_joint_velocity_to_observation"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"add_current_to_observation"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"add_ee_pose_to_observation"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"crop_params_dict"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">"observation.images.front"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">                    </span><span class="mi">160</span><span class="p">,</span>
 <span class="w">                    </span><span class="mi">220</span><span class="p">,</span>
 <span class="w">                    </span><span class="mi">120</span><span class="p">,</span>
 <span class="w">                    </span><span class="mi">150</span>
 <span class="w">                </span><span class="p">],</span>
-<span class="w">                </span><span class="nt">&quot;observation.images.wrist&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="nt">"observation.images.wrist"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">                    </span><span class="mi">0</span><span class="p">,</span>
 <span class="w">                    </span><span class="mi">0</span><span class="p">,</span>
 <span class="w">                    </span><span class="mi">480</span><span class="p">,</span>
 <span class="w">                    </span><span class="mi">640</span>
 <span class="w">                </span><span class="p">]</span>
 <span class="w">            </span><span class="p">},</span>
-<span class="w">            </span><span class="nt">&quot;resize_size&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="nt">"resize_size"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">                </span><span class="mi">128</span><span class="p">,</span>
 <span class="w">                </span><span class="mi">128</span>
 <span class="w">            </span><span class="p">],</span>
-<span class="w">            </span><span class="nt">&quot;control_time_s&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">10.0</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;use_gripper&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;gripper_quantization_threshold&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;gripper_penalty&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">-0.02</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;gripper_penalty_in_reward&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;fixed_reset_joint_positions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="nt">"control_time_s"</span><span class="p">:</span><span class="w"> </span><span class="mf">10.0</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"use_gripper"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"gripper_quantization_threshold"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"gripper_penalty"</span><span class="p">:</span><span class="w"> </span><span class="mf">-0.02</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"gripper_penalty_in_reward"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"fixed_reset_joint_positions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">                </span><span class="mf">-0.0</span><span class="p">,</span>
 <span class="w">                </span><span class="mf">110.0</span><span class="p">,</span>
 <span class="w">                </span><span class="mf">120.0</span><span class="p">,</span>
@@ -2705,18 +2733,18 @@ Min ee position [-0.09507553 -0.29766109 -0.01841555]
 <span class="w">                </span><span class="mf">-90.0</span><span class="p">,</span>
 <span class="w">                </span><span class="mf">25.0</span>
 <span class="w">            </span><span class="p">],</span>
-<span class="w">            </span><span class="nt">&quot;reset_time_s&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">2.5</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;ee_action_space_params&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="nt">&quot;x_step_size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.03</span><span class="p">,</span>
-<span class="w">                </span><span class="nt">&quot;y_step_size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.03</span><span class="p">,</span>
-<span class="w">                </span><span class="nt">&quot;z_step_size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.03</span><span class="p">,</span>
-<span class="w">              </span><span class="nt">&quot;bounds&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                  </span><span class="nt">&quot;max&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="nt">"reset_time_s"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.5</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"ee_action_space_params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">"x_step_size"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.03</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">"y_step_size"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.03</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">"z_step_size"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.03</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">"bounds"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                  </span><span class="nt">"max"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">                      </span><span class="mf">0.43667077</span><span class="p">,</span><span class="w"> </span>
 <span class="hll"><span class="w">                      </span><span class="mf">0.24992244</span><span class="p">,</span>
 </span><span class="hll"><span class="w">                      </span><span class="mf">0.48715585</span>
 </span><span class="hll"><span class="w">                  </span><span class="p">],</span>
-</span><span class="w">                  </span><span class="nt">&quot;min&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+</span><span class="w">                  </span><span class="nt">"min"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">                      </span><span class="mf">-0.09507553</span><span class="p">,</span><span class="w"> </span>
 <span class="hll"><span class="w">                      </span><span class="mf">-0.29766109</span><span class="p">,</span>
 </span><span class="hll"><span class="w">                      </span><span class="mf">-0.01841555</span>
@@ -2724,52 +2752,52 @@ Min ee position [-0.09507553 -0.29766109 -0.01841555]
 </span><span class="w">              </span><span class="p">}</span>
 <span class="w">            </span><span class="p">}</span>
 <span class="w">        </span><span class="p">},</span>
-<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;real_robot&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;mode&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;repo_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;dataset_root&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;task&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;num_episodes&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;episode&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;pretrained_policy_name_or_path&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;device&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;cuda&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;push_to_hub&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;fps&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;features&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nt">&quot;observation.images.front&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;VISUAL&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="nt">&quot;shape&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"real_robot"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"mode"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"repo_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"dataset_root"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"task"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"num_episodes"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"episode"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"pretrained_policy_name_or_path"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"device"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cuda"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"push_to_hub"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"fps"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"features"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"observation.images.front"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VISUAL"</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">"shape"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">                    </span><span class="mi">3</span><span class="p">,</span>
 <span class="w">                    </span><span class="mi">128</span><span class="p">,</span>
 <span class="w">                    </span><span class="mi">128</span>
 <span class="w">                </span><span class="p">]</span>
 <span class="w">            </span><span class="p">},</span>
-<span class="w">            </span><span class="nt">&quot;observation.images.wrist&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;VISUAL&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="nt">&quot;shape&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="nt">"observation.images.wrist"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VISUAL"</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">"shape"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">                    </span><span class="mi">3</span><span class="p">,</span>
 <span class="w">                    </span><span class="mi">128</span><span class="p">,</span>
 <span class="w">                    </span><span class="mi">128</span>
 <span class="w">                </span><span class="p">]</span>
 <span class="w">            </span><span class="p">},</span>
-<span class="w">            </span><span class="nt">&quot;observation.state&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;STATE&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="nt">&quot;shape&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="nt">"observation.state"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STATE"</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">"shape"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">                    </span><span class="mi">21</span>
 <span class="w">                </span><span class="p">]</span>
 <span class="w">            </span><span class="p">},</span>
-<span class="w">            </span><span class="nt">&quot;action&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ACTION&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="nt">&quot;shape&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="nt">"action"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ACTION"</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">"shape"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">                    </span><span class="mi">3</span>
 <span class="w">                </span><span class="p">]</span>
 <span class="w">            </span><span class="p">}</span>
 <span class="w">        </span><span class="p">},</span>
-<span class="hll"><span class="w">        </span><span class="nt">&quot;features_map&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-</span><span class="hll"><span class="w">          </span><span class="nt">&quot;action&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;action&quot;</span><span class="p">,</span>
-</span><span class="hll"><span class="w">          </span><span class="nt">&quot;observation.images.front&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;observation.images.front&quot;</span><span class="p">,</span>
-</span><span class="hll"><span class="w">          </span><span class="nt">&quot;observation.images.wrist&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;observation.images.wrist&quot;</span><span class="p">,</span>
-</span><span class="hll"><span class="w">          </span><span class="nt">&quot;observation.state&quot;</span><span class="p">:</span><span class="w">        </span><span class="s2">&quot;observation.state&quot;</span>
+<span class="hll"><span class="w">        </span><span class="nt">"features_map"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span class="hll"><span class="w">          </span><span class="nt">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"action"</span><span class="p">,</span>
+</span><span class="hll"><span class="w">          </span><span class="nt">"observation.images.front"</span><span class="p">:</span><span class="w"> </span><span class="s2">"observation.images.front"</span><span class="p">,</span>
+</span><span class="hll"><span class="w">          </span><span class="nt">"observation.images.wrist"</span><span class="p">:</span><span class="w"> </span><span class="s2">"observation.images.wrist"</span><span class="p">,</span>
+</span><span class="hll"><span class="w">          </span><span class="nt">"observation.state"</span><span class="p">:</span><span class="w">        </span><span class="s2">"observation.state"</span>
 </span><span class="hll"><span class="w">        </span><span class="p">}</span>
 </span><span class="w">    </span><span class="p">}</span>
 
@@ -2780,7 +2808,7 @@ Min ee position [-0.09507553 -0.29766109 -0.01841555]
 </code></pre></div></td></tr></table></div>
 <h2 id="actor">Actorの起動</h2>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>python lerobot/scripts/server/actor_server.py --config_path lerobot/configs/train_config_hilserl_so100.json
-</code></pre></div></td></tr></table></div>
+</code></pre></div></td></tr></table></div></div>
 
 
 

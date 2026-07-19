@@ -19,7 +19,7 @@
       
       
       <link rel="icon" href="../../favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
@@ -610,6 +610,34 @@
     
   
     コマンド
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lerobot/knowhow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ノウハウ
   
 
     
@@ -1585,7 +1613,7 @@
 
 
 
-<h1 id="smolvla">smolVLA環境構築</h1>
+<div><h1 id="smolvla">smolVLA環境構築</h1>
 <h2 id="_1">マニュアル</h2>
 <p><a href="https://huggingface.co/blog/smolvla">SmolVLA: Efficient Vision-Language-Action Model trained on Lerobot Community Data</a></p>
 <h2 id="_2">検証環境</h2>
@@ -1610,15 +1638,15 @@ torch==2.8.0.dev20250603+cu128 torchvision==0.23.0.dev20250603+cu128 torchaudio=
 </code></pre></div></td></tr></table></div>
 <p>チェック</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>python -c &quot;import torch; print(torch.__version__)&quot;
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>python -c "import torch; print(torch.__version__)"
 2.8.0.dev20250603+cu128
 </code></pre></div></td></tr></table></div>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>python -c &quot;import torchvision; print(torchvision.__version__)&quot;
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>python -c "import torchvision; print(torchvision.__version__)"
 0.23.0.dev20250603+cu128
 </code></pre></div></td></tr></table></div>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>python -c &quot;import torchaudio; print(torchaudio.__version__)&quot;
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>python -c "import torchaudio; print(torchaudio.__version__)"
 2.8.0.dev20250603+cu128
 </code></pre></div></td></tr></table></div>
 <h2 id="lerobotgit-clone">LeRobotをGit clone</h2>
@@ -1657,34 +1685,34 @@ torch==2.8.0.dev20250603+cu128 torchvision==0.23.0.dev20250603+cu128 torchaudio=
 <span class="normal">28</span>
 <span class="normal">29</span>
 <span class="normal">30</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="err">depe</span><span class="kc">n</span><span class="err">de</span><span class="kc">n</span><span class="err">cies</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="p">[</span>
-<span class="w">    </span><span class="s2">&quot;cmake&gt;=3.29.0.1&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;datasets&gt;=2.19.0&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;deepdiff&gt;=7.0.1&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;diffusers&gt;=0.27.2&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;draccus==0.10.0&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;einops&gt;=0.8.0&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;flask&gt;=3.0.3&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;gdown&gt;=5.1.0&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;gymnasium==0.29.1&quot;</span><span class="p">,</span><span class="w">                                                 </span><span class="err">#</span><span class="w"> </span><span class="err">TODO(rcade</span><span class="kc">ne</span><span class="p">,</span><span class="w"> </span><span class="err">aliber</span><span class="kc">ts</span><span class="err">)</span><span class="p">:</span><span class="w"> </span><span class="err">Make</span><span class="w"> </span><span class="err">gym</span><span class="w"> </span><span class="mf">1.0.0</span><span class="w"> </span><span class="err">work</span>
-<span class="w">    </span><span class="s2">&quot;h5py&gt;=3.10.0&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;huggingface-hub[hf-transfer,cli]&gt;=0.27.1 ; python_version &lt; &#39;4.0&#39;&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;imageio[ffmpeg]&gt;=2.34.0&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;jsonlines&gt;=4.0.0&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;numba&gt;=0.59.0&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;omegaconf&gt;=2.3.0&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;opencv-python-headless&gt;=4.9.0&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;packaging&gt;=24.2&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;av&gt;=14.2.0&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;pymunk&gt;=6.6.0&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;pynput&gt;=1.7.7&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;pyzmq&gt;=26.2.1&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;rerun-sdk&gt;=0.21.0&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;termcolor&gt;=2.4.0&quot;</span><span class="p">,</span>
-<span class="hll"><span class="w">    </span><span class="err">#</span><span class="s2">&quot;torch&gt;=2.2.1,&lt;2.7&quot;</span><span class="p">,</span>
-</span><span class="hll"><span class="w">    </span><span class="err">#</span><span class="s2">&quot;torchcodec==0.2.1; sys_platform != &#39;win32&#39; and (sys_platform != &#39;linux&#39; or (platform_machine != &#39;aarch64&#39; and platform_machine != &#39;arm64&#39; and platform_machine != &#39;armv7l&#39;)) and (sys_platform != &#39;darwin&#39; or platform_machine != &#39;x86_64&#39;)&quot;</span><span class="p">,</span>
-</span><span class="hll"><span class="w">    </span><span class="err">#</span><span class="s2">&quot;torchvision&gt;=0.21.0&quot;</span><span class="p">,</span>
-</span><span class="w">    </span><span class="s2">&quot;wandb&gt;=0.16.3&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;zarr&gt;=2.17.0&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"cmake&gt;=3.29.0.1"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"datasets&gt;=2.19.0"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"deepdiff&gt;=7.0.1"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"diffusers&gt;=0.27.2"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"draccus==0.10.0"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"einops&gt;=0.8.0"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"flask&gt;=3.0.3"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"gdown&gt;=5.1.0"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"gymnasium==0.29.1"</span><span class="p">,</span><span class="w">                                                 </span><span class="err">#</span><span class="w"> </span><span class="err">TODO(rcade</span><span class="kc">ne</span><span class="p">,</span><span class="w"> </span><span class="err">aliber</span><span class="kc">ts</span><span class="err">)</span><span class="p">:</span><span class="w"> </span><span class="err">Make</span><span class="w"> </span><span class="err">gym</span><span class="w"> </span><span class="mf">1.0.0</span><span class="w"> </span><span class="err">work</span>
+<span class="w">    </span><span class="s2">"h5py&gt;=3.10.0"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"huggingface-hub[hf-transfer,cli]&gt;=0.27.1 ; python_version &lt; '4.0'"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"imageio[ffmpeg]&gt;=2.34.0"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"jsonlines&gt;=4.0.0"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"numba&gt;=0.59.0"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"omegaconf&gt;=2.3.0"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"opencv-python-headless&gt;=4.9.0"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"packaging&gt;=24.2"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"av&gt;=14.2.0"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"pymunk&gt;=6.6.0"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"pynput&gt;=1.7.7"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"pyzmq&gt;=26.2.1"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"rerun-sdk&gt;=0.21.0"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"termcolor&gt;=2.4.0"</span><span class="p">,</span>
+<span class="hll"><span class="w">    </span><span class="err">#</span><span class="s2">"torch&gt;=2.2.1,&lt;2.7"</span><span class="p">,</span>
+</span><span class="hll"><span class="w">    </span><span class="err">#</span><span class="s2">"torchcodec==0.2.1; sys_platform != 'win32' and (sys_platform != 'linux' or (platform_machine != 'aarch64' and platform_machine != 'arm64' and platform_machine != 'armv7l')) and (sys_platform != 'darwin' or platform_machine != 'x86_64')"</span><span class="p">,</span>
+</span><span class="hll"><span class="w">    </span><span class="err">#</span><span class="s2">"torchvision&gt;=0.21.0"</span><span class="p">,</span>
+</span><span class="w">    </span><span class="s2">"wandb&gt;=0.16.3"</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">"zarr&gt;=2.17.0"</span><span class="p">,</span>
 <span class="p">]</span>
 </code></pre></div></td></tr></table></div>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>pip install -e .[smolvla]
@@ -1750,7 +1778,7 @@ torch==2.8.0.dev20250603+cu128 torchvision==0.23.0.dev20250603+cu128 torchaudio=
 <span class="normal">55</span>
 <span class="normal">56</span>
 <span class="normal">57</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="err">class</span><span class="w"> </span><span class="err">So</span><span class="mi">100</span><span class="err">Robo</span><span class="kc">t</span><span class="err">Co</span><span class="kc">nf</span><span class="err">ig(Ma</span><span class="kc">n</span><span class="err">ipula</span><span class="kc">t</span><span class="err">orRobo</span><span class="kc">t</span><span class="err">Co</span><span class="kc">nf</span><span class="err">ig)</span><span class="p">:</span>
-<span class="w">    </span><span class="err">calibra</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="err">_dir</span><span class="p">:</span><span class="w"> </span><span class="err">s</span><span class="kc">tr</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="s2">&quot;.cache/calibration/so100&quot;</span>
+<span class="w">    </span><span class="err">calibra</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="err">_dir</span><span class="p">:</span><span class="w"> </span><span class="err">s</span><span class="kc">tr</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="s2">".cache/calibration/so100"</span>
 <span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="err">`max_rela</span><span class="kc">t</span><span class="err">ive_</span><span class="kc">tar</span><span class="err">ge</span><span class="kc">t</span><span class="err">`</span><span class="w"> </span><span class="err">limi</span><span class="kc">ts</span><span class="w"> </span><span class="kc">t</span><span class="err">he</span><span class="w"> </span><span class="err">mag</span><span class="kc">n</span><span class="err">i</span><span class="kc">tu</span><span class="err">de</span><span class="w"> </span><span class="err">o</span><span class="kc">f</span><span class="w"> </span><span class="kc">t</span><span class="err">he</span><span class="w"> </span><span class="err">rela</span><span class="kc">t</span><span class="err">ive</span><span class="w"> </span><span class="err">posi</span><span class="kc">t</span><span class="err">io</span><span class="kc">nal</span><span class="w"> </span><span class="kc">tar</span><span class="err">ge</span><span class="kc">t</span><span class="w"> </span><span class="err">vec</span><span class="kc">t</span><span class="err">or</span><span class="w"> </span><span class="kc">f</span><span class="err">or</span><span class="w"> </span><span class="err">sa</span><span class="kc">fet</span><span class="err">y</span><span class="w"> </span><span class="err">purposes.</span>
 <span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="err">Se</span><span class="kc">t</span><span class="w"> </span><span class="kc">t</span><span class="err">his</span><span class="w"> </span><span class="kc">t</span><span class="err">o</span><span class="w"> </span><span class="err">a</span><span class="w"> </span><span class="err">posi</span><span class="kc">t</span><span class="err">ive</span><span class="w"> </span><span class="err">scalar</span><span class="w"> </span><span class="kc">t</span><span class="err">o</span><span class="w"> </span><span class="err">have</span><span class="w"> </span><span class="kc">t</span><span class="err">he</span><span class="w"> </span><span class="err">same</span><span class="w"> </span><span class="err">value</span><span class="w"> </span><span class="kc">f</span><span class="err">or</span><span class="w"> </span><span class="err">all</span><span class="w"> </span><span class="err">mo</span><span class="kc">t</span><span class="err">ors</span><span class="p">,</span><span class="w"> </span><span class="err">or</span><span class="w"> </span><span class="err">a</span><span class="w"> </span><span class="err">lis</span><span class="kc">t</span><span class="w"> </span><span class="kc">t</span><span class="err">ha</span><span class="kc">t</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="kc">t</span><span class="err">he</span><span class="w"> </span><span class="err">same</span><span class="w"> </span><span class="err">le</span><span class="kc">n</span><span class="err">g</span><span class="kc">t</span><span class="err">h</span><span class="w"> </span><span class="err">as</span>
 <span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="kc">t</span><span class="err">he</span><span class="w"> </span><span class="kc">nu</span><span class="err">mber</span><span class="w"> </span><span class="err">o</span><span class="kc">f</span><span class="w"> </span><span class="err">mo</span><span class="kc">t</span><span class="err">ors</span><span class="w"> </span><span class="err">i</span><span class="kc">n</span><span class="w"> </span><span class="err">your</span><span class="w"> </span><span class="kc">f</span><span class="err">ollower</span><span class="w"> </span><span class="err">arms.</span>
@@ -1758,16 +1786,16 @@ torch==2.8.0.dev20250603+cu128 torchvision==0.23.0.dev20250603+cu128 torchaudio=
 
 <span class="w">    </span><span class="err">leader_arms</span><span class="p">:</span><span class="w"> </span><span class="err">dic</span><span class="kc">t</span><span class="p">[</span><span class="err">s</span><span class="kc">tr</span><span class="p">,</span><span class="w"> </span><span class="err">Mo</span><span class="kc">t</span><span class="err">orsBusCo</span><span class="kc">nf</span><span class="err">ig</span><span class="p">]</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="kc">f</span><span class="err">ield(</span>
 <span class="w">        </span><span class="err">de</span><span class="kc">fault</span><span class="err">_</span><span class="kc">fa</span><span class="err">c</span><span class="kc">t</span><span class="err">ory=lambda</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nt">&quot;main&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">Fee</span><span class="kc">te</span><span class="err">chMo</span><span class="kc">t</span><span class="err">orsBusCo</span><span class="kc">nf</span><span class="err">ig(</span>
-<span class="hll"><span class="w">                </span><span class="err">por</span><span class="kc">t</span><span class="err">=</span><span class="s2">&quot;/dev/ttyACM1&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"main"</span><span class="p">:</span><span class="w"> </span><span class="err">Fee</span><span class="kc">te</span><span class="err">chMo</span><span class="kc">t</span><span class="err">orsBusCo</span><span class="kc">nf</span><span class="err">ig(</span>
+<span class="hll"><span class="w">                </span><span class="err">por</span><span class="kc">t</span><span class="err">=</span><span class="s2">"/dev/ttyACM1"</span><span class="p">,</span>
 </span><span class="w">                </span><span class="err">mo</span><span class="kc">t</span><span class="err">ors=</span><span class="p">{</span>
 <span class="w">                    </span><span class="err">#</span><span class="w"> </span><span class="kc">na</span><span class="err">me</span><span class="p">:</span><span class="w"> </span><span class="err">(i</span><span class="kc">n</span><span class="err">dex</span><span class="p">,</span><span class="w"> </span><span class="err">model)</span>
-<span class="w">                    </span><span class="nt">&quot;shoulder_pan&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;sts3215&quot;</span><span class="p">],</span>
-<span class="w">                    </span><span class="nt">&quot;shoulder_lift&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;sts3215&quot;</span><span class="p">],</span>
-<span class="w">                    </span><span class="nt">&quot;elbow_flex&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;sts3215&quot;</span><span class="p">],</span>
-<span class="w">                    </span><span class="nt">&quot;wrist_flex&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;sts3215&quot;</span><span class="p">],</span>
-<span class="w">                    </span><span class="nt">&quot;wrist_roll&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;sts3215&quot;</span><span class="p">],</span>
-<span class="w">                    </span><span class="nt">&quot;gripper&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;sts3215&quot;</span><span class="p">],</span>
+<span class="w">                    </span><span class="nt">"shoulder_pan"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s2">"sts3215"</span><span class="p">],</span>
+<span class="w">                    </span><span class="nt">"shoulder_lift"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s2">"sts3215"</span><span class="p">],</span>
+<span class="w">                    </span><span class="nt">"elbow_flex"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="s2">"sts3215"</span><span class="p">],</span>
+<span class="w">                    </span><span class="nt">"wrist_flex"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="s2">"sts3215"</span><span class="p">],</span>
+<span class="w">                    </span><span class="nt">"wrist_roll"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="s2">"sts3215"</span><span class="p">],</span>
+<span class="w">                    </span><span class="nt">"gripper"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="s2">"sts3215"</span><span class="p">],</span>
 <span class="w">                </span><span class="p">},</span>
 <span class="w">            </span><span class="err">)</span><span class="p">,</span>
 <span class="w">        </span><span class="p">}</span>
@@ -1775,16 +1803,16 @@ torch==2.8.0.dev20250603+cu128 torchvision==0.23.0.dev20250603+cu128 torchaudio=
 
 <span class="w">    </span><span class="kc">f</span><span class="err">ollower_arms</span><span class="p">:</span><span class="w"> </span><span class="err">dic</span><span class="kc">t</span><span class="p">[</span><span class="err">s</span><span class="kc">tr</span><span class="p">,</span><span class="w"> </span><span class="err">Mo</span><span class="kc">t</span><span class="err">orsBusCo</span><span class="kc">nf</span><span class="err">ig</span><span class="p">]</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="kc">f</span><span class="err">ield(</span>
 <span class="w">        </span><span class="err">de</span><span class="kc">fault</span><span class="err">_</span><span class="kc">fa</span><span class="err">c</span><span class="kc">t</span><span class="err">ory=lambda</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nt">&quot;main&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">Fee</span><span class="kc">te</span><span class="err">chMo</span><span class="kc">t</span><span class="err">orsBusCo</span><span class="kc">nf</span><span class="err">ig(</span>
-<span class="hll"><span class="w">                </span><span class="err">por</span><span class="kc">t</span><span class="err">=</span><span class="s2">&quot;/dev/ttyACM0&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"main"</span><span class="p">:</span><span class="w"> </span><span class="err">Fee</span><span class="kc">te</span><span class="err">chMo</span><span class="kc">t</span><span class="err">orsBusCo</span><span class="kc">nf</span><span class="err">ig(</span>
+<span class="hll"><span class="w">                </span><span class="err">por</span><span class="kc">t</span><span class="err">=</span><span class="s2">"/dev/ttyACM0"</span><span class="p">,</span>
 </span><span class="w">                </span><span class="err">mo</span><span class="kc">t</span><span class="err">ors=</span><span class="p">{</span>
 <span class="w">                    </span><span class="err">#</span><span class="w"> </span><span class="kc">na</span><span class="err">me</span><span class="p">:</span><span class="w"> </span><span class="err">(i</span><span class="kc">n</span><span class="err">dex</span><span class="p">,</span><span class="w"> </span><span class="err">model)</span>
-<span class="w">                    </span><span class="nt">&quot;shoulder_pan&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;sts3215&quot;</span><span class="p">],</span>
-<span class="w">                    </span><span class="nt">&quot;shoulder_lift&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;sts3215&quot;</span><span class="p">],</span>
-<span class="w">                    </span><span class="nt">&quot;elbow_flex&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;sts3215&quot;</span><span class="p">],</span>
-<span class="w">                    </span><span class="nt">&quot;wrist_flex&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;sts3215&quot;</span><span class="p">],</span>
-<span class="w">                    </span><span class="nt">&quot;wrist_roll&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;sts3215&quot;</span><span class="p">],</span>
-<span class="w">                    </span><span class="nt">&quot;gripper&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;sts3215&quot;</span><span class="p">],</span>
+<span class="w">                    </span><span class="nt">"shoulder_pan"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s2">"sts3215"</span><span class="p">],</span>
+<span class="w">                    </span><span class="nt">"shoulder_lift"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s2">"sts3215"</span><span class="p">],</span>
+<span class="w">                    </span><span class="nt">"elbow_flex"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="s2">"sts3215"</span><span class="p">],</span>
+<span class="w">                    </span><span class="nt">"wrist_flex"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="s2">"sts3215"</span><span class="p">],</span>
+<span class="w">                    </span><span class="nt">"wrist_roll"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="s2">"sts3215"</span><span class="p">],</span>
+<span class="w">                    </span><span class="nt">"gripper"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="s2">"sts3215"</span><span class="p">],</span>
 <span class="w">                </span><span class="p">},</span>
 <span class="w">            </span><span class="err">)</span><span class="p">,</span>
 <span class="w">        </span><span class="p">}</span>
@@ -1792,13 +1820,13 @@ torch==2.8.0.dev20250603+cu128 torchvision==0.23.0.dev20250603+cu128 torchaudio=
 
 <span class="w">    </span><span class="err">cameras</span><span class="p">:</span><span class="w"> </span><span class="err">dic</span><span class="kc">t</span><span class="p">[</span><span class="err">s</span><span class="kc">tr</span><span class="p">,</span><span class="w"> </span><span class="err">CameraCo</span><span class="kc">nf</span><span class="err">ig</span><span class="p">]</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="kc">f</span><span class="err">ield(</span>
 <span class="w">        </span><span class="err">de</span><span class="kc">fault</span><span class="err">_</span><span class="kc">fa</span><span class="err">c</span><span class="kc">t</span><span class="err">ory=lambda</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nt">&quot;laptop&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">Ope</span><span class="kc">n</span><span class="err">CVCameraCo</span><span class="kc">nf</span><span class="err">ig(</span>
+<span class="w">            </span><span class="nt">"laptop"</span><span class="p">:</span><span class="w"> </span><span class="err">Ope</span><span class="kc">n</span><span class="err">CVCameraCo</span><span class="kc">nf</span><span class="err">ig(</span>
 <span class="hll"><span class="w">                </span><span class="err">camera_i</span><span class="kc">n</span><span class="err">dex=</span><span class="mi">0</span><span class="p">,</span>
 </span><span class="w">                </span><span class="kc">f</span><span class="err">ps=</span><span class="mi">30</span><span class="p">,</span>
 <span class="w">                </span><span class="err">wid</span><span class="kc">t</span><span class="err">h=</span><span class="mi">640</span><span class="p">,</span>
 <span class="w">                </span><span class="err">heigh</span><span class="kc">t</span><span class="err">=</span><span class="mi">480</span><span class="p">,</span>
 <span class="w">            </span><span class="err">)</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;phone&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">Ope</span><span class="kc">n</span><span class="err">CVCameraCo</span><span class="kc">nf</span><span class="err">ig(</span>
+<span class="w">            </span><span class="nt">"phone"</span><span class="p">:</span><span class="w"> </span><span class="err">Ope</span><span class="kc">n</span><span class="err">CVCameraCo</span><span class="kc">nf</span><span class="err">ig(</span>
 <span class="hll"><span class="w">                </span><span class="err">camera_i</span><span class="kc">n</span><span class="err">dex=</span><span class="mi">2</span><span class="p">,</span>
 </span><span class="w">                </span><span class="kc">f</span><span class="err">ps=</span><span class="mi">30</span><span class="p">,</span>
 <span class="w">                </span><span class="err">wid</span><span class="kc">t</span><span class="err">h=</span><span class="mi">640</span><span class="p">,</span>
@@ -1815,9 +1843,9 @@ torch==2.8.0.dev20250603+cu128 torchvision==0.23.0.dev20250603+cu128 torchaudio=
 <span class="normal">4</span>
 <span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code>python lerobot/scripts/control_robot.py \
   --robot.type=so100 \
-  --robot.cameras=&#39;{}&#39; \
+  --robot.cameras='{}' \
   --control.type=calibrate \
-  --control.arms=&#39;[&quot;main_follower&quot;]&#39;
+  --control.arms='["main_follower"]'
 </code></pre></div></td></tr></table></div>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
@@ -1825,9 +1853,9 @@ torch==2.8.0.dev20250603+cu128 torchvision==0.23.0.dev20250603+cu128 torchaudio=
 <span class="normal">4</span>
 <span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code>python lerobot/scripts/control_robot.py \
   --robot.type=so100 \
-  --robot.cameras=&#39;{}&#39; \
+  --robot.cameras='{}' \
   --control.type=calibrate \
-  --control.arms=&#39;[&quot;main_leader&quot;]&#39;
+  --control.arms='["main_leader"]'
 </code></pre></div></td></tr></table></div>
 <h2 id="_4">ロボットアームでのデータセット作成</h2>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
@@ -1846,9 +1874,9 @@ torch==2.8.0.dev20250603+cu128 torchvision==0.23.0.dev20250603+cu128 torchaudio=
     --robot.type=so100 \
     --control.type=record \
     --control.fps=30 \
-    --control.single_task=&quot;Grasp a lego block and put it in the bin.&quot; \
+    --control.single_task="Grasp a lego block and put it in the bin." \
     --control.repo_id=akira-sasaki/so100_smolvla \
-    --control.tags=&#39;[&quot;so100&quot;,&quot;smovla&quot;]&#39; \
+    --control.tags='["so100","smovla"]' \
     --control.warmup_time_s=3 \
     --control.episode_time_s=10 \
     --control.reset_time_s=3 \
@@ -1942,16 +1970,16 @@ torch==2.8.0.dev20250603+cu128 torchvision==0.23.0.dev20250603+cu128 torchaudio=
   --robot.type=so100 \
   --control.type=record \
   --control.fps=30 \
-  --control.single_task=&quot;Remove the cube from the box.&quot; \
+  --control.single_task="Remove the cube from the box." \
   --control.repo_id=akira-sasaki/eval_smolvla_pick_and_remove \
-  --control.tags=&#39;[&quot;smolvla&quot;,&quot;so100&quot;]&#39; \
+  --control.tags='["smolvla","so100"]' \
   --control.warmup_time_s=5 \
   --control.episode_time_s=30 \
   --control.reset_time_s=5 \
   --control.num_episodes=3 \
   --control.push_to_hub=true \
   --control.policy.path=outputs/train/2025-06-07/18-37-02_smolvla/checkpoints/140000/pretrained_model/
-</code></pre></div></td></tr></table></div>
+</code></pre></div></td></tr></table></div></div>
 
 
 

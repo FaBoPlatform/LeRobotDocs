@@ -15,7 +15,7 @@
       
       
       <link rel="icon" href="../../favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
@@ -606,6 +606,34 @@
     
   
     コマンド
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lerobot/knowhow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ノウハウ
   
 
     
@@ -1365,7 +1393,7 @@
 
 
 
-<h1 id="jetson-agx-orinjetpack621">Jetson AGX Orin(JetPack6.2.1)</h1>
+<div><h1 id="jetson-agx-orinjetpack621">Jetson AGX Orin(JetPack6.2.1)</h1>
 <h2 id="script">環境構築Script</h2>
 <p>install.sh</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">  1</span>
@@ -1507,7 +1535,7 @@
 set -euo pipefail
 
 # ===== 基本設定 =====
-trap &#39;kill ${SUDO_PID:-0} &gt;/dev/null 2&gt;&amp;1 || true&#39; EXIT
+trap 'kill ${SUDO_PID:-0} &gt;/dev/null 2&gt;&amp;1 || true' EXIT
 
 # sudo keep-alive
 sudo -v
@@ -1527,27 +1555,27 @@ sudo apt-get install -y \
     libcublas-dev-12-6 cuda-cupti-12-6 
 
 # ===== Miniconda (非対話) =====
-MINI=&quot;$HOME/miniconda&quot;
-if [ ! -d &quot;$MINI&quot; ]; then
-  wget -q https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-aarch64.sh -O &quot;$TMP/miniconda.sh&quot;
-  bash &quot;$TMP/miniconda.sh&quot; -b -p &quot;$MINI&quot;
+MINI="$HOME/miniconda"
+if [ ! -d "$MINI" ]; then
+  wget -q https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-aarch64.sh -O "$TMP/miniconda.sh"
+  bash "$TMP/miniconda.sh" -b -p "$MINI"
 fi
-source &quot;$MINI/etc/profile.d/conda.sh&quot;
+source "$MINI/etc/profile.d/conda.sh"
 
 # ~/.bashrc に一度だけ Miniconda 初期化を追記
-BASHRC_TAG=&quot;### Miniconda init (robot script)&quot;
-grep -qxF &quot;$BASHRC_TAG&quot; &quot;$HOME/.bashrc&quot; || cat &gt;&gt;&quot;$HOME/.bashrc&quot; &lt;&lt;&#39;BASHRC&#39;
+BASHRC_TAG="### Miniconda init (robot script)"
+grep -qxF "$BASHRC_TAG" "$HOME/.bashrc" || cat &gt;&gt;"$HOME/.bashrc" &lt;&lt;'BASHRC'
 ### Miniconda init (robot script)
-if [ -f &quot;$HOME/miniconda/etc/profile.d/conda.sh&quot; ]; then
-  . &quot;$HOME/miniconda/etc/profile.d/conda.sh&quot;
-  export PATH=&quot;$HOME/miniconda/bin:$PATH&quot;
+if [ -f "$HOME/miniconda/etc/profile.d/conda.sh" ]; then
+  . "$HOME/miniconda/etc/profile.d/conda.sh"
+  export PATH="$HOME/miniconda/bin:$PATH"
 fi
 ### End Miniconda init
 BASHRC
 
-source &quot;$HOME/.bashrc&quot;
+source "$HOME/.bashrc"
 
-eval &quot;$(conda shell.bash hook)&quot;
+eval "$(conda shell.bash hook)"
 
 conda create -y -n lerobot python=3.10
 conda activate lerobot
@@ -1557,15 +1585,15 @@ git clone https://github.com/huggingface/lerobot ~/lerobot || true
 cd ~/lerobot
 
 # =====　torchとtorchvisionがインストールされないように　=====
-sed -i.bak -E &#39;s/^(\s*)(&quot;torch.*&quot;)/#\1\2/&#39; pyproject.toml
-sed -i.bak -E &#39;s/^(\s*)(&quot;torchvision.*&quot;)/#\1\2/&#39; pyproject.toml
+sed -i.bak -E 's/^(\s*)("torch.*")/#\1\2/' pyproject.toml
+sed -i.bak -E 's/^(\s*)("torchvision.*")/#\1\2/' pyproject.toml
 diff pyproject.toml.bak pyproject.toml || true
 
 # ===== LeRobotのインストール　=====
-pip install -e &quot;.[feetech,dynamixel]&quot;
+pip install -e ".[feetech,dynamixel]"
 
 # ===== OpenCV は pip で入れる =====
-conda install -y -c conda-forge &quot;opencv&gt;=4.10.0.84&quot;
+conda install -y -c conda-forge "opencv&gt;=4.10.0.84"
 conda remove -y opencv
 pip3 install --no-cache-dir opencv-python==4.10.0.84
 
@@ -1576,49 +1604,49 @@ conda install -y -c conda-forge ffmpeg libpng
 pip install numpy==1.26.4 
 
 # ===== PyTorch 2.8.0 (CUDA 12.6, aarch64) ===== 
-wget -O &quot;$TMP/torch-2.8.0-cp310-cp310-linux_aarch64.whl&quot; \
+wget -O "$TMP/torch-2.8.0-cp310-cp310-linux_aarch64.whl" \
     https://pypi.jetson-ai-lab.io/jp6/cu126/+f/62a/1beee9f2f1470/torch-2.8.0-cp310-cp310-linux_aarch64.whl
-pip3 install &quot;$TMP/torch-2.8.0-cp310-cp310-linux_aarch64.whl&quot;
+pip3 install "$TMP/torch-2.8.0-cp310-cp310-linux_aarch64.whl"
 
 # ===== TorchVision 0.23.0 (ビルド済み aarch64) =====
-wget -O &quot;$TMP/torchvision-0.23.0-cp310-cp310-linux_aarch64.whl&quot; \
+wget -O "$TMP/torchvision-0.23.0-cp310-cp310-linux_aarch64.whl" \
   wget https://pypi.jetson-ai-lab.io/jp6/cu126/+f/907/c4c1933789645/torchvision-0.23.0-cp310-cp310-linux_aarch64.whl
-pip3 install &quot;$TMP/torchvision-0.23.0-cp310-cp310-linux_aarch64.whl&quot;
+pip3 install "$TMP/torchvision-0.23.0-cp310-cp310-linux_aarch64.whl"
 
 # Dynamixel SDK
 pip3 install dynamixel-sdk
 
 # モデルを事前ダウンロード
-python - &lt;&lt;&#39;PY&#39;
+python - &lt;&lt;'PY'
 import torchvision
-for name in (&quot;resnet18&quot;, &quot;resnet50&quot;):
-    torchvision.models.get_model(name, weights=&quot;DEFAULT&quot;)
+for name in ("resnet18", "resnet50"):
+    torchvision.models.get_model(name, weights="DEFAULT")
 PY
 
 # ===== ttyACM0/1 を 0666 に固定する udev ルール =====
-sudo tee /etc/udev/rules.d/99-otterarm-ttyacm.rules &gt;/dev/null &lt;&lt;&#39;EOF&#39;
-KERNEL==&quot;ttyACM0&quot;, MODE=&quot;0666&quot;
-KERNEL==&quot;ttyACM1&quot;, MODE=&quot;0666&quot;
-KERNEL==&quot;ttyUSB0&quot;, MODE=&quot;0666&quot;
-KERNEL==&quot;ttyUSB1&quot;, MODE=&quot;0666&quot;
+sudo tee /etc/udev/rules.d/99-otterarm-ttyacm.rules &gt;/dev/null &lt;&lt;'EOF'
+KERNEL=="ttyACM0", MODE="0666"
+KERNEL=="ttyACM1", MODE="0666"
+KERNEL=="ttyUSB0", MODE="0666"
+KERNEL=="ttyUSB1", MODE="0666"
 EOF
 sudo udevadm control --reload-rules
 sudo udevadm trigger   # 既存デバイスにも即適用
 
 # ===== CUDA 動作確認 =====
-python - &lt;&lt;&#39;PY&#39;
+python - &lt;&lt;'PY'
 import sys, torch
-print(&quot;PyTorch :&quot;, torch.__version__)
-print(&quot;CUDA OK :&quot;, torch.cuda.is_available())
+print("PyTorch :", torch.__version__)
+print("CUDA OK :", torch.cuda.is_available())
 if not torch.cuda.is_available():
-    sys.exit(&quot;❌  GPU (CUDA) が利用できません&quot;)
-print(&quot;Device  :&quot;, torch.cuda.get_device_name(0))
-print(&quot;✅  CUDA が正常に認識されました&quot;)
+    sys.exit("❌  GPU (CUDA) が利用できません")
+print("Device  :", torch.cuda.get_device_name(0))
+print("✅  CUDA が正常に認識されました")
 PY
 
-echo &quot;✅ Installation completed.&quot;
+echo "✅ Installation completed."
 
-rm -rf &quot;$TMP&quot;
+rm -rf "$TMP"
 
 # USB Speakerの認識
 # pactl list short sinks
@@ -1626,7 +1654,7 @@ rm -rf &quot;$TMP&quot;
 # 1   alsa_output.usb-C-Media_INC._USB_Sound_Device-00.analog-stereo  module-alsa-card.c  s16le 2ch 44100Hz   RUNNING
 # pactl set-default-sink alsa_output.usb-C-Media_INC._USB_Sound_Device-00.analog-stereo
 # pactl set-sink-volume alsa_output.usb-C-Media_INC._USB_Sound_Device-00.analog-stereo 80%
-# spd-say &quot;warmup record&quot;
+# spd-say "warmup record"
 </code></pre></div></td></tr></table></div>
 <p>install.shの名前で保存して</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>chmod 755 ./install.sh
@@ -1654,13 +1682,13 @@ rm -rf &quot;$TMP&quot;
 <span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo apt-get install language-pack-ja language-pack-ja-base
 
 # 2) /etc/locale.gen で ja_JP.UTF-8 の行をアンコメント
-sudo sed -i &#39;/^# *ja_JP.UTF-8 /s/^# *//&#39; /etc/locale.gen
+sudo sed -i '/^# *ja_JP.UTF-8 /s/^# *//' /etc/locale.gen
 
 # 3) 実際にロケールファイルを生成
 sudo locale-gen
 
 export LANG=ja_JP.UTF-8
-</code></pre></div></td></tr></table></div>
+</code></pre></div></td></tr></table></div></div>
 
 
 
