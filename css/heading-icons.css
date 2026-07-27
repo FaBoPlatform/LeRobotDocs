@@ -1,0 +1,16 @@
+/* JavaScriptで挿入した見出しアイコン */
+
+.md-typeset h1 > .heading-emoji,
+.md-typeset h2 > .heading-emoji {
+  display: inline-block;
+  margin-right: 0.35em;
+  font-family:
+    "Apple Color Emoji",
+    "Segoe UI Emoji",
+    "Noto Color Emoji",
+    sans-serif;
+  font-weight: normal;
+  font-style: normal;
+  line-height: 1;
+  vertical-align: -0.05em;
+}
