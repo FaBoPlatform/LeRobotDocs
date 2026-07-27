@@ -2388,7 +2388,7 @@ lerobot-record<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--dataset.num_episodes<span class="o">=</span><span class="m">30</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--dataset.streaming_encoding<span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--display_data<span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--play_sounds<span class="o">=</span><span class="nb">false</span>
+<span class="w">  </span>--play_sounds<span class="o">=</span><span class="nb">true</span>
 </code></pre></div></td></tr></table></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -2584,7 +2584,7 @@ lerobot-record<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--dataset.num_episodes<span class="o">=</span><span class="m">5</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--dataset.streaming_encoding<span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--display_data<span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--play_sounds<span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--play_sounds<span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--resume<span class="o">=</span><span class="nb">true</span>
 </code></pre></div></td></tr></table></div>
 <p>追加収集後、「収集データセットの完成確認」をもう一度実行します。</p>
@@ -3020,7 +3020,7 @@ lerobot-rollout<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--duration<span class="o">=</span><span class="m">10</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--task<span class="o">=</span><span class="s2">"Pick up the red cube"</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--display_data<span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--play_sounds<span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--play_sounds<span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--return_to_initial_position<span class="o">=</span><span class="nb">true</span>
 </code></pre></div></td></tr></table></div>
 <p><code>base</code>戦略ではデータを記録しないため、<code>--dataset.*</code>引数を追加しません。</p>
@@ -3163,7 +3163,7 @@ lerobot-rollout<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--device<span class="o">=</span>cuda<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--fps<span class="o">=</span><span class="m">30</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--display_data<span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--play_sounds<span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--play_sounds<span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--return_to_initial_position<span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--strategy.reset_to_initial_position<span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span><span class="s2">"</span><span class="si">${</span><span class="nv">DATASET_REPO_OPTION</span><span class="si">}</span><span class="s2">=</span><span class="si">${</span><span class="nv">ROLLOUT_REPO_ID</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
