@@ -1,8 +1,8 @@
-# LeRobotDocs
+# FaBo Physical Agent Kit Docs
 
 ## 本Docsについて　
 
-LeRobot関連の作業メモです。
+FaBo Physical Agent Kit Docs関連の作業メモです。
 
 ## 修正依頼等
 GithubのRepoに[Issues](https://github.com/FaBoPlatform/LeRobotDocs/issues)をあげてください。

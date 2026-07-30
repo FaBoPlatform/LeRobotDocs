@@ -33,7 +33,7 @@ USB Speakerを外し、USBハブを接続します。
 
 ![](./img/display003.jpg)
 
-JetsonにUBS Speakerを接続し直します。
+JetsonにUSB Speakerを接続し直します。
 キーボード、マウスを接続し、Ubuntuを画面で操作します。
 
 ![](./img/display004.jpg)
