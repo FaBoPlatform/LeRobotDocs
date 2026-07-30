@@ -310,40 +310,40 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 接続確認
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-so-101" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. SO-101のポート確認
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. カメラ確認
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        接続確認
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#1-so-101" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. SO-101のポート確認
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. カメラ確認
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
         リファレンス
@@ -1559,40 +1559,40 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 接続確認
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-so-101" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. SO-101のポート確認
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. カメラ確認
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        接続確認
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#1-so-101" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. SO-101のポート確認
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. カメラ確認
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
         リファレンス
@@ -1620,11 +1620,11 @@
 
 
 <div><h1 id="_1">接続の確認</h1>
-<h2 id="_2">接続確認</h2>
+<h2 id="1">1. 接続確認</h2>
 <p>接続先が下記の通りになっていることを確認してください。</p>
 <p><img alt="" src="../img/connection.png"></p>
 <p>起動後にUSBを差し込むと認識番号が変わってしまうので、指定先にUSBを差し込み、Jetsonを再起動してください。</p>
-<h2 id="1-so-101">1. SO-101のポート確認</h2>
+<h2 id="2-so-101">2. SO-101のポート確認</h2>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">Jetson</label><label for="__tabbed_1_2">MacBook</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -1642,7 +1642,7 @@ lerobot-find-port
 </div>
 </div>
 </div>
-<h2 id="2">2. カメラ確認</h2>
+<h2 id="3">3. カメラ確認</h2>
 <p>OpenCVで使用可能なカメラを探します。</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>lerobot-find-cameras<span class="w"> </span>opencv
 </code></pre></div></td></tr></table></div>
@@ -1657,7 +1657,7 @@ v4l2-ctl<span class="w"> </span>-d<span class="w"> </span>/dev/video0<span class
 <p class="admonition-title">Note</p>
 <p>以下のJetson用コマンドは<code>/dev/video0</code>、640×480、MJPG、30fpsを前提にしています。別のカメラを使用する場合は、<code>index_or_path</code>、<code>width</code>、<code>height</code>、<code>fps</code>、<code>fourcc</code>を検出結果に合わせて変更してください。</p>
 </div>
-<h2 id="_3">リファレンス</h2>
+<h2 id="_2">リファレンス</h2>
 <ul>
 <li><a href="https://huggingface.co/docs/lerobot/so101">SO-101</a></li>
 <li><a href="https://huggingface.co/docs/lerobot/il_robots">Imitation Learning on Real-World Robots</a></li>
