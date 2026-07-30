@@ -8,9 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://pak.fabo.io/jetson/build/">
+        <link rel="canonical" href="https://pak.fabo.io/claude/howto/">
       
       
+        <link rel="prev" href="../../core/toio_command/">
+      
+      
+        <link rel="next" href="../../setting/firmware/">
       
       
         
@@ -21,7 +25,7 @@
     
     
       
-        <title>FaBo LeRobot Kit(SO-101連携) 組み立て - FaBo Physical Agent Kit Docs</title>
+        <title>Claude Codeとの連携方法 - FaBo Physical Agent Kit Docs</title>
       
     
     
@@ -80,7 +84,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#fabo-lerobot-kitso-101" class="md-skip">
+        <a href="#claude-code" class="md-skip">
           コンテンツにスキップ
         </a>
       
@@ -115,7 +119,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              FaBo LeRobot Kit(SO-101連携) 組み立て
+              Claude Codeとの連携方法
             
           </span>
         </div>
@@ -970,18 +974,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
         
           
           <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
@@ -1002,7 +1008,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1017,10 +1023,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../claude/howto/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Claude Codeとの連携方法
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1036,6 +1069,48 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#claude-code_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Claude Code連携のメリット
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#claude-code_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Claude Codeとの連携方法
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1048,7 +1123,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../claude/plugin.md" class="md-nav__link">
+      <a href="../plugin.md" class="md-nav__link">
         
   
   
@@ -1738,10 +1813,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#so-101-follower" class="md-nav__link">
+  <a href="#claude-code_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        SO-101 Follower
+        Claude Code連携のメリット
       
     </span>
   </a>
@@ -1749,54 +1824,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#usb" class="md-nav__link">
+  <a href="#claude-code_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        USBの配線
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#usb-speaker" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        USB Speakerの配線
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#usb-camera" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        USB Camera
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ロボットアーム電源
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#jetson" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Jetson電源
+        Claude Codeとの連携方法
       
     </span>
   </a>
@@ -1820,44 +1851,32 @@
 
 
 
-<div><h1 id="fabo-lerobot-kitso-101">FaBo LeRobot Kit(SO-101連携) 組み立て</h1>
-<h2 id="so-101-follower">SO-101 Follower</h2>
-<p>SO-101 Followerを固定</p>
-<p><img alt="" src="../img/clip001.jpg"></p>
-<p><img alt="" src="../img/clip002.jpg"></p>
-<p>同様にSO-101 Leaderを固定</p>
-<p><img alt="" src="../img/clip003.jpg"></p>
-<h2 id="usb">USBの配線</h2>
-<p>USB Type-Cケーブルを使って、JetsonとSO-101 Follower, Leaderを接続します</p>
-<p><img alt="" src="../img/usb001.jpg"></p>
-<p>SO-101 FollowerとJetsonをUSB Type-Cケーブルで接続します。</p>
-<p><img alt="" src="../img/usb002.jpg"></p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>FollowerのUSBケーブルは必ず下の位置に差してください</p>
-</div>
-<p><img alt="" src="../img/usb003.jpg"></p>
-<p>SO-101 LeaderとJetsonをUSB Type-Cケーブルで接続します。</p>
-<p><img alt="" src="../img/usb004.jpg"></p>
-<p><img alt="" src="../img/usb005.jpg"></p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>LeaderのUSBケーブルは必ず上の位置に差してください</p>
-</div>
-<h2 id="usb-speaker">USB Speakerの配線</h2>
-<p><img alt="" src="../img/speaker001.jpg"></p>
-<h2 id="usb-camera">USB Camera</h2>
-<p>USBカメラを設置してください。</p>
-<p><img alt="" src="../img/camera001.jpg"></p>
-<p>Jetsonに接続します。</p>
-<p><img alt="" src="../img/camera002.jpg"></p>
-<h2 id="_1">ロボットアーム電源</h2>
-<p><img alt="" src="../img/power001.jpg"></p>
-<p><img alt="" src="../img/power002.jpg"></p>
-<p><img alt="" src="../img/power003.jpg"></p>
-<h2 id="jetson">Jetson電源</h2>
-<p><img alt="" src="../img/jetson001.jpg"></p>
-<p><img alt="" src="../img/jetson002.jpg"></p></div>
+<div><h1 id="claude-code">Claude Codeとの連携方法</h1>
+<h2 id="claude-code_1">Claude Code連携のメリット</h2>
+<p>Physical Agent Kit(PAK)とClaude Codeを連携させることで、プラグインの自動作成や、学習等の各種コマンドのサポート、LeRobotで足りない機能の拡張などが可能となります。</p>
+<h2 id="claude-code_2">Claude Codeとの連携方法</h2>
+<p>Claude CodeをPAKに組み込むには2つの方法があります。1つ目はClaude Code DesktopからSSHでPAKに接続し連携する方法です。2つ目はVisual Studio RemoteSSHを用いてPAK接続しClaude Codeをコマンドで起動して連携する方法です。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">方法</th>
+<th style="text-align: left;">Claude Codeの起動</th>
+<th style="text-align: left;">Jetsonのインターネット接続</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Claude Code DesktopからSSHでPAKに接続</td>
+<td style="text-align: left;">接続元のPC上のClaude Code Desktopで起動</td>
+<td style="text-align: left;">必要なし</td>
+</tr>
+<tr>
+<td style="text-align: left;">Visual Studio RemoteSSHを用いてPAK接続</td>
+<td style="text-align: left;">Jetson上でClaude Codeが起動</td>
+<td style="text-align: left;">必要</td>
+</tr>
+</tbody>
+</table></div>
 
 
 
