@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://pak.fabo.io/setting/firmware/">
+        <link rel="canonical" href="https://pak.fabo.io/pak/mac/">
       
       
-        <link rel="prev" href="../../jetson/first/">
+        <link rel="prev" href="../wire/">
       
       
-        <link rel="next" href="../id/">
+        <link rel="next" href="../win/">
       
       
         
@@ -25,7 +25,7 @@
     
     
       
-        <title>Firmware - FaBo Physical Agent Kit Docs</title>
+        <title>PCとPAKの接続(Mac) - FaBo Physical Agent Kit Docs</title>
       
     
     
@@ -84,7 +84,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
+        <a href="#mac" class="md-skip">
           コンテンツにスキップ
         </a>
       
@@ -119,7 +119,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Firmware
+              PCとPAKの接続(Mac)
             
           </span>
         </div>
@@ -248,7 +248,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../pak/wire/" class="md-nav__link">
+      <a href="../wire/" class="md-nav__link">
         
   
   
@@ -276,7 +276,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../pak/power_wire.md" class="md-nav__link">
+      <a href="../power_wire.md" class="md-nav__link">
         
   
   
@@ -308,18 +308,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
@@ -340,7 +342,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -355,10 +357,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../pak/mac/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PCとPAKの接続(Mac)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -374,6 +403,59 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#mac_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Macとの接続
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        接続の確認
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SSHでの接続
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -386,7 +468,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../pak/win/" class="md-nav__link">
+      <a href="../win/" class="md-nav__link">
         
   
   
@@ -1028,20 +1110,18 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
         
           
           <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
@@ -1062,7 +1142,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1077,37 +1157,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Firmware
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../setting/firmware/" class="md-nav__link">
         
   
   
@@ -1123,70 +1176,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="目次">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目次
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#fimware" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        サーボのFimware
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#firmware" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        動作に必要なFirmwareのバージョン
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#firmware_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Firmwareのアップデート
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#reference" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Reference
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1199,7 +1188,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../id/" class="md-nav__link">
+      <a href="../../setting/id/" class="md-nav__link">
         
   
   
@@ -1779,10 +1768,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#fimware" class="md-nav__link">
+  <a href="#mac_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        サーボのFimware
+        Macとの接続
       
     </span>
   </a>
@@ -1790,10 +1779,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#firmware" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        動作に必要なFirmwareのバージョン
+        接続の確認
       
     </span>
   </a>
@@ -1801,21 +1790,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#firmware_1" class="md-nav__link">
+  <a href="#ssh" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Firmwareのアップデート
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#reference" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Reference
+        SSHでの接続
       
     </span>
   </a>
@@ -1839,37 +1817,48 @@
 
 
 
-<div><h1 id="_1">設定</h1>
-<div class="admonition info">
-<p class="admonition-title">Info</p>
-<p>最近流通しているサーボは、すでに3.10以上にアップデートされている可能性が高いので、この作業は実施しなくても大丈夫な可能性が高いです。</p>
-</div>
-<h2 id="fimware">サーボのFimware</h2>
-<p>サーボのFirmwareの更新は、<a href="https://gitee.com/ftservo/fddebug/blob/master/FD1.9.8.5(250729).7z">FD1.9.8.5</a>をWindows OSマシンで起動しおこなう。</p>
-<h2 id="firmware">動作に必要なFirmwareのバージョン</h2>
+<div><h1 id="mac">Mac</h1>
+<h2 id="mac_1">Macとの接続</h2>
+<p>Macとの接続は、Physical Agent Kit(PAK)とUSB TypeCケーブルで接続します。</p>
+<p><img alt="" src="../img/mac.png"></p>
+<h2 id="_1">接続の確認</h2>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>ifconfig<span class="w"> </span>-a<span class="w"> </span>
+</code></pre></div></td></tr></table></div>
+<p>enXのネットワークデバイスに、下記記述が出てくれば接続可能な状態です。</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code>en5:<span class="w"> </span><span class="nv">flags</span><span class="o">=</span><span class="m">8863</span>&lt;UP,BROADCAST,SMART,RUNNING,SIMPLEX,MULTICAST&gt;<span class="w"> </span>mtu<span class="w"> </span><span class="m">1500</span>
+<span class="w">    </span><span class="nv">options</span><span class="o">=</span><span class="m">404</span>&lt;VLAN_MTU,CHANNEL_IO&gt;
+<span class="w">    </span>ether<span class="w"> </span><span class="m">12</span>:1a:8d:b2:11:fa
+<span class="w">    </span>inet6<span class="w"> </span>fe80::63:5a75:bd2c:8f13%en5<span class="w"> </span>prefixlen<span class="w"> </span><span class="m">64</span><span class="w"> </span>secured<span class="w"> </span>scopeid<span class="w"> </span>0x14<span class="w"> </span>
+<span class="w">    </span>inet<span class="w"> </span><span class="m">192</span>.168.55.100<span class="w"> </span>netmask<span class="w"> </span>0xffffff00<span class="w"> </span>broadcast<span class="w"> </span><span class="m">192</span>.168.55.255
+<span class="w">    </span>nd6<span class="w"> </span><span class="nv">options</span><span class="o">=</span><span class="m">201</span>&lt;PERFORMNUD,DAD&gt;
+<span class="w">    </span>media:<span class="w"> </span>autoselect<span class="w"> </span><span class="o">(</span>2500Base-T<span class="w"> </span>&lt;full-duplex&gt;<span class="o">)</span>
+<span class="w">    </span>status:<span class="w"> </span>active
+</code></pre></div></td></tr></table></div>
+<h2 id="ssh">SSHでの接続</h2>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>ssh<span class="w"> </span>jetson@192.168.55.1<span class="w"> </span>
+</code></pre></div></td></tr></table></div>
+<p>でJetsonにSSHで接続してください。</p>
 <table>
 <thead>
 <tr>
-<th>Version</th>
+<th style="text-align: left;">id</th>
+<th style="text-align: left;">pass</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>3.10</td>
+<td style="text-align: left;">jetson</td>
+<td style="text-align: left;">jetson</td>
 </tr>
 </tbody>
-</table>
-<h2 id="firmware_1">Firmwareのアップデート</h2>
-<p><img alt="" src="../img/fd001.jpg"></p>
-<p><img alt="" src="./img/fd002.jpg"></p>
-<p><img alt="" src="./img/fd003.jpg"></p>
-<p><img alt="" src="../img/fd004.jpg"></p>
-<p><img alt="" src="../img/fd005.jpg"></p>
-<h2 id="reference">Reference</h2>
-<ul>
-<li><a href="https://www.feetechrc.com/products.html?keyword=STS3215">Feetech社 ST3215</a></li>
-<li><a href="https://gitee.com/ftservo/fddebug/blob/master/FD1.9.8.5(250729).7z">FD1.9.8.5</a></li>
-</ul></div>
+</table></div>
 
 
 
