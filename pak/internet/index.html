@@ -479,7 +479,7 @@
   <a href="#wifi" class="md-nav__link">
     <span class="md-ellipsis">
       
-        WiFiの設定値
+        WiFiの一覧
       
     </span>
   </a>
@@ -490,7 +490,7 @@
   <a href="#wifi_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        WiFiの一覧
+        WiFiの設定値
       
     </span>
   </a>
@@ -502,6 +502,17 @@
     <span class="md-ellipsis">
       
         WiFiの接続コマンド
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gui" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        コマンドではなくGUIで接続する場合
       
     </span>
   </a>
@@ -1799,7 +1810,7 @@
   <a href="#wifi" class="md-nav__link">
     <span class="md-ellipsis">
       
-        WiFiの設定値
+        WiFiの一覧
       
     </span>
   </a>
@@ -1810,7 +1821,7 @@
   <a href="#wifi_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        WiFiの一覧
+        WiFiの設定値
       
     </span>
   </a>
@@ -1822,6 +1833,17 @@
     <span class="md-ellipsis">
       
         WiFiの接続コマンド
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gui" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        コマンドではなくGUIで接続する場合
       
     </span>
   </a>
@@ -1846,16 +1868,19 @@
 
 
 <div><h1 id="_1">インターネット接続</h1>
-<h2 id="wifi">WiFiの設定値</h2>
+<h2 id="wifi">WiFiの一覧</h2>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>nmcli<span class="w"> </span>device<span class="w"> </span>wifi<span class="w"> </span>list
+</code></pre></div></td></tr></table></div>
+<h2 id="wifi_1">WiFiの設定値</h2>
 <div data-lerobot-wifi-panel></div>
 
 <p>フォームに入力すると、下のコマンドのSSIDとパスワード部分が自動で置き換わります。入力した値はこのブラウザ内（localStorage）にのみ保存され、外部には送信されません。</p>
-<h2 id="wifi_1">WiFiの一覧</h2>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>nmcli<span class="w"> </span>device<span class="w"> </span>wifi<span class="w"> </span>list
-</code></pre></div></td></tr></table></div>
 <h2 id="wifi_2">WiFiの接続コマンド</h2>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo<span class="w"> </span>nmcli<span class="w"> </span>device<span class="w"> </span>wifi<span class="w"> </span>connect<span class="w"> </span><span class="s2">"{{ SSID }}"</span><span class="w"> </span>password<span class="w"> </span><span class="s2">"{{ WIFI_PASS }}"</span>
-</code></pre></div></td></tr></table></div></div>
+</code></pre></div></td></tr></table></div>
+<h2 id="gui">コマンドではなくGUIで接続する場合</h2>
+<p>PD-HDMI変換コネクタにHDMIケーブルをさし、マウス、キーボードをUSBい差し込みGUIで操作し接続します。</p>
+<p><img alt="" src="./img/gui001.png"></p></div>
 
 
 
