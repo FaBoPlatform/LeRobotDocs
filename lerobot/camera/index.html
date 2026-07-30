@@ -405,10 +405,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#retun" class="md-nav__link">
+  <a href="#2retun" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Retunを起動
+        2.Retunを起動
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.Testデータの削除
       
     </span>
   </a>
@@ -1548,10 +1559,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#retun" class="md-nav__link">
+  <a href="#2retun" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Retunを起動
+        2.Retunを起動
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.Testデータの削除
       
     </span>
   </a>
@@ -1680,7 +1702,7 @@ lerobot-record<span class="w"> </span><span class="se">\</span>
 </div>
 </div>
 </div>
-<h2 id="retun">Retunを起動</h2>
+<h2 id="2retun">2.Retunを起動</h2>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -1690,16 +1712,16 @@ lerobot-record<span class="w"> </span><span class="se">\</span>
 <span class="normal"> 7</span>
 <span class="normal"> 8</span>
 <span class="normal"> 9</span>
-<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code>lerobot-dataset-viz \
-  --repo-id local/1cam_test \
-  --root /home/jetson/lerobot/local/1cam_test \
-  --episode-index 0 \
-  --mode distant \
-  --web-port 9090 \
-  --grpc-port 9876 \
-  --num-workers 0 \
-  --batch-size 1 \
-  --display-compressed-images
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code>lerobot-dataset-viz<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--repo-id<span class="w"> </span>local/1cam_test<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--root<span class="w"> </span>/home/jetson/lerobot/local/1cam_test<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--episode-index<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--mode<span class="w"> </span>distant<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--web-port<span class="w"> </span><span class="m">9090</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--grpc-port<span class="w"> </span><span class="m">9876</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--num-workers<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--batch-size<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--display-compressed-images
 </code></pre></div></td></tr></table></div>
 <p>接続元のPCのブラウザで<code>http://192.168.55.1:9090/?url=rerun%2Bhttp%3A%2F%2F192.168.55.1%3A9876%2Fproxy</code> に接続。</p>
 <table>
@@ -1714,7 +1736,10 @@ lerobot-record<span class="w"> </span><span class="se">\</span>
 </tr>
 </tbody>
 </table>
-<p><img alt="" src="../img/rerun.png"></p></div>
+<p><img alt="" src="../img/rerun.png"></p>
+<h2 id="3test">3.Testデータの削除</h2>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>rm<span class="w"> </span>-rf<span class="w"> </span><span class="s2">"{{ DATASET_DIR }}"</span>
+</code></pre></div></td></tr></table></div></div>
 
 
 
