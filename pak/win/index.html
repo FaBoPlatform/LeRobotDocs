@@ -84,7 +84,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
+        <a href="#windows" class="md-skip">
           コンテンツにスキップ
         </a>
       
@@ -448,10 +448,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#usb" class="md-nav__link">
+  <a href="#windows_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        USBの接続場所
+        Windowsとの接続
       
     </span>
   </a>
@@ -459,10 +459,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#ssh" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ロボットアームの接続
+        SSHでの接続
       
     </span>
   </a>
@@ -470,21 +470,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#ssh_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        カメラの接続
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#pd-hdmi" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        PD-HDMI変換ケーブル
+        SSHでうまく接続できない場合の対処
       
     </span>
   </a>
@@ -1779,10 +1768,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#usb" class="md-nav__link">
+  <a href="#windows_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        USBの接続場所
+        Windowsとの接続
       
     </span>
   </a>
@@ -1790,10 +1779,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#ssh" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ロボットアームの接続
+        SSHでの接続
       
     </span>
   </a>
@@ -1801,21 +1790,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#ssh_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        カメラの接続
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#pd-hdmi" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        PD-HDMI変換ケーブル
+        SSHでうまく接続できない場合の対処
       
     </span>
   </a>
@@ -1839,18 +1817,40 @@
 
 
 
-<div><h1 id="_1">配線</h1>
-<h2 id="usb">USBの接続場所</h2>
-<p>FaBo Physical Agent Kit(PAK)の母艦に各種デバイスを接続していきます。</p>
-<p><img alt="" src="../img/connection.png"></p>
-<h2 id="_2">ロボットアームの接続</h2>
-<p>Leader ARM(白)とFollower ARM(黒)をPAK本体に接続します。</p>
-<p><img alt="" src="../img/so-101.png"></p>
-<p><img alt="" src="../img/usb001.png"></p>
-<p><img alt="" src="../img/connection.png"></p>
-<h2 id="_3">カメラの接続</h2>
-<h2 id="pd-hdmi">PD-HDMI変換ケーブル</h2>
-<p>トラブル発生時HDMIで、すぐにDisplayに接続できるように、PD-HDMI変換ケーブルも装着しておきます。</p></div>
+<div><h1 id="windows">Windows</h1>
+<h2 id="windows_1">Windowsとの接続</h2>
+<p>Macとの接続は、Physical Agent Kit(PAK)とUSB TypeCケーブルで接続します。</p>
+<p><img alt="" src="../img/win.png"></p>
+<h2 id="ssh">SSHでの接続</h2>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>ssh<span class="w"> </span>jetson@192.168.55.1<span class="w"> </span>
+</code></pre></div></td></tr></table></div>
+<p>でJetsonにSSHで接続してください。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">id</th>
+<th style="text-align: left;">pass</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">jetson</td>
+<td style="text-align: left;">jetson</td>
+</tr>
+</tbody>
+</table>
+<h2 id="ssh_1">SSHでうまく接続できない場合の対処</h2>
+<p>Windos環境においてUSB Type-CでJetson Orin Nanoに接続できない
+一部のWindowsの機種でUSBマイクロでの接続が間欠で途切れることを確認しております。</p>
+<p>その場合は、PCに静的なIPアドレス(192.168.55.100)を設定します。</p>
+<p>Windowsボタン＞設定＞ネットワークとインターネット&gt;ネットワークの詳細設定</p>
+<p>ネットワークアダプタの欄にあるRemote NDIS Compatible Deviceがあるデバイスを選択して↓を押して編集ボタンを押します。</p>
+<p><img alt="" src="./img/win_trouble001.png"></p>
+<p>インターネットプロトコルバージョン４（TCP/IPv4)を選択してプロパティボタンを押します。</p>
+<p><img alt="" src="./img/win_trouble002.png"></p>
+<p>IPアドレスは、192.168.55.100とサブネットマスクは255.255.255.0と入力いたします。</p>
+<p><img alt="" src="./img/win_trouble003.png"></p>
+<p>OKボタンを押します。</p></div>
 
 
 
