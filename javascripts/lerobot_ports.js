@@ -906,19 +906,26 @@
         return m;
       });
 
-      code.textContent = out;
+      // Keep syntax highlighting on blocks that don't need rewriting.
+      if (code.textContent !== out) code.textContent = out;
     }
   }
 
   // ---------- Init ----------
   function init(root = document) {
     const panel = root.querySelector("[data-lerobot-port-panel]");
-    if (!panel) return;
 
-    const scope = panel.closest("article") || panel.closest("main") || root;
+    // Pages without the panel (e.g. calibration.md) still get placeholder
+    // replacement from values saved on the panel page (common.md).
+    const scope =
+      (panel && (panel.closest("article") || panel.closest("main"))) ||
+      root.querySelector("article") ||
+      root.querySelector("main") ||
+      root;
     const codeBlocks = collectCodeBlocks(scope);
     const inlineCodes = collectInlineCode(scope);
     const codeNodes = [...codeBlocks, ...inlineCodes];
+    if (codeNodes.length === 0) return;
 
     const defaults = guessDefaultsFromDoc(codeNodes);
 
@@ -977,22 +984,24 @@
       wandbEnable: savedWandb ? truthy(savedWandb) : !!defaults.wandbEnable
     };
 
-    renderPanel(panel, state, defaults, ({ teleop, robot, workspaceDir, datasetOwner, datasetName, datasetRepoId, pushToHub, wandbEnable }) => {
-      safeSet(LS_KEY_TELEOP, teleop);
-      safeSet(LS_KEY_ROBOT, robot);
-      safeSet(LS_KEY_WORKSPACE, workspaceDir);
+    if (panel) {
+      renderPanel(panel, state, defaults, ({ teleop, robot, workspaceDir, datasetOwner, datasetName, datasetRepoId, pushToHub, wandbEnable }) => {
+        safeSet(LS_KEY_TELEOP, teleop);
+        safeSet(LS_KEY_ROBOT, robot);
+        safeSet(LS_KEY_WORKSPACE, workspaceDir);
 
-      safeSet(LS_KEY_DATASET_OWNER, datasetOwner);
-      safeSet(LS_KEY_DATASET_NAME, datasetName);
-      safeSet(LS_KEY_DATASET_REPO, datasetRepoId); // legacy combined
+        safeSet(LS_KEY_DATASET_OWNER, datasetOwner);
+        safeSet(LS_KEY_DATASET_NAME, datasetName);
+        safeSet(LS_KEY_DATASET_REPO, datasetRepoId); // legacy combined
 
-      safeSet(LS_KEY_PUSH_TO_HUB, pushToHub ? "true" : "false");
-      safeSet(LS_KEY_WANDB_ENABLE, wandbEnable ? "true" : "false");
+        safeSet(LS_KEY_PUSH_TO_HUB, pushToHub ? "true" : "false");
+        safeSet(LS_KEY_WANDB_ENABLE, wandbEnable ? "true" : "false");
 
-      applyToCodeNodes(codeNodes, { teleop, robot, workspaceDir, datasetRepoId, pushToHub, wandbEnable }, defaults);
-    });
+        applyToCodeNodes(codeNodes, { teleop, robot, workspaceDir, datasetRepoId, pushToHub, wandbEnable }, defaults);
+      });
+    }
 
-    // Initial apply
+    // Initial apply (runs on panel-less pages too, using saved values)
     applyToCodeNodes(codeNodes, state, defaults);
   }
 
