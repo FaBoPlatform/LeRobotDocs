@@ -1879,7 +1879,7 @@
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>rm<span class="w"> </span>-rf<span class="w"> </span><span class="s2">"{{ DATASET_DIR }}"</span>
 </code></pre></div></td></tr></table></div>
 <p><code>dataset.episode_time_s</code>は1エピソードの収集時間、<code>dataset.reset_time_s</code>は次のエピソードまでのリセット時間、<code>dataset.num_episodes</code>は収集するエピソード数です。</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">Jetson</label><label for="__tabbed_1_2">MacBook</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">カメラ1個</label><label for="__tabbed_1_2">カメラ2個</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p>SSH接続時は、Rerun GUIを起動しないように<code>--display_data=false</code>を使用します。</p>
@@ -1931,7 +1931,7 @@ lerobot-record<span class="w"> </span><span class="se">\</span>
 </div>
 </div>
 <div class="tabbed-block">
-<p>Macのカメラ番号が<code>0</code>の場合の例です。AVFoundationで<code>MJPG</code>が表示されないカメラもあるため、Mac用コマンドでは<code>fourcc</code>を固定していません。</p>
+<p>SSH接続時は、Rerun GUIを起動しないように<code>--display_data=false</code>を使用します。</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -1951,7 +1951,8 @@ lerobot-record<span class="w"> </span><span class="se">\</span>
 <span class="normal">17</span>
 <span class="normal">18</span>
 <span class="normal">19</span>
-<span class="normal">20</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="s2">"{{ PROJECT_DIR }}"</span>
+<span class="normal">20</span>
+<span class="normal">21</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="s2">"{{ PROJECT_DIR }}"</span>
 
 lerobot-record<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--robot.type<span class="o">=</span>so101_follower<span class="w"> </span><span class="se">\</span>
@@ -1960,7 +1961,7 @@ lerobot-record<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--teleop.type<span class="o">=</span>so101_leader<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--teleop.port<span class="o">={{</span><span class="w"> </span>TELEOP_PORT<span class="w"> </span><span class="o">}}</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--teleop.id<span class="o">=</span>my_leader_arm<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--robot.cameras<span class="o">=</span><span class="s2">"{front: {type: opencv, index_or_path: 0, width: 640, height: 480, fps: 30}}"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--robot.cameras<span class="o">=</span><span class="s2">"{front: {type: opencv, index_or_path: '/dev/video0', backend: 200, width: 640, height: 480, fps: 30, fourcc: 'MJPG'} side:{type: opencv, index_or_path: '/dev/video0', backend: 200, width: 640, height: 480, fps: 30, fourcc: 'MJPG'}}"</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--dataset.repo_id<span class="o">={{</span><span class="w"> </span>DATASET_REPO_ID<span class="w"> </span><span class="o">}}</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--dataset.root<span class="o">={{</span><span class="w"> </span>DATASET_DIR<span class="w"> </span><span class="o">}}</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--dataset.push_to_hub<span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="se">\</span>
@@ -1970,11 +1971,13 @@ lerobot-record<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--dataset.reset_time_s<span class="o">=</span><span class="m">5</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--dataset.num_episodes<span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--dataset.streaming_encoding<span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--display_data<span class="o">=</span><span class="nb">true</span>
+<span class="w">  </span>--display_data<span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--play_sounds<span class="o">=</span><span class="nb">true</span>
 </code></pre></div></td></tr></table></div>
-<p>H.264を明示する場合、LeRobot 0.6.0では旧引数<code>--dataset.vcodec=h264</code>ではなく、次を追加します。</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>--dataset.rgb_encoder.vcodec<span class="o">=</span>h264
-</code></pre></div></td></tr></table></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Jetsonのデスクトップ上のターミナルで実行し、<code>DISPLAY</code>または<code>WAYLAND_DISPLAY</code>が設定されている場合のみ、必要に応じて<code>--display_data=true</code>へ変更できます。SSHでは<code>false</code>のまま使用してください。</p>
+</div>
 </div>
 </div>
 </div>
