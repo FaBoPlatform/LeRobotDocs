@@ -2,146 +2,154 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://pak.fabo.io/</loc>
-         <lastmod>2026-07-30</lastmod>
+         <lastmod>2026-07-31</lastmod>
+    </url>
+    <url>
+         <loc>https://pak.fabo.io/claude/desktop/</loc>
+         <lastmod>2026-07-31</lastmod>
     </url>
     <url>
          <loc>https://pak.fabo.io/claude/howto/</loc>
-         <lastmod>2026-07-30</lastmod>
+         <lastmod>2026-07-31</lastmod>
+    </url>
+    <url>
+         <loc>https://pak.fabo.io/claude/plugin/</loc>
+         <lastmod>2026-07-31</lastmod>
     </url>
     <url>
          <loc>https://pak.fabo.io/core/robot/</loc>
-         <lastmod>2026-07-30</lastmod>
+         <lastmod>2026-07-31</lastmod>
     </url>
     <url>
          <loc>https://pak.fabo.io/core/teleop/</loc>
-         <lastmod>2026-07-30</lastmod>
+         <lastmod>2026-07-31</lastmod>
     </url>
     <url>
          <loc>https://pak.fabo.io/core/toio_command/</loc>
-         <lastmod>2026-07-30</lastmod>
+         <lastmod>2026-07-31</lastmod>
     </url>
     <url>
          <loc>https://pak.fabo.io/core/toio_robot/</loc>
-         <lastmod>2026-07-30</lastmod>
+         <lastmod>2026-07-31</lastmod>
     </url>
     <url>
          <loc>https://pak.fabo.io/core/toio_teleop/</loc>
-         <lastmod>2026-07-30</lastmod>
+         <lastmod>2026-07-31</lastmod>
     </url>
     <url>
          <loc>https://pak.fabo.io/gr00t/env/</loc>
-         <lastmod>2026-07-30</lastmod>
+         <lastmod>2026-07-31</lastmod>
     </url>
     <url>
          <loc>https://pak.fabo.io/hilsel/setting/</loc>
-         <lastmod>2026-07-30</lastmod>
+         <lastmod>2026-07-31</lastmod>
     </url>
     <url>
          <loc>https://pak.fabo.io/hilsel/setting_644/</loc>
-         <lastmod>2026-07-30</lastmod>
+         <lastmod>2026-07-31</lastmod>
     </url>
     <url>
          <loc>https://pak.fabo.io/jetson/build/</loc>
-         <lastmod>2026-07-30</lastmod>
+         <lastmod>2026-07-31</lastmod>
     </url>
     <url>
          <loc>https://pak.fabo.io/jetson/first/</loc>
-         <lastmod>2026-07-30</lastmod>
+         <lastmod>2026-07-31</lastmod>
     </url>
     <url>
          <loc>https://pak.fabo.io/jetson_agx/gmsl_camera/</loc>
-         <lastmod>2026-07-30</lastmod>
+         <lastmod>2026-07-31</lastmod>
     </url>
     <url>
          <loc>https://pak.fabo.io/jetson_agx/setting/</loc>
-         <lastmod>2026-07-30</lastmod>
+         <lastmod>2026-07-31</lastmod>
     </url>
     <url>
          <loc>https://pak.fabo.io/jetson_orin/setting/</loc>
-         <lastmod>2026-07-30</lastmod>
+         <lastmod>2026-07-31</lastmod>
     </url>
     <url>
          <loc>https://pak.fabo.io/jetson_orin/setup/</loc>
-         <lastmod>2026-07-30</lastmod>
+         <lastmod>2026-07-31</lastmod>
     </url>
     <url>
          <loc>https://pak.fabo.io/lerobot/calibration/</loc>
-         <lastmod>2026-07-30</lastmod>
+         <lastmod>2026-07-31</lastmod>
     </url>
     <url>
          <loc>https://pak.fabo.io/lerobot/camera/</loc>
-         <lastmod>2026-07-30</lastmod>
+         <lastmod>2026-07-31</lastmod>
     </url>
     <url>
          <loc>https://pak.fabo.io/lerobot/check/</loc>
-         <lastmod>2026-07-30</lastmod>
+         <lastmod>2026-07-31</lastmod>
     </url>
     <url>
          <loc>https://pak.fabo.io/lerobot/collect/</loc>
-         <lastmod>2026-07-30</lastmod>
+         <lastmod>2026-07-31</lastmod>
     </url>
     <url>
          <loc>https://pak.fabo.io/lerobot/command/</loc>
-         <lastmod>2026-07-30</lastmod>
+         <lastmod>2026-07-31</lastmod>
     </url>
     <url>
          <loc>https://pak.fabo.io/lerobot/common/</loc>
-         <lastmod>2026-07-30</lastmod>
+         <lastmod>2026-07-31</lastmod>
     </url>
     <url>
          <loc>https://pak.fabo.io/lerobot/dataset/</loc>
-         <lastmod>2026-07-30</lastmod>
+         <lastmod>2026-07-31</lastmod>
     </url>
     <url>
          <loc>https://pak.fabo.io/lerobot/knowhow/</loc>
-         <lastmod>2026-07-30</lastmod>
+         <lastmod>2026-07-31</lastmod>
     </url>
     <url>
          <loc>https://pak.fabo.io/lerobot/run/</loc>
-         <lastmod>2026-07-30</lastmod>
+         <lastmod>2026-07-31</lastmod>
     </url>
     <url>
          <loc>https://pak.fabo.io/lerobot/train/</loc>
-         <lastmod>2026-07-30</lastmod>
+         <lastmod>2026-07-31</lastmod>
     </url>
     <url>
          <loc>https://pak.fabo.io/pak/arm/</loc>
-         <lastmod>2026-07-30</lastmod>
+         <lastmod>2026-07-31</lastmod>
     </url>
     <url>
          <loc>https://pak.fabo.io/pak/internet/</loc>
-         <lastmod>2026-07-30</lastmod>
+         <lastmod>2026-07-31</lastmod>
     </url>
     <url>
          <loc>https://pak.fabo.io/pak/mac/</loc>
-         <lastmod>2026-07-30</lastmod>
+         <lastmod>2026-07-31</lastmod>
     </url>
     <url>
          <loc>https://pak.fabo.io/pak/power/</loc>
-         <lastmod>2026-07-30</lastmod>
+         <lastmod>2026-07-31</lastmod>
     </url>
     <url>
          <loc>https://pak.fabo.io/pak/win/</loc>
-         <lastmod>2026-07-30</lastmod>
+         <lastmod>2026-07-31</lastmod>
     </url>
     <url>
          <loc>https://pak.fabo.io/pak/wire/</loc>
-         <lastmod>2026-07-30</lastmod>
+         <lastmod>2026-07-31</lastmod>
     </url>
     <url>
          <loc>https://pak.fabo.io/rerun/trouble/</loc>
-         <lastmod>2026-07-30</lastmod>
+         <lastmod>2026-07-31</lastmod>
     </url>
     <url>
          <loc>https://pak.fabo.io/setting/firmware/</loc>
-         <lastmod>2026-07-30</lastmod>
+         <lastmod>2026-07-31</lastmod>
     </url>
     <url>
          <loc>https://pak.fabo.io/setting/id/</loc>
-         <lastmod>2026-07-30</lastmod>
+         <lastmod>2026-07-31</lastmod>
     </url>
     <url>
          <loc>https://pak.fabo.io/smolvla/setting/</loc>
-         <lastmod>2026-07-30</lastmod>
+         <lastmod>2026-07-31</lastmod>
     </url>
 </urlset>
