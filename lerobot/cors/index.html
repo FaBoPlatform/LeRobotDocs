@@ -8,13 +8,9 @@
       
       
       
-        <link rel="canonical" href="https://pak.fabo.io/lerobot/check/">
+        <link rel="canonical" href="https://pak.fabo.io/lerobot/cors/">
       
       
-        <link rel="prev" href="../../pak/internet/">
-      
-      
-        <link rel="next" href="../common/">
       
       
         
@@ -25,7 +21,7 @@
     
     
       
-        <title>接続の確認 - FaBo Physical Agent Kit Docs</title>
+        <title>CORSの設定 - FaBo Physical Agent Kit Docs</title>
       
     
     
@@ -84,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
+        <a href="#cors" class="md-skip">
           コンテンツにスキップ
         </a>
       
@@ -119,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              接続の確認
+              CORSの設定
             
           </span>
         </div>
@@ -474,20 +470,18 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
         
           
           <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
@@ -508,7 +502,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             
@@ -523,37 +517,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    接続の確認
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../check/" class="md-nav__link">
         
   
   
@@ -569,81 +536,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="目次">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目次
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. 接続確認
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-so-101" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. SO-101のポート確認
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. カメラ確認
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. うまく動かない場合
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        リファレンス
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1902,10 +1794,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1" class="md-nav__link">
+  <a href="#1-lerobot" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. 接続確認
+        1. LeRobotのスクリプト場所を取得
       
     </span>
   </a>
@@ -1913,10 +1805,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-so-101" class="md-nav__link">
+  <a href="#2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. SO-101のポート確認
+        2. バックアップ
       
     </span>
   </a>
@@ -1924,32 +1816,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3" class="md-nav__link">
+  <a href="#3-cors" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. カメラ確認
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. うまく動かない場合
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        リファレンス
+        3. CORSの設定を追加
       
     </span>
   </a>
@@ -1973,54 +1843,106 @@
 
 
 
-<div><h1 id="_1">接続の確認</h1>
-<h2 id="1">1. 接続確認</h2>
-<p>接続先が下記の通りになっていることを確認してください。</p>
-<p><img alt="" src="../img/connection.png"></p>
-<p>起動後にUSBを差し込むと認識番号が変わってしまうので、指定先にUSBを差し込み、Jetsonを再起動してください。</p>
-<h2 id="2-so-101">2. SO-101のポート確認</h2>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">Jetson</label><label for="__tabbed_1_2">MacBook</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<p>SO-101は通常、<code>/dev/ttyACM0</code>、<code>/dev/ttyACM1</code>、<code>/dev/ttyUSB0</code>などで認識されます。</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>ls<span class="w"> </span>-l<span class="w"> </span>/dev/ttyACM*<span class="w"> </span>/dev/ttyUSB*<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">true</span>
-lerobot-find-port
+<div><h1 id="cors">CORSの設定</h1>
+<h2 id="1-lerobot">1. LeRobotのスクリプト場所を取得</h2>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nv">VIZ_FILE</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span>python<span class="w"> </span>-<span class="w"> </span><span class="s">&lt;&lt;'PY'</span>
+<span class="s">import importlib.util</span>
+
+<span class="s">spec = importlib.util.find_spec(</span>
+<span class="s">    "lerobot.scripts.lerobot_dataset_viz"</span>
+<span class="s">)</span>
+
+<span class="s">if spec is None or spec.origin is None:</span>
+<span class="s">    raise SystemExit("lerobot_dataset_viz.py が見つかりません")</span>
+
+<span class="s">print(spec.origin)</span>
+<span class="s">PY</span>
+<span class="k">)</span><span class="s2">"</span>
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">"</span><span class="nv">$VIZ_FILE</span><span class="s2">"</span>
 </code></pre></div></td></tr></table></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>ls<span class="w"> </span>-l<span class="w"> </span>/dev/tty.usbmodem*<span class="w"> </span>/dev/tty.usbserial*<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">true</span>
-lerobot-find-port
-</code></pre></div></td></tr></table></div>
-</div>
-</div>
-</div>
-<h2 id="3">3. カメラ確認</h2>
-<p>OpenCVで使用可能なカメラを探します。</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>lerobot-find-cameras<span class="w"> </span>opencv
-</code></pre></div></td></tr></table></div>
-<p>Jetsonで<code>/dev/video0</code>を使用する場合は、640×480、MJPG、30fpsに対応しているか確認します。</p>
+<h2 id="2">2. バックアップ</h2>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
-<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>v4l2-ctl<span class="w"> </span>-d<span class="w"> </span>/dev/video0<span class="w"> </span>--list-formats-ext
-v4l2-ctl<span class="w"> </span>-d<span class="w"> </span>/dev/video0<span class="w"> </span>--get-fmt-video
-v4l2-ctl<span class="w"> </span>-d<span class="w"> </span>/dev/video0<span class="w"> </span>--get-parm
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>cp<span class="w"> </span>-a<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="s2">"</span><span class="nv">$VIZ_FILE</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="s2">"</span><span class="si">${</span><span class="nv">VIZ_FILE</span><span class="si">}</span><span class="s2">.bak.</span><span class="k">$(</span>date<span class="w"> </span>+%Y%m%d-%H%M%S<span class="k">)</span><span class="s2">"</span>
 </code></pre></div></td></tr></table></div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>以下のJetson用コマンドは<code>/dev/video0</code>、640×480、MJPG、30fpsを前提にしています。別のカメラを使用する場合は、<code>index_or_path</code>、<code>width</code>、<code>height</code>、<code>fps</code>、<code>fourcc</code>を検出結果に合わせて変更してください。</p>
-</div>
-<h2 id="4">4. うまく動かない場合</h2>
-<p>うまく動かない場合、Corsに関するバッチ処理が必要です。</p>
-<p><a href="../cors/">CORSの設定</a></p>
-<h2 id="_2">リファレンス</h2>
-<ul>
-<li><a href="https://huggingface.co/docs/lerobot/so101">SO-101</a></li>
-<li><a href="https://huggingface.co/docs/lerobot/il_robots">Imitation Learning on Real-World Robots</a></li>
-<li><a href="https://huggingface.co/docs/lerobot/inference">Policy Deployment (<code>lerobot-rollout</code>)</a></li>
-<li><a href="https://github.com/huggingface/lerobot/releases/tag/v0.6.0">LeRobot v0.6.0 Release</a></li>
-</ul></div>
+<h2 id="3-cors">3.　CORSの設定を追加</h2>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span></pre></div></td><td class="code"><div><pre><span></span><code>python<span class="w"> </span>-<span class="w"> </span><span class="s2">"</span><span class="nv">$VIZ_FILE</span><span class="s2">"</span><span class="w"> </span><span class="s">&lt;&lt;'PY'</span>
+<span class="s">from pathlib import Path</span>
+<span class="s">import sys</span>
+
+<span class="s">path = Path(sys.argv[1])</span>
+<span class="s">text = path.read_text(encoding="utf-8")</span>
+
+<span class="s">old = "server_uri = rr.serve_grpc(grpc_port=grpc_port)"</span>
+
+<span class="s">new = '''server_uri = rr.serve_grpc(</span>
+<span class="s">            grpc_port=grpc_port,</span>
+<span class="s">            cors_allow_origin=[</span>
+<span class="s">                f"http://192.168.55.1:{web_port if web_port is not None else DEFAULT_RERUN_PORT}"</span>
+<span class="s">            ],</span>
+<span class="s">        )'''</span>
+
+<span class="s">if old in text:</span>
+<span class="s">    path.write_text(</span>
+<span class="s">        text.replace(old, new, 1),</span>
+<span class="s">        encoding="utf-8",</span>
+<span class="s">    )</span>
+<span class="s">    print(f"Patched: {path}")</span>
+<span class="s">elif "cors_allow_origin" in text:</span>
+<span class="s">    print(f"Already patched: {path}")</span>
+<span class="s">else:</span>
+<span class="s">    raise SystemExit(</span>
+<span class="s">        "修正対象のコードが見つかりませんでした。"</span>
+<span class="s">        "ファイル内容を確認してください。"</span>
+<span class="s">    )</span>
+<span class="s">PY</span>
+</code></pre></div></td></tr></table></div></div>
 
 
 
