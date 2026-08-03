@@ -29,6 +29,14 @@ markdown_extensions:
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
 nav:
   - Home: "index.md"
+  - 配線:
+    - 各種配線: "pak/wire.md"
+    - 電気周りの配線: "pak/power.md"
+    - アームの固定: "pak/arm.md"
+  - PAKとの接続:
+    - PCとPAKの接続(Mac): "pak/mac.md"
+    - PCとPAKの接続(Win): "pak/win.md"
+    - インターネット接続: "pak/internet.md"
   - LeRobot:
     - 接続の確認: "lerobot/check.md"
     - 各種値の設定: "lerobot/common.md"
@@ -39,15 +47,20 @@ nav:
     - 推論の実行: "lerobot/run.md"
     - ノウハウ: "lerobot/knowhow.md"
     - データセット: "lerobot/dataset.md"
+  - Claude Code:
+    - Claude Codeとの連携方法: "claude/howto.md"
+  - Claude Code Desktop:
+    - Bedrockを使う場合: "claude/bedrock_local.md"
+    - Claude Code Desktop: "claude/desktop.md"
+  - Claude Code + VSC:
+    - Bedrockを使う場合: "claude/bedrock.md"
+    - Visual Studio Code: "claude/vsc.md"
   - LeRobotプラグイン:
     - Teleopプラグイン: "core/teleop.md"
     - Robotプラグイン: "core/robot.md"
     - Toio Leaderプラグイン: "core/toio_teleop.md"
-    - Toio Followerプラグイン: "core/toio_robot.md"
+    - Toio Robotプラグイン: "core/toio_robot.md"
     - Toio Command: "core/toio_command.md"
-  - FaBo Physical Agent Kit:
-    - 配置と配線: "jetson/build.md"
-    - 動作確認: "jetson/first.md"
   - 各種設定:
     - Firmware: "setting/firmware.md"
     - ID割り振り: "setting/id.md"
@@ -78,6 +91,7 @@ extra_javascript:
   - javascripts/version-select.js
   - javascripts/extra.js
   - javascripts/lerobot_ports.js
+  - javascripts/lerobot_wifi.js
   - "javascripts/heading-icons.js"
 plugins:
   - macros
