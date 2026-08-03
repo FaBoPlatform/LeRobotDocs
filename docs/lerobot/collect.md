@@ -11,7 +11,7 @@ rm -rf "{{DATASET_DIR}}"
 
 `dataset.episode_time_s`は1エピソードの収集時間、`dataset.reset_time_s`は次のエピソードまでのリセット時間、`dataset.num_episodes`は収集するエピソード数です。
 
-=== "Jetson"
+=== "カメラ1個"
 
     SSH接続時は、Rerun GUIを起動しないように`--display_data=false`を使用します。
 
@@ -33,7 +33,7 @@ rm -rf "{{DATASET_DIR}}"
       --dataset.fps=30 \
       --dataset.episode_time_s=10 \
       --dataset.reset_time_s=5 \
-      --dataset.num_episodes=30 \
+      --dataset.num_episodes=1 \
       --dataset.streaming_encoding=false \
       --display_data=false \
       --play_sounds=true
@@ -42,9 +42,9 @@ rm -rf "{{DATASET_DIR}}"
     !!! note
         Jetsonのデスクトップ上のターミナルで実行し、`DISPLAY`または`WAYLAND_DISPLAY`が設定されている場合のみ、必要に応じて`--display_data=true`へ変更できます。SSHでは`false`のまま使用してください。
 
-=== "MacBook"
+=== "カメラ2個"
 
-    Macのカメラ番号が`0`の場合の例です。AVFoundationで`MJPG`が表示されないカメラもあるため、Mac用コマンドでは`fourcc`を固定していません。
+    SSH接続時は、Rerun GUIを起動しないように`--display_data=false`を使用します。
 
     ```bash
     cd "{{PROJECT_DIR}}"
@@ -56,7 +56,7 @@ rm -rf "{{DATASET_DIR}}"
       --teleop.type=so101_leader \
       --teleop.port={{TELEOP_PORT}} \
       --teleop.id=my_leader_arm \
-      --robot.cameras="{front: {type: opencv, index_or_path: 0, width: 640, height: 480, fps: 30}}" \
+      --robot.cameras="{front: {type: opencv, index_or_path: '/dev/video0', backend: 200, width: 640, height: 480, fps: 30, fourcc: 'MJPG'}, side:{type: opencv, index_or_path: '/dev/video2', backend: 200, width: 640, height: 480, fps: 30, fourcc: 'MJPG'}}" \
       --dataset.repo_id={{DATASET_REPO_ID}} \
       --dataset.root={{DATASET_DIR}} \
       --dataset.push_to_hub=false \
@@ -64,16 +64,14 @@ rm -rf "{{DATASET_DIR}}"
       --dataset.fps=30 \
       --dataset.episode_time_s=10 \
       --dataset.reset_time_s=5 \
-      --dataset.num_episodes=30 \
+      --dataset.num_episodes=1 \
       --dataset.streaming_encoding=false \
-      --display_data=true
+      --display_data=false \
+      --play_sounds=true
     ```
 
-    H.264を明示する場合、LeRobot 0.6.0では旧引数`--dataset.vcodec=h264`ではなく、次を追加します。
-
-    ```bash
-    --dataset.rgb_encoder.vcodec=h264
-    ```
+    !!! note
+        Jetsonのデスクトップ上のターミナルで実行し、`DISPLAY`または`WAYLAND_DISPLAY`が設定されている場合のみ、必要に応じて`--display_data=true`へ変更できます。SSHでは`false`のまま使用してください。
 
 
 ## 2. データセット収集（追加）

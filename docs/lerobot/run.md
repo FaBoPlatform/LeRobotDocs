@@ -30,50 +30,29 @@ ls -lah "$POLICY_PATH"
 
 LeRobot 0.6.0では、学習済みPolicyの実機実行に`lerobot-rollout`を使用します。`lerobot-record`へ`--device`や`--policy.path`を渡さないでください。
 
-=== "Jetson"
 
-    ```bash
-    cd -- "{{PROJECT_DIR}}"
-    export HF_HUB_OFFLINE=1
+```bash
+cd -- "{{PROJECT_DIR}}"
+export HF_HUB_OFFLINE=1
 
-    lerobot-rollout \
-      --strategy.type=base \
-      --policy.path={{POLICY_PATH}} \
-      --robot.type=so101_follower \
-      --robot.port={{ROBOT_PORT}} \
-      --robot.id=my_follower_arm \
-      --robot.cameras="{front: {type: opencv, index_or_path: '/dev/video0', backend: 200, width: 640, height: 480, fps: 30, fourcc: 'MJPG'}}" \
-      --device=cuda \
-      --fps=30 \
-      --duration=60 \
-      --task="Pick up the red cube" \
-      --display_data=false \
-      --play_sounds=true \
-      --return_to_initial_position=true
-    ```
+lerobot-rollout \
+  --strategy.type=base \
+  --policy.path={{POLICY_PATH}} \
+  --robot.type=so101_follower \
+  --robot.port={{ROBOT_PORT}} \
+  --robot.id=my_follower_arm \
+  --robot.cameras="{front: {type: opencv, index_or_path: '/dev/video0', backend: 200, width: 640, height: 480, fps: 30, fourcc: 'MJPG'}}" \
+  --device=cuda \
+  --fps=30 \
+  --duration=60 \
+  --task="Pick up the red cube" \
+  --display_data=false \
+  --play_sounds=true \
+  --return_to_initial_position=true
+```
 
-    `base`戦略ではデータを記録しないため、`--dataset.*`引数を追加しません。
+`base`戦略ではデータを記録しないため、`--dataset.*`引数を追加しません。
 
-=== "MacBook"
-
-    ```bash
-    cd -- "{{PROJECT_DIR}}"
-    export HF_HUB_OFFLINE=1
-
-    lerobot-rollout \
-      --strategy.type=base \
-      --policy.path={{POLICY_PATH}} \
-      --robot.type=so101_follower \
-      --robot.port={{ROBOT_PORT}} \
-      --robot.id=my_follower_arm \
-      --robot.cameras="{front: {type: opencv, index_or_path: 0, width: 640, height: 480, fps: 30}}" \
-      --device=mps \
-      --fps=30 \
-      --duration=60 \
-      --task="Pick up the red cube" \
-      --display_data=true \
-      --return_to_initial_position=true
-    ```
 
 ## リファレンス
 

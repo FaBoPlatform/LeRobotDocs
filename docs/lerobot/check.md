@@ -45,6 +45,7 @@ v4l2-ctl -d /dev/video0 --get-parm
 !!! note
     以下のJetson用コマンドは`/dev/video0`、640×480、MJPG、30fpsを前提にしています。別のカメラを使用する場合は、`index_or_path`、`width`、`height`、`fps`、`fourcc`を検出結果に合わせて変更してください。
 
+
 ## リファレンス
 
 - [SO-101](https://huggingface.co/docs/lerobot/so101)
