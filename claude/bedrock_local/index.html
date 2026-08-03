@@ -8,13 +8,9 @@
       
       
       
-        <link rel="canonical" href="https://pak.fabo.io/claude/desktop/">
+        <link rel="canonical" href="https://pak.fabo.io/claude/bedrock_local/">
       
       
-        <link rel="prev" href="../howto/">
-      
-      
-        <link rel="next" href="../bedrock/">
       
       
         
@@ -25,7 +21,7 @@
     
     
       
-        <title>Claude Code Desktop - FaBo Physical Agent Kit Docs</title>
+        <title>Bedrockの設定(Jetson側) - FaBo Physical Agent Kit Docs</title>
       
     
     
@@ -84,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#claude-code-desktop" class="md-skip">
+        <a href="#bedrockjetson" class="md-skip">
           コンテンツにスキップ
         </a>
       
@@ -119,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Claude Code Desktop
+              Bedrockの設定(Jetson側)
             
           </span>
         </div>
@@ -862,20 +858,18 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
         
           
           <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
@@ -896,7 +890,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             
@@ -911,37 +905,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Claude Code Desktop
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../desktop/" class="md-nav__link">
         
   
   
@@ -957,37 +924,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="目次">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目次
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#claude-code-desktop_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Claude Code Desktopで新規プロジェクト
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1966,10 +1902,54 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#claude-code-desktop_1" class="md-nav__link">
+  <a href="#jetsonclaudeversion" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Claude Code Desktopで新規プロジェクト
+        JetsonにログインしClaudeのVersionを確認
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aws-cliversion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS CLIのVersion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aws-sso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS SSOの設定
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bedrockclaude-fable-5provider_data_share" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BedrockのClaude Fable 5のprovider_data_shareの設定
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#claude-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Claude Codeの設定
       
     </span>
   </a>
@@ -1993,14 +1973,66 @@
 
 
 
-<div><h1 id="claude-code-desktop">Claude Code Desktopとの連携</h1>
-<h2 id="claude-code-desktop_1">Claude Code Desktopで新規プロジェクト</h2>
-<p><img alt="" src="../img/desktop001.png"></p>
-<p><img alt="" src="../img/desktop002.png"></p>
-<p><img alt="" src="../img/desktop003.png"></p>
-<p><img alt="" src="../img/desktop004.png"></p>
-<p><img alt="" src="../img/desktop005.png"></p>
-<p><img alt="" src="./img/desktop006.png"></p></div>
+<div><h1 id="bedrockjetson">Bedrockの設定(Jetson側)</h1>
+<h2 id="jetsonclaudeversion">JetsonにログインしClaudeのVersionを確認</h2>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>claude<span class="w"> </span>--version
+</code></pre></div></td></tr></table></div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="m">2</span>.1.220<span class="w"> </span><span class="o">(</span>Claude<span class="w"> </span>Code<span class="o">)</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="aws-cliversion">AWS CLIのVersion</h2>
+<p>AWS cliをインストール</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/tmp
+
+curl<span class="w"> </span><span class="s2">"https://awscli.amazonaws.com/awscli-exe-linux-aarch64.zip"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-o<span class="w"> </span><span class="s2">"awscliv2.zip"</span>
+
+sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>unzip
+
+unzip<span class="w"> </span>awscliv2.zip
+sudo<span class="w"> </span>./aws/install
+</code></pre></div></td></tr></table></div>
+<p>AWS cliのVersionを確認</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>aws<span class="w"> </span>--version
+</code></pre></div></td></tr></table></div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>aws-cli/2.36.14<span class="w"> </span>Python/3.14.6<span class="w"> </span>Linux/6.8.12-1021-tegra<span class="w"> </span>exe/aarch64.ubuntu.24
+</code></pre></div></td></tr></table></div>
+<h2 id="aws-sso">AWS SSOの設定</h2>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>aws sso login --profile my-pak-profile --use-device-code
+</code></pre></div></td></tr></table></div>
+<p>SSOのstart URL, リージョンなどを設定します。</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>SSO<span class="w"> </span>session<span class="w"> </span>name<span class="w"> </span><span class="o">(</span>Recommended<span class="o">)</span>:<span class="w"> </span>lerobot
+SSO<span class="w"> </span>start<span class="w"> </span>URL<span class="w"> </span><span class="o">[</span>None<span class="o">]</span>:<span class="w"> </span>https://d-xxxxxxxxxx.awsapps.com/start
+SSO<span class="w"> </span>region<span class="w"> </span><span class="o">[</span>None<span class="o">]</span>:<span class="w"> </span>ap-northeast-1
+SSO<span class="w"> </span>registration<span class="w"> </span>scopes<span class="w"> </span><span class="o">[</span>sso:account:access<span class="o">]</span>:
+</code></pre></div></td></tr></table></div>
+<p>URLが表示されるのと発行されたKeyを入力し設定します。</p>
+<h2 id="bedrockclaude-fable-5provider_data_share">BedrockのClaude Fable 5のprovider_data_shareの設定</h2>
+<p>AWSでCloud Shellを起動して、Fable5のprovider_data_shareの設定を有効化します。</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>aws bedrock put-account-data-retention --mode provider_data_share --region ap-northeast-1
+</code></pre></div></td></tr></table></div>
+<h2 id="claude-code">Claude Codeの設定</h2>
+<p>Jetson上で、claudeを起動します。</p>
+<p>画面モードを選択</p>
+<p><img alt="" src="../img/claude001.png"></p>
+<p>3rd-party platformを選択</p>
+<p><img alt="" src="../img/claude002.png"></p>
+<p>Amazon Bedrockを選択</p>
+<p><img alt="" src="../img/claude003.png"></p>
+<p>先ほど設定したssoのProfileのmy-pak-profileを選択し、fable5が出てくれば連動成功です。fable5が有効にならない場合、rovider_data_shareの設定がおこなわれていない可能性があります。</p>
+<p><img alt="" src="../img/claude004.png"></p></div>
 
 
 
