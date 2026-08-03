@@ -1794,10 +1794,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-lerobot" class="md-nav__link">
+  <a href="#1-rerun" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. LeRobotのスクリプト場所を取得
+        1. rerunのダウングレード
       
     </span>
   </a>
@@ -1805,10 +1805,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2" class="md-nav__link">
+  <a href="#2-lerobot" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. バックアップ
+        2. LeRobotのスクリプト場所を取得
       
     </span>
   </a>
@@ -1816,10 +1816,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-cors" class="md-nav__link">
+  <a href="#3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. CORSの設定を追加
+        3. バックアップ
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-cors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. CORSの設定を追加
       
     </span>
   </a>
@@ -1844,7 +1855,10 @@
 
 
 <div><h1 id="cors">CORSの設定</h1>
-<h2 id="1-lerobot">1. LeRobotのスクリプト場所を取得</h2>
+<h2 id="1-rerun">1. rerunのダウングレード</h2>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--force-reinstall<span class="w"> </span><span class="s2">"rerun-sdk==0.32.2"</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="2-lerobot">2. LeRobotのスクリプト場所を取得</h2>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -1875,14 +1889,14 @@
 
 <span class="nb">echo</span><span class="w"> </span><span class="s2">"</span><span class="nv">$VIZ_FILE</span><span class="s2">"</span>
 </code></pre></div></td></tr></table></div>
-<h2 id="2">2. バックアップ</h2>
+<h2 id="3">3. バックアップ</h2>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>cp<span class="w"> </span>-a<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span><span class="s2">"</span><span class="nv">$VIZ_FILE</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span><span class="s2">"</span><span class="si">${</span><span class="nv">VIZ_FILE</span><span class="si">}</span><span class="s2">.bak.</span><span class="k">$(</span>date<span class="w"> </span>+%Y%m%d-%H%M%S<span class="k">)</span><span class="s2">"</span>
 </code></pre></div></td></tr></table></div>
-<h2 id="3-cors">3.　CORSの設定を追加</h2>
+<h2 id="4-cors">4.　CORSの設定を追加</h2>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
