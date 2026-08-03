@@ -1028,6 +1028,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        他のモデルを使う場合
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2092,6 +2103,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        他のモデルを使う場合
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2135,8 +2157,8 @@ SSO<span class="w"> </span>registration<span class="w"> </span>scopes<span class
 </code></pre></div></td></tr></table></div>
 <h2 id="claude-code-desktop">Claude Code Desktopを終了</h2>
 <p>Claude Code Desktopを完全に終了します(OSXならCMD+Q)。</p>
-<p>各環境に合わせて<code>~/.claude.setting</code>を設定します。</p>
-<p><code>~/.claude.setting</code>　OSXでの例</p>
+<p>各環境に合わせて<code>~/.claude/settings.json</code>を設定します。</p>
+<p><code>~/.claude/settings.json</code>　OSXでの例</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
@@ -2154,7 +2176,64 @@ SSO<span class="w"> </span>registration<span class="w"> </span>scopes<span class
 <span class="o">}</span>
 </code></pre></div></td></tr></table></div>
 <h2 id="claude-code-desktop_1">Claude Code Desktopを再起動</h2>
-<p>再起動すると、<code>CLAUDE_CODE_USE_BEDROCK</code>が有効になり、Bedrockのfable5に接続可能になります。</p></div>
+<p>再起動すると、<code>CLAUDE_CODE_USE_BEDROCK</code>が有効になり、Bedrockのfable5に接続可能になります。</p>
+<h2 id="_1">他のモデルを使う場合</h2>
+<p><code>ANTHROPIC_MODEL</code>の値を変更すると、他のモデルに切り替えられます。</p>
+<table>
+<thead>
+<tr>
+<th>モデル</th>
+<th><code>ANTHROPIC_MODEL</code>の値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Claude Fable 5</td>
+<td><code>global.anthropic.claude-fable-5</code></td>
+</tr>
+<tr>
+<td>Claude Opus 5</td>
+<td><code>global.anthropic.claude-opus-5</code></td>
+</tr>
+<tr>
+<td>Claude Sonnet 5</td>
+<td><code>global.anthropic.claude-sonnet-5</code></td>
+</tr>
+<tr>
+<td>Claude Opus 4.8（日本国内リージョンで処理）</td>
+<td><code>jp.anthropic.claude-opus-4-8</code></td>
+</tr>
+</tbody>
+</table>
+<p>例えばOpus 5に切り替える場合、<code>~/.claude/settings.json</code>を次のように書き換えます。</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="o">{</span>
+<span class="w">  </span><span class="s2">"env"</span>:<span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="s2">"CLAUDE_CODE_USE_BEDROCK"</span>:<span class="w"> </span><span class="s2">"1"</span>,
+<span class="w">    </span><span class="s2">"AWS_PROFILE"</span>:<span class="w"> </span><span class="s2">"my-pak-profile"</span>,
+<span class="w">    </span><span class="s2">"AWS_REGION"</span>:<span class="w"> </span><span class="s2">"ap-northeast-1"</span>,
+<span class="w">    </span><span class="s2">"ANTHROPIC_MODEL"</span>:<span class="w"> </span><span class="s2">"global.anthropic.claude-opus-5"</span>
+<span class="w">  </span><span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></td></tr></table></div>
+<p>書き換え後、Claude Code Desktopを再起動すると反映されます。</p>
+<p>利用可能なモデルIDの一覧は、次のコマンドで確認できます。</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code>aws<span class="w"> </span>bedrock<span class="w"> </span>list-inference-profiles<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--profile<span class="w"> </span>my-pak-profile<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--region<span class="w"> </span>ap-northeast-1<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--query<span class="w"> </span><span class="s2">"inferenceProfileSummaries[?contains(inferenceProfileId, 'claude')].[inferenceProfileId,status]"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output<span class="w"> </span>table
+</code></pre></div></td></tr></table></div></div>
 
 
 
