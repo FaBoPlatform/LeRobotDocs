@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://pak.fabo.io/rerun/trouble/">
+        <link rel="canonical" href="https://pak.fabo.io/claude/vsc_remote/">
       
       
-        <link rel="prev" href="../../hilsel/setting/">
+        <link rel="prev" href="../bedrock/">
       
       
-        <link rel="next" href="../../jetson_agx/gmsl_camera/">
+        <link rel="next" href="../bedrock_local/">
       
       
         
@@ -25,7 +25,7 @@
     
     
       
-        <title>Trouble Shooting - FaBo Physical Agent Kit Docs</title>
+        <title>VSC + RemoteSSH - FaBo Physical Agent Kit Docs</title>
       
     
     
@@ -84,7 +84,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#trouble-shooting" class="md-skip">
+        <a href="#visual-studio-code-ssh-copy-id" class="md-skip">
           コンテンツにスキップ
         </a>
       
@@ -119,7 +119,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Trouble Shooting
+              VSC + RemoteSSH
             
           </span>
         </div>
@@ -830,7 +830,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../claude/howto/" class="md-nav__link">
+      <a href="../howto/" class="md-nav__link">
         
   
   
@@ -912,7 +912,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../claude/desktop/" class="md-nav__link">
+      <a href="../desktop/" class="md-nav__link">
         
   
   
@@ -944,18 +944,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
         
           
           <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
@@ -976,7 +978,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             
@@ -994,7 +996,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../claude/bedrock/" class="md-nav__link">
+      <a href="../bedrock/" class="md-nav__link">
         
   
   
@@ -1019,10 +1021,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../claude/vsc_remote/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VSC + RemoteSSH
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1038,6 +1067,70 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1vscode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.VSCode インストール
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2vscode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.VSCode 拡張機能インストール
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3jetson" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.Jetsonに公開鍵を登録
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4claude-code-for-vs-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.Claude Code for VS Codeを起動
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1104,7 +1197,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../claude/bedrock_local/" class="md-nav__link">
+      <a href="../bedrock_local/" class="md-nav__link">
         
   
   
@@ -1132,7 +1225,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../claude/vsc_ssh/" class="md-nav__link">
+      <a href="../vsc_ssh/" class="md-nav__link">
         
   
   
@@ -1524,20 +1617,18 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
         
           
           <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
@@ -1558,7 +1649,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_11">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1822,20 +1913,18 @@
                 
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11_4" >
         
           
           <label class="md-nav__link" for="__nav_11_4" id="__nav_11_4_label" tabindex="0">
@@ -1856,7 +1945,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_11_4_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_11_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_11_4">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1871,37 +1960,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Trouble Shooting
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../rerun/trouble/" class="md-nav__link">
         
   
   
@@ -1917,37 +1979,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="目次">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目次
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#osx" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        OSX
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -2078,10 +2109,43 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#osx" class="md-nav__link">
+  <a href="#1vscode" class="md-nav__link">
     <span class="md-ellipsis">
       
-        OSX
+        1.VSCode インストール
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2vscode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.VSCode 拡張機能インストール
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3jetson" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.Jetsonに公開鍵を登録
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4claude-code-for-vs-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.Claude Code for VS Codeを起動
       
     </span>
   </a>
@@ -2105,10 +2169,26 @@
 
 
 
-<div><h1 id="trouble-shooting">Trouble Shooting</h1>
-<h2 id="osx">OSX</h2>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>pip install rerun-sdk==0.23.1
-</code></pre></div></td></tr></table></div></div>
+<div><h1 id="visual-studio-code-ssh-copy-id">Visual Studio Code + ssh-copy-id</h1>
+<h2 id="1vscode">1.VSCode インストール</h2>
+<p>以下より VSCode をインストールします。</p>
+<p><a href="https://code.visualstudio.com/" target="new">Visual Studio Code</a></p>
+<h2 id="2vscode">2.VSCode 拡張機能インストール</h2>
+<p>下記Extentionをインストールします。</p>
+<ul>
+<li>Remote SSH</li>
+<li>Claude Code for VS Code</li>
+</ul>
+<p>VSCodeを起動し、Remote SSH Extentionをインストールしてください。</p>
+<p><img alt="" src="../img/vsc001.png"></p>
+<p><img alt="" src="../img/ssh001.png"></p>
+<h2 id="3jetson">3.Jetsonに公開鍵を登録</h2>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>ssh-copy-id jetson@192.168.55.1
+</code></pre></div></td></tr></table></div>
+<p>passwordは、<code>jetson</code></p>
+<h2 id="4claude-code-for-vs-code">4.Claude Code for VS Codeを起動</h2>
+<p><img alt="" src="../img/ssh002.png"></p>
+<p><img alt="" src="../img/ssh003.png"></p></div>
 
 
 
