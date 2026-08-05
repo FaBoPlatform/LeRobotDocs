@@ -2189,6 +2189,11 @@
 <h2 id="3jetson">3.Jetsonに公開鍵を登録</h2>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>ssh-copy-id jetson@192.168.55.1
 </code></pre></div></td></tr></table></div>
+<p>PowerShellの場合</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>Get-Content "$env:USERPROFILE\.ssh\id_ed25519.pub" |
+ssh jetson@192.168.55.1 'mkdir -p ~/.ssh &amp;&amp; chmod 700 ~/.ssh &amp;&amp; cat &gt;&gt; ~/.ssh/authorized_keys &amp;&amp; chmod 600 ~/.ssh/authorized_keys'
+</code></pre></div></td></tr></table></div>
 <p>passwordは、<code>jetson</code></p>
 <h2 id="4claude-code-for-vs-code">4.Claude Code for VS Codeを起動</h2>
 <p><img alt="" src="../img/ssh002.png"></p>
