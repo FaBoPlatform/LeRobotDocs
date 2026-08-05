@@ -8,29 +8,31 @@
       
       
       
-        <link rel="canonical" href="https://pak.fabo.io/">
+        <link rel="canonical" href="https://pak.fabo.io/learning/humanoid/">
       
       
+        <link rel="prev" href="../robot_framework/">
       
-        <link rel="next" href="learning/imitation_learning/">
+      
+        <link rel="next" href="../../pak/wire/">
       
       
         
       
       
-      <link rel="icon" href="favicon.png">
+      <link rel="icon" href="../../favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
-        <title>FaBo Physical Agent Kit Docs</title>
+        <title>Humanoidと模倣学習 - FaBo Physical Agent Kit Docs</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -51,15 +53,15 @@
     
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     
-      <link rel="stylesheet" href="css/version-select.css">
+      <link rel="stylesheet" href="../../css/version-select.css">
     
-      <link rel="stylesheet" href="css/custom.css">
+      <link rel="stylesheet" href="../../css/custom.css">
     
-      <link rel="stylesheet" href="stylesheets/lerobot_ports.css">
+      <link rel="stylesheet" href="../../stylesheets/lerobot_ports.css">
     
-      <link rel="stylesheet" href="css/heading-icons.css">
+      <link rel="stylesheet" href="../../css/heading-icons.css">
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -82,7 +84,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#fabo-physical-agent-kit-docs" class="md-skip">
+        <a href="#_1" class="md-skip">
           コンテンツにスキップ
         </a>
       
@@ -98,9 +100,9 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="ヘッダー">
-    <a href="." title="FaBo Physical Agent Kit Docs" class="md-header__button md-logo" aria-label="FaBo Physical Agent Kit Docs" data-md-component="logo">
+    <a href="../.." title="FaBo Physical Agent Kit Docs" class="md-header__button md-logo" aria-label="FaBo Physical Agent Kit Docs" data-md-component="logo">
       
-  <img src="logo.png" alt="logo">
+  <img src="../../logo.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -117,7 +119,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Home
+              Humanoidと模倣学習
             
           </span>
         </div>
@@ -155,9 +157,9 @@
 
 <nav class="md-nav md-nav--primary" aria-label="ナビゲーション" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="FaBo Physical Agent Kit Docs" class="md-nav__button md-logo" aria-label="FaBo Physical Agent Kit Docs" data-md-component="logo">
+    <a href="../.." title="FaBo Physical Agent Kit Docs" class="md-nav__button md-logo" aria-label="FaBo Physical Agent Kit Docs" data-md-component="logo">
       
-  <img src="logo.png" alt="logo">
+  <img src="../../logo.png" alt="logo">
 
     </a>
     FaBo Physical Agent Kit Docs
@@ -169,37 +171,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Home
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="." class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -215,92 +190,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="目次">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目次
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#docs" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        本Docsについて
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        修正依頼等
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#discord" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        サポートDiscord
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#physical-ai" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Physical AI関連教材
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ai-x-robotics" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        AI x Robotics関連教材
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#iot" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        IoT関連教材
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -309,18 +198,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
           <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
@@ -341,7 +232,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -359,7 +250,7 @@
   
   
     <li class="md-nav__item">
-      <a href="learning/imitation_learning/" class="md-nav__link">
+      <a href="../imitation_learning/" class="md-nav__link">
         
   
   
@@ -387,7 +278,7 @@
   
   
     <li class="md-nav__item">
-      <a href="learning/robot_framework/" class="md-nav__link">
+      <a href="../robot_framework/" class="md-nav__link">
         
   
   
@@ -412,10 +303,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="learning/humanoid/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Humanoidと模倣学習
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -431,6 +349,37 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ヒューマノイドにおける模倣学習と強化学習の役割
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -497,7 +446,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pak/wire/" class="md-nav__link">
+      <a href="../../pak/wire/" class="md-nav__link">
         
   
   
@@ -525,7 +474,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pak/power/" class="md-nav__link">
+      <a href="../../pak/power/" class="md-nav__link">
         
   
   
@@ -553,7 +502,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pak/arm/" class="md-nav__link">
+      <a href="../../pak/arm/" class="md-nav__link">
         
   
   
@@ -635,7 +584,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pak/mac/" class="md-nav__link">
+      <a href="../../pak/mac/" class="md-nav__link">
         
   
   
@@ -663,7 +612,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pak/win/" class="md-nav__link">
+      <a href="../../pak/win/" class="md-nav__link">
         
   
   
@@ -691,7 +640,7 @@
   
   
     <li class="md-nav__item">
-      <a href="pak/internet/" class="md-nav__link">
+      <a href="../../pak/internet/" class="md-nav__link">
         
   
   
@@ -773,7 +722,7 @@
   
   
     <li class="md-nav__item">
-      <a href="lerobot/check/" class="md-nav__link">
+      <a href="../../lerobot/check/" class="md-nav__link">
         
   
   
@@ -801,7 +750,7 @@
   
   
     <li class="md-nav__item">
-      <a href="lerobot/common/" class="md-nav__link">
+      <a href="../../lerobot/common/" class="md-nav__link">
         
   
   
@@ -829,7 +778,7 @@
   
   
     <li class="md-nav__item">
-      <a href="lerobot/calibration/" class="md-nav__link">
+      <a href="../../lerobot/calibration/" class="md-nav__link">
         
   
   
@@ -857,7 +806,7 @@
   
   
     <li class="md-nav__item">
-      <a href="lerobot/camera/" class="md-nav__link">
+      <a href="../../lerobot/camera/" class="md-nav__link">
         
   
   
@@ -885,7 +834,7 @@
   
   
     <li class="md-nav__item">
-      <a href="lerobot/collect/" class="md-nav__link">
+      <a href="../../lerobot/collect/" class="md-nav__link">
         
   
   
@@ -913,7 +862,7 @@
   
   
     <li class="md-nav__item">
-      <a href="lerobot/train/" class="md-nav__link">
+      <a href="../../lerobot/train/" class="md-nav__link">
         
   
   
@@ -941,7 +890,7 @@
   
   
     <li class="md-nav__item">
-      <a href="lerobot/run/" class="md-nav__link">
+      <a href="../../lerobot/run/" class="md-nav__link">
         
   
   
@@ -969,7 +918,7 @@
   
   
     <li class="md-nav__item">
-      <a href="lerobot/knowhow/" class="md-nav__link">
+      <a href="../../lerobot/knowhow/" class="md-nav__link">
         
   
   
@@ -997,7 +946,7 @@
   
   
     <li class="md-nav__item">
-      <a href="lerobot/dataset/" class="md-nav__link">
+      <a href="../../lerobot/dataset/" class="md-nav__link">
         
   
   
@@ -1079,7 +1028,7 @@
   
   
     <li class="md-nav__item">
-      <a href="claude/howto/" class="md-nav__link">
+      <a href="../../claude/howto/" class="md-nav__link">
         
   
   
@@ -1161,7 +1110,7 @@
   
   
     <li class="md-nav__item">
-      <a href="claude/desktop/" class="md-nav__link">
+      <a href="../../claude/desktop/" class="md-nav__link">
         
   
   
@@ -1243,7 +1192,7 @@
   
   
     <li class="md-nav__item">
-      <a href="claude/bedrock/" class="md-nav__link">
+      <a href="../../claude/bedrock/" class="md-nav__link">
         
   
   
@@ -1271,7 +1220,7 @@
   
   
     <li class="md-nav__item">
-      <a href="claude/vsc_remote/" class="md-nav__link">
+      <a href="../../claude/vsc_remote/" class="md-nav__link">
         
   
   
@@ -1353,7 +1302,7 @@
   
   
     <li class="md-nav__item">
-      <a href="claude/bedrock_local/" class="md-nav__link">
+      <a href="../../claude/bedrock_local/" class="md-nav__link">
         
   
   
@@ -1381,7 +1330,7 @@
   
   
     <li class="md-nav__item">
-      <a href="claude/vsc_ssh/" class="md-nav__link">
+      <a href="../../claude/vsc_ssh/" class="md-nav__link">
         
   
   
@@ -1463,7 +1412,7 @@
   
   
     <li class="md-nav__item">
-      <a href="core/teleop/" class="md-nav__link">
+      <a href="../../core/teleop/" class="md-nav__link">
         
   
   
@@ -1491,7 +1440,7 @@
   
   
     <li class="md-nav__item">
-      <a href="core/robot/" class="md-nav__link">
+      <a href="../../core/robot/" class="md-nav__link">
         
   
   
@@ -1519,7 +1468,7 @@
   
   
     <li class="md-nav__item">
-      <a href="core/toio_teleop/" class="md-nav__link">
+      <a href="../../core/toio_teleop/" class="md-nav__link">
         
   
   
@@ -1547,7 +1496,7 @@
   
   
     <li class="md-nav__item">
-      <a href="core/toio_robot/" class="md-nav__link">
+      <a href="../../core/toio_robot/" class="md-nav__link">
         
   
   
@@ -1575,7 +1524,7 @@
   
   
     <li class="md-nav__item">
-      <a href="core/toio_command/" class="md-nav__link">
+      <a href="../../core/toio_command/" class="md-nav__link">
         
   
   
@@ -1657,7 +1606,7 @@
   
   
     <li class="md-nav__item">
-      <a href="setting/firmware/" class="md-nav__link">
+      <a href="../../setting/firmware/" class="md-nav__link">
         
   
   
@@ -1685,7 +1634,7 @@
   
   
     <li class="md-nav__item">
-      <a href="setting/id/" class="md-nav__link">
+      <a href="../../setting/id/" class="md-nav__link">
         
   
   
@@ -1713,7 +1662,7 @@
   
   
     <li class="md-nav__item">
-      <a href="jetson_orin/setting/" class="md-nav__link">
+      <a href="../../jetson_orin/setting/" class="md-nav__link">
         
   
   
@@ -1741,7 +1690,7 @@
   
   
     <li class="md-nav__item">
-      <a href="jetson_orin/setup/" class="md-nav__link">
+      <a href="../../jetson_orin/setup/" class="md-nav__link">
         
   
   
@@ -1870,7 +1819,7 @@
   
   
     <li class="md-nav__item">
-      <a href="gr00t/env/" class="md-nav__link">
+      <a href="../../gr00t/env/" class="md-nav__link">
         
   
   
@@ -1953,7 +1902,7 @@
   
   
     <li class="md-nav__item">
-      <a href="smolvla/setting/" class="md-nav__link">
+      <a href="../../smolvla/setting/" class="md-nav__link">
         
   
   
@@ -2036,7 +1985,7 @@
   
   
     <li class="md-nav__item">
-      <a href="hilsel/setting/" class="md-nav__link">
+      <a href="../../hilsel/setting/" class="md-nav__link">
         
   
   
@@ -2119,7 +2068,7 @@
   
   
     <li class="md-nav__item">
-      <a href="rerun/trouble/" class="md-nav__link">
+      <a href="../../rerun/trouble/" class="md-nav__link">
         
   
   
@@ -2202,7 +2151,7 @@
   
   
     <li class="md-nav__item">
-      <a href="jetson_agx/gmsl_camera/" class="md-nav__link">
+      <a href="../../jetson_agx/gmsl_camera/" class="md-nav__link">
         
   
   
@@ -2265,65 +2214,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#docs" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        本Docsについて
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        修正依頼等
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#discord" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        サポートDiscord
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#physical-ai" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Physical AI関連教材
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ai-x-robotics" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        AI x Robotics関連教材
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#iot" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        IoT関連教材
+        ヒューマノイドにおける模倣学習と強化学習の役割
       
     </span>
   </a>
@@ -2347,37 +2241,72 @@
 
 
 
-<div><h1 id="fabo-physical-agent-kit-docs">FaBo Physical Agent Kit Docs</h1>
-<h2 id="docs">本Docsについて</h2>
-<p>FaBo Physical Agent Kit Docs関連の作業メモです。</p>
-<h2 id="_1">修正依頼等</h2>
-<p>GithubのRepoに<a href="https://github.com/FaBoPlatform/LeRobotDocs/issues">Issues</a>をあげてください。</p>
-<h2 id="discord">サポートDiscord</h2>
-<ul>
-<li><a href="https://discord.com/invite/StJ84Hb">FaBo Discord</a></li>
-</ul>
-<h2 id="physical-ai">Physical AI関連教材</h2>
-<ul>
-<li><a href="https://faboplatform.github.io/LeRobotDocs/">LeRobot Docs</a></li>
-<li><a href="https://faboplatform.github.io/IsaacDocs/">Isaac Docs</a></li>
-<li><a href="https://faboplatform.github.io/OtterDocs/">OtterARM Docs</a></li>
-</ul>
-<h2 id="ai-x-robotics">AI x Robotics関連教材</h2>
-<ul>
-<li><a href="https://faboplatform.github.io/IsaacROSDocs/">Isaac ROS Docs</a></li>
-<li><a href="https://faboplatform.github.io/JetracerDocs/">JetRacer Docs</a></li>
-<li><a href="https://faboplatform.github.io/JetbotDocs/">JetBot Docs</a></li>
-<li><a href="https://faboplatform.github.io/DonkeyDocs/">DonkeyCar Docs</a></li>
-<li><a href="https://faboplatform.github.io/EdgeAIDocs/">EdgeAI Docs</a></li>
-</ul>
-<h2 id="iot">IoT関連教材</h2>
-<ul>
-<li><a href="https://faboplatform.github.io/ArduinoDocs/">Arduino Docs</a></li>
-<li><a href="https://faboplatform.github.io/RaspberryPIDocs/">RaspberryPi Docs</a></li>
-<li><a href="https://faboplatform.github.io/IchigojamDocs/">IchigoJam Docs</a></li>
-<li><a href="https://faboplatform.github.io/NRFDocs/">NRF Docs</a></li>
-<li><a href="https://faboplatform.github.io/CircuitDocs/">Ciruit Docs</a></li>
-</ul></div>
+<div><h1 id="_1">ヒューマノイドと模倣学習</h1>
+<h2 id="_2">ヒューマノイドにおける模倣学習と強化学習の役割</h2>
+<p>現在、Unitree G1などのヒューマノイドロボットでは、<strong>模倣学習は主に上半身や腕を使った物体操作</strong>に利用されています。</p>
+<p>例えば、人間がVRコントローラを使ってロボットの腕を操作し、そのときのカメラ画像、関節角度、手先の動き、グリッパー操作などを記録します。ACTなどの模倣学習モデルは、この操作データから「何を見たときに、腕をどのように動かすか」を学習します。</p>
+<p><div class="video-container"><iframe src="https://www.youtube.com/watch?v=pNjr2f_XHoo" style="position:relative;width:100%;height:22.172vw" frameborder="0" allowfullscreen alt="type:video"></iframe></div></p>
+<p>これにより、物体をつかむ、持ち上げる、運ぶ、決められた場所に置くといった作業を実行できるようになります。</p>
+<p>一方、歩行や姿勢制御のように、常に全身のバランスを保つ必要がある動作には、主に強化学習が使われます。シミュレーション内で何度も試行を繰り返し、転倒しないこと、指定された速度で進むこと、外力を受けても姿勢を戻すことなどを報酬として与えることで、安定した歩行スキルを獲得します。</p>
+<p>近年は、強化学習に人間のモーションキャプチャーデータを組み合わせる手法も増えています。人間の歩行、ダンス、キックなどの動きを参照モーションとして与え、その動きを追跡しながら、ロボット自身が転倒しない制御方法を強化学習で獲得します。</p>
+<p><div class="video-container"><iframe src="https://www.youtube.com/watch?v=29xLWhqME2Q" style="position:relative;width:100%;height:22.172vw" frameborder="0" allowfullscreen alt="type:video"></iframe></div></p>
+<p>ただし、すべての歩行学習にモーションキャプチャーデータが必要なわけではありません。一般的なLocomotion PPOでは、前進速度や旋回速度などの指令だけを与えて歩行を学習する方法も広く使われています。モーションキャプチャーは、より人間らしい歩行や特定の全身動作を再現する場合に特に有効です。</p>
+<p>ヒューマノイド全体の制御は、次のような役割分担で考えることができます。</p>
+<table>
+<thead>
+<tr>
+<th>制御階層</th>
+<th>主なモデル・方式</th>
+<th>役割</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>下半身・姿勢制御</td>
+<td>Locomotion PPO／WBC</td>
+<td>歩行、停止、旋回、バランス維持、外乱からの姿勢回復</td>
+</tr>
+<tr>
+<td>上半身・腕の操作</td>
+<td>ACTなどの模倣学習</td>
+<td>カメラを見ながら物体を把持し、持ち上げ、運搬、配置する</td>
+</tr>
+<tr>
+<td>特定の全身動作</td>
+<td>Mimic PPO</td>
+<td>モーションキャプチャーを参考に、ダンス、キック、しゃがみ動作などを再現する</td>
+</tr>
+<tr>
+<td>人間による教示</td>
+<td>Quest 3などのVRテレオペレーション</td>
+<td>人間がロボットを操作し、模倣学習用のデータを収集する</td>
+</tr>
+<tr>
+<td>全身制御</td>
+<td>WBC</td>
+<td>腕、胴体、脚の目標を調整し、全身のバランスを保つ</td>
+</tr>
+<tr>
+<td>統合・切り替え</td>
+<td>FSM／タスク制御層／DDS</td>
+<td>歩行、停止、把持、運搬などの各スキルを切り替え、連続した作業として実行する</td>
+</tr>
+</tbody>
+</table>
+<p>例えば、ロボットがテーブルまで歩いて物体を持ち上げる場合、次のように複数の制御技術が連携します。</p>
+<ol>
+<li>Locomotion PPOがテーブルまで歩行する</li>
+<li>WBCが上半身を動かしても転倒しないように全身の姿勢を調整する</li>
+<li>ACTがカメラ画像を基に腕を動かし、物体をつかむ</li>
+<li>Locomotion PPOが物体を持った状態で移動する</li>
+<li>ACTが目的の場所に物体を置く</li>
+<li>FSMやタスク制御層が、それぞれの動作を順番に切り替える</li>
+</ol>
+<p>このように、現在のヒューマノイドロボットでは、すべての動作を一つのAIモデルだけで制御するのではなく、<strong>歩行は強化学習、物体操作は模倣学習、全身の姿勢調整はWBC、動作の切り替えはFSMやタスク制御層</strong>という形で、複数の技術を組み合わせる構成が一般的です。</p>
+<p>要約すると、次のように表現できます。</p>
+<blockquote>
+<p>ヒューマノイドロボットでは、脚で安定して移動する能力を強化学習で獲得し、腕を使った物体操作を人間の実演データから模倣学習します。さらに、モーションキャプチャーと強化学習を組み合わせることで、人間らしい歩行やダンスなどの全身動作を学習します。これらのスキルをWBCやFSMで統合することで、移動しながら物をつかみ、運び、配置するといった複雑な作業を実現します。</p>
+</blockquote></div>
 
 
 
@@ -2427,20 +2356,20 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": [], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}, "version": null}</script>
     
     
-      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
-        <script src="javascripts/version-select.js"></script>
+        <script src="../../javascripts/version-select.js"></script>
       
-        <script src="javascripts/extra.js"></script>
+        <script src="../../javascripts/extra.js"></script>
       
-        <script src="javascripts/lerobot_ports.js"></script>
+        <script src="../../javascripts/lerobot_ports.js"></script>
       
-        <script src="javascripts/lerobot_wifi.js"></script>
+        <script src="../../javascripts/lerobot_wifi.js"></script>
       
-        <script src="javascripts/heading-icons.js"></script>
+        <script src="../../javascripts/heading-icons.js"></script>
       
     
   </body>
