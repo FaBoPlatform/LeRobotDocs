@@ -462,8 +462,8 @@
     }
 
     // Fallbacks
-    teleop = normalizePort(teleop, "/dev/ttyACM1");
-    robot  = normalizePort(robot, "/dev/ttyACM0");
+    teleop = normalizePort(teleop, "/dev/ttyACM0");
+    robot  = normalizePort(robot, "/dev/ttyACM1");
 
     datasetRepoId = normalizeRepoId(datasetRepoId || "");
     // If it is a template placeholder, ignore.
@@ -811,10 +811,11 @@
       out = out.replace(RE_ROBOT_EQ, `$1${cfg.robot}`);
       out = out.replace(RE_ROBOT_SP, `$1${cfg.robot}`);
 
-      // push_to_hub toggle
-      const pushStr = cfg.pushToHub ? "true" : "false";
-      out = out.replace(RE_PUSH_EQ, `$1${pushStr}`);
-      out = out.replace(RE_PUSH_SP, `$1${pushStr}`);
+      // push_to_hub toggle（チェック時のみtrueへ書き換え。未チェック時はドキュメントのデフォルト値のまま）
+      if (cfg.pushToHub) {
+        out = out.replace(RE_PUSH_EQ, `$1true`);
+        out = out.replace(RE_PUSH_SP, `$1true`);
+      }
 
       // wandb.enable toggle
       const wandbStr = cfg.wandbEnable ? "true" : "false";
