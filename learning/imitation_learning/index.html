@@ -2283,11 +2283,17 @@
 </tbody>
 </table>
 <h2 id="act">ACT</h2>
+<p>2023年、ALOHA（A Low-cost Open-source Hardware System for Bimanual Teleoperation）の登場により、それまで高価な研究用ロボットや双腕テレオペレーション設備を必要としていた高度な模倣学習の研究環境を、約2万ドル、当時の日本円で約300万円規模で構築できるようになりました。</p>
+<p>初期のALOHAは、Follower側に2台のViperX 6-DoF、Leader側に2台のWidowXを使用するLeader–Follower型の双腕システムで、これらのアームにはROBOTIS製DYNAMIXELサーボが採用されています。市販アーム、Webカメラ、アルミフレーム、3Dプリント部品を組み合わせることで、低コストで再現可能なデータ収集環境を実現しました。</p>
+<p>ALOHAと同時に、Transformerベースの模倣学習手法であるACT（Action Chunking with Transformers）も発表されました。ACTの公式実装は、Facebook AI Research、現在のMeta AIが発表した物体検出モデルDETRのTransformer実装を基に変更されています。ただしACTはDETRをそのまま利用したものではなく、ResNet画像エンコーダ、Transformer Encoder–Decoder、Conditional VAE、Action Chunking、Temporal Ensemblingを組み合わせた独自の構成です。</p>
+<p>ACTの大きな特徴は、1ステップ先の動作だけを予測するのではなく、次の複数ステップ分の関節目標値を「Action Chunk」としてまとめて予測する点です。これにより模倣学習で発生しやすい誤差の累積を抑え、複雑で連続的なロボット動作を安定して生成できるようになりました。</p>
 <p><a href="https://tonyzhaozh.github.io/aloha/" target="new">Learning Fine-Grained Bimanual Manipulation
 with Low-Cost Hardware</a></p>
 <p>Robotis USの説明するALOHAの特徴</p>
 <p><div class="video-container"><iframe src="https://www.youtube.com/embed/4VfNskoPUZg" style="position:relative;width:100%;height:22.172vw" frameborder="0" allowfullscreen alt="type:video"></iframe></div></p>
+<p><img alt="" src="../img/act.png"></p>
 <h2 id="mobile-aloha">Mobile ALOHA</h2>
+<p>Mobile ALOHAでは、ロボットアームの関節動作だけでなく、移動台車の走行速度も同じ模倣学習モデルの出力として学習させました。これにより、車体の移動と双腕による物体操作を一体的に制御し、移動を伴う長時間の複雑な作業を実行できるようになりました。また、従来の固定型ALOHAで収集した操作データを併用して学習することで、Mobile ALOHAのタスク成功率が大きく向上しました。</p>
 <p><a href="https://mobile-aloha.github.io/" target="new">Mobile ALOHA</a></p>
 <p><div class="video-container"><iframe src="https://www.youtube.com/embed/HaaZ8ss-HP4?start=7" style="position:relative;width:100%;height:22.172vw" frameborder="0" allowfullscreen alt="type:video"></iframe></div></p></div>
 
