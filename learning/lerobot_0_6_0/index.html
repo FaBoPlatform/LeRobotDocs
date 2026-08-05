@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://pak.fabo.io/jetson_agx/setting/">
+        <link rel="canonical" href="https://pak.fabo.io/learning/lerobot_0_6_0/">
       
       
       
@@ -21,7 +21,7 @@
     
     
       
-        <title>Jetson AGX Orin(JetPack6.2.1) - FaBo Physical Agent Kit Docs</title>
+        <title>LeRobot 0.6.0 - FaBo Physical Agent Kit Docs</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#jetson-agx-orinjetpack621" class="md-skip">
+        <a href="#lerobot-060" class="md-skip">
           コンテンツにスキップ
         </a>
       
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Jetson AGX Orin(JetPack6.2.1)
+              LeRobot 0.6.0
             
           </span>
         </div>
@@ -244,7 +244,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../learning/imitation_learning/" class="md-nav__link">
+      <a href="../imitation_learning/" class="md-nav__link">
         
   
   
@@ -272,7 +272,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../learning/robot_framework/" class="md-nav__link">
+      <a href="../robot_framework/" class="md-nav__link">
         
   
   
@@ -300,7 +300,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../learning/humanoid/" class="md-nav__link">
+      <a href="../humanoid/" class="md-nav__link">
         
   
   
@@ -328,7 +328,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../learning/leronot_0_6_0.md" class="md-nav__link">
+      <a href="../leronot_0_6_0.md" class="md-nav__link">
         
   
   
@@ -1953,7 +1953,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../gmsl_camera/" class="md-nav__link">
+      <a href="../../jetson_agx/gmsl_camera/" class="md-nav__link">
         
   
   
@@ -2016,32 +2016,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#script" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        環境構築Script
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        実行
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        日本語対応
+        対応モデル
       
     </span>
   </a>
@@ -2065,302 +2043,158 @@
 
 
 
-<div><h1 id="jetson-agx-orinjetpack621">Jetson AGX Orin(JetPack6.2.1)</h1>
-<h2 id="script">環境構築Script</h2>
-<p>install.sh</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">  1</span>
-<span class="normal">  2</span>
-<span class="normal">  3</span>
-<span class="normal">  4</span>
-<span class="normal">  5</span>
-<span class="normal">  6</span>
-<span class="normal">  7</span>
-<span class="normal">  8</span>
-<span class="normal">  9</span>
-<span class="normal"> 10</span>
-<span class="normal"> 11</span>
-<span class="normal"> 12</span>
-<span class="normal"> 13</span>
-<span class="normal"> 14</span>
-<span class="normal"> 15</span>
-<span class="normal"> 16</span>
-<span class="normal"> 17</span>
-<span class="normal"> 18</span>
-<span class="normal"> 19</span>
-<span class="normal"> 20</span>
-<span class="normal"> 21</span>
-<span class="normal"> 22</span>
-<span class="normal"> 23</span>
-<span class="normal"> 24</span>
-<span class="normal"> 25</span>
-<span class="normal"> 26</span>
-<span class="normal"> 27</span>
-<span class="normal"> 28</span>
-<span class="normal"> 29</span>
-<span class="normal"> 30</span>
-<span class="normal"> 31</span>
-<span class="normal"> 32</span>
-<span class="normal"> 33</span>
-<span class="normal"> 34</span>
-<span class="normal"> 35</span>
-<span class="normal"> 36</span>
-<span class="normal"> 37</span>
-<span class="normal"> 38</span>
-<span class="normal"> 39</span>
-<span class="normal"> 40</span>
-<span class="normal"> 41</span>
-<span class="normal"> 42</span>
-<span class="normal"> 43</span>
-<span class="normal"> 44</span>
-<span class="normal"> 45</span>
-<span class="normal"> 46</span>
-<span class="normal"> 47</span>
-<span class="normal"> 48</span>
-<span class="normal"> 49</span>
-<span class="normal"> 50</span>
-<span class="normal"> 51</span>
-<span class="normal"> 52</span>
-<span class="normal"> 53</span>
-<span class="normal"> 54</span>
-<span class="normal"> 55</span>
-<span class="normal"> 56</span>
-<span class="normal"> 57</span>
-<span class="normal"> 58</span>
-<span class="normal"> 59</span>
-<span class="normal"> 60</span>
-<span class="normal"> 61</span>
-<span class="normal"> 62</span>
-<span class="normal"> 63</span>
-<span class="normal"> 64</span>
-<span class="normal"> 65</span>
-<span class="normal"> 66</span>
-<span class="normal"> 67</span>
-<span class="normal"> 68</span>
-<span class="normal"> 69</span>
-<span class="normal"> 70</span>
-<span class="normal"> 71</span>
-<span class="normal"> 72</span>
-<span class="normal"> 73</span>
-<span class="normal"> 74</span>
-<span class="normal"> 75</span>
-<span class="normal"> 76</span>
-<span class="normal"> 77</span>
-<span class="normal"> 78</span>
-<span class="normal"> 79</span>
-<span class="normal"> 80</span>
-<span class="normal"> 81</span>
-<span class="normal"> 82</span>
-<span class="normal"> 83</span>
-<span class="normal"> 84</span>
-<span class="normal"> 85</span>
-<span class="normal"> 86</span>
-<span class="normal"> 87</span>
-<span class="normal"> 88</span>
-<span class="normal"> 89</span>
-<span class="normal"> 90</span>
-<span class="normal"> 91</span>
-<span class="normal"> 92</span>
-<span class="normal"> 93</span>
-<span class="normal"> 94</span>
-<span class="normal"> 95</span>
-<span class="normal"> 96</span>
-<span class="normal"> 97</span>
-<span class="normal"> 98</span>
-<span class="normal"> 99</span>
-<span class="normal">100</span>
-<span class="normal">101</span>
-<span class="normal">102</span>
-<span class="normal">103</span>
-<span class="normal">104</span>
-<span class="normal">105</span>
-<span class="normal">106</span>
-<span class="normal">107</span>
-<span class="normal">108</span>
-<span class="normal">109</span>
-<span class="normal">110</span>
-<span class="normal">111</span>
-<span class="normal">112</span>
-<span class="normal">113</span>
-<span class="normal">114</span>
-<span class="normal">115</span>
-<span class="normal">116</span>
-<span class="normal">117</span>
-<span class="normal">118</span>
-<span class="normal">119</span>
-<span class="normal">120</span>
-<span class="normal">121</span>
-<span class="normal">122</span>
-<span class="normal">123</span>
-<span class="normal">124</span>
-<span class="normal">125</span>
-<span class="normal">126</span>
-<span class="normal">127</span>
-<span class="normal">128</span>
-<span class="normal">129</span>
-<span class="normal">130</span></pre></div></td><td class="code"><div><pre><span></span><code>#!/bin/bash
-
-# Jetson Orin Nano, AGX Orin
-# JetPack6.2.1用
-# LeRobotのInstall Script
-#!/usr/bin/env bash
-
-set -euo pipefail
-
-# ===== 基本設定 =====
-trap 'kill ${SUDO_PID:-0} &gt;/dev/null 2&gt;&amp;1 || true' EXIT
-
-# sudo keep-alive
-sudo -v
-( while true; do sudo -n true; sleep 60; done ) &amp;
-SUDO_PID=$!
-
-TMP=$(mktemp -d)
-
-# ===== APT =====
-sudo apt-get update
-sudo apt-get install -y \
-    python3-pip curl build-essential \
-    libopenblas-base libopenblas-dev \
-    libjpeg-dev zlib1g-dev libpng-dev \
-    python3-libnvinfer python3-packaging \
-    cuda-runtime-12-6 libcublas-12-6 \
-    libcublas-dev-12-6 cuda-cupti-12-6 
-
-# ===== Miniconda (非対話) =====
-MINI="$HOME/miniconda"
-if [ ! -d "$MINI" ]; then
-  wget -q https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-aarch64.sh -O "$TMP/miniconda.sh"
-  bash "$TMP/miniconda.sh" -b -p "$MINI"
-fi
-source "$MINI/etc/profile.d/conda.sh"
-
-# ~/.bashrc に一度だけ Miniconda 初期化を追記
-BASHRC_TAG="### Miniconda init (robot script)"
-grep -qxF "$BASHRC_TAG" "$HOME/.bashrc" || cat &gt;&gt;"$HOME/.bashrc" &lt;&lt;'BASHRC'
-### Miniconda init (robot script)
-if [ -f "$HOME/miniconda/etc/profile.d/conda.sh" ]; then
-  . "$HOME/miniconda/etc/profile.d/conda.sh"
-  export PATH="$HOME/miniconda/bin:$PATH"
-fi
-### End Miniconda init
-BASHRC
-
-source "$HOME/.bashrc"
-
-eval "$(conda shell.bash hook)"
-
-conda create -y -n lerobot python=3.10
-conda activate lerobot
-
-# ===== LeRobotをgit clone　=====
-git clone https://github.com/huggingface/lerobot ~/lerobot || true
-cd ~/lerobot
-
-# =====　torchとtorchvisionがインストールされないように　=====
-sed -i.bak -E 's/^(\s*)("torch.*")/#\1\2/' pyproject.toml
-sed -i.bak -E 's/^(\s*)("torchvision.*")/#\1\2/' pyproject.toml
-diff pyproject.toml.bak pyproject.toml || true
-
-# ===== LeRobotのインストール　=====
-pip install -e ".[feetech,dynamixel]"
-
-# ===== OpenCV は pip で入れる =====
-conda install -y -c conda-forge "opencv&gt;=4.10.0.84"
-conda remove -y opencv
-pip3 install --no-cache-dir opencv-python==4.10.0.84
-
-# ===== conda パッケージ =====
-conda install -y -c conda-forge ffmpeg libpng 
-
-# ===== numpy 1.26.4にダウングレード =====
-pip install numpy==1.26.4 
-
-# ===== PyTorch 2.8.0 (CUDA 12.6, aarch64) ===== 
-wget -O "$TMP/torch-2.8.0-cp310-cp310-linux_aarch64.whl" \
-    https://pypi.jetson-ai-lab.io/jp6/cu126/+f/62a/1beee9f2f1470/torch-2.8.0-cp310-cp310-linux_aarch64.whl
-pip3 install "$TMP/torch-2.8.0-cp310-cp310-linux_aarch64.whl"
-
-# ===== TorchVision 0.23.0 (ビルド済み aarch64) =====
-wget -O "$TMP/torchvision-0.23.0-cp310-cp310-linux_aarch64.whl" \
-  wget https://pypi.jetson-ai-lab.io/jp6/cu126/+f/907/c4c1933789645/torchvision-0.23.0-cp310-cp310-linux_aarch64.whl
-pip3 install "$TMP/torchvision-0.23.0-cp310-cp310-linux_aarch64.whl"
-
-# Dynamixel SDK
-pip3 install dynamixel-sdk
-
-# モデルを事前ダウンロード
-python - &lt;&lt;'PY'
-import torchvision
-for name in ("resnet18", "resnet50"):
-    torchvision.models.get_model(name, weights="DEFAULT")
-PY
-
-# ===== ttyACM0/1 を 0666 に固定する udev ルール =====
-sudo tee /etc/udev/rules.d/99-otterarm-ttyacm.rules &gt;/dev/null &lt;&lt;'EOF'
-KERNEL=="ttyACM0", MODE="0666"
-KERNEL=="ttyACM1", MODE="0666"
-KERNEL=="ttyUSB0", MODE="0666"
-KERNEL=="ttyUSB1", MODE="0666"
-EOF
-sudo udevadm control --reload-rules
-sudo udevadm trigger   # 既存デバイスにも即適用
-
-# ===== CUDA 動作確認 =====
-python - &lt;&lt;'PY'
-import sys, torch
-print("PyTorch :", torch.__version__)
-print("CUDA OK :", torch.cuda.is_available())
-if not torch.cuda.is_available():
-    sys.exit("❌  GPU (CUDA) が利用できません")
-print("Device  :", torch.cuda.get_device_name(0))
-print("✅  CUDA が正常に認識されました")
-PY
-
-echo "✅ Installation completed."
-
-rm -rf "$TMP"
-
-# USB Speakerの認識
-# pactl list short sinks
-# 0   alsa_output.platform-sound.analog-stereo    module-alsa-card.c  s16le 2ch 44100Hz   SUSPENDED
-# 1   alsa_output.usb-C-Media_INC._USB_Sound_Device-00.analog-stereo  module-alsa-card.c  s16le 2ch 44100Hz   RUNNING
-# pactl set-default-sink alsa_output.usb-C-Media_INC._USB_Sound_Device-00.analog-stereo
-# pactl set-sink-volume alsa_output.usb-C-Media_INC._USB_Sound_Device-00.analog-stereo 80%
-# spd-say "warmup record"
-</code></pre></div></td></tr></table></div>
-<p>install.shの名前で保存して</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>chmod 755 ./install.sh
-</code></pre></div></td></tr></table></div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>現在、http://jetson.webredirect.org/　の転送先　https://pypi.jetson-ai-lab.dev/　が落ちているようです。</p>
-</div>
-<h2 id="_1">実行</h2>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>./install.sh
-</code></pre></div></td></tr></table></div>
-<p>rebootして、再起動したら</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>conda activate lerobot
-</code></pre></div></td></tr></table></div>
-<p>する。この処理は毎回実施。</p>
-<h2 id="_2">日本語対応</h2>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span>
-<span class="normal">5</span>
-<span class="normal">6</span>
-<span class="normal">7</span>
-<span class="normal">8</span>
-<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo apt-get install language-pack-ja language-pack-ja-base
-
-# 2) /etc/locale.gen で ja_JP.UTF-8 の行をアンコメント
-sudo sed -i '/^# *ja_JP.UTF-8 /s/^# *//' /etc/locale.gen
-
-# 3) 実際にロケールファイルを生成
-sudo locale-gen
-
-export LANG=ja_JP.UTF-8
-</code></pre></div></td></tr></table></div></div>
+<div><h1 id="lerobot-060">LeRobot 0.6.0</h1>
+<h2 id="_1">対応モデル</h2>
+<table>
+<thead>
+<tr>
+<th>モデル種別</th>
+<th>モデル名</th>
+<th><code>--policy.type</code></th>
+<th>概要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>模倣学習／BC</strong></td>
+<td>ACT</td>
+<td><code>act</code></td>
+<td>Transformerで複数ステップのAction Chunkを一括生成</td>
+</tr>
+<tr>
+<td></td>
+<td>Diffusion Policy</td>
+<td><code>diffusion</code></td>
+<td>ノイズから軌道を反復的に復元して行動列を生成</td>
+</tr>
+<tr>
+<td></td>
+<td>VQ-BeT</td>
+<td><code>vqbet</code></td>
+<td>行動を離散的な潜在トークンとして学習</td>
+</tr>
+<tr>
+<td></td>
+<td>Multitask DiT Policy</td>
+<td><code>multi_task_dit</code></td>
+<td>DiTによる言語・画像条件付きのマルチタスク行動生成</td>
+</tr>
+<tr>
+<td><strong>VLA</strong></td>
+<td>π₀ / Pi0</td>
+<td><code>pi0</code></td>
+<td>大規模VLMとFlow Matchingによる汎用ロボット制御</td>
+</tr>
+<tr>
+<td></td>
+<td>π₀-FAST / Pi0Fast</td>
+<td><code>pi0_fast</code></td>
+<td>Pi0系の高速なAction Token生成モデル</td>
+</tr>
+<tr>
+<td></td>
+<td>π₀.₅ / Pi0.5</td>
+<td><code>pi05</code></td>
+<td>オープンワールド汎化を重視したPi0系VLA</td>
+</tr>
+<tr>
+<td></td>
+<td>GR00T N1.7</td>
+<td><code>groot</code></td>
+<td>NVIDIAのクロス・エンボディメント対応VLA</td>
+</tr>
+<tr>
+<td></td>
+<td>SmolVLA</td>
+<td><code>smolvla</code></td>
+<td>比較的小型・低計算量のVLA</td>
+</tr>
+<tr>
+<td></td>
+<td>X-VLA</td>
+<td><code>xvla</code></td>
+<td>Soft Promptで異なるロボット構成を統合するVLA</td>
+</tr>
+<tr>
+<td></td>
+<td>EO-1</td>
+<td><code>eo1</code></td>
+<td>視覚・言語からロボット行動を生成するVLA</td>
+</tr>
+<tr>
+<td></td>
+<td>MolmoAct2</td>
+<td><code>molmoact2</code></td>
+<td>Molmo系視覚言語モデルを利用した行動生成</td>
+</tr>
+<tr>
+<td></td>
+<td>WALL-OSS</td>
+<td><code>wall_x</code></td>
+<td>WALL-X実装をベースとしたオープンVLA</td>
+</tr>
+<tr>
+<td></td>
+<td>EVO1</td>
+<td><code>evo1</code></td>
+<td>汎用ロボット操作向けVLA</td>
+</tr>
+<tr>
+<td><strong>World Model／WAM</strong></td>
+<td>VLA-JEPA</td>
+<td><code>vla_jepa</code></td>
+<td>VLAに潜在動画World Modelを組み合わせて学習</td>
+</tr>
+<tr>
+<td></td>
+<td>LingBot-VA</td>
+<td><code>lingbot_va</code></td>
+<td>Video-Action World Model</td>
+</tr>
+<tr>
+<td></td>
+<td>FastWAM</td>
+<td><code>fastwam</code></td>
+<td>Wan2.2動画モデルを利用するWorld Action Model</td>
+</tr>
+<tr>
+<td><strong>強化学習</strong></td>
+<td>HIL-SERL</td>
+<td><code>gaussian_actor</code></td>
+<td>人間介入を組み込んだ実機向けRL基盤</td>
+</tr>
+<tr>
+<td></td>
+<td>TDMPC</td>
+<td><code>tdmpc</code></td>
+<td>潜在空間のWorld Modelを使うモデルベースRL</td>
+</tr>
+<tr>
+<td></td>
+<td>QC-FQL</td>
+<td>―</td>
+<td>0.6.0時点では「coming soon」で未対応</td>
+</tr>
+<tr>
+<td><strong>Reward Model</strong></td>
+<td>SARM</td>
+<td>―</td>
+<td>操作動画や状態から報酬・成功度を推定</td>
+</tr>
+<tr>
+<td></td>
+<td>TOPReward</td>
+<td>―</td>
+<td>タスク進行や達成度を評価する報酬モデル</td>
+</tr>
+<tr>
+<td></td>
+<td>Robometer</td>
+<td>―</td>
+<td>ロボット操作の品質・成功度を評価</td>
+</tr>
+</tbody>
+</table></div>
 
 
 
