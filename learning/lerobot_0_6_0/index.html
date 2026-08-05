@@ -404,6 +404,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        モデル種別による違い
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2090,6 +2101,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        モデル種別による違い
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2256,6 +2278,94 @@
 <td>Robometer</td>
 <td>―</td>
 <td>ロボット操作の品質・成功度を評価</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_2">モデル種別による違い</h2>
+<table>
+<thead>
+<tr>
+<th>種別</th>
+<th>主な入力</th>
+<th>出力</th>
+<th>学習方法</th>
+<th>長所</th>
+<th>短所</th>
+<th>Unitree G1での位置づけ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ACT</strong></td>
+<td>カメラ、関節状態</td>
+<td>Action Chunk</td>
+<td>教師あり模倣学習</td>
+<td>軽量、高速、少量データでも扱いやすい</td>
+<td>未学習タスクへの汎化は弱い</td>
+<td><strong>上半身操作の第一候補</strong></td>
+</tr>
+<tr>
+<td><strong>Diffusion</strong></td>
+<td>カメラ、関節状態</td>
+<td>Action Sequence</td>
+<td>拡散モデルによる模倣学習</td>
+<td>滑らかで多峰性のある動作を表現しやすい</td>
+<td>学習・推論がACTより重い</td>
+<td>複雑な両腕操作の第二候補</td>
+</tr>
+<tr>
+<td><strong>VQ-BeT</strong></td>
+<td>カメラ、関節状態</td>
+<td>潜在Action Token</td>
+<td>行動量子化＋Transformer</td>
+<td>複数の異なる動作パターンを表現しやすい</td>
+<td>チューニング項目が多い</td>
+<td>研究比較用</td>
+</tr>
+<tr>
+<td><strong>Multitask DiT</strong></td>
+<td>カメラ、状態、言語</td>
+<td>Action Sequence</td>
+<td>DiT／Diffusion系</td>
+<td>複数タスクを1モデルに統合しやすい</td>
+<td>データ量とGPUを要求</td>
+<td>言語付きマルチタスク操作向け</td>
+</tr>
+<tr>
+<td><strong>VLA</strong></td>
+<td>カメラ、言語、関節状態</td>
+<td>Action Chunk</td>
+<td>VLM事前学習＋ロボットデータ微調整</td>
+<td>言語指示、物体理解、タスク汎化</td>
+<td>重い。ロボット構成への適合が必要</td>
+<td>多タスク化・汎用化フェーズ</td>
+</tr>
+<tr>
+<td><strong>WAM／World Model</strong></td>
+<td>動画、状態、言語、行動</td>
+<td>未来表現＋Action</td>
+<td>動画予測・潜在世界予測</td>
+<td>動作結果を内部的に予測しながら学習できる</td>
+<td>まだ研究色が強く計算量も大きい</td>
+<td>次世代研究候補</td>
+</tr>
+<tr>
+<td><strong>RL</strong></td>
+<td>状態、画像、報酬</td>
+<td>Action</td>
+<td>環境との試行錯誤</td>
+<td>成功率、速度、接触動作を直接最適化可能</td>
+<td>実機学習は危険性・時間コストが高い</td>
+<td>微調整や自律改善向け</td>
+</tr>
+<tr>
+<td><strong>Reward Model</strong></td>
+<td>画像、動画、言語</td>
+<td>スコア／報酬</td>
+<td>成功・失敗データによる学習</td>
+<td>人手の報酬設計を減らせる</td>
+<td>直接ロボットを制御するモデルではない</td>
+<td>RL・データ選別の補助</td>
 </tr>
 </tbody>
 </table></div>
