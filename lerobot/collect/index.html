@@ -2262,6 +2262,10 @@ lerobot-record<span class="w"> </span><span class="se">\</span>
 <h2 id="2">2. データセット収集（追加）</h2>
 <p>1の操作で収集したデータセットをさらに追加したい場合に、下記コマンドで追加収集可能です。</p>
 <p>既存データセットへ追加するときは、初回収集時と同じ<code>repo_id</code>、<code>root</code>、カメラ構成、FPS、タスク名を使用し、<code>--resume=true</code>を指定します。次の例では5エピソードを追加します。</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked id="__tabbed_2_1" name="__tabbed_2" type="radio"><input id="__tabbed_2_2" name="__tabbed_2" type="radio"><div class="tabbed-labels"><label for="__tabbed_2_1">カメラ1個</label><label for="__tabbed_2_2">カメラ2個</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>SSH接続時は、Rerun GUIを起動しないように<code>--display_data=false</code>を使用します。</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -2283,7 +2287,7 @@ lerobot-record<span class="w"> </span><span class="se">\</span>
 <span class="normal">19</span>
 <span class="normal">20</span>
 <span class="normal">21</span>
-<span class="normal">22</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nb">cd</span><span class="w">　</span><span class="s2">"{{ PROJECT_DIR }}"</span>
+<span class="normal">22</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="s2">"{{ PROJECT_DIR }}"</span>
 
 lerobot-record<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--robot.type<span class="o">=</span>so101_follower<span class="w"> </span><span class="se">\</span>
@@ -2300,12 +2304,70 @@ lerobot-record<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--dataset.fps<span class="o">=</span><span class="m">30</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--dataset.episode_time_s<span class="o">=</span><span class="m">10</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--dataset.reset_time_s<span class="o">=</span><span class="m">5</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--dataset.num_episodes<span class="o">=</span><span class="m">5</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--dataset.num_episodes<span class="o">=</span><span class="m">30</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--dataset.streaming_encoding<span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--display_data<span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--play_sounds<span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--resume<span class="o">=</span><span class="nb">true</span>
 </code></pre></div></td></tr></table></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Jetsonのデスクトップ上のターミナルで実行し、<code>DISPLAY</code>または<code>WAYLAND_DISPLAY</code>が設定されている場合のみ、必要に応じて<code>--display_data=true</code>へ変更できます。SSHでは<code>false</code>のまま使用してください。</p>
+</div>
+</div>
+<div class="tabbed-block">
+<p>SSH接続時は、Rerun GUIを起動しないように<code>--display_data=false</code>を使用します。</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="s2">"{{ PROJECT_DIR }}"</span>
+
+lerobot-record<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--robot.type<span class="o">=</span>so101_follower<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--robot.port<span class="o">={{</span><span class="w"> </span>ROBOT_PORT<span class="w"> </span><span class="o">}}</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--robot.id<span class="o">=</span>my_follower_arm<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--teleop.type<span class="o">=</span>so101_leader<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--teleop.port<span class="o">={{</span><span class="w"> </span>TELEOP_PORT<span class="w"> </span><span class="o">}}</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--teleop.id<span class="o">=</span>my_leader_arm<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--robot.cameras<span class="o">=</span><span class="s2">"{front: {type: opencv, index_or_path: '/dev/video0', backend: 200, width: 640, height: 480, fps: 30, fourcc: 'MJPG'}, side:{type: opencv, index_or_path: '/dev/video2', backend: 200, width: 640, height: 480, fps: 30, fourcc: 'MJPG'}}"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--dataset.repo_id<span class="o">={{</span><span class="w"> </span>DATASET_REPO_ID<span class="w"> </span><span class="o">}}</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--dataset.root<span class="o">={{</span><span class="w"> </span>DATASET_DIR<span class="w"> </span><span class="o">}}</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--dataset.push_to_hub<span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--dataset.single_task<span class="o">=</span><span class="s2">"Pick up the red cube"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--dataset.fps<span class="o">=</span><span class="m">30</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--dataset.episode_time_s<span class="o">=</span><span class="m">10</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--dataset.reset_time_s<span class="o">=</span><span class="m">5</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--dataset.num_episodes<span class="o">=</span><span class="m">30</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--dataset.streaming_encoding<span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--display_data<span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--play_sounds<span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--resume<span class="o">=</span><span class="nb">true</span><span class="w">    </span>
+</code></pre></div></td></tr></table></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Jetsonのデスクトップ上のターミナルで実行し、<code>DISPLAY</code>または<code>WAYLAND_DISPLAY</code>が設定されている場合のみ、必要に応じて<code>--display_data=true</code>へ変更できます。SSHでは<code>false</code>のまま使用してください。</p>
+</div>
+</div>
+</div>
+</div>
 <p>追加収集後、「収集データセットの完成確認」をもう一度実行します。</p>
 <h2 id="_2">リファレンス</h2>
 <ul>
