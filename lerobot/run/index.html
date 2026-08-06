@@ -2189,6 +2189,9 @@ ls<span class="w"> </span>-lah<span class="w"> </span><span class="s2">"</span><
 </code></pre></div></td></tr></table></div>
 <h2 id="2">2. 推論動作テスト（録画なし）</h2>
 <p>LeRobot 0.6.0では、学習済みPolicyの実機実行に<code>lerobot-rollout</code>を使用します。<code>lerobot-record</code>へ<code>--device</code>や<code>--policy.path</code>を渡さないでください。</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">カメラ1個</label><label for="__tabbed_1_2">カメラ2個</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -2205,7 +2208,7 @@ ls<span class="w"> </span>-lah<span class="w"> </span><span class="s2">"</span><
 <span class="normal">14</span>
 <span class="normal">15</span>
 <span class="normal">16</span>
-<span class="normal">17</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>--<span class="w"> </span><span class="s2">"{{ PROJECT_DIR }}"</span>
+<span class="normal">17</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="s2">"{{ PROJECT_DIR }}"</span>
 <span class="nb">export</span><span class="w"> </span><span class="nv">HF_HUB_OFFLINE</span><span class="o">=</span><span class="m">1</span>
 
 lerobot-rollout<span class="w"> </span><span class="se">\</span>
@@ -2223,7 +2226,46 @@ lerobot-rollout<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--play_sounds<span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--return_to_initial_position<span class="o">=</span><span class="nb">true</span>
 </code></pre></div></td></tr></table></div>
-<p><code>base</code>戦略ではデータを記録しないため、<code>--dataset.*</code>引数を追加しません。</p>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="s2">"{{ PROJECT_DIR }}"</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">HF_HUB_OFFLINE</span><span class="o">=</span><span class="m">1</span>
+
+lerobot-rollout<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--strategy.type<span class="o">=</span>base<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--policy.path<span class="o">={{</span><span class="w"> </span>POLICY_PATH<span class="w"> </span><span class="o">}}</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--robot.type<span class="o">=</span>so101_follower<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--robot.port<span class="o">={{</span><span class="w"> </span>ROBOT_PORT<span class="w"> </span><span class="o">}}</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--robot.id<span class="o">=</span>my_follower_arm<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--robot.cameras<span class="o">=</span><span class="s2">"{front: {type: opencv, index_or_path: '/dev/video0', backend: 200, width: 640, height: 480, fps: 30, fourcc: 'MJPG'}, side:{type: opencv, index_or_path: '/dev/video2', backend: 200, width: 640, height: 480, fps: 30, fourcc: 'MJPG'}}"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--device<span class="o">=</span>cuda<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--fps<span class="o">=</span><span class="m">30</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--duration<span class="o">=</span><span class="m">60</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--task<span class="o">=</span><span class="s2">"Pick up the red cube"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--display_data<span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--play_sounds<span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--return_to_initial_position<span class="o">=</span><span class="nb">true</span>
+</code></pre></div></td></tr></table></div>
+</div>
+</div>
+</div>
+<p>データを記録しないため、<code>--dataset.*</code>引数を追加しません。</p>
 <h2 id="_2">リファレンス</h2>
 <ul>
 <li><a href="https://huggingface.co/docs/lerobot/so101">SO-101</a></li>
