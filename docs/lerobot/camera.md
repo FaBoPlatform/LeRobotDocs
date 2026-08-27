@@ -75,7 +75,7 @@ rm -rf "{{DATASET_DIR}}"
     ```
 
 
-## 2.Retunを起動
+## 2.Rerunを起動
 
 ```bash
 lerobot-dataset-viz \
