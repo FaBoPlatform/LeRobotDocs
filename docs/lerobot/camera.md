@@ -75,12 +75,12 @@ rm -rf "{{DATASET_DIR}}"
     ```
 
 
-## 2.Retunを起動
+## 2.Rerunを起動
 
 ```bash
 lerobot-dataset-viz \
-  --repo-id local/1cam_test \
-  --root /home/jetson/lerobot/local/1cam_test \
+  --repo-id {{DATASET_REPO_ID}} \
+  --root {{DATASET_DIR}} \
   --episode-index 0 \
   --mode distant \
   --web-port 9090 \
