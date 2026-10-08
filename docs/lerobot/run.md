@@ -11,19 +11,21 @@
 Policyを検査します。
 
 ```bash
-cd -- "{{PROJECT_DIR}}"
-POLICY_PATH="{{POLICY_PATH}}"
+(
+  cd -- "{{PROJECT_DIR}}" || exit 1
+  POLICY_PATH="{{POLICY_PATH}}"
 
-if [ ! -f "$POLICY_PATH/config.json" ]; then
-  echo "ERROR: invalid policy path: $POLICY_PATH" >&2
-  exit 1
-fi
-if ! find "$POLICY_PATH" -maxdepth 1 -type f -name '*.safetensors' -print -quit | grep -q .; then
-  echo "ERROR: model file not found: $POLICY_PATH" >&2
-  exit 1
-fi
+  if [ -f "$POLICY_PATH/config.json" ]; then
+    echo "ERROR: invalid policy path: $POLICY_PATH" >&2
+    exit 1
+  fi
+  if ! find "$POLICY_PATH" -maxdepth 1 -type f -name '*.safetensors' -print -quit | grep -q .; then
+    echo "ERROR: model file not found: $POLICY_PATH" >&2
+    exit 1
+  fi
 
-ls -lah "$POLICY_PATH"
+  ls -lah "$POLICY_PATH"
+)
 ```
 
 ## 2. 推論動作テスト（録画なし）

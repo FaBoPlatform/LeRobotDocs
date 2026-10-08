@@ -1,0 +1,6 @@
+# mkdocs-material が MkDocs 2.0 を本番利用に不適と警告しているため 1.x に固定する
+mkdocs==1.6.1
+# gh-pages の生成元メタ (mkdocs-1.6.1, mkdocs-material-9.7.6) に合わせている
+mkdocs-material==9.7.6
+mkdocs-macros-plugin==1.5.0
+mkdocs-video==1.5.0
