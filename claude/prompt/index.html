@@ -1175,6 +1175,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    プロンプト例
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1191,6 +1209,80 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#jetson" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Jetsonの情報収集
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jetsonos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JetsonのOSバージョン
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lerobot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LeRobotバージョン
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        コマンド
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lerobot_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LeRobotプラグイン
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2081,6 +2173,69 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#jetson" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Jetsonの情報収集
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jetsonos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JetsonのOSバージョン
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lerobot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LeRobotバージョン
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        コマンド
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lerobot_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LeRobotプラグイン
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2098,10 +2253,67 @@
 
 <div><h1 id="_1">プロンプト例</h1>
 <p>Claude Codeへの指示令</p>
+<h2 id="jetson">Jetsonの情報収集</h2>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>ssh jetson@192.168.55.1 に接続(pass: jetson)し、Jetsonとセッションを繋ぎ、Jetsonの情報を収集。
+</code></pre></div></td></tr></table></div>
+<h2 id="jetsonos">JetsonのOSバージョン</h2>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>ssh jetson@192.168.55.1 に接続(pass: jetson)し、JetsonのOS Versionを調べてください。
+</code></pre></div></td></tr></table></div>
+<h2 id="lerobot">LeRobotバージョン</h2>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>ssh jetson@192.168.55.1 に接続(pass: jetson)し、LeRobotのバージョンを調べてください。
+</code></pre></div></td></tr></table></div>
+<h2 id="_2">コマンド</h2>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>/model
+</code></pre></div></td></tr></table></div>
+<p><img alt="" src="./img/model001.png"></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>/clear
+</code></pre></div></td></tr></table></div>
+<p><img alt="" src="./img/clear001.png"></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>/compact
+</code></pre></div></td></tr></table></div>
+<p><img alt="" src="./img/compact001.png"></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>/goal
+</code></pre></div></td></tr></table></div>
+<p><img alt="" src="./img/goal001.png"></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>/memory
+</code></pre></div></td></tr></table></div>
+<p><img alt="" src="./img/memory001.png"></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">コマンド</th>
+<th style="text-align: left;">役割</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">/model</td>
+<td style="text-align: left;">モデル(Opus / Sonnet / Haiku など)を切り替える。選択はデフォルトとして保存され、sで今回限りの切り替えも可能</td>
+</tr>
+<tr>
+<td style="text-align: left;">/clear</td>
+<td style="text-align: left;">会話履歴をすべて消去して空のコンテキストで再開。CLAUDE.md と自動メモリは引き続き読み込まれ、/goal は解除される</td>
+</tr>
+<tr>
+<td style="text-align: left;">/compact  │ 会話を要約して圧縮し、同じ会話を続けたままコンテキストを節約。/compact 残したい内容で要約の焦点を指示できる</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">/goal</td>
+<td style="text-align: left;">完了条件を設定し、各ターン後に判定モデルが条件を確認。満たされるまでユーザーの入力なしで自律的に作業を続ける。/goal clear で解除</td>
+</tr>
+<tr>
+<td style="text-align: left;">/memory</td>
+<td style="text-align: left;">CLAUDE.md / CLAUDE.local.md などのメモリファイルを一覧・編集し、自動メモリのオン/オフや保存フォルダを開く</td>
+</tr>
+</tbody>
+</table>
+<h2 id="lerobot_1">LeRobotプラグイン</h2>
+<p>skillsを用いたプラグイン開発</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
-<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>ssh jetson@192.168.55.1 に接続(pass: jetson)し、Jetsonとセッションを繋ぎ、LeRobotプラグインを新規に作成してください。
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>LeRobotプラグインを新規に作成してください。
 
 LeRobotプラグインは、midi-teleop-skills (https://github.com/FaBoAI/LeRobotPluginSkills) を参考にして
 KORG nanoKONTROL2のデバイスのLeRobot Teleopプラグインを新規に作成せよ
